@@ -1,3 +1,3 @@
 export default function printMe() {
-  condsole.log('printqwdqwdjs');
+  alert('하이');
 }

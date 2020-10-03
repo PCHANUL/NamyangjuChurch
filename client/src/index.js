@@ -8,7 +8,7 @@ function component() {
 
   element.innerHTML = _.join(['안녕하세요', '웹팩입니다.'], ' ');
 
-  btn.innerHTML = 'Click me and check the console!';
+  btn.innerHTML = '나를 클릭해보세요!';
   btn.onclick = printMe;
 
   element.appendChild(btn);
