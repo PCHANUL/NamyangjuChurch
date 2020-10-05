@@ -1,9 +1,25 @@
 import React from 'react';
-const a = 2011111111
-const App = () => (
-  <div>
-    {a}
-  </div>
-);
+import { withRouter, Route, Switch } from 'react-router-dom';
 
-export default App;
+function App(props) {
+
+  return (
+    <div id="App">
+      <Switch>
+        <Route exact path='/'>
+          <h1>Home</h1>
+          <button onClick={() => props.history.push('/message')}>message</button>
+          <button onClick={() => props.history.push('/community')}>community</button>
+        </Route>
+        <Route path='/message'>
+          <h1>message</h1>
+        </Route>
+        <Route path='/community'>
+          <h1>community</h1>
+        </Route>
+      </Switch>
+    </div>
+  )
+}
+
+export default (withRouter(App));
