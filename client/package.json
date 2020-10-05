@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
     "server": "node server.js",
@@ -34,10 +34,13 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "babel-jest": "^26.5.0",
+    "jest": "^26.5.0",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-test-renderer": "^16.13.1"
   }
 }
