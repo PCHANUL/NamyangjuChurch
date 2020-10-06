@@ -1,29 +1,22 @@
 import React from 'react';
-import { 
-  BrowserRouter as Router,
-  Route, 
-  Switch,
-  Link,
-} from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import Main from './page/Main'
+import Message from './page/Message'
+import Community from './page/Community'
 
 function App(props) {
 
   return (
     <Switch>
       <Route exact path='/'>
-        <h1>Home</h1>
-        <button>
-          <Link to="/message">message</Link>
-        </button>
-        <button>
-          <Link to="/community">community</Link>
-        </button>
+        <Main />
       </Route>
       <Route path='/message'>
-        <h1>message</h1>
+        <Message />
       </Route>
       <Route path='/community'>
-        <h1>community</h1>
+        <Community />
       </Route>
     </Switch>
   )
