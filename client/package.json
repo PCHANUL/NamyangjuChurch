@@ -33,6 +33,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@testing-library/react": "^11.0.4",
     "axios": "^0.20.0",
     "babel-jest": "^26.5.0",
     "jest": "^26.5.0",
