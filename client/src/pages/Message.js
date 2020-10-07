@@ -1,5 +1,7 @@
 import React from 'react';
 
+import VideoList from './VideoList';
+
 function Message() {
   return (
     <div>
@@ -11,19 +13,9 @@ function Message() {
         새벽
         기도수첩</h4>
       </div>
-
-      <div style={{width: '80vw', height: '10vw', border: '2px solid #000'}}>
-        <h1>메시지 제목</h1>
-      </div>
-      <div style={{width: '80vw', height: '10vw', border: '2px solid #000'}}>
-        <h1>메시지 제목</h1>
-      </div>
-      <div style={{width: '80vw', height: '10vw', border: '2px solid #000'}}>
-        <h1>메시지 제목</h1>
-      </div>
-      <div style={{width: '80vw', height: '10vw', border: '2px solid #000'}}>
-        <h1>메시지 제목</h1>
-      </div>
+      
+      <VideoList />
+      
     </div>
   )
 }

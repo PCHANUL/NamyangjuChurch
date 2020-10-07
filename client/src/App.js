@@ -3,6 +3,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 
 import Main from './pages/Main'
 import Admin from './pages/Admin'
+import Video from './pages/Video'
 import Message from './pages/Message'
 import Community from './pages/Community'
 
@@ -28,6 +29,9 @@ function App(props) {
         </Route>
         <Route path='/message'>
           <Message />
+        </Route>
+        <Route path='/video'>
+          <Video />
         </Route>
         <Route path='/community'>
           <Community />

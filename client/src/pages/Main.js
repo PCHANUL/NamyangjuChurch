@@ -12,7 +12,7 @@ function NaverMapAPI() {
       mapDivId={'maps-getting-started-uncontrolled'} // default: react-naver-map
       style={{
         width: '100%', // 네이버지도 가로 길이
-        height: '100%' // 네이버지도 세로 길이
+        height: '30vw' // 네이버지도 세로 길이
       }}
       defaultCenter={{ lat: 37.554722, lng: 126.970833 }} // 지도 초기 위치
       defaultZoom={13} // 지도 초기 확대 배율
@@ -45,7 +45,7 @@ function Main() {
       <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
         <h1>오시는길</h1>
         <RenderAfterNavermapsLoaded
-          ncpClientId={KEYS.NAVER_ID} // 자신의 네이버 계정에서 발급받은 Client ID
+          ncpClientId={KEYS.NAVER_ID} 
           error={<p>Maps Load Error</p>}
           loading={<p>Maps Loading...</p>}
         >
