@@ -29,7 +29,6 @@ const videoData = [
 ]
 
 function VideoList (props) {
-  console.log(props)
   return (
     <div>
       {
