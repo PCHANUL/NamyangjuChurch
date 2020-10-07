@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, useLocation, } from 'react-router-dom';
 
 import Main from './pages/Main'
 import Admin from './pages/Admin'
@@ -7,7 +7,9 @@ import Video from './pages/Video'
 import Message from './pages/Message'
 import Community from './pages/Community'
 
-function App(props) {
+function App() {
+
+  let location = useLocation();
 
   return (
     <>
@@ -23,7 +25,7 @@ function App(props) {
         </Link>
       </nav>
 
-      <Switch>
+      <Switch key={location.key}>
         <Route exact path='/'>
           <Main />
         </Route>
@@ -41,7 +43,7 @@ function App(props) {
         </Route>
       </Switch>
 
-      <footer style={{width: '80vw', height: '10vw', border: '2px solid #000'}}>
+      <footer style={{width: '80vw', height: '15vw', border: '2px solid #000'}}>
         <h1>남양주 교회</h1>
         <Link to="/admin">admin</Link>
       </footer>

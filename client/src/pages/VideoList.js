@@ -34,10 +34,11 @@ function VideoList (props) {
       {
         videoData.map((data, i) => {
           return (
-          <div key={i} style={{width: '80vw', height: '20vw', border: '2px solid #000'}} onClick={() => props.history.push('/video')}>
+          <div key={i} style={{width: '80vw', height: '20vw', border: '2px solid #000'}}>
             <h1>{data.title}</h1>
             <h5>{data.date}</h5>
             <h5>{data.desc}</h5>
+            <button onClick={() => props.history.push('/video')}>영상보기</button>
           </div>)
         })
       }
