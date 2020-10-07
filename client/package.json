@@ -41,6 +41,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.13.0",
+    "react-naver-maps": "0.0.13",
     "react-router-dom": "^5.2.0",
     "react-test-renderer": "^16.13.1"
   }
