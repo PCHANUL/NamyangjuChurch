@@ -70,6 +70,7 @@ module.exports = {
     publicPath: '/',
   },
   devServer: {
+    historyApiFallback: true,
     host: 'localhost',
     port: port,
     open: true,

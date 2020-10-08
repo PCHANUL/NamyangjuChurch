@@ -1,22 +1,40 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 
 function Login(props) {
+  const [userId, setUserId] = useState('');
+  const [userPw, setUserPw] = useState('');
+
+  const handleChangeId = (e) => {
+    setUserId(e.target.value)
+  }
+  const handleChangePw = (e) => {
+    setUserPw(e.target.value)
+  }
+  const handleSubmit = (e) => {
+    console.log(e)
+  }
+
+
   return (
     <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="fname">아이디:</label>
-        <input type="text" id="fname" name="fname" />
+        <input type="text" id="fname" name="fname" value={userId} onChange={handleChangeId} />
         <br />
         <label htmlFor="lname">비밀번호:</label>
-        <input type="password" id="lname" name="lname" />
+        <input type="password" id="lname" name="lname" value={userPw} onChange={handleChangePw}/>
         <br />
-        <input type="submit" value="로그인" >
+        <input type="submit" value="로그인" onClick={() => props.history.push('/admin')}>
         </input>
       </form>
-      {/* <button onClick={props.history.push('/adminSignin')}>
+      <Link to='/admin/signin'>
           관리자 가입
-      </button> */}
+      </Link>
+      <br />
+      <Link to='/'>
+          나가기
+      </Link>
     </div>
   )
 }
