@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function Edit() {
+function Edit(props) {
   const [frameElement, getFrameElement] = useState({});
 
   const commands = [
@@ -12,7 +12,17 @@ function Edit() {
       cmd: 'fontSize',
       icon: '크기',
       val: '10',
-    }
+    },
+    {
+      cmd: 'formatBlock',
+      icon: 'H1',
+      val: 'H1',
+    },
+    {
+      cmd: 'formatBlock',
+      icon: 'H3',
+      val: 'H3',
+    },
   ]
 
   function editFunc(cmd) {
@@ -23,6 +33,7 @@ function Edit() {
     <>
       <h1>edit page</h1> 
         <div style={{width: '80vw', height: '30vw', border: '2px solid #000'}}>
+          <input type="file" name="reviewImg" id="reviewImageFileOpenInput" accept="image/png, image/jpeg" />
           {
             commands.map((command) => {
               return <button onClick={() => editFunc(command)}>{command.icon}</button>
@@ -38,6 +49,9 @@ function Edit() {
             <br />
             한번더 굴림데굴데굴굴림
           </div>
+
+          <input type="button" value="저장"/>
+          <button onClick={() => props.history.push('/admin')}>나가기</button>
         </div>
     </>
   )

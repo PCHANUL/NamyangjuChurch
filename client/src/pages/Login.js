@@ -32,6 +32,10 @@ function Login(props) {
           관리자 가입
       </Link>
       <br />
+      <Link to='/admin'>
+          권한없이 둘러보기
+      </Link>
+      <br />
       <Link to='/'>
           나가기
       </Link>
