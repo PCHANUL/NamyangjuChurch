@@ -16,17 +16,19 @@ function App() {
 
   return (
     <>
-      <nav>
-        <Link to="/">
+      <nav style={{width: '80vw', height: '3vw', border: '2px solid #000', padding: '1vw', position: 'fixed', top: '0%', backgroundColor: '#fff'}}>
+        <Link to="/" style={{fontSize: '3vw', marginRight: '2vw'}}>
           남양주 사랑교회
         </Link>
-        <Link to="/message">
+        <Link to="/message" style={{fontSize: '3vw', marginRight: '2vw'}}>
           message
         </Link>
-        <Link to="/community">
+        <Link to="/community" style={{fontSize: '3vw'}}>
           community
         </Link>
       </nav>
+
+      <div style={{height: '5vw'}}></div>
 
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />

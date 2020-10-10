@@ -11,8 +11,6 @@ function _onReady(event) {
   // event.target.playVideo();
 }
 
-
-
 function Video() {
   return (
     <div>

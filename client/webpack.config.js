@@ -7,7 +7,10 @@ const port = process.env.PORT || 3000;
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: [
+    './src/index.js',
+    'regenerator-runtime/runtime',
+  ],
   module: {
     rules: [
       {
