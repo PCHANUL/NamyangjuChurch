@@ -3,63 +3,23 @@ import { Link } from 'react-router-dom';
 
 import mainImage from '../images/main.jpg';
 import thumbnail from '../images/thumbnail.png';
-import { RenderAfterNavermapsLoaded, NaverMap } from 'react-naver-maps';
-import GoogleMapReact from 'google-map-react';
-import KEYS from '../keys';
+
+import Map from './Map';
 
 import axios from 'axios';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+const places = [
+  { lat: 33.499648, lng: 126.531275 },
+  { lat: 33.2553, lng: 126.560114 },
+]
 
 const handleApiLoaded = (map, maps) => {
   // use map and maps objects
   console.log(map, maps)
 };
 
-function GoogleMapAPI() {
-  let defaultProps = {
-    center: {
-      lat: 59.95,
-      lng: 30.33
-    },
-    zoom: 11
-  };
-
-  return (
-    <div style={{ height: '30vw', width: '70vw'}}>
-      <GoogleMapReact
-        bootstrapURLKeys={{ 
-          key: KEYS.G_API,
-          libraries:['geometry', 'visualization']
-        }}
-        center={defaultProps.center}
-        zoom={defaultProps.zoom}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
-      >
-        <AnyReactComponent
-            lat={59.955413}
-            lng={30.337844}
-            text="My Marker"
-          />
-      </GoogleMapReact>
-    </div>
-  );
-}
-
-// https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=
-// https://maps.googleapis.com/maps/api/timezone/json?location=39.6034810,-119.6822510&timestamp=1331161200&key=
-
-const findRoute = () => {
-  axios(`https://maps.googleapis.com/maps/api/directions/json?origin=Toronto&destination=Montreal&key=${KEYS.G_API}`)
-  .then((result) => {
-    console.log(result)
-  })
-
-}
 
 function Main() {
-
   return (
     <div>
       <h1>Home</h1>
@@ -82,8 +42,11 @@ function Main() {
         </div>
       </div>
       <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
-        <h1 onClick={findRoute}>오시는길</h1>
-        <GoogleMapAPI />
+        <h1>오시는길</h1>
+        <Map
+          startPoint={{ lat: places[0].lat, lng: places[0].lng }}
+          endPoint={{ lat: places[1].lat, lng: places[1].lng }}
+        />
       </div>
       <div style={{width: '80vw', height: '20vw', border: '2px solid #000'}}>
         <h1>예배시간</h1>
