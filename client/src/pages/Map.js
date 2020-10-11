@@ -5,6 +5,9 @@ import {
   DirectionsService,
   DirectionsRenderer,
 } from '@react-google-maps/api';
+import { InfoWindow } from "react-google-maps";
+import SearchBox from "react-google-maps/lib/components/places/SearchBox";
+
 
 import KEYS from '../keys';
 
@@ -58,6 +61,7 @@ const Map = (props) => {
         zoom={16}
         center={ startPoint ? { lat: 37.579779, lng: 126.976955 } : undefined }
       >
+        {/* <SearchBox /> */}
         <Directions origin={startPoint} destination={endPoint} />
       </GoogleMap>
     </LoadScript>

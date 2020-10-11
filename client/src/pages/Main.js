@@ -5,6 +5,7 @@ import mainImage from '../images/main.jpg';
 import thumbnail from '../images/thumbnail.png';
 
 import Map from './Map';
+import TimeTable from './TimeTable';
 
 import axios from 'axios';
 
@@ -48,9 +49,9 @@ function Main() {
           endPoint={{ lat: places[1].lat, lng: places[1].lng }}
         />
       </div>
-      <div style={{width: '80vw', height: '20vw', border: '2px solid #000'}}>
+      <div style={{width: '80vw', height: '60vw', border: '2px solid #000'}}>
         <h1>예배시간</h1>
-        <h1>가장 가까운 예배 [수요예배 (시간)]</h1>
+        <TimeTable />
       </div>
     </div>
   )
