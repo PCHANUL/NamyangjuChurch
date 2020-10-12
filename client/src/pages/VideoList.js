@@ -34,7 +34,7 @@ function VideoList (props) {
       {
         videoData.map((data, i) => {
           return (
-          <div key={i} style={{width: '80vw', height: '20vw', border: '2px solid #000'}}>
+          <div class='msgList' key={i} >
             <h1>{data.title}</h1>
             <h5>{data.date}</h5>
             <h5>{data.desc}</h5>

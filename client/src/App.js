@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Link, useLocation, Redirect} from 'react-router-dom';
 
 import Nav from './pages/Nav'
+import Footer from './pages/Footer'
 import Main from './pages/Main'
 import Edit from './pages/Edit'
 import Admin from './pages/Admin'
@@ -18,9 +19,7 @@ function App() {
   return (
     <>
       <Nav />
-
-      <div style={{height: '10vw'}}></div>
-
+      <div style={{height: '11vw'}} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
         <Route path='/message' component={Message} />
@@ -33,11 +32,7 @@ function App() {
         <Route path='/admin/edit' component={Edit} />
         <Redirect path='*' to="/" />
       </Switch>
-
-      <footer style={{width: '80vw', height: '15vw', border: '2px solid #000'}}>
-        <h1>남양주 교회</h1>
-        <Link to="/admin/login">admin</Link>
-      </footer>
+      <Footer />
     </>
   )
 }

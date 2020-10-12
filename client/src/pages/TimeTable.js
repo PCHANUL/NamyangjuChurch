@@ -43,7 +43,7 @@ function TimeTable() {
       <h1>    5시간 후 수요예배 시작</h1>
       <h1>    잠시후 수요예배 시작</h1>
       <h1>    수요예배 중 (유튜브 라이브)</h1> */}
-      <table style={{width: '80%', fontSize: '2vw'}}>
+      <table style={{width: '100%', fontSize: '2vw'}}>
         <tr>
           <td>주일 학교</td>
           <td>오전 9시 30분</td>
