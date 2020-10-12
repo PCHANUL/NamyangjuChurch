@@ -6,19 +6,18 @@ import './message.css';
 
 function Message() {
   return (
-    <div id='msgPage'>
-      <h1>message page</h1>
-      <div>
-        <div class='tabs'>주일</div>
-        <div class='tabs'>수요</div>
-        <div class='tabs'>금요</div>
-        <div class='tabs'>새벽</div>
-        <div class='tabs'>기도수첩</div>
+    <>
+      <div id='tabList'>
+        <div class='tab'>주일예배</div>
+        <div class='tab'>수요예배</div>
+        <div class='tab'>금요예배</div>
+        <div class='tab'>새벽예배</div>
+        <div class='tab'>기도수첩</div>
       </div>
       
       <VideoList />
       
-    </div>
+    </>
   )
 }
 
