@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch, Link, useLocation, Redirect} from 'react-router-dom';
 
+import Nav from './pages/Nav'
 import Main from './pages/Main'
 import Edit from './pages/Edit'
 import Admin from './pages/Admin'
@@ -16,19 +17,9 @@ function App() {
 
   return (
     <>
-      <nav style={{width: '80vw', height: '3vw', border: '2px solid #000', padding: '1vw', position: 'fixed', top: '0%', backgroundColor: '#fff'}}>
-        <Link to="/" style={{fontSize: '3vw', marginRight: '2vw'}}>
-          남양주 사랑교회
-        </Link>
-        <Link to="/message" style={{fontSize: '3vw', marginRight: '2vw'}}>
-          message
-        </Link>
-        <Link to="/community" style={{fontSize: '3vw'}}>
-          community
-        </Link>
-      </nav>
+      <Nav />
 
-      <div style={{height: '5vw'}}></div>
+      <div style={{height: '10vw'}}></div>
 
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />

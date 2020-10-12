@@ -23,8 +23,8 @@ const handleApiLoaded = (map, maps) => {
 function Main() {
   return (
     <div>
-      <h1>Home</h1>
       <img src={mainImage} alt="..." style={{width: '80vw', height: 'auto'}}></img>
+
       <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
         <h1>교회소개</h1>
         <img src={thumbnail} alt="..." style={{width: '10vw', height: 'auto'}}></img>
@@ -33,6 +33,12 @@ function Main() {
         예수 그리스도만이 우리 인생의 모든 문제의 해답이며 유일한 길입니다.</p>
 
       </div>
+      <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
+        <h1>교회 기도제목</h1>
+
+      </div>
+
+
       <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
         <div style={{float: 'left', width: '30vw', height: '40vw', border: '2px solid #000', overflow:'hidden'}}>
           <h1>메시지 페이지 이동</h1>

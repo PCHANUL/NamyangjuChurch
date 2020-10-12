@@ -31,7 +31,7 @@ function GetCloseTime() {
   // }
 
   return (
-    <h1>{result}</h1>
+    <h1>{'생방송 유튜브'}</h1>
   )
 }
 
@@ -39,11 +39,10 @@ function TimeTable() {
 
   return (
     <>
-      <h1>    3일 후 수요예배 시작</h1>
+      {/* <h1>    3일 후 수요예배 시작</h1>
       <h1>    5시간 후 수요예배 시작</h1>
       <h1>    잠시후 수요예배 시작</h1>
-      <h1>    수요예배 중 (유튜브 라이브)</h1>
-      <GetCloseTime />
+      <h1>    수요예배 중 (유튜브 라이브)</h1> */}
       <table style={{width: '80%', fontSize: '2vw'}}>
         <tr>
           <td>주일 학교</td>
@@ -64,6 +63,7 @@ function TimeTable() {
           <td>오전 5시 20분</td>
         </tr>
       </table>
+      <GetCloseTime />
   </>
   )
 }

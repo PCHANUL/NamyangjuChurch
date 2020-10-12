@@ -38,6 +38,12 @@ module.exports = {
         ],
       },
       {
+        test: /\.ttf$/,
+        use: [
+          'file-loader',
+        ],
+      },
+      {
         test: /\.css$/,
         use: [
           {
@@ -45,11 +51,11 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: {
-              modules: true,
-              camelCase: true,
-              sourceMap: true,
-            },
+            // options: {
+            //   modules: true,
+            //   camelCase: true,
+            //   sourceMap: true,
+            // },
           },
         ],
       },
