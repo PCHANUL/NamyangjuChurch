@@ -16,6 +16,9 @@ Nav {
 #community {
   grid-column: 3;
 }
+#admin {
+  grid-column: 3;
+}
 
 #message {
   grid-column: 3;

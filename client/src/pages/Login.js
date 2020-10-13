@@ -37,8 +37,11 @@ function Login(props) {
               <br />
               <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
               <br />
-              <input type="submit" value="로그인" onClick={() => <Link to='/admin' />}>
-              </input>
+              <button type="submit" value="로그인" onClick={() => setIsOpen(false)}>
+                <Link to='/admin'>
+                  로그인
+                </Link>
+              </button>
             </form>
             <Link to='/admin/signin'>
                 관리자 가입
@@ -48,9 +51,6 @@ function Login(props) {
                 권한없이 둘러보기
             </Link>
             <br />
-            <Link to='/'>
-                나가기
-            </Link>
           </div>
           <div id='background'></div>
           </>

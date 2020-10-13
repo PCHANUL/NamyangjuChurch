@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div class='container'>
-      <Nav />
+      {/* <Nav /> */}
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
@@ -31,7 +31,6 @@ function App() {
 
         <Route exact path='/admin' component={Admin} />
         <Route path='/admin/signin' component={Signin} />
-        <Route path='/admin/login' component={Login} />
         <Route path='/admin/edit' component={Edit} />
         <Redirect path='*' to="/" />
       </Switch>

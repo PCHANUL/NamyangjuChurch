@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Link, useRouteMatch } from 'react-router-dom';
+
+import './admin.css';
+import addFile from '../images/add-file.png';
 
 const listData = [
   {
@@ -41,19 +44,27 @@ const listData = [
 
 function Admin(props) {
   const [tab, setTab] = useState(0);
+
+  useEffect(() => {
+    window.scroll(0,0);
+
+  }, [])
+
   
 
   return (
-    <div>
+    <div id='admin'>
       <h1>admin page</h1> 
-      <div style={{width: '80vw', height: '20vw', border: '2px solid #000'}}>
-        <button style={{width: '15vw', height: '15vw'}} onClick={() => props.history.push('/admin/edit')}>추가하기</button> 
+      <div id='addBox'>
+        <button id='addBtn' onClick={() => props.history.push('/admin/edit')}>
+          <img id='addFileIcon' src={addFile} />
+        </button> 
       </div>
-      <div style={{width: '80vw', height: '5vw', border: '2px solid #000'}}>
+      <div style={{height: '5vw'}}>
         <div style={{width: '30vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => setTab(0)}>message</div>
         <div style={{width: '30vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => setTab(1)}>community</div>
       </div>
-      <div style={{width: '80vw', height: '70vw', border: '2px solid #000'}}>
+      <div style={{height: '70vw', border: '2px solid #000'}}>
         
         <h1>{listData[tab].title}</h1>
         {

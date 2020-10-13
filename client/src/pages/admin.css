@@ -1,0 +1,23 @@
+#admin {
+  width: 70vw;
+}
+
+#addBox {
+  height: 20vw;
+  border: 1px solid #000;
+}
+
+#addBtn {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10vw;
+  height: 10vw;
+  border-radius: 2vw;
+  background-color: #fff;
+}
+
+#addFileIcon {
+  width: 3vw
+}
