@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div class='container'>
-      {/* <Nav /> */}
+      <Nav />
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />

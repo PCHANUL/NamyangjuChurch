@@ -54,23 +54,21 @@ function Admin(props) {
 
   return (
     <div id='admin'>
-      <h1>admin page</h1> 
+      <h1>관리자 페이지</h1> 
       <div id='addBox'>
         <button id='addBtn' onClick={() => props.history.push('/admin/edit')}>
           <img id='addFileIcon' src={addFile} />
         </button> 
       </div>
-      <div style={{height: '5vw'}}>
-        <div style={{width: '30vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => setTab(0)}>message</div>
-        <div style={{width: '30vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => setTab(1)}>community</div>
+      <div id='adminTabBox'>
+        <div class='adminTab' onClick={() => setTab(0)}>message</div>
+        <div class='adminTab' onClick={() => setTab(1)}>community</div>
       </div>
-      <div style={{height: '70vw', border: '2px solid #000'}}>
-        
-        <h1>{listData[tab].title}</h1>
+      <>
         {
           listData[tab].data.map((data) => {
             return (
-              <div style={{width: '70vw', height: '10vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}}>
+              <div style={{height: '10vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}}>
                 <h1 style={{float:'left'}}>{`${data.messageTitle} / ${data.messageDate}`}</h1>
                 <button style={{width: '10vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => props.history.push('/admin/edit')} >수정하기</button>
                 <button style={{width: '10vw', height: '3vw', border: '2px solid #000', fontSize:'2vw', float: 'left'}} onClick={() => window.confirm('삭제하시겠습니까?')}>삭제하기</button>
@@ -78,8 +76,7 @@ function Admin(props) {
             )
           })
         }
-        
-      </div>
+      </>
     </div>
   )
 }

@@ -19,5 +19,30 @@
 }
 
 #addFileIcon {
-  width: 3vw
+  width: 3vw;
+}
+
+#adminTabBox {
+  margin-top: 2vw;
+  height: 3vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.adminTab {
+  text-align: center;
+  height: 3vw;
+  border-top: 2px solid #000;
+  font-size: 2vw;
+  grid-row: 1;
+  cursor: pointer;
+}
+
+.adminTab:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#contentListBox {
+  border: 1px solid #000;
+  height: 100%;
 }
