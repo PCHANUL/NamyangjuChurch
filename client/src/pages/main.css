@@ -37,18 +37,18 @@
   font-family: 'NanumBarunGothic';
   font-weight: 300;
   width: 70vw;
-  position: relative;
+  /* position: relative;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-50%, 0); */
 }
 
 #mainImg {
-  width: 70vw
+  width: 100%
 }
 
 #intro {
   text-align: center;
-  padding-top: 10vw;
-  height: 30vw;
+  /* padding-top: 10vw; */
+  /* height: 30vw; */
   /* border: 1px solid #000; */
 }

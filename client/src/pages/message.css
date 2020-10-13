@@ -8,25 +8,52 @@
 
 .video {
   position: relative;
-  height: 20vw;
-  border: 2px solid #000;
+  height: 12vw;
+  padding: 2vw 2vw 0 2vw;
+  border-top: 1px solid #000;
+  /* margin-bottom: 0.5vw; */
 }
+.title {
+  /* border: 2px solid #000; */
+  float: left;
+}
+.content {
+  /* border: 2px solid #000; */
+  width: 20vw;
+  text-align: right;
+  float: right;
+}
+.videoButton {
+  position: absolute;
+  bottom: 2vw;
+  right: 2vw;
+  border: 2px solid #000;
+  width: 10vw;
+  height: 3vw;
+  text-align: right;
+  float: right;
+}
+
+
 #tabList {
   font-size: 1.5vw;
   text-align: center;
   position: fixed;
   left: 50%;
-  top: 10vw;
+  top: 6.5vw;
   transform: translate(-50%);
-  width: 76.5vw;
+  width: 80vw;
   height: 4vw;
-  border-bottom: 2px solid #000;
   background-color: #fff;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* border-bottom: 1px solid #000; */
 }
+
 .tab {
   height: 2.5vw;
-  width: 15vw;
+  width: 16vw;
   float: left;
   padding-top: 1.5vw;
   /* border: 2px solid #000; */

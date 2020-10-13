@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 
+import './login.css';
+
 function Login(props) {
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
@@ -17,7 +19,8 @@ function Login(props) {
 
 
   return (
-    <div style={{width: '80vw', height: '40vw', border: '2px solid #000'}}>
+    <div id='login'>
+      <h1>관리자 로그인</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="fname">아이디:</label>
         <input type="text" id="fname" name="fname" value={userId} onChange={handleChangeId} />
@@ -25,7 +28,7 @@ function Login(props) {
         <label htmlFor="lname">비밀번호:</label>
         <input type="password" id="lname" name="lname" value={userPw} onChange={handleChangePw}/>
         <br />
-        <input type="submit" value="로그인" onClick={() => props.history.push('/admin')}>
+        <input type="submit" value="로그인" onClick={() => <Link to='/admin' />}>
         </input>
       </form>
       <Link to='/admin/signin'>

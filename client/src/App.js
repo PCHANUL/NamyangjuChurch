@@ -12,14 +12,16 @@ import Video from './pages/Video'
 import Message from './pages/Message'
 import Community from './pages/Community'
 
+import './pages/app.css'
+
 function App() {
 
   let location = useLocation();
 
   return (
-    <>
+    <div class='container'>
       <Nav />
-      <div style={{height: '11vw'}} />
+      <Login />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
         <Route path='/message' component={Message} />
@@ -28,12 +30,12 @@ function App() {
 
         <Route exact path='/admin' component={Admin} />
         <Route path='/admin/signin' component={Signin} />
-        <Route path='/admin/login' component={Login} />
+        {/* <Route path='/admin/login' component={Login} /> */}
         <Route path='/admin/edit' component={Edit} />
         <Redirect path='*' to="/" />
       </Switch>
       <Footer />
-    </>
+    </div>
   )
 }
 

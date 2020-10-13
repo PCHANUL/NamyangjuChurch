@@ -46,6 +46,11 @@ function Main() {
           startPoint={{ lat: places[0].lat, lng: places[0].lng }}
           endPoint={{ lat: places[1].lat, lng: places[1].lng }}
         />
+        <button style={{width: '30vw'}}>
+          <h1>
+            현재 위치에서 교회까지 경로 확인하기
+          </h1>
+        </button>
       </div>
       <div style={{height: '60vw', border: '2px solid #000'}}>
         <h1>예배시간</h1>

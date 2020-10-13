@@ -5,10 +5,10 @@ import './footer.css'
 
 function Footer() {
   return (
-    <div id='footer'>
+    <footer id='footer'>
       <h1>남양주 교회</h1>
       <Link to="/admin/login">admin</Link>
-    </div>
+    </footer>
   )
 }
 

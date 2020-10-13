@@ -6,7 +6,7 @@ import './message.css';
 
 function Message() {
   return (
-    <>
+    <div id='message'>
       <div id='tabList'>
         <div class='tab'>주일예배</div>
         <div class='tab'>수요예배</div>
@@ -14,10 +14,8 @@ function Message() {
         <div class='tab'>새벽예배</div>
         <div class='tab'>기도수첩</div>
       </div>
-      
       <VideoList />
-      
-    </>
+    </div>
   )
 }
 
