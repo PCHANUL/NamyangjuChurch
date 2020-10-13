@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './footer.css'
 
-function Footer() {
+function Footer(props) {
+  const { setIsOpen } = props;
+
   return (
     <footer id='footer'>
       <h1>남양주 교회</h1>
-      <Link to="/admin/login">admin</Link>
+      <button onClick={() => setIsOpen(true)}>admin</button>
     </footer>
   )
 }

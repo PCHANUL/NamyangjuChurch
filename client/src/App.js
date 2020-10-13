@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, Link, useLocation, Redirect} from 'react-router-dom';
 
 import Nav from './pages/Nav'
@@ -15,13 +15,14 @@ import Community from './pages/Community'
 import './pages/app.css'
 
 function App() {
+  const [ isOpen, setIsOpen ] = useState(false);
 
   let location = useLocation();
 
   return (
     <div class='container'>
       <Nav />
-      <Login />
+      <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
         <Route path='/message' component={Message} />
@@ -30,11 +31,11 @@ function App() {
 
         <Route exact path='/admin' component={Admin} />
         <Route path='/admin/signin' component={Signin} />
-        {/* <Route path='/admin/login' component={Login} /> */}
+        <Route path='/admin/login' component={Login} />
         <Route path='/admin/edit' component={Edit} />
         <Redirect path='*' to="/" />
       </Switch>
-      <Footer />
+      <Footer setIsOpen={setIsOpen} />
     </div>
   )
 }
