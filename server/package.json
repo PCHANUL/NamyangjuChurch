@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/cli": "^2.9.0",
+    "@prisma/cli": "2.9.0",
+    "@prisma/client": "^2.9.0",
     "graphql-yoga": "^1.18.3"
   },
   "devDependencies": {
