@@ -16,6 +16,13 @@
   height: 10vw;
   border-radius: 2vw;
   background-color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+#addBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
 #addFileIcon {
@@ -40,9 +47,4 @@
 
 .adminTab:hover {
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-#contentListBox {
-  border: 1px solid #000;
-  height: 100%;
 }

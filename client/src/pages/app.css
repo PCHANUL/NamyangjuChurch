@@ -19,6 +19,9 @@ Nav {
 #admin {
   grid-column: 3;
 }
+#edit {
+  grid-column: 3;
+}
 
 #message {
   grid-column: 3;

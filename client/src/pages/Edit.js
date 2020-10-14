@@ -30,7 +30,7 @@ function Edit(props) {
   }
 
   return (
-    <>
+    <div id='edit'>
       <h1>edit page</h1> 
         <div style={{width: '80vw', height: '30vw', border: '2px solid #000'}}>
           <input type="file" name="reviewImg" id="reviewImageFileOpenInput" accept="image/png, image/jpeg" />
@@ -53,7 +53,7 @@ function Edit(props) {
           <input type="button" value="저장"/>
           <button onClick={() => props.history.push('/admin')}>나가기</button>
         </div>
-    </>
+    </div>
   )
 }
 
