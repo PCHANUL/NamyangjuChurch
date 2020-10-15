@@ -1,5 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from 'react-router-dom';
+import { gql } from 'apollo-boost'
+import { useQuery } from "@apollo/react-hooks";
+
+const GET_USERS = gql`
+  {
+    people {
+      name
+      age
+      gender
+    }
+  }
+`
 
 const videoData = [
   {
@@ -41,18 +53,24 @@ const videoData = [
 ]
 
 function VideoList (props) {
+  const { loading, error, data } = useQuery(GET_USERS);
+  console.log(loading, error, data)
+
+
+
   return (
     <div id='videoList'>
       {
-        videoData.map((data, i) => {
+        !loading &&
+        data.people.map((data, i) => {
           return (
           <div class='video' key={i}>
             <div class='title'>
-              <h1>{data.title}</h1>
-              <h5>{data.date}</h5>
+              <h1>{data.name}</h1>
+              <h5>{data.age}</h5>
             </div>
             <div class='content'>
-              <div>{data.desc}</div>
+              <div>{data.gender}</div>
               <button class='videoButton' onClick={() => props.history.push('/video')}>영상보기</button>
             </div>
           </div>)
