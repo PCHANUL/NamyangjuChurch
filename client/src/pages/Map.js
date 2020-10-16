@@ -4,9 +4,11 @@ import {
   LoadScript,
   DirectionsService,
   DirectionsRenderer,
+  Marker,
+  InfoWindow
 } from '@react-google-maps/api';
-import { InfoWindow } from "react-google-maps";
-import SearchBox from "react-google-maps/lib/components/places/SearchBox";
+
+import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 
 
 import KEYS from '../keys';
@@ -48,6 +50,27 @@ const Directions = (props) => {
   );
 };
 
+const findRoute = () => {
+  // alert('길을 찾는 중...')
+  window.open('https://map.kakao.com/link/to/남양주사랑교회,37.659365,127.179435')
+}
+
+const onEventChecker = (e, aug, geo) => {
+  console.log(e, aug, geo)
+}
+
+function getLocation() {
+  if (navigator.geolocation) { // GPS를 지원하면
+    navigator.geolocation.getCurrentPosition(function(position) {
+      alert(position.coords.latitude + ' ' + position.coords.longitude);
+    }, function(error) {
+      console.error(error);
+    });
+  } else {
+    alert('GPS를 지원하지 않습니다');
+  }
+}
+
 const Map = (props) => {
   const { startPoint, endPoint } = props;
 
@@ -60,8 +83,20 @@ const Map = (props) => {
         }}
         zoom={16}
         center={ startPoint ? { lat: 37.659365, lng: 127.179435 } : undefined }
+        onClick={onEventChecker}
       >
-        {/* <SearchBox /> */}
+        <Marker position={{ lat: 37.659365, lng: 127.179435 }}>
+          <InfoWindow>
+            <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+              <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
+                남양주 사랑교회
+              </div>
+              <button onClick={findRoute}>
+                길찾기
+              </button>
+            </div>
+          </InfoWindow>
+        </Marker>
         <Directions origin={startPoint} destination={endPoint} />
       </GoogleMap>
     </LoadScript>
