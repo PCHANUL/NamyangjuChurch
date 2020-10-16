@@ -59,7 +59,7 @@ const Map = (props) => {
           width: '70vw',
         }}
         zoom={16}
-        center={ startPoint ? { lat: 37.579779, lng: 126.976955 } : undefined }
+        center={ startPoint ? { lat: 37.659365, lng: 127.179435 } : undefined }
       >
         {/* <SearchBox /> */}
         <Directions origin={startPoint} destination={endPoint} />

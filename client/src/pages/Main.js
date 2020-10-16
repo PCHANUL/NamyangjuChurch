@@ -12,8 +12,10 @@ import TimeTable from './TimeTable';
 import axios from 'axios';
 
 const places = [
-  { lat: 33.499648, lng: 126.531275 },
-  { lat: 33.2553, lng: 126.560114 },
+  {},
+  {},
+  // { lat: 37.658863, lng: 127.178282 },
+  // { lat: 37.659365, lng: 127.179435 },
 ]
 
 const handleApiLoaded = (map, maps) => {
