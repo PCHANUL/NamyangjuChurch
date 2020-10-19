@@ -52,7 +52,8 @@ const Directions = (props) => {
 
 const findRoute = () => {
   // alert('길을 찾는 중...')
-  window.open('https://map.kakao.com/link/to/남양주사랑교회,37.659365,127.179435')
+  let confirm = window.confirm('카카오맵 페이지로 이동하시겠습니까?')
+  if (confirm) window.open('https://map.kakao.com/link/to/남양주사랑교회,37.659365,127.179435')
 }
 
 const onEventChecker = (e, aug, geo) => {

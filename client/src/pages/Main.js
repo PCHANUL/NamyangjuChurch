@@ -39,18 +39,14 @@ function Main() {
       </div>
       <div style={{height: '40vw', border: '1px solid #000'}}>
         <h1>교회 기도제목</h1>
-
       </div>
 
       <div style={{height: '40vw', marginTop: '2vw'}}>
+        <h1>오시는길</h1>
         <Map
           startPoint={{ lat: places[0].lat, lng: places[0].lng }}
           endPoint={{ lat: places[1].lat, lng: places[1].lng }}
         />
-        <div>
-          <h1>오시는길</h1>
-
-        </div>
       </div>
       <div style={{height: '60vw', border: '2px solid #000'}}>
         <h1>예배시간</h1>

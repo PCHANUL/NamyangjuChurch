@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost'
 import { useQuery } from "@apollo/react-hooks";
 
 const GET_USERS = gql`
   {
     people {
+      id
       name
       age
       gender
@@ -50,7 +51,7 @@ const videoData = [
     desc: `여기에 메시지의 요약내용이 들어갑니다. 지금 생각하기로는 두줄이나 세줄이 적당한 것 같습니다.`,
     url: 'youtube/url'
   },
-]
+] 
 
 function VideoList (props) {
   const { loading, error, data } = useQuery(GET_USERS);
@@ -64,14 +65,15 @@ function VideoList (props) {
         !loading &&
         data.people.map((data, i) => {
           return (
-          <div class='video' key={i}>
+          <div class='video' key={data.id}>
             <div class='title'>
               <h1>{data.name}</h1>
               <h5>{data.age}</h5>
             </div>
             <div class='content'>
               <div>{data.gender}</div>
-              <button class='videoButton' onClick={() => props.history.push('/video')}>영상보기</button>
+              <progress id="file" value="32" max="100"> 32% </progress>
+              <Link class='videoButton' to={`/message/${data.id}`}>영상보기</Link>
             </div>
           </div>)
         })
@@ -80,4 +82,4 @@ function VideoList (props) {
   )
 }
 
-export default withRouter(VideoList);
+export default VideoList;

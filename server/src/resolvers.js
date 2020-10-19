@@ -6,7 +6,13 @@ const resolvers = {
     people: async (parent, args, context) => {
       return context.prisma.user.findMany()
     },
-    person: (_, {id}) => getById(id)
+    person: (_, {id}, context) => {
+      return context.prisma.user.findOne({
+        where: {
+          id: id,
+        },
+      })
+    }
   },
   Mutation: {
     // addUser: (_, {name, age, gender}) => addUser(name, age, gender),

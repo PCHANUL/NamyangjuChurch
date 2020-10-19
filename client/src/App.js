@@ -25,14 +25,14 @@ function App() {
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
-        <Route path='/message' component={Message} />
-        <Route path='/video' component={Video} />
+        <Route exact path='/message' component={Message} />
+        <Route path='/message/:id' component={Video} />
         <Route path='/community' component={Community} />
 
         <Route exact path='/admin' component={Admin} />
         <Route path='/admin/signin' component={Signin} />
         <Route path='/admin/edit' component={Edit} />
-        <Redirect path='*' to="/" />
+        {/* <Redirect path='*' to="/" /> */}
       </Switch>
       <Footer setIsOpen={setIsOpen} />
     </div>
