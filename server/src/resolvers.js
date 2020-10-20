@@ -26,13 +26,7 @@ const resolvers = {
       })
       return newUser
     },
-    deleteUser: (_, {id}) => deleteUser(id),
-    singleUpload: async (obj, { file }) => {
-      const { filename, mimetype, encoding } = await file;
-
-      const returnFile = { filename, mimetype, encoding };
-      return returnFile;
-    }
+    deleteUser: (_, {id}) => deleteUser(id)
   }
 };
 
