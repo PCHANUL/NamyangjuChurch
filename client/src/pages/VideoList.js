@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { gql, useQuery } from '@apollo/client';
 
@@ -53,16 +54,40 @@ const videoData = [
   },
 ] 
 
-function VideoList (props) {
-  const { loading, error, data } = useQuery(GET_USERS);
-  console.log(loading, error, data)
+const getData = async() => {
+  const data = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials : true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      query: `
+        { 
+          people { 
+            id 
+            age
+            name
+            gender
+          } 
+        }
+      `
+    }
+  })
 
+  return data.data.data;
+}
 
+const VideoList = async(props) => {
+  // const { loading, error, data } = useQuery(GET_USERS);
+  // console.log(loading, error, data);
+
+  const data = await getData();
 
   return (
     <div id='videoList'>
       {
-        !loading &&
         data.people.map((data, i) => {
           return (
           <div class='video' key={data.id}>
