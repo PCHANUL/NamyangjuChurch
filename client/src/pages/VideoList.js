@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { gql } from 'apollo-boost'
-import { useQuery } from "@apollo/react-hooks";
+
+import { gql, useQuery } from '@apollo/client';
 
 const GET_USERS = gql`
   {

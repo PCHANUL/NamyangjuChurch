@@ -34,6 +34,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.4",
     "@apollo/react-hooks": "^4.0.0",
     "@react-google-maps/api": "^1.11.0",
     "@testing-library/react": "^11.0.4",

@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 module.exports = {
   mode: 'development',
   entry: [
-    './src/index.js',
+    './src/web.js',
     'regenerator-runtime/runtime',
   ],
   module: {
