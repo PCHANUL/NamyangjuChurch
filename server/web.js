@@ -1,4 +1,5 @@
 import express from "express";
+import path from 'path';
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from 'graphql';
 import cors from 'cors';
@@ -53,7 +54,15 @@ var root = {
 };
 
 const app = express();
-app.use(cors());
+
+app.all('/*', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+})
+
+app.use(express.static(path.join(__dirname, './views')))
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
@@ -62,6 +71,10 @@ app.use('/graphql', graphqlHTTP({
     prisma,
   },
 }));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './views/index.html'));
+})
 app.listen(4000);
 console.log('Running GraphQL API server')
 
