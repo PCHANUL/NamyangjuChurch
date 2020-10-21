@@ -3,22 +3,14 @@ import path from 'path';
 import { graphqlHTTP } from "express-graphql";
 import { buildSchema } from 'graphql';
 import cors from 'cors';
-
-// import { schema } from './src/schema'
-import resolvers from "./src/resolvers";
-
-import { GraphQLServer } from "graphql-yoga";
 import { PrismaClient } from '@prisma/client';
-
 const prisma = new PrismaClient();
 
-// Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
   type Person {
     id: Int!
-    name: String!
-    age: Int!
-    gender: String!
+    nickname: String!
+    password: String!
   }
 
   type Query {
@@ -45,7 +37,6 @@ var schema = buildSchema(`
 //   }
 // `);
 
-// The root provides a resolver function for each API endpoint
 var root = {
   people: async (_, context) => {
     const users = await context.prisma.user.findMany()
@@ -55,11 +46,13 @@ var root = {
 
 const app = express();
 
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-})
+app.use(cors({
+  "origin": "http://localhost:3000",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "credentials": true,
+  "preflightContinue": false,
+  "optionsSuccessStatus": 204
+}));
 
 app.use(express.static(path.join(__dirname, './views')))
 
@@ -77,13 +70,3 @@ app.get('*', (req, res) => {
 })
 app.listen(4000);
 console.log('Running GraphQL API server')
-
-// const server = new GraphQLServer({
-//   typeDefs: "./src/schema.graphql",
-//   resolvers,
-//   context: {
-//     prisma,
-//   }
-// })
-
-// server.start(() => console.log('GraphQL Server Running'))

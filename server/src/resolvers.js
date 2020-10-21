@@ -1,6 +1,3 @@
-import { people, getById, deleteUser, addUser } from './db';
-
-
 const resolvers = {
   Query: {
     people: async (parent, args, context) => {
@@ -26,7 +23,7 @@ const resolvers = {
       })
       return newUser
     },
-    deleteUser: (_, {id}) => deleteUser(id)
+    // deleteUser: (_, {id}) => deleteUser(id)
   }
 };
 
