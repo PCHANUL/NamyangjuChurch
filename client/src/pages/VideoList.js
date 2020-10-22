@@ -1,32 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
-import { gql, useQuery } from '@apollo/client';
+import { getData } from './axiosRequest';
 
-const getData = async(callback) => {
-  const data = await axios({
-    url: 'http://localhost:4000/graphql',
-    method: 'POST',
-    withCredentials : true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: {
-      query: `
-        { 
-          people { 
-            id 
-            age
-            name
-            gender
-          } 
-        }
-      `
-    }
-  })
-  callback(data);
-}
 
 const VideoList = (props) => {
   const [loading, setLoading] = useState(false);
@@ -35,15 +11,13 @@ const VideoList = (props) => {
   })
   
   useEffect(() => {
-    getData((data) => {
-      setData(data.data.data);
-      setLoading(true);
+    getData((getData) => {
+      console.log(getData)
+      // setData(data.data.data);
+      // setLoading(true);
     });
   }, [])
 
-  
-  
-  console.log('data: ', data);
 
   return (
     <div id='videoList'>
@@ -58,7 +32,6 @@ const VideoList = (props) => {
             </div>
             <div class='content'>
               <div>{data.gender}</div>
-              <progress id="file" value="32" max="100"> 32% </progress>
               <Link class='videoButton' to={`/message/${data.id}`}>영상보기</Link>
             </div>
           </div>)

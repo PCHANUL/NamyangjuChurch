@@ -42,18 +42,19 @@ const root = {
     console.log('result: ', result[0]);
     return result
   },
-  addContent: async ({ category, title, desc, url }, context) => {
+  addContent: async ({ category, title, desc, url, content }, context) => {
     console.log('category, title, desc, url: ', category, title, desc, url);
     const result = await context.prisma.post.create({
       data: {
+        title,
+        desc,
         detail: {
           connect: { name: category }
         },
         content: {
           create: { 
-            title,
-            desc,
-            url 
+            url,
+            content
           }
         }
       }
@@ -62,10 +63,9 @@ const root = {
   },
   deleteContent: async({ date }, context) => {
     const result = await context.prisma.post.update({
-      where: { id: 1 },
       data: {
-        content: {
-          disconnect: true,
+        posts: {
+          delete: true
         }
       }
     })

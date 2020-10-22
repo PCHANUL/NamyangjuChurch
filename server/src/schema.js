@@ -43,6 +43,7 @@ var schema = buildSchema(`
       title: String!
       desc: String!
       url: String!
+      content: String!
       ): Boolean!
 
     deleteUser(nickname: String!): Boolean!
