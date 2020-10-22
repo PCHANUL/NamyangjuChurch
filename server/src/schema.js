@@ -1,33 +1,10 @@
 import { buildSchema } from 'graphql';
 
-// export const schema = buildSchema(`
-//   type Person {
-//     id: Int!
-//     name: String!
-//     age: Int!
-//     gender: String!
-//   }
-
-//   type Query {
-//     people: [Person]!
-//     person(id: Int!): Person
-//   }
-
-//   type Mutation {
-//     addUser(name: String!, age: Int!, gender: String!): Person!
-//     deleteUser(id: Int!): Boolean!
-//   }
-// `);
-
 var schema = buildSchema(`
   type Users {
     id: Int!
     nickname: String!
     password: String!
-  }
-
-  type Query {
-    getUsers: [Users]!
   }
 
   type Content {
@@ -37,16 +14,40 @@ var schema = buildSchema(`
     url: String!
   }
 
+  type Category {
+    id: Int!
+    name: String!
+    details: [DetailCategory]!
+  }
+
+  type DetailCategory {
+    id: Int!
+    name: String!
+    posts: [Post]!
+  }
+
+  type Post {
+    createdAt: String!
+  }
+
+
+  type Query {
+    getUsers: [Users]!
+    getCategory: [Category]!
+  }
+
   type Mutation {
     addUser(nickname: String!, password: String!): Users!
-    deleteUser(nickname: String!): Boolean!
     addContent(
       category: String!
       title: String!
       desc: String!
       url: String!
-    ): Boolean!
-  }
+      ): Boolean!
+
+    deleteUser(nickname: String!): Boolean!
+    deleteContent(date: String!): Boolean!
+    }
 `);
 
 export default schema

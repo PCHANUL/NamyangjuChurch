@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url = "file:./dev.db"
+  url = "***"
 }
 
 generator client {
@@ -31,17 +31,16 @@ model DetailCategory {
 model Post {
   id          Int            @id @default(autoincrement())
   createdAt   DateTime       @default(now())
-  title       String
-  desc        String
   detail      DetailCategory @relation(fields: [detailId], references: [id])
   detailId    Int
-  content     Content?
+  content     Contents?
 }
 
-model Content {
+model Contents {
   id          Int            @id @default(autoincrement())
+  title       String
+  desc        String
   url         String
-  content     String
   post        Post?          @relation(fields: [postId], references: [id])
   postId      Int?
 }
