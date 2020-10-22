@@ -14,9 +14,9 @@ const getData = async(callback) => {
         getCategory {
           name
           details {
-            id
             name
             posts {
+              id
               title
               desc
               createdAt
@@ -29,5 +29,9 @@ const getData = async(callback) => {
   })
   callback(data.data.data.getCategory);
 }
+
+// const addContent = async() => {
+  
+// }
 
 export { getData }

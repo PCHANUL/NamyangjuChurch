@@ -3,6 +3,8 @@ import { gql, useMutation } from '@apollo/client';
 
 import { commands } from './editCommands';
 
+
+
 const Add_Data = gql`
   mutation AddData($name: String!, $age: Int!, $gender: String!) {
     addUser(name: $name, age: $age, gender: $gender) {
