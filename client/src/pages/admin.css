@@ -3,7 +3,7 @@
 }
 
 #addBox {
-  height: 6vw;
+  height: 3vw;
 }
 
 #addBtn {
@@ -12,7 +12,7 @@
   width: 100%;
   height: 8vw;
   border-radius: 2vw;
-  margin: 5vw 0 3vw 0;
+  margin: 7vw 0 3vw 0;
   background-color: #fff;
   box-shadow: 1vw 1vw 3vw 0 rgba(0, 0, 0, 0.1);
   outline: none;
@@ -28,6 +28,15 @@
   width: 3vw;
 }
 
+#tabContainer {
+  position: sticky;
+  top: 6vw;
+  z-index: 1;
+  height: 9vw;
+  padding-top: 1vw;
+  font-size: 1.6vw;
+  background-color: #fff;
+}
 #adminTabBox {
   margin-top: 2vw;
   height: 3vw;
@@ -36,9 +45,8 @@
 }
 .adminTab {
   text-align: center;
-  height: 3vw;
+  height: 2.5vw;
   border-bottom: 1px solid #000;
-  font-size: 2vw;
   grid-row: 1;
   cursor: pointer;
 }
@@ -47,16 +55,14 @@
 }
 
 #subTabBox {
-  margin-top: 1vw;
-  height: 3vw;
+  height: 2vw;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 .subTab {
   text-align: center;
-  height: 3vw;
-  font-size: 2vw;
+  height: 2.5vw;
   cursor: pointer;
   padding-top: 1vw;
 }

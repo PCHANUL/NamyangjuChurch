@@ -29,7 +29,7 @@ function Admin(props) {
   return (
     <div id='admin'>
       <div id='addBox'>
-        <h1>관리자 페이지</h1> 
+        <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
       </div>
       <Tab 
         tab={tab}
@@ -44,10 +44,11 @@ function Admin(props) {
         {
           loading &&
           data[tab].details[subTab].posts.map((data) => {
+            let createdDate = new Date(JSON.parse(data.createdAt))
             console.log(data)
             return (
               <div id={data.id} className='dataBox'>
-                <h3 className='dataTitle' >{`${data.title} / ${new Date(JSON.parse(data.createdAt))}`}</h3>
+                <h3 className='dataTitle' >{`${data.title} / ${createdDate}`}</h3>
                 <button className='dataButton' onClick={() => window.confirm('삭제하시겠습니까?')}>
                   <img className='deleteIcon' src={deleteIcon}></img>
                 </button>
@@ -65,7 +66,7 @@ function Admin(props) {
 
 function Tab({ tab, setTab, subTab, setSubTab }) {
   return (
-    <>
+    <div id='tabContainer'>
       <div id='adminTabBox'>
         {
           ['말씀', '소식'].map((ele, idx) => {
@@ -86,7 +87,7 @@ function Tab({ tab, setTab, subTab, setSubTab }) {
           }
         </div>
       }
-    </>
+    </div>
   )
 }
 
