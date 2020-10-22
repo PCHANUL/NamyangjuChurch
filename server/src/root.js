@@ -39,11 +39,10 @@ const root = {
         }
       },
     })
-    console.log('result: ', result[0]);
+    console.log('result: ', result[0].details[0]);
     return result
   },
   addContent: async ({ category, title, desc, url, content }, context) => {
-    console.log('category, title, desc, url: ', category, title, desc, url);
     const result = await context.prisma.post.create({
       data: {
         title,
@@ -61,15 +60,10 @@ const root = {
     })
     return result ? true : false;
   },
-  deleteContent: async({ date }, context) => {
-    const result = await context.prisma.post.update({
-      data: {
-        posts: {
-          delete: true
-        }
-      }
-    })
-    console.log(result)
+  deleteContent: async({ id }, context) => {
+    const delPost = await context.prisma.post.delete({ where: { id: id } })
+    const delContent = await context.prisma.content.delete({ where: { id: id } })
+    return delPost && delContent ? true : false;
   }
 };
 

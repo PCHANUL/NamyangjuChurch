@@ -27,6 +27,8 @@ var schema = buildSchema(`
   }
 
   type Post {
+    title: String!
+    desc: String!
     createdAt: String!
   }
 
@@ -44,11 +46,11 @@ var schema = buildSchema(`
       desc: String!
       url: String!
       content: String!
-      ): Boolean!
+    ): Boolean!
 
     deleteUser(nickname: String!): Boolean!
-    deleteContent(date: String!): Boolean!
-    }
+    deleteContent(id: Int!): Boolean!
+  }
 `);
 
 export default schema
