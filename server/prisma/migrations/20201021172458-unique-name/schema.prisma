@@ -1,6 +1,6 @@
 datasource db {
   provider = "sqlite"
-  url = "file:./dev.db"
+  url = "***"
 }
 
 generator client {
@@ -15,13 +15,13 @@ model User {
 }
 
 model Category {
-  id          Int     @id
+  id          Int     @id @default(autoincrement())
   name        String  @unique
   details     DetailCategory[]
 }
 
 model DetailCategory {
-  id          Int            @id
+  id          Int            @id @default(autoincrement())
   name        String         @unique
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  Int

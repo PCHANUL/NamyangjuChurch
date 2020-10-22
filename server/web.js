@@ -1,49 +1,12 @@
 import express from "express";
 import path from 'path';
 import { graphqlHTTP } from "express-graphql";
-import { buildSchema } from 'graphql';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
+import root from './src/root';
+import schema from './src/schema';
+
 const prisma = new PrismaClient();
-
-var schema = buildSchema(`
-  type Person {
-    id: Int!
-    nickname: String!
-    password: String!
-  }
-
-  type Query {
-    people: [Person]!
-  }
-`);
-
-// var schema = buildSchema(`
-//   type Person {
-//     id: Int!
-//     name: String!
-//     age: Int!
-//     gender: String!
-//   }
-
-//   type Query {
-//     people: [Person]!
-//     person(id: Int!): Person
-//   }
-
-//   type Mutation {
-//     addUser(name: String!, age: Int!, gender: String!): Person!
-//     deleteUser(id: Int!): Boolean!
-//   }
-// `);
-
-var root = {
-  people: async (_, context) => {
-    const users = await context.prisma.user.findMany()
-    return users
-  },
-};
-
 const app = express();
 
 app.use(cors({
