@@ -5,7 +5,7 @@ import updateIcon from '../images/wrench.png';
 import deleteIcon from '../images/delete.png';
 import './admin.css';
 
-import { getData } from './axiosRequest';
+import { getData, deleteData } from './axiosRequest';
 
 
 function Admin(props) {
@@ -37,7 +37,7 @@ function Admin(props) {
         subTab={subTab}
         setSubTab={setSubTab}
       />
-      
+
       <button id='addBtn' onClick={() => props.history.push('/admin/edit')}>
         <img id='addFileIcon' src={addIcon} />
       </button> 
@@ -47,6 +47,7 @@ function Admin(props) {
         loading={loading}
         tab={tab}
         subTab={subTab}
+        setData={setData}
       />
     </div>
   )
@@ -61,7 +62,19 @@ function transDate(date) {
   return `${year}. ${month}. ${day}`
 }
 
-function DataBox({ loading, data, tab, subTab }) {
+function deleteDataBox(id, setData) {
+  if (window.confirm('삭제하시겠습니까?')) {
+    deleteData(id, (result) => {
+      if (result) {
+        getData(async (getData) => {
+          await setData(getData);
+        })
+      }
+    })
+  }
+}
+
+function DataBox({ loading, data, tab, subTab, setData }) {
   return (
     <>
       {
@@ -75,7 +88,7 @@ function DataBox({ loading, data, tab, subTab }) {
                   <p className='date'>{ createdDate }</p>
                 </div>
                 <div className='buttonBox'>
-                  <button className='dataButton' onClick={() => window.confirm('삭제하시겠습니까?')}>
+                  <button className='dataButton' onClick={() => deleteDataBox(data.id, setData)}>
                     <img className='deleteIcon' src={deleteIcon}></img>
                   </button>
                   <button className='dataButton' onClick={() => props.history.push('/admin/edit')} >

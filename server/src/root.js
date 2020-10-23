@@ -19,7 +19,6 @@ const root = {
         nickname
       }
     })
-    console.log('isDeleted: ', isDeleted);
     return isDeleted ? true : false;
   },
   getCategory: async (_, context) => {
@@ -39,7 +38,6 @@ const root = {
         }
       },
     })
-    console.log('result: ', result[0].details[0]);
     return result
   },
   addContent: async ({ category, title, desc, url, content }, context) => {

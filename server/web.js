@@ -47,6 +47,11 @@ app.use(cors({
 
 app.use(express.static(path.join(__dirname, './views')))
 
+app.use('/graphql', (req, res, next) => {
+  if (req.method === 'DELETE') req.method = 'POST';
+  next();
+})
+
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
@@ -55,6 +60,10 @@ app.use('/graphql', graphqlHTTP({
     prisma,
   },
 }));
+
+app.delete('/delete', (req, res) => {
+  console.log('delete');
+})
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './views/index.html'));
