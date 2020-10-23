@@ -9,9 +9,9 @@ var schema = buildSchema(`
 
   type Content {
     id: Int!
-    title: String!
     desc: String!
     url: String!
+    postId: Int!
   }
 
   type Category {
@@ -31,8 +31,8 @@ var schema = buildSchema(`
     title: String!
     desc: String!
     createdAt: String!
+    thumbnail: String!
   }
-
 
   type Query {
     getUsers: [Users]!
@@ -47,6 +47,7 @@ var schema = buildSchema(`
       desc: String!
       url: String!
       content: String!
+      thumbnail: String
     ): Boolean!
 
     deleteUser(nickname: String!): Boolean!

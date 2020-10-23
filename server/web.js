@@ -61,10 +61,6 @@ app.use('/graphql', graphqlHTTP({
   },
 }));
 
-app.delete('/delete', (req, res) => {
-  console.log('delete');
-})
-
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './views/index.html'));
 })

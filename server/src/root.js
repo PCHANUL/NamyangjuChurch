@@ -59,8 +59,9 @@ const root = {
     return result ? true : false;
   },
   deleteContent: async({ id }, context) => {
+    const findLinked = await context.prisma.post.findMany({ where: { id }, include: { content: true } })
     const delPost = await context.prisma.post.delete({ where: { id: id } })
-    const delContent = await context.prisma.content.delete({ where: { id: id } })
+    const delContent = await context.prisma.content.delete({ where: { id: findLinked[0].content.id } })
     return delPost && delContent ? true : false;
   }
 };
