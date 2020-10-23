@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import addIcon from '../images/add-file.png';
-import updateIcon from '../images/wrench.png';
+import updateIcon from '../images/edit.png';
 import deleteIcon from '../images/delete.png';
 import './admin.css';
 
