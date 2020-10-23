@@ -20,7 +20,7 @@ function App() {
   let location = useLocation();
 
   return (
-    <div class='container'>
+    <div className='container'>
       <Nav />
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>

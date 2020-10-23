@@ -1,0 +1,16 @@
+.editorIcon {
+  float: left;
+  margin: 1vw;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  width: 6vw;
+  height: 6vw;
+}
+.custom-file-upload:hover {
+  border: 1px solid #000;
+}

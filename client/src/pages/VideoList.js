@@ -25,14 +25,14 @@ const VideoList = (props) => {
         loading &&
         data.people.map((data, i) => {
           return (
-          <div class='video' key={data.id}>
-            <div class='title'>
+          <div className='video' key={data.id}>
+            <div className='title'>
               <h1>{data.name}</h1>
               <h5>{data.age}</h5>
             </div>
-            <div class='content'>
+            <div className='content'>
               <div>{data.gender}</div>
-              <Link class='videoButton' to={`/message/${data.id}`}>영상보기</Link>
+              <Link className='videoButton' to={`/message/${data.id}`}>영상보기</Link>
             </div>
           </div>)
         })

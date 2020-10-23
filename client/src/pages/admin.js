@@ -115,8 +115,8 @@ function Tab({ tab, setTab, subTab, setSubTab }) {
         {
           ['말씀', '소식'].map((ele, idx) => {
             return idx === tab
-          ? <div key={`tab_${idx}`} class='adminTab selected' onClick={() => setTab(idx)}>{ele}</div>
-          : <div key={`tab_${idx}`} class='adminTab' onClick={() => setTab(idx)}>{ele}</div>
+          ? <div key={`tab_${idx}`} className='adminTab selected' onClick={() => setTab(idx)}>{ele}</div>
+          : <div key={`tab_${idx}`} className='adminTab' onClick={() => setTab(idx)}>{ele}</div>
           })
         }
       </div>
@@ -125,8 +125,8 @@ function Tab({ tab, setTab, subTab, setSubTab }) {
           {
             ['주일', '수요', '금요', '새벽', '기도수첩'].map((ele, idx) => {
               return idx === subTab 
-              ? <div key={`subTab_${idx}`} class='subTab selected' onClick={() => setSubTab(idx)}>{ele}</div>
-              : <div key={`subTab_${idx}`} class='subTab' onClick={() => setSubTab(idx)}>{ele}</div>
+              ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setSubTab(idx)}>{ele}</div>
+              : <div key={`subTab_${idx}`} className='subTab' onClick={() => setSubTab(idx)}>{ele}</div>
             })
           }
         </div>

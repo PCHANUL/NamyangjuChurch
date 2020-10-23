@@ -29,8 +29,8 @@ function Login(props) {
           <>
           <div id='login'>
             <h1>관리자 로그인</h1>
-            <button class='btn' onClick={() => setIsOpen(false)}>
-              <img src={closeIcon} class='closeIcon' />
+            <button className='btn' onClick={() => setIsOpen(false)}>
+              <img src={closeIcon} className='closeIcon' />
             </button>
             <form onSubmit={handleSubmit}>
               <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />
