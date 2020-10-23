@@ -27,6 +27,7 @@ var schema = buildSchema(`
   }
 
   type Post {
+    id: Int!
     title: String!
     desc: String!
     createdAt: String!
