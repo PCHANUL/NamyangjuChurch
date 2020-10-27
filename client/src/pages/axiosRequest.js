@@ -18,6 +18,7 @@ const deleteData = async(id, callback) => {
   })
   .catch((err) => console.log(err))
   .then((result) => {
+    console.log('result: ', result);
     if (result.data.data.deleteContent) {
       alert('삭제되었습니다.');
       callback(true);
@@ -55,8 +56,27 @@ const getData = async(callback) => {
   callback(data.data.data.getCategory);
 }
 
-// const addContent = async() => {
-  
-// }
+const uploadImage = async(callback, file) => {
+  let formData = new FormData();
+  await formData.append("img", file);
 
-export { getData, deleteData }
+  console.log('formData: ', formData);
+
+  const imgUrl = await axios.post('http://localhost:4000/post/img', formData, {
+    headers: {'Content-Type': 'multipart/form-data'},
+  })
+
+  // const imgUrl = await axios({
+  //   url: 'http://localhost:4000/post/img',
+  //   method: 'POST',
+  //   withCredentials: true,
+  //   headers: {'Content-Type': 'multipart/form-data'},
+  //   body: {
+  //     img: formData
+  //   }
+  // })
+
+  callback(imgUrl)
+}
+
+export { getData, deleteData, uploadImage }

@@ -18,10 +18,13 @@ function App() {
   const [ isOpen, setIsOpen ] = useState(false);
 
   let location = useLocation();
+  console.log('location: ', location);
 
   return (
     <div className='container'>
-      <Nav />
+      { location.pathname !== "/admin/edit" &&
+        <Nav />
+      }
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
@@ -34,7 +37,10 @@ function App() {
         <Route path='/admin/edit' component={Edit} />
         {/* <Redirect path='*' to="/" /> */}
       </Switch>
-      <Footer setIsOpen={setIsOpen} />
+
+      { location.pathname !== "/admin/edit" &&
+        <Footer setIsOpen={setIsOpen} />
+      }
     </div>
   )
 }

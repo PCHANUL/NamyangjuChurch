@@ -9,8 +9,7 @@ import { getData, deleteData } from './axiosRequest';
 
 
 function Admin(props) {
-  const [tab, setTab] = useState(0);
-  const [subTab, setSubTab] = useState(0);
+  const [tab, setTab] = useState([0, 0]);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState()
@@ -21,8 +20,8 @@ function Admin(props) {
       await setData(getData);
       setTimeout(setLoading(true), 2000);
     })
-  }, [tab, subTab])
 
+  }, [tab])
 
 
   return (
@@ -31,11 +30,11 @@ function Admin(props) {
         <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
       </div>
 
+      
+
       <Tab 
         tab={tab}
         setTab={setTab}
-        subTab={subTab}
-        setSubTab={setSubTab}
       />
 
       <button id='addBtn' onClick={() => props.history.push('/admin/edit')}>
@@ -46,7 +45,6 @@ function Admin(props) {
         data={data}
         loading={loading}
         tab={tab}
-        subTab={subTab}
         setData={setData}
       />
     </div>
@@ -74,12 +72,14 @@ function deleteDataBox(id, setData) {
   }
 }
 
-function DataBox({ loading, data, tab, subTab, setData }) {
+function DataBox({ loading, data, tab, setData }) {
+  
+
   return (
     <>
       {
         loading ? (
-          data[tab].details[subTab].posts.map((data, index) => {
+          data[tab[0]].details[tab[1]].posts.map((data, index) => {
             let createdDate = transDate(data.createdAt)
             return (
               <div key={`data_${index}`} className='dataBox'>
@@ -108,28 +108,38 @@ function DataBox({ loading, data, tab, subTab, setData }) {
   )
 }
 
-function Tab({ tab, setTab, subTab, setSubTab }) {
+function Tab({ tab, setTab }) {
   return (
     <div id='tabContainer'>
       <div id='adminTabBox'>
         {
           ['말씀', '소식'].map((ele, idx) => {
-            return idx === tab
-          ? <div key={`tab_${idx}`} className='adminTab selected' onClick={() => setTab(idx)}>{ele}</div>
-          : <div key={`tab_${idx}`} className='adminTab' onClick={() => setTab(idx)}>{ele}</div>
+            return idx === tab[0]
+          ? <div key={`tab_${idx}`} className='adminTab selected' onClick={() => setTab([idx, tab[1]])}>{ele}</div>
+          : <div key={`tab_${idx}`} className='adminTab' onClick={() => {
+              if (idx === 1) setTab([idx, 0])
+              else setTab([idx, tab[1]])
+            }}>{ele}</div>
           })
         }
       </div>
-      { tab === 0 &&
+      { tab[0] === 0 ? (
         <div id='subTabBox'>
           {
             ['주일', '수요', '금요', '새벽', '기도수첩'].map((ele, idx) => {
-              return idx === subTab 
-              ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setSubTab(idx)}>{ele}</div>
-              : <div key={`subTab_${idx}`} className='subTab' onClick={() => setSubTab(idx)}>{ele}</div>
+              return idx === tab[1] 
+              ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setTab([tab[0], idx])}>{ele}</div>
+              : <div key={`subTab_${idx}`} className='subTab' onClick={() => setTab([tab[0], idx])}>{ele}</div>
             })
           }
         </div>
+        ) : (
+          ['교회 사진'].map((ele, idx) => {
+            return idx === tab[1] 
+            ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setTab([tab[0], idx])}>{ele}</div>
+            : <div key={`subTab_${idx}`} className='subTab' onClick={() => setTab([tab[0], idx])}>{ele}</div>
+          })
+        )
       }
       <div className='extraDiv left'/>
       <div className='extraDiv right'/>

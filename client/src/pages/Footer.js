@@ -8,7 +8,7 @@ function Footer(props) {
 
   return (
     <footer id='footer'>
-      <h1>남양주 교회</h1>
+      <h3>남양주 교회</h3>
       <button onClick={() => setIsOpen(true)}>admin</button>
     </footer>
   )

@@ -67,9 +67,9 @@ app.get('*', (req, res) => {
 
 app.post('/post/img', upload.single('img'), (req, res) => {
   try {
-      console.log("req.file: ", req.file); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
 
-      let payLoad = { url: req.file.location };
+      console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
+      res.json(req.file.location);
   } catch (err) {
       console.log(err);
   }

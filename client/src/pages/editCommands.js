@@ -1,14 +1,21 @@
 export const commands = [
+  // {
+  //   cmd: 'insertImage',
+  //   icon: '이미지추가',
+  //   val: 'client/src/images/add-file.png'
+  // },
+  {
+    cmd: 'insertOrderedList',
+    icon: '서체',
+  },
+  {
+    cmd: 'insertOrderedList',
+    icon: '크기',
+  },
   {
     cmd: 'bold',
     icon: '굵게',
     src: 'bold',
-  },
-  {
-    cmd: 'fontSize',
-    icon: '크기',
-    val: '10',
-    src: 'format-size',
   },
   {
     cmd: 'italic',
@@ -16,27 +23,38 @@ export const commands = [
     src: 'italic',
   },
   {
-    cmd: 'formatBlock',
-    icon: '제목',
-    val: 'H1',
-    src: 'header-1',
+    cmd: 'underline',
+    icon: '숫자목록',
+    src: 'underline',
   },
-  {
-    cmd: 'formatBlock',
-    icon: '제목',
-    val: 'H2',
-    src: 'header-2',
-  },
-  {
-    cmd: 'formatBlock',
-    icon: '부제목',
-    val: 'H3',
-    src: 'header-3',
-  },
+  // {
+  //   cmd: 'fontSize',
+  //   icon: '크기',
+  //   val: '10',
+  //   src: 'format-size',
+  // },
+  // {
+  //   cmd: 'formatBlock',
+  //   icon: '제목',
+  //   val: 'H1',
+  //   src: 'header-1',
+  // },
+  // {
+  //   cmd: 'formatBlock',
+  //   icon: '제목',
+  //   val: 'H2',
+  //   src: 'header-2',
+  // },
+  // {
+  //   cmd: 'formatBlock',
+  //   icon: '부제목',
+  //   val: 'H3',
+  //   src: 'header-3',
+  // },
   {
     cmd: 'justifyLeft',
     icon: '좌측정렬',
-    src: 'left-align',
+    src: 'align-left',
   },
   {
     cmd: 'justifycenter',
@@ -46,7 +64,7 @@ export const commands = [
   {
     cmd: 'justifyRight',
     icon: '우측정렬',
-    src: 'right-align',
+    src: 'align-right',
   },
   {
     cmd: 'insertUnorderedList',
@@ -58,13 +76,15 @@ export const commands = [
     icon: '숫자목록',
     src: 'numList',
   },
-  // {
-  //   cmd: 'enableObjectResizing',
-  //   icon: '이미지변경',
-  // },
-  // {
-  //   cmd: 'insertImage',
-  //   icon: '이미지추가',
-  //   val: 'client/src/images/add-file.png'
-  // },
+  
+  {
+    cmd: 'insertOrderedList',
+    icon: '숫자목록',
+    src: 'link',
+  },
+
+ 
+ 
+  
+ 
 ]
