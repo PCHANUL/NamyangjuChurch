@@ -1,10 +1,20 @@
 #edit {
   padding-top: 7vw 
 }  
+#editFrame {
+  width: 80vw;
+  min-height: 30vw;
+  margin: 1vw;
+  outline: none;
+  border-top: 1px solid rgb(0,0,0, 0.2);
+}
+
+
+
 #toolbar {
   position: fixed;
-  width: 80vw;
-  height: 5vw;
+  width: 100%;
+  height: 30px;
   top: 0%;
   left: 0%;
   z-index: 2;
@@ -17,13 +27,12 @@
 }
 #bottombar {
   position: fixed;
-  width: 80vw;
-  height: 8vw;
+  width: 100%;
+  height: 60px;
   bottom: 0%;
   left: 0%;
   z-index: 2;
   background-color: #fff;
-  padding: 2vw 10vw 0 10vw;
 
   border-top: 1px solid #000;
 
@@ -34,7 +43,7 @@
   border: none;
   float: right;
   width: 15vw;
-  height: 5vw;
+  height: 2vw;
   margin-left: 3vw;
   cursor: pointer;
 }
@@ -108,3 +117,7 @@ input[type="file"] {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #b4b4b4;}
+
+#editFrame img {
+  width: 40vw;
+}

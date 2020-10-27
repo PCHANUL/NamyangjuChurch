@@ -6,26 +6,18 @@ import { uploadImage } from './axiosRequest';
 
 
 function Edit(props) {
-  let icons = [];
   let req = require.context('../images/editor', false, /.*\.png$/);
-  console.log(req);
-
-  req.keys().forEach(function (key) {
-    console.log('key: ', key);
-    icons.push(req(key));
-  });
-  console.log(icons)
 
   return (
     <div id='edit'>
       <div id='toolbar'>
-          <div class="dropdown">
-            <button class="dropbtn">
+          <div className="dropdown">
+            <button className="dropbtn">
               <img src={req('./image.png').default} className='iconImg'></img>
             </button>
-            <div class="dropdown-content">
+            <div className="dropdown-content">
               <a href="#">
-                <label for="file-upload" className="editorIcon">
+                <label htmlFor="file-upload" className="editorIcon">
                   사진 업로드
                 </label>
               </a>
@@ -58,12 +50,7 @@ function Edit(props) {
       <input placeholder='category'></input>
       <input placeholder='title'></input>
 
-      <div 
-        id="editFrame"
-        style={{width: '80vw', height: '50vw', border: '2px solid #000', margin: '1vw'}}
-        contentEditable="true"
-      >
-      </div>
+      <div id="editFrame" contentEditable="true"></div>
 
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
@@ -97,13 +84,22 @@ async function readImage(e) {
   // }
   // reader.readAsDataURL(event.target.files[0]);
 
-  const file = await e.target.files[0];
 
-  console.log('file: ', file);
+  // document.execCommand('insertImage', true, 'https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg')
 
+  
+  // const file = await e.target.files[0];
+  // uploadImage(file, (result) => {
+  //   console.log('result.data: ', result);
+  //   let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
+  //   document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
+  //   console.log(document.querySelector('#image').style.width)
+  // }); 
 
-  uploadImage((result) => console.log(result), file)
-  console.log('file: ', file);
+  
+  let img = `<img id='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg' style='width: 40vw'>`;
+  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
+  console.log(document.querySelector('#image').style.width)
 
   
 

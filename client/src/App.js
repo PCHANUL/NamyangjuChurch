@@ -16,9 +16,7 @@ import './pages/app.css'
 
 function App() {
   const [ isOpen, setIsOpen ] = useState(false);
-
   let location = useLocation();
-  console.log('location: ', location);
 
   return (
     <div className='container'>

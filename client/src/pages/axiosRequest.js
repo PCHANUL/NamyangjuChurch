@@ -56,25 +56,13 @@ const getData = async(callback) => {
   callback(data.data.data.getCategory);
 }
 
-const uploadImage = async(callback, file) => {
+const uploadImage = async(file, callback) => {
   let formData = new FormData();
   await formData.append("img", file);
-
-  console.log('formData: ', formData);
 
   const imgUrl = await axios.post('http://localhost:4000/post/img', formData, {
     headers: {'Content-Type': 'multipart/form-data'},
   })
-
-  // const imgUrl = await axios({
-  //   url: 'http://localhost:4000/post/img',
-  //   method: 'POST',
-  //   withCredentials: true,
-  //   headers: {'Content-Type': 'multipart/form-data'},
-  //   body: {
-  //     img: formData
-  //   }
-  // })
 
   callback(imgUrl)
 }
