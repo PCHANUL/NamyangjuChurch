@@ -3,12 +3,8 @@ import { commands } from './editCommands';
 import './edit.css';
 
 import { uploadImage } from './axiosRequest';
-import YouTube from 'react-youtube';
-
 
 function Edit(props) {
-  const [url, setUrl] = useState('');
-  
   // useEffect(() => {
   //   document.
   // })
@@ -43,7 +39,7 @@ function Edit(props) {
         />
 
         <input type='button' id='youtube-upload'
-          onClick={() => getYoutube(setUrl, url)}
+          onClick={() => getYoutube()}
         />
           
         {
@@ -68,12 +64,7 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true">
-        {
-          url &&
-          <YouTube videoId={url}/>
-        }
-      </div>
+      <div id="editFrame" contentEditable="true"></div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>
@@ -98,34 +89,33 @@ function getIcons() {
 
 }
 
-async function getYoutube(setUrl, url) {
+async function getYoutube() {
   let youtubeUrl = await navigator.clipboard.readText();
-  let youteCode = youtubeUrl.split('watch?v=');
-  
-  console.log('asdf', youtubeUrl, url.includes('youtube.com/watch?v='), url)
-  if (!youtubeUrl.includes('youtube.com/watch?v=')) alert('유튜브 영상 주소를 복사한 뒤 클릭하세요');
-  else if (url !== '') {
-    if (confirm('영상은 하나만 업로드 가능합니다\n현재 영상을 바꾸시겠습니까?')) setUrl(youteCode[1]);
-  } else { 
-    alert('유튜브 영상을 업로드합니다')
-    setUrl(youteCode[1]) 
-  }
+  let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
+  let result = ''
+
+  if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
+  else result = window.prompt(msg, '');
+
+  let youtubeCode = result.split('watch?v=');
+  if (!youtubeCode[1]) alert('잘못 입력하셨습니다.')
+
+  let youtubeMovie = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`
+  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeMovie);
 }
 
 async function readImage(e) {
-  // document.execCommand('insertImage', true, 'https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg')
-
-  // const file = await e.target.files[0];
-  // uploadImage(file, (result) => {
-  //   console.log('result.data: ', result);
-  //   let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
-  //   document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
-  //   console.log(document.querySelector('#image').style.width)
-  // }); 
-
-  let img = `<img id='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg' style='width: 40vw'>`;
-  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
-  console.log(document.querySelector('#image').style.width)
+  const file = await e.target.files[0];
+  uploadImage(file, (result) => {
+    console.log('result.data: ', result);
+    let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
+    document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
+    console.log(document.querySelector('#image').style.width)
+  }); 
+  
+  // let img = `<img id='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg' style='width: 40vw'>`;
+  // document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
+  // console.log(document.querySelector('#image').style.width)
 }
 
 function editFunc(cmd) {
