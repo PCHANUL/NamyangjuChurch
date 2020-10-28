@@ -3,9 +3,12 @@ import { commands } from './editCommands';
 import './edit.css';
 
 import { uploadImage } from './axiosRequest';
+import YouTube from 'react-youtube';
 
 
 function Edit(props) {
+  const [url, setUrl] = useState('');
+  
   // useEffect(() => {
   //   document.
   // })
@@ -26,7 +29,11 @@ function Edit(props) {
                 사진 업로드
               </label>
             </a>
-            <a href="#">유튜브 업로드</a>
+            <a href="#">
+              <label htmlFor="youtube-upload" className="">
+                유튜브 업로드
+              </label>
+            </a>
           </div>
         </div>
 
@@ -34,12 +41,16 @@ function Edit(props) {
           accept="image/png, image/jpeg" 
           onChange={(e) => readImage(e)} 
         />
+
+        <input type='button' id='youtube-upload'
+          onClick={() => getYoutube(setUrl, url)}
+        />
           
         {
           commands.map((command, idx) => {
             return (
               <div key={idx} className='editorIcon tooltip' onClick={() => editFunc(command)}>
-                <span class="tooltiptext">{command.icon}</span>
+                <span className="tooltiptext">{command.icon}</span>
                 {
                   command.src ? (
                     <img src={req(`./${command.src}.png`).default} className='iconImg'></img>
@@ -53,12 +64,16 @@ function Edit(props) {
         }
       
       </div>
-
       <input id='selectCategory' placeholder='카테고리'></input>
       <input id='inputTitle' placeholder='제목'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true"></div>
+      <div id="editFrame" contentEditable="true">
+        {
+          url &&
+          <YouTube videoId={url}/>
+        }
+      </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>
@@ -81,6 +96,20 @@ function getIcons() {
   });
   console.log(icons)
 
+}
+
+async function getYoutube(setUrl, url) {
+  let youtubeUrl = await navigator.clipboard.readText();
+  let youteCode = youtubeUrl.split('watch?v=');
+  
+  console.log('asdf', youtubeUrl, url.includes('youtube.com/watch?v='), url)
+  if (!youtubeUrl.includes('youtube.com/watch?v=')) alert('유튜브 영상 주소를 복사한 뒤 클릭하세요');
+  else if (url !== '') {
+    if (confirm('영상은 하나만 업로드 가능합니다\n현재 영상을 바꾸시겠습니까?')) setUrl(youteCode[1]);
+  } else { 
+    alert('유튜브 영상을 업로드합니다')
+    setUrl(youteCode[1]) 
+  }
 }
 
 async function readImage(e) {

@@ -95,6 +95,9 @@
 input[type="file"] {
   display: none;
 }
+input[type="button"] {
+  display: none;
+}
 
 #editFrame img {
   width: 40vw;
