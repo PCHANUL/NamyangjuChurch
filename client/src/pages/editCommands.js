@@ -9,8 +9,9 @@ export const commands = [
     icon: '서체',
   },
   {
-    cmd: 'insertOrderedList',
+    cmd: 'increaseFontSize',
     icon: '크기',
+    // val: 3,
   },
   {
     cmd: 'bold',
@@ -24,7 +25,7 @@ export const commands = [
   },
   {
     cmd: 'underline',
-    icon: '숫자목록',
+    icon: '밑줄',
     src: 'underline',
   },
   // {
@@ -78,8 +79,8 @@ export const commands = [
   },
   
   {
-    cmd: 'insertOrderedList',
-    icon: '숫자목록',
+    cmd: 'createLink',
+    icon: '링크',
     src: 'link',
   },
 
