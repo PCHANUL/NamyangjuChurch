@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getData } from './axiosRequest';
+import { getDataList } from './axiosRequest';
 
 
 const VideoList = (props) => {
@@ -11,7 +11,7 @@ const VideoList = (props) => {
   })
   
   useEffect(() => {
-    getData((getData) => {
+    getDataList((getData) => {
       console.log(getData)
       // setData(data.data.data);
       // setLoading(true);

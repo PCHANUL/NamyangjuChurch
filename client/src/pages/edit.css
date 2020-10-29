@@ -1,6 +1,6 @@
 #edit {
   display: grid;
-  grid-template-rows: 50px 80px 50px 20px auto 20px 60px;
+  grid-template-rows: 50px 100px 50px 20px auto 20px 60px;
   grid-gap: 10px;
 }  
 
@@ -23,11 +23,12 @@
 }
 
 #selectCategory {
-  margin-top: 10px;
-  width: 500px;
-  height: 30px;
+  margin-top: 20px;
+  width: 100px;
+  height: 50px;
   outline: none;
-  /* border: none; */
+  font-size: 20px;
+  border: none;
 }
 
 #inputTitle {
@@ -37,6 +38,10 @@
   font-size: 30px;
   border: none;
 
+}
+
+#inputTitle::placeholder {
+  font-size: 15px;
 }
 
 #editFrame {

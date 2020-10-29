@@ -14,7 +14,10 @@ import Community from './pages/Community'
 
 import './pages/app.css'
 
-function App() {
+import { useAppStore } from './state/appContext';
+import { useObserver, observer } from 'mobx-react';
+
+const App = () => {
   const [ isOpen, setIsOpen ] = useState(false);
   let location = useLocation();
 

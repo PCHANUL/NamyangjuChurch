@@ -5,10 +5,20 @@ import updateIcon from '../images/edit.png';
 import deleteIcon from '../images/delete.png';
 import './admin.css';
 
-import { getData, deleteData } from './axiosRequest';
+import { getDataList, deleteData } from './axiosRequest';
+
+import { useObserver, useLocalStore } from 'mobx-react';
+import { createStore } from '../state/appStore';
+
+import { useAppStore } from '../state/appContext';
 
 
-function Admin(props) {
+const Admin = (props) => {
+  // const appStore = useAppStore();
+
+  const appStore = useLocalStore(createStore);
+
+
   const [tab, setTab] = useState([0, 0]);
 
   const [loading, setLoading] = useState(false);
@@ -16,7 +26,7 @@ function Admin(props) {
   
   useEffect(() => {
     window.scroll(0,0);
-    getData(async (getData) => {
+    getDataList(async (getData) => {
       await setData(getData);
       setTimeout(setLoading(true), 2000);
     })
@@ -24,31 +34,26 @@ function Admin(props) {
   }, [tab])
 
 
-  return (
+  return useObserver(() => (
     <div id='admin'>
-      <div id='addBox'>
-        <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
+      <div id='addBox' onClick={() => {
+        
+      }}>
+        <h2 style={{fontSize: '2vw'}}>관리자 페이지 {appStore.notes[0]}</h2> 
       </div>
 
-      
+      <Tab tab={tab} setTab={setTab} />
 
-      <Tab 
-        tab={tab}
-        setTab={setTab}
-      />
-
-      <button id='addBtn' onClick={() => props.history.push('/admin/edit')}>
+      <button id='addBtn' onClick={() => {
+        appStore.addNote('asdfasdf')
+        // props.history.push('/admin/edit')
+      }}>
         <img id='addFileIcon' src={addIcon} />
       </button> 
      
-      <DataBox
-        data={data}
-        loading={loading}
-        tab={tab}
-        setData={setData}
-      />
+      <DataBox data={data} loading={loading} tab={tab} setData={setData} />
     </div>
-  )
+  ))
 }
 
 function transDate(date) {
@@ -64,7 +69,7 @@ function deleteDataBox(id, setData) {
   if (window.confirm('삭제하시겠습니까?')) {
     deleteData(id, (result) => {
       if (result) {
-        getData(async (getData) => {
+        getDataList(async (getData) => {
           await setData(getData);
         })
       }
@@ -73,7 +78,6 @@ function deleteDataBox(id, setData) {
 }
 
 function DataBox({ loading, data, tab, setData }) {
-  
 
   return (
     <>

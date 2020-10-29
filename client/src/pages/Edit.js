@@ -2,12 +2,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { commands } from './editCommands';
 import './edit.css';
 
-import { uploadImage } from './axiosRequest';
+import { uploadImage, addData, getContent } from './axiosRequest';
 
 function Edit(props) {
-  // useEffect(() => {
-  //   document.
-  // })
   let req = require.context('../images/editor', false, /.*\.png$/);
 
   return (
@@ -15,7 +12,7 @@ function Edit(props) {
       <div id='toolbarDiv' />
       <div id='toolbar'>
 
-        <div className="dropdown ">
+        <div className="dropdown">
           <button className="dropbtn editorIcon">
             <img src={req('./image.png').default} className='iconImg'></img>
           </button>
@@ -60,8 +57,23 @@ function Edit(props) {
         }
       
       </div>
-      <input id='selectCategory' placeholder='카테고리'></input>
-      <input id='inputTitle' placeholder='제목'></input>
+
+
+      <select id='selectCategory'>
+        <option value="">카테고리</option>
+        <optgroup label="예배">
+          <option value="sun">주일</option>
+          <option value="dawn">새벽</option>
+          <option value="wed">수요일</option>
+          <option value="fri">금요일</option>
+          <option value="note">기도수첩</option>
+        </optgroup>
+        <optgroup label="소식">
+          <option value="album">사진</option>
+        </optgroup>
+      </select>
+
+      <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
       <div id="editFrame" contentEditable="true"></div>
@@ -70,47 +82,36 @@ function Edit(props) {
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button onClick={() => {
-          document.getElementById('editFrame').insertAdjacentHTML("beforeend", '<img <div style="text-align: center;">굴림데굴데굴굴림</div><h1 style="text-align: center;">한번더 굴림데굴데굴굴림</h1>');
+          saveData();
+          alert('저장되었습니다.');
+          // props.history.push('/admin');
         }}>저장</button>
-
       </div>
 
   </div>
   )
 }
 
-function getIcons() {
-  let icons = [];
-  let req = require.context('../images/editor', false, /.*\.png$/);
-  req.keys().forEach(function (key) {
-    icons.push(req(key));
-  });
-  console.log(icons)
-
-}
-
-async function getYoutube() {
+const getYoutube = async() => {
   let youtubeUrl = await navigator.clipboard.readText();
   let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
-  let result = ''
+  let result = '';
 
   if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
   else result = window.prompt(msg, '');
 
   let youtubeCode = result.split('watch?v=');
-  if (!youtubeCode[1]) alert('잘못 입력하셨습니다.')
+  if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
 
-  let youtubeMovie = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`
-  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeMovie);
+  let youtubeVideo = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`;
+  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeVideo);
 }
 
-async function readImage(e) {
+const readImage = async(e) => {
   const file = await e.target.files[0];
   uploadImage(file, (result) => {
-    console.log('result.data: ', result);
     let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
     document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
-    console.log(document.querySelector('#image').style.width)
   }); 
   
   // let img = `<img id='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg' style='width: 40vw'>`;
@@ -118,10 +119,17 @@ async function readImage(e) {
   // console.log(document.querySelector('#image').style.width)
 }
 
-function editFunc(cmd) {
+const saveData = () => {
+  const category = document.querySelector('#selectCategory').value;
+  const title = document.querySelector('#inputTitle').value;
+  const content = document.getElementById('editFrame').innerHTML;
+
+  if (category && title) addData(category, title, content.replace(/"/g, "'"));
+}
+
+const editFunc = (cmd) => {
   console.log(document.execCommand(cmd.cmd, false, cmd.val));
   let select = window.getSelection().getRangeAt(0)
-  console.log('window.getSelection().getRangeAt(0).toString(): ', select);
 }
 
 export default Edit;
