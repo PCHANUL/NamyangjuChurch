@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const addData = async(category, title, content) => {
-  console.log('category, title, content: ', category, title, content);
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'POST',
@@ -23,8 +22,33 @@ const addData = async(category, title, content) => {
       `
     }
   })
-
   console.log(result);
+}
+
+const updateData = async(id, category, title, content) => {
+  console.log('id, category, title, content: ', id, category, title, content);
+  return await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      query: `
+      mutation {
+        updateContent (
+          id: ${id}
+          category: "${category}"
+          title: "${title}"
+          desc: ""
+          url: ""
+          content: "${content}"
+        ) 
+      }
+      `
+    }
+  })
 }
 
 const deleteData = async(id, callback) => {
@@ -117,4 +141,4 @@ const uploadImage = async(file, callback) => {
   callback(imgUrl)
 }
 
-export { getDataList, deleteData, uploadImage, addData, getContent }
+export { getDataList, deleteData, uploadImage, addData, getContent, updateData }

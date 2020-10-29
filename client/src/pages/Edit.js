@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { commands } from './editCommands';
 import './edit.css';
 
-import { uploadImage, addData, getContent } from './axiosRequest';
+import { uploadImage, addData, getContent, updateData } from './axiosRequest';
 import { storeContext } from '../state/appStore';
 
 function Edit(props) {
@@ -96,9 +96,9 @@ function Edit(props) {
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button onClick={() => {
-          saveData(contentIdStore.isEdit);
+          saveData(contentIdStore);
           alert('저장되었습니다.');
-          // props.history.push('/admin');
+          props.history.push('/admin');
         }}>저장</button>
       </div>
 
@@ -129,17 +129,16 @@ const readImage = async(e) => {
   }); 
 }
 
-const saveData = (isEdit) => {
+const saveData = (contentState) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
-  console.log('content: ', content);
 
   if (category && title) {
-    if (isEdit) updateData();
+    if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
     else addData(category, title, content);
   }
-  else alert('카테고리와 제목을 작성해주세요')
+  else alert('카테고리와 제목을 작성해주세요');
 }
 
 const editFunc = (cmd) => {

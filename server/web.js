@@ -48,7 +48,7 @@ app.use(cors({
 app.use(express.static(path.join(__dirname, './views')))
 
 app.use('/graphql', (req, res, next) => {
-  if (req.method === 'DELETE') req.method = 'POST';
+  if (req.method === 'DELETE' || req.method === 'PUT') req.method = 'POST';
   next();
 })
 
@@ -67,7 +67,6 @@ app.get('*', (req, res) => {
 
 app.post('/post/img', upload.single('img'), (req, res) => {
   try {
-
       console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
       res.json(req.file.location);
   } catch (err) {

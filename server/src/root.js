@@ -72,6 +72,28 @@ const root = {
     })
     return isCreated ? true : false;
   },
+  updateContent: async({ id, category, title, desc, url, content }, context) => {
+    console.log('id, category, title, desc, url, content: ', id, category, title, desc, url, content);
+    const isUpdated = await context.prisma.post.update({
+      where: {
+        id: id
+      },
+      data: {
+        title,
+        desc,
+        detail: {
+          connect: { id: Number(category) }
+        },
+        content: {
+          create: { 
+            url,
+            content
+          }
+        }
+      }
+    })
+    return isUpdated ? true : false;
+  },
   deleteContent: async({ id }, context) => {
     const findLinked = await context.prisma.post.findMany({ where: { id }, include: { content: true } })
     const delPost = await context.prisma.post.delete({ where: { id: id } })

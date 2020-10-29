@@ -53,6 +53,16 @@ var schema = buildSchema(`
       thumbnail: String
     ): Boolean!
 
+    updateContent(
+      id: Int!
+      category: String!
+      title: String!
+      desc: String!
+      url: String!
+      content: String!
+      thumbnail: String
+    ): Boolean!
+
     deleteUser(nickname: String!): Boolean!
     deleteContent(id: Int!): Boolean!
   }
