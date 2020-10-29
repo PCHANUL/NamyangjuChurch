@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, Link, useLocation, Redirect} from 'react-router-dom';
+import { Route, Switch, Link, useLocation, Redirect } from 'react-router-dom';
 
 import Nav from './pages/Nav'
 import Footer from './pages/Footer'
@@ -14,8 +14,6 @@ import Community from './pages/Community'
 
 import './pages/app.css'
 
-import { useAppStore } from './state/appContext';
-import { useObserver, observer } from 'mobx-react';
 
 const App = () => {
   const [ isOpen, setIsOpen ] = useState(false);

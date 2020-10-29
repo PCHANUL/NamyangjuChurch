@@ -1,16 +1,14 @@
 const root = {
   getUsers: async (_, context) => {
-    const users = await context.prisma.user.findMany()
-    return users
+    return await context.prisma.user.findMany()
   },
   addUser: async ({nickname, password}, context) => {
-    const newUser = await context.prisma.user.create({
+    return await context.prisma.user.create({
       data: {
         nickname,
         password,
       }
     })
-    return newUser
   },
   deleteUser: async ({ nickname }, context) => {
     console.log(nickname)
@@ -22,7 +20,7 @@ const root = {
     return isDeleted ? true : false;
   },
   getCategory: async (_, context) => {
-    const result = await context.prisma.category.findMany({
+    return await context.prisma.category.findMany({
       select: { 
         id: true,
         name: true,
@@ -38,15 +36,31 @@ const root = {
         }
       },
     })
-    return result
+  },
+  getContent: async ({ id }, context) => {
+    return await context.prisma.post.findOne({
+      where: {
+        id: id
+      },
+      select: {
+        id: true,
+        title: true, 
+        detailId: true,
+        content: {
+          include: {
+            post: true,
+          }
+        }
+      }
+    })
   },
   addContent: async ({ category, title, desc, url, content }, context) => {
-    const result = await context.prisma.post.create({
+    const isCreated = await context.prisma.post.create({
       data: {
         title,
         desc,
         detail: {
-          connect: { name: category }
+          connect: { id: Number(category) }
         },
         content: {
           create: { 
@@ -56,7 +70,7 @@ const root = {
         }
       }
     })
-    return result ? true : false;
+    return isCreated ? true : false;
   },
   deleteContent: async({ id }, context) => {
     const findLinked = await context.prisma.post.findMany({ where: { id }, include: { content: true } })

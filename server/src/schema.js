@@ -7,13 +7,6 @@ var schema = buildSchema(`
     password: String!
   }
 
-  type Content {
-    id: Int!
-    desc: String!
-    url: String!
-    postId: Int!
-  }
-
   type Category {
     id: Int!
     name: String!
@@ -32,11 +25,21 @@ var schema = buildSchema(`
     desc: String!
     createdAt: String!
     thumbnail: String!
+    detailId: Int!
+    content: Content!
+  }
+
+  type Content {
+    id: Int!
+    content: String!
+    url: String!
+    postId: Int!
   }
 
   type Query {
     getUsers: [Users]!
     getCategory: [Category]!
+    getContent(id: Int!): Post!
   }
 
   type Mutation {

@@ -63,7 +63,11 @@ const getContent = async( id, callback ) => {
       {
         getContent(id: ${id}) {
           id
-          url
+          title
+          detailId
+          content{
+            content
+          }
         }
       }
       `

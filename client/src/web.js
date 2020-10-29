@@ -8,15 +8,15 @@ import { BrowserRouter } from 'react-router-dom'
 // import { ApolloProvider } from "@apollo/client";
 // import client from "./apollo";
 
-import { AppProvider } from './state/appContext'
+// import { AppProvider } from './state/appContext'
 
 const render = () =>
   ReactDOM.render(
-      <AppProvider>
+      // <AppProvider>
         <BrowserRouter>
           <App />
-        </BrowserRouter>
-      </AppProvider>,
+        </BrowserRouter>,
+      // </AppProvider>,
     document.getElementById('root')
   );
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import addIcon from '../images/add-file.png';
 import updateIcon from '../images/edit.png';
@@ -7,18 +7,13 @@ import './admin.css';
 
 import { getDataList, deleteData } from './axiosRequest';
 
-import { useObserver, useLocalStore } from 'mobx-react';
-import { createStore } from '../state/appStore';
-
-import { useAppStore } from '../state/appContext';
+import { observer } from 'mobx-react';
+import { storeContext } from '../state/appStore';
 
 
-const Admin = (props) => {
-  // const appStore = useAppStore();
 
-  const appStore = useLocalStore(createStore);
-
-
+const Admin = observer((props) => {
+  const contentIdStore = useContext(storeContext);
   const [tab, setTab] = useState([0, 0]);
 
   const [loading, setLoading] = useState(false);
@@ -34,27 +29,24 @@ const Admin = (props) => {
   }, [tab])
 
 
-  return useObserver(() => (
+  return (
     <div id='admin'>
-      <div id='addBox' onClick={() => {
-        
-      }}>
-        <h2 style={{fontSize: '2vw'}}>관리자 페이지 {appStore.notes[0]}</h2> 
+      <div id='addBox'>
+        <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
       </div>
 
       <Tab tab={tab} setTab={setTab} />
 
       <button id='addBtn' onClick={() => {
-        appStore.addNote('asdfasdf')
-        // props.history.push('/admin/edit')
+        contentIdStore.setEditState(false);
+        props.history.push('/admin/edit');
       }}>
         <img id='addFileIcon' src={addIcon} />
       </button> 
-     
-      <DataBox data={data} loading={loading} tab={tab} setData={setData} />
+      <DataBox data={data} loading={loading} tab={tab} setData={setData} history={props.history}/>
     </div>
-  ))
-}
+  )
+})
 
 function transDate(date) {
   let rawDate = new Date(JSON.parse(date));
@@ -77,7 +69,8 @@ function deleteDataBox(id, setData) {
   }
 }
 
-function DataBox({ loading, data, tab, setData }) {
+function DataBox({ loading, data, tab, setData, history }) {
+  const contentIdStore = useContext(storeContext);
 
   return (
     <>
@@ -95,7 +88,10 @@ function DataBox({ loading, data, tab, setData }) {
                   <button className='dataButton' onClick={() => deleteDataBox(data.id, setData)}>
                     <img className='deleteIcon' src={deleteIcon}></img>
                   </button>
-                  <button className='dataButton' onClick={() => props.history.push('/admin/edit')} >
+                  <button className='dataButton' onClick={() => {
+                    contentIdStore.setEditState(true, data.id);
+                    history.push('/admin/edit');
+                  }}>
                     <img className='updateIcon' src={updateIcon}></img>
                   </button>
                 </div>

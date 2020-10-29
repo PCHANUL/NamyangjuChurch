@@ -1,17 +1,31 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { commands } from './editCommands';
 import './edit.css';
 
 import { uploadImage, addData, getContent } from './axiosRequest';
+import { storeContext } from '../state/appStore';
 
 function Edit(props) {
-  let req = require.context('../images/editor', false, /.*\.png$/);
+  const contentIdStore = useContext(storeContext);
+  console.log('contentIdStore: ', contentIdStore);
+  const req = require.context('../images/editor', false, /.*\.png$/);
+
+  useEffect (() => {
+    if (contentIdStore.isEdit) {
+      getContent(contentIdStore.selectedId, (data) => {
+        let content = data.data.data.getContent;
+        console.log('content: ', content);
+        document.querySelector('#selectCategory').value = content.detailId;
+        document.querySelector('#inputTitle').value = content.title;
+        document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content.content.content);
+      })
+    }
+  }, [])
 
   return (
     <div id='edit'>
       <div id='toolbarDiv' />
       <div id='toolbar'>
-
         <div className="dropdown">
           <button className="dropbtn editorIcon">
             <img src={req('./image.png').default} className='iconImg'></img>
@@ -62,14 +76,14 @@ function Edit(props) {
       <select id='selectCategory'>
         <option value="">카테고리</option>
         <optgroup label="예배">
-          <option value="sun">주일</option>
-          <option value="dawn">새벽</option>
-          <option value="wed">수요일</option>
-          <option value="fri">금요일</option>
-          <option value="note">기도수첩</option>
+          <option value="1">주일</option>
+          <option value="2">수요일</option>
+          <option value="3">금요일</option>
+          <option value="4">새벽</option>
+          <option value="5">기도수첩</option>
         </optgroup>
         <optgroup label="소식">
-          <option value="album">사진</option>
+          <option value="6">사진</option>
         </optgroup>
       </select>
 
@@ -82,7 +96,7 @@ function Edit(props) {
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button onClick={() => {
-          saveData();
+          saveData(contentIdStore.isEdit);
           alert('저장되었습니다.');
           // props.history.push('/admin');
         }}>저장</button>
@@ -113,18 +127,19 @@ const readImage = async(e) => {
     let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
     document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
   }); 
-  
-  // let img = `<img id='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/Adapter.jpg' style='width: 40vw'>`;
-  // document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
-  // console.log(document.querySelector('#image').style.width)
 }
 
-const saveData = () => {
+const saveData = (isEdit) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
-  const content = document.getElementById('editFrame').innerHTML;
+  const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
+  console.log('content: ', content);
 
-  if (category && title) addData(category, title, content.replace(/"/g, "'"));
+  if (category && title) {
+    if (isEdit) updateData();
+    else addData(category, title, content);
+  }
+  else alert('카테고리와 제목을 작성해주세요')
 }
 
 const editFunc = (cmd) => {

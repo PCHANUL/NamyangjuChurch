@@ -2,16 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './nav.css';
 
-import { useAppStore } from '../state/appContext';
-import { useObserver } from 'mobx-react';
-
 function Nav() {
-  const appStore = useAppStore();
-
   return (
     <nav id='nav'>
       <Link to="/" className='home'>
-        남양주 사랑교회{appStore.notes[0]}
+        남양주 사랑교회
       </Link>
       <Link to="/community" className='button'>
         교회소식
