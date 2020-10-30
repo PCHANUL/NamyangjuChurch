@@ -1,5 +1,5 @@
 #admin {
-  width: 70vw;
+  width: 60vw;
 }
 
 #addBox {
@@ -10,73 +10,73 @@
   box-sizing: border-box;
   position: relative;
   width: 100%;
-  height: 8vw;
+  height: 5vw;
   border-radius: 2vw;
-  margin: 3vw 0 3vw 0;
+  margin: 3vw 0 1vw 0;
   background-color: #fff;
-  box-shadow: 1vw 1vw 3vw 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0vw 0.5vw 1vw 0 rgba(63, 63, 63, 0.1);
   outline: none;
   border: none;
   cursor: pointer;
 }
 
 #addBtn:hover {
-  box-shadow: 1vw 1vw 3vw 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0vw 0.5vw 1.5vw 0 rgba(126, 126, 126, 0.2);
 }
 
 #addFileIcon {
-  width: 3vw;
+  width: 2vw;
 }
 
 #tabContainer {
   position: sticky;
-  top: 6vw;
+  top: 0vw;
   z-index: 1;
-  height: 9vw;
+  height: 6vw;
+  font-size: 1.3vw;
   padding-top: 1vw;
-  font-size: 1.6vw;
   background-color: #fff;
 }
 #adminTabBox {
-  margin-top: 2vw;
-  height: 3vw;
+  margin-top: 1vw;
+  height: 1.8vw;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 .adminTab {
   text-align: center;
-  height: 2.5vw;
+  height: 2vw;
   border-bottom: 1px solid #000;
   grid-row: 1;
   cursor: pointer;
 }
 .adminTab:hover {
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
 }
 #subTabBox {
-  height: 2vw;
+  height: 2.8vw;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 .subTab {
   text-align: center;
-  height: 2.5vw;
+  height: 2vw;
   cursor: pointer;
   padding-top: 1vw;
 }
 .subTab:hover {
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
 }
 .selected {
-  border-bottom: 3px solid #000;
+  border-bottom: 2px solid #000;
 }
 .extraDiv {
   position: fixed;
-  top: 6vw;
+  top: 0vw;
   background-color: #fff;
-  width: 15vw;
-  height: 10vw;
+  width: 20vw;
+  height: 7vw;
 }
 .left {
   left: 0%;
@@ -90,25 +90,39 @@
   display: grid;
   grid-template-columns: auto auto;
   box-sizing: border-box;
-  height: 10vw;
+  height: 5vw;
   width: 100%;
-  border: 1px solid #000;
-  margin-top: 1vw;
+  border-bottom: 0.5px solid rgb(190, 190, 190);
   padding: 1vw 2vw 1vw 2vw;
-  font-size: 2vw;
+  font-size: 1.5vw;
   float: left;
+}
+.dataBox:hover {
+  background-color: rgba(202, 202, 202, 0.1);
 }
 .textBox {
   display: grid;
-  grid-template-rows: 4vw 4vw;
   line-height: 0vw;
+}
+.textBox h3 {
+  all: unset;
+  font-size: 2vw;
+  font-weight: bold;
+  margin-top: 1.7vw;
+}
+.textBox p {
+  all: unset;
+  font-size: 1vw;
+  font-weight: lighter;
+  line-height: 0vw;
+  margin-top: 0.7vw;
 }
 
 .dataButton {
   width: 3vw;
   height: 3vw;
   border: 0px solid #000;
-  background-color: #fff;
+  background-color: transparent;
   padding: 3px;
   margin: 3px;
   font-size: 2vw;
@@ -116,6 +130,7 @@
   cursor: pointer;
 }
 .dataButton:hover {
+  background-color: #fff;
   outline: 2px solid #000;
 }
 .dataButton:active {

@@ -72,7 +72,6 @@ function Edit(props) {
       
       </div>
 
-
       <select id='selectCategory'>
         <option value="">카테고리</option>
         <optgroup label="예배">
@@ -95,7 +94,7 @@ function Edit(props) {
 
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
-        <button onClick={() => {
+        <button id='saveBtn' onClick={() => {
           saveData(contentIdStore);
           alert('저장되었습니다.');
           props.history.push('/admin');

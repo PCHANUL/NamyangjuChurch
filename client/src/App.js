@@ -21,7 +21,8 @@ const App = () => {
 
   return (
     <div className='container'>
-      { location.pathname !== "/admin/edit" &&
+      { location.pathname !== "/admin" &&
+        location.pathname !== "/admin/edit" &&
         <Nav />
       }
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
@@ -37,7 +38,8 @@ const App = () => {
         {/* <Redirect path='*' to="/" /> */}
       </Switch>
 
-      { location.pathname !== "/admin/edit" &&
+      { location.pathname !== "/admin" &&
+        location.pathname !== "/admin/edit" &&
         <Footer setIsOpen={setIsOpen} />
       }
     </div>

@@ -59,25 +59,28 @@
   left: 0%;
   z-index: 2;
   background-color: #fff;
-
   border-top: 1px solid rgb(0,0,0,0.5);
 }
 
 #bottombar > button {
   outline: none;
-  border: none;
+  border: 2px solid #000;
   float: right;
-  width: 15vw;
-  height: 2vw;
-  margin-left: 3vw;
+  width: 150px;
+  height: 40px;
+  margin: 10px;
   cursor: pointer;
 }
-
 #bottombar > button:hover {
   background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
 }
 #bottombar > button:active {
   outline: 2px solid #000;
+}
+#saveBtn {
+  background-color: #000;
+  color: #fff;
 }
 
 
