@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { uselocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { getDataList } from './axiosRequest';
+import { transDate } from './sharedMethod';
 
+import { useAppStore } from '../state/appContext';
+import { useObserver } from 'mobx-react';
 
 const VideoList = (props) => {
+  // const appStore = useContext(storeContext);
+  // console.log('appStore: ', appStore.setEditState);
+
+  const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
     people: []
@@ -12,23 +20,23 @@ const VideoList = (props) => {
   
   useEffect(() => {
     getDataList((getData) => {
-      console.log(getData)
-      // setData(data.data.data);
-      // setLoading(true);
+      console.log('getData: ', getData);
+      setData(getData);
+      setLoading(true);
     });
   }, [])
 
-
-  return (
+  return useObserver(() => (
     <div id='videoList'>
       {
         loading &&
-        data.people.map((data, i) => {
+        data[appStore.selectedCategory].details[appStore.selectedDetail].posts.map((data, i) => {
+          console.log(data)
           return (
-          <div className='video' key={data.id}>
+          <div className='video' key={i}>
             <div className='title'>
-              <h1>{data.name}</h1>
-              <h5>{data.age}</h5>
+              <h1>{data.title}</h1>
+              <h5>{transDate(data.createdAt)}</h5>
             </div>
             <div className='content'>
               <div>{data.gender}</div>
@@ -38,7 +46,7 @@ const VideoList = (props) => {
         })
       }
     </div>
-  )
+  ))
 }
 
 export default VideoList;

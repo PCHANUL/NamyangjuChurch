@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+// import { storeContext } from '../state/appStore';
 
 import './community.css'
 import thumbnail from '../images/main3.jpg'
 
 function Community() {
+  // const appStore = useContext(storeContext);
+  console.log('appStore: ', appStore);
+
   return (
     <div id='community'>
       <div className='comContent'>

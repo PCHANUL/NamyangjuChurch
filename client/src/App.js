@@ -14,8 +14,8 @@ import Community from './pages/Community'
 
 import './pages/app.css'
 
-
-const App = () => {
+const App = (props) => {
+  console.log('props: ', props);
   const [ isOpen, setIsOpen ] = useState(false);
   let location = useLocation();
 
@@ -47,3 +47,7 @@ const App = () => {
 }
 
 export default App;
+// export default inject(({ store }) => {
+//   return ({
+//   selected: store.selectedCategory
+// })})(observer(App))

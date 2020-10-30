@@ -4,22 +4,16 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 
-// import { ApolloProvider } from "@apollo/react-hooks";
-// import { ApolloProvider } from "@apollo/client";
-// import client from "./apollo";
+// import { Provider } from 'mobx-react';
+// import createStore from './state/appStore'
+import { AppProvider } from './state/appContext';
 
-// import { AppProvider } from './state/appContext'
+ReactDOM.render(
+  <AppProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </AppProvider>,
+  document.getElementById('root')
+);
 
-const render = () =>
-  ReactDOM.render(
-      // <AppProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>,
-      // </AppProvider>,
-    document.getElementById('root')
-  );
-
-render(App);
-
-if (module.hot) module.hot.accept('./App', () => render(App));

@@ -41,3 +41,30 @@
   margin-top: 1vw;
   float: right;
 }
+
+#tabList {
+  font-size: 1.5vw;
+  text-align: center;
+  position: fixed;
+  left: 50%;
+  top: 15vw;
+  /* transform: translate(-50%); */
+  width: 40vw;
+  height: 4vw;
+  background-color: #fff;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border: 3px solid #000;
+}
+
+.tab {
+  height: 2.5vw;
+  width: 16vw;
+  float: left;
+  padding-top: 1vw;
+  border: 1px solid #000;
+}
+.tab:hover {
+  background-color: tomato;
+}

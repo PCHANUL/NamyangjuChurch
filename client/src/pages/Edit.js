@@ -3,11 +3,10 @@ import { commands } from './editCommands';
 import './edit.css';
 
 import { uploadImage, addData, getContent, updateData } from './axiosRequest';
-import { storeContext } from '../state/appStore';
+import { useAppStore } from '../state/appContext';
 
 function Edit(props) {
-  const contentIdStore = useContext(storeContext);
-  console.log('contentIdStore: ', contentIdStore);
+  const contentIdStore = useAppStore();
   const req = require.context('../images/editor', false, /.*\.png$/);
 
   useEffect (() => {
@@ -134,6 +133,7 @@ const saveData = (contentState) => {
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
 
   if (category && title) {
+    console.log('contentState.isEdit: ', contentState.isEdit);
     if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
     else addData(category, title, content);
   }

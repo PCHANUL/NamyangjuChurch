@@ -7,17 +7,18 @@ import DataList from './DataList'
 
 import { getDataList } from './axiosRequest';
 
-import { observer } from 'mobx-react';
-import { storeContext } from '../state/appStore';
+import { useObserver } from 'mobx-react-lite';
+import { useAppStore } from '../state/appContext';
 
 
 
-const Admin = observer((props) => {
-  const contentIdStore = useContext(storeContext);
+const Admin = (props) => {
   const [tab, setTab] = useState([0, 0]);
 
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
+
+  const appStore = useAppStore();
   
   
   useEffect(() => {
@@ -29,7 +30,7 @@ const Admin = observer((props) => {
   }, [tab])
 
 
-  return (
+  return useObserver (() => (
     <div id='admin'>
       <div id='addBox'>
         <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
@@ -38,15 +39,15 @@ const Admin = observer((props) => {
       <Tab tab={tab} setTab={setTab} />
 
       <button id='addBtn' onClick={() => {
-        contentIdStore.setEditState(false);
+        appStore.setEditState(false);
         props.history.push('/admin/edit');
       }}>
         <img id='addFileIcon' src={addIcon} />
       </button> 
       <DataList data={data} loading={loading} tab={tab}/>
     </div>
-  )
-})
+  ))
+}
 
 // Components
 function Tab({ tab, setTab }) {
