@@ -54,7 +54,7 @@
   font-family: 'MapoGoldenPier';
   /* all: unset; */
   font-size: 2vw;
-  font-weight: 400;
+  font-weight: 600;
   margin-top: 4vw;
 }
 
@@ -65,4 +65,23 @@
   all: unset;
   display: block;
   margin-bottom: 0.5vw;
+  font-size: 1.5vw;
 }
+
+#cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 3vw;
+  margin-top: 5vw;
+}
+
+.prayerCard {
+  display: grid;
+  grid-template-rows: 13vw auto;
+  height: 25vw;
+  box-shadow: 1vw 1vw 3vw 0 rgb(240, 240, 240);
+}
+.prayerCard h2 {
+  line-height: 3vw;
+}
+          

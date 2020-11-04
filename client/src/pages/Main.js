@@ -34,25 +34,36 @@ function Main() {
       <div id="main">
         <div id="prayer">
           <h1>교회 기도제목</h1>
-          <h2>하나님이 원하시는 교회</h2>
-          <ul>
-            <li>오직 복음</li>
-            <li>오직 전도,선교</li>
-            <li>오직 제자</li>
-            <li>오직 후대</li>
-          </ul>
-          <h2>하나님이 찾으시는 교회</h2>
-          <ul>
-            <li>성경적 전도운동하는 교회</li>
-            <li>다락방,팀사역,미션홈,전문교회 </li>
-            <li>지교회 5기초를 현장에 세우게 하옵소서.</li>
-          </ul>
-          <h2>강북600만, 남양주, 양주 100만 복음화</h2>
-          <ul>
-            <li>5000제자, 2000지교회</li>
-            <li>200절대제자, 200장로, 200렘넌트 </li>
-          </ul>
-          <h2>담임목사님 성령충만과 오력</h2>
+          <div id='cardContainer'>
+
+            <div className='prayerCard'>
+              <h2>하나님이 <br />원하시는 교회</h2>
+              <ul>
+                <li>오직 복음</li>
+                <li>오직 전도,선교</li>
+                <li>오직 제자</li>
+                <li>오직 후대</li>
+              </ul>
+            </div>
+
+            <div className='prayerCard'>
+              <h2>하나님이 <br />찾으시는 교회</h2>
+              <ul>
+                <li>성경적 전도운동하는 교회</li>
+                <li>다락방, 팀사역, 미션홈 </li>
+                <li>지교회 5기초 현장</li>
+              </ul>
+            </div>
+
+            <div className='prayerCard'>
+              <h2 style={{marginTop: '2.5vw'}}>강북 600만, <br /> 남양주, 양주<br />100만 복음화</h2>
+              <ul>
+                <li>5000제자, 2000지교회</li>
+                <li>200절대제자, 200장로</li>
+                <li>200렘넌트 </li>
+              </ul>
+            </div>
+          </div>
         </div>
 
 
