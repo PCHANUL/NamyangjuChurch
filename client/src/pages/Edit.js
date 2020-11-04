@@ -115,14 +115,20 @@ const getYoutube = async() => {
   let youtubeCode = result.split('watch?v=');
   if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
 
-  let youtubeVideo = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`;
+  let youtubeVideo = `
+  <div style="text-align: center;">
+    <iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>
+  </div>`;
   document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeVideo);
 }
 
 const readImage = async(e) => {
   const file = await e.target.files[0];
   uploadImage(file, (result) => {
-    let img = `<img id='image' src=${result.data} style='width: 40vw'>`;
+    let img = `
+    <div style="text-align: center;">
+      <img id='image' src=${result.data} style='width: 40vw'>
+    </div>`;
     document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
   }); 
 }

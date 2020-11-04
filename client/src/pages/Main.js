@@ -93,10 +93,10 @@ function Main() {
             endPoint={{ lat: places[1].lat, lng: places[1].lng }}
           />
         </div>
-        <div style={{height: '60vw', border: '2px solid #000'}}>
+        {/* <div style={{height: '60vw', border: '2px solid #000'}}>
           <h1>예배시간</h1>
           <TimeTable />
-        </div>
+        </div> */}
       </div>
     </>
   )

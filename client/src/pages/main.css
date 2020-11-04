@@ -29,14 +29,13 @@
 
 /* prayer */
 #prayer {
-  font-weight: 700;
-  color: rgb(120, 120, 120);
   height: 40vw;
   border-top: 1px solid rgb(220, 220, 220);
   padding: 10vw 0 0 0;
   text-align: center;
   font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 300;
+  color: rgb(120, 120, 120);
+  font-weight: 400;
 }
 
 #prayer h1 {
@@ -112,6 +111,12 @@
 #route {
   height: 40vw;
   margin-top: 15vw;
-  padding-top: 10vw;
+  padding-top: 8vw;
   border-top: 1px solid rgb(220, 220, 220);
+  text-align: center;
+}
+
+#route h1 {
+  color: rgb(120, 120, 120);
+  font-weight: 700;
 }
