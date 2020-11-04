@@ -38,28 +38,20 @@ module.exports = {
         ],
       },
       {
-        test: /\.ttf$/,
-        use: [
-          'file-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           {
             loader: 'style-loader',
           },
           {
             loader: 'css-loader',
-            // options: {
-            //   modules: true,
-            //   camelCase: true,
-            //   sourceMap: true,
-            // },
+            options: {
+              url: true,
+              import: true,
+            },
           },
         ],
       },
-      
     ],
   },
   devtool: 'inline-source-map',

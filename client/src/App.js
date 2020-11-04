@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Route, Switch, Link, useLocation, Redirect } from 'react-router-dom';
 
-import Nav from './pages/Nav'
-import Footer from './pages/Footer'
-import Main from './pages/Main'
-import Edit from './pages/Edit'
-import Admin from './pages/Admin'
-import Login from './pages/Login'
-import Signin from './pages/Signin'
-import Video from './pages/Video'
-import Message from './pages/Message'
-import Community from './pages/Community'
+import Nav from './pages/Nav';
+import Footer from './pages/Footer';
+import Main from './pages/Main';
+import Edit from './pages/Edit';
+import Admin from './pages/Admin';
+import Login from './pages/Login';
+import Signin from './pages/Signin';
+import Video from './pages/Video';
+import Message from './pages/Message';
+import Community from './pages/Community';
 
-import './pages/app.css'
+import './pages/app.css';
+import './pages/fontFamily.css';
 
 const App = (props) => {
   console.log('props: ', props);
@@ -47,7 +48,3 @@ const App = (props) => {
 }
 
 export default App;
-// export default inject(({ store }) => {
-//   return ({
-//   selected: store.selectedCategory
-// })})(observer(App))

@@ -1,33 +1,39 @@
 .container {
   /* height: 230vw; */
+  margin-top: 7vw;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-  /* grid-template-rows: 1fr 7fr 1fr; */
+  grid-template-rows: auto 7fr 1fr;
   grid-gap: 20px;
 }
 
 Nav {
   grid-column: 2 / 5;
-  /* grid-row: 1; */
 }
 #main {
   grid-column: 3;
+  grid-row: 2;
 }
 #community {
   grid-column: 3;
+  grid-row: 2;
 }
 #admin {
   grid-column: 3;
+  grid-row: 2;
 }
 #edit {
   grid-column: 3;
+  grid-row: 2;
 }
 
 #message {
+  margin-top: 7vw;
   grid-column: 3;
+  grid-row: 2;
 }
 
 Footer {
   grid-column: 1 / 6;
-  /* grid-row: 3; */
+  grid-row: 3;
 }

@@ -8,10 +8,7 @@ import { transDate } from './sharedMethod';
 import { useAppStore } from '../state/appContext';
 import { useObserver } from 'mobx-react';
 
-const VideoList = (props) => {
-  // const appStore = useContext(storeContext);
-  // console.log('appStore: ', appStore.setEditState);
-
+const VideoList = () => {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
