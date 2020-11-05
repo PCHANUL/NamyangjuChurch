@@ -86,10 +86,10 @@ const getContent = async( id, callback ) => {
       query: `
       {
         getContent(id: ${id}) {
-          id
           title
           detailId
-          content{
+          createdAt
+          content {
             content
           }
         }
@@ -97,7 +97,7 @@ const getContent = async( id, callback ) => {
       `
     }
   });
-  callback(content);
+  callback(content.data.data.getContent);
 }
 
 const getDataList = async(callback) => {

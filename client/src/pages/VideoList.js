@@ -3,7 +3,7 @@ import { uselocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import { getDataList } from './axiosRequest';
-import { transDate } from './sharedMethod';
+import { transDate } from './Methods';
 
 import { useAppStore } from '../state/appContext';
 import { useObserver } from 'mobx-react';
@@ -19,7 +19,6 @@ const VideoList = () => {
   
   useEffect(() => {
     getDataList((getData) => {
-      console.log('getData: ', getData);
       setData(getData);
       setLoading(true);
     });

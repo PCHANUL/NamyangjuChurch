@@ -12,11 +12,9 @@ function Edit(props) {
   useEffect (() => {
     if (contentIdStore.isEdit) {
       getContent(contentIdStore.selectedId, (data) => {
-        let content = data.data.data.getContent;
-        console.log('content: ', content);
-        document.querySelector('#selectCategory').value = content.detailId;
-        document.querySelector('#inputTitle').value = content.title;
-        document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content.content.content);
+        document.querySelector('#selectCategory').value = data.detailId;
+        document.querySelector('#inputTitle').value = data.title;
+        document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
       })
     }
   }, [])
