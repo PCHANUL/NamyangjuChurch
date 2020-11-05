@@ -1,8 +1,5 @@
 #videoList {
-  position: relative;
   width: 70vw;
-  left: 50%;
-  transform: translate(-50%);
 }
 
 .video {

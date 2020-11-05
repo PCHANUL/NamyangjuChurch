@@ -20,18 +20,22 @@ function Nav() {
         <Link to="/community" className='button' onClick={() => appStore.setVideoList(1, 0)}>
           교회소식
         </Link>
-        <Link to="/message" className='button' onClick={() => appStore.setVideoList(0, 0)}>
+        <Link to="/videolist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
           말씀보기
         </Link>
       </div>
       {
-        location.pathname === '/message' &&
+        location.pathname === '/videolist' &&
         <div id='tabList'>
-          <div className='tab selected' onClick={() => appStore.setVideoList(0, 0)}>주일예배</div>
-          <div className='tab' onClick={() => appStore.setVideoList(0, 1)}>수요예배</div>
-          <div className='tab' onClick={() => appStore.setVideoList(0, 2)}>금요예배</div>
-          <div className='tab' onClick={() => appStore.setVideoList(0, 3)}>새벽예배</div>
-          <div className='tab' onClick={() => appStore.setVideoList(0, 4)}>기도수첩</div>
+          {
+            ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'].map((word, idx) => {
+              if (appStore.selectedDetail === idx) {
+                return <div className='tab selectedTab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
+              } else {
+                return <div className='tab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
+              }
+            })
+          }
         </div>
       }
     </nav>

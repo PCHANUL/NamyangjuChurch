@@ -55,5 +55,9 @@
   cursor: pointer;
 }
 .tab:hover {
-  background-color: tomato;
+  border-bottom: 2px solid #000;
+}
+.selectedTab {
+  background-color: #000;
+  color: #fff;
 }

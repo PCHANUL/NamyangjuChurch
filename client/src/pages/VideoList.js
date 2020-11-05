@@ -8,6 +8,8 @@ import { transDate } from './sharedMethod';
 import { useAppStore } from '../state/appContext';
 import { useObserver } from 'mobx-react';
 
+import './videoList.css';
+
 const VideoList = () => {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,7 @@ const VideoList = () => {
             </div>
             <div className='content'>
               <div>{data.gender}</div>
-              <Link className='videoButton' to={`/message/${data.id}`}>영상보기</Link>
+              <Link className='videoButton' to={`/videolist/${data.id}`}>영상보기</Link>
             </div>
           </div>)
         })

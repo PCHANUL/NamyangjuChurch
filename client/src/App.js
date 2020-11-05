@@ -9,7 +9,7 @@ import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Signin from './pages/Signin';
 import Video from './pages/Video';
-import Message from './pages/Message';
+import VideoList from './pages/VideoList';
 import Community from './pages/Community';
 
 import './pages/app.css';
@@ -29,8 +29,8 @@ const App = (props) => {
       <Login isOpen={isOpen} setIsOpen={setIsOpen} />
       <Switch key={location.key}>
         <Route exact path='/' component={Main} />
-        <Route exact path='/message' component={Message} />
-        <Route path='/message/:id' component={Video} />
+        <Route exact path='/videolist' component={VideoList} />
+        <Route path='/videolist/:id' component={Video} />
         <Route path='/community' component={Community} />
 
         <Route exact path='/admin' component={Admin} />

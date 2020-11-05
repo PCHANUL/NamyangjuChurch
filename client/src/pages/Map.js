@@ -88,9 +88,10 @@ const Map = (props) => {
       >
         <Marker position={{ lat: 37.659365, lng: 127.179435 }}>
           <InfoWindow>
-            <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
+            <div style={{ opacity: 0.75, padding: `12px` }}>
               <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-                남양주 사랑교회
+                <p style={{all: 'unset'}}>남양주 사랑교회 <br/>
+                한진상가 304호</p>
               </div>
               <button onClick={findRoute}>
                 길찾기

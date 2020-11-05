@@ -27,8 +27,12 @@ Nav {
   grid-row: 2;
 }
 
-#message {
+#videoList {
   margin-top: 7vw;
+  grid-column: 3;
+  grid-row: 2;
+}
+#video {
   grid-column: 3;
   grid-row: 2;
 }
