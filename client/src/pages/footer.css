@@ -1,6 +1,7 @@
 #footer {
   height: 5vw;
   border-top: 2px solid #000;
+  padding: 3vw 2vw 2vw 2vw;
   display: grid;
   grid-template-columns: auto auto;
 }

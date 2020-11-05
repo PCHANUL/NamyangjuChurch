@@ -1,15 +1,16 @@
+html, body {
+  height: 100%;
+}
 .container {
-  /* height: 230vw; */
-  margin-top: 7vw;
+  min-height: 100vh;
+  margin: 7vw 0 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   grid-template-rows: auto 7fr 1fr;
   grid-gap: 20px;
 }
 
-Nav {
-  grid-column: 2 / 5;
-}
+
 #main {
   grid-column: 3;
   grid-row: 2;
@@ -37,7 +38,3 @@ Nav {
   grid-row: 2;
 }
 
-Footer {
-  grid-column: 1 / 6;
-  grid-row: 3;
-}

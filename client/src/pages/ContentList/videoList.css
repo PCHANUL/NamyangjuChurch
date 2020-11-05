@@ -1,0 +1,54 @@
+a {
+  all: unset;
+  color: rgb(100, 100, 100);
+}
+a:hover {
+  color: #000;
+}
+#videoList {
+  width: 70vw;
+}
+.video {
+  position: relative;
+  height: 10vw;
+  padding: 2vw 2vw 0 2vw;
+  border-top: 1px solid rgb(210, 210, 210);
+}
+.videoTitle {
+  float: left;
+  padding: 0.5vw 0 0 2vw;
+}
+.videoTitle a {
+  cursor: pointer;
+  font-size: 3vw;
+  font-weight: 700;
+}
+
+
+
+.videoTitle p {
+  font-size: 1.5vw;
+}
+.videoContent {
+  width: 20vw;
+  text-align: right;
+  float: right;
+}
+.videoButton {
+  all: unset;
+  position: absolute;
+  bottom: 2vw;
+  right: 2vw;
+  padding: 1vw ;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.5vw;
+}
+
+.videoButton:hover {
+  background-color: #fff;
+  color: #000;
+}
+

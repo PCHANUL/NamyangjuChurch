@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getContent } from './axiosRequest';
+import { getContent } from '../axiosRequest';
 
-import './video.css';
-import { transData, transDate } from './Methods';
+import './contentViewer.css';
+import { transData, transDate } from '../Methods';
 
 const opts = {
   height: '50%',
   width: '50%',
 };
 
-const category = ['', '주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'];
+const category = ['', '주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩', '교회사진'];
 
-function Video() {
+export default function ContentViewer() {
   const { id } = useParams();
   console.log('id: ', id);
   const [data, setData] = useState({
@@ -42,5 +42,3 @@ function Video() {
     </div>
   )
 }
-
-export default Video;
