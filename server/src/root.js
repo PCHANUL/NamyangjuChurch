@@ -46,6 +46,7 @@ const root = {
         id: true,
         title: true, 
         detailId: true,
+        createdAt: true,
         content: {
           include: {
             post: true,
