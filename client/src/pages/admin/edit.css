@@ -211,14 +211,15 @@ input[type="button"] {
 
 
 /* resize ui */
+.image {
+  cursor: pointer;
+}
 .selectedImg {
   border: 1px solid rgb(211, 211, 211);
 }
 
 #imageTool {
   position: absolute;
-  top: 237.75px;
-  left: 82px;
   z-index: 3;
   width: 150px;
   height: 50px;

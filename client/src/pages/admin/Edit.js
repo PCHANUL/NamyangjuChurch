@@ -4,28 +4,34 @@ import './edit.css';
 
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
-
 function handleImg() {
   let target;
   let imageToolTarget = document.querySelector('#imageTool');
+
+  const inputSize = (e) => {
+    target.style.width = `${e.target.value}vw`;
+  }
+
   return function(e) {
-    console.log('e.target: ', e.target);
+    console.log('e.target: ', e.target.tagName);
     if (e.target.className === 'image') {
       if (target) target.className = 'image';
-
-      const targetSize = e.target.getBoundingClientRect()
-      console.log('targetSize: ', targetSize);
-
-      imageToolTarget.style.visibility = 'visible';
-      imageToolTarget.style.top = `${targetSize.top}px`;
-      imageToolTarget.style.left = `${targetSize.left + targetSize.width/2 - 75}px`;
-      
-      
       e.target.className = 'selectedImg';
       target = e.target;
-    } else if (target) {
+
+      const targetSize = e.target.getBoundingClientRect()
+      imageToolTarget.style.visibility = 'visible';
+      imageToolTarget.style.top = `${targetSize.y - 60 + window.scrollY}px`;
+      imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - 75}px`;
+      
+      document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
+      document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
+      
+      
+    } else if (target && e.target.tagName !== 'INPUT') {
       target.className = 'image';
       imageToolTarget.style.visibility = 'hidden';
+      document.querySelector('#resizeInput').removeEventListener('change', inputSize, true);
     }
 
   }
@@ -136,7 +142,7 @@ function Edit(props) {
 
       {/* imageTool */}
       <div id='imageTool'>
-
+        <input id='resizeInput' type='text' />
       </div>
 
   </div>
