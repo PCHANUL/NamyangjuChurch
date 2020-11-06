@@ -129,6 +129,10 @@ input[type="button"] {
   display: inline-block;
 }
 
+.dropdown-content label{
+  cursor: pointer;
+}
+
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
@@ -204,3 +208,9 @@ input[type="button"] {
 }
 
 
+
+
+/* resize ui */
+.selectedImg {
+  border: 1px solid #000;
+}

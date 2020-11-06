@@ -29,9 +29,11 @@ export default function Nav() {
 
   useEffect(() => {
     const checkScroll = setInterval(() => {
-      let checked = scroll();
-      if (checked !== undefined) setScrollDown(checked);
-    }, 300)
+      if (location.pathname === '/contentlist') {
+        let checked = scroll();
+        if (checked !== undefined) setScrollDown(checked);
+      }
+    }, 500)
   }, [])
 
   return useObserver(() => (
@@ -62,9 +64,9 @@ function NavTabs({ appStore }) {
         {
           ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'].map((word, idx) => {
             if (appStore.selectedDetail === idx) {
-              return <div className='tab selectedTab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
+              return <div key={idx} className='tab selectedTab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
             } else {
-              return <div className='tab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
+              return <div key={idx} className='tab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
             }
           })
         }

@@ -5,17 +5,39 @@ import './edit.css';
 import { uploadImage, addData, getContent, updateData } from './axiosRequest';
 import { useAppStore } from '../state/appContext';
 
+function handleImg() {
+  let target;
+
+  return function(e) {
+    if (e.target.className === 'image') {
+      e.target.className = 'selectedImg';
+      target = e.target;
+    } else if (target) {
+      target.className = 'image';
+    }
+
+  }
+}
+
 function Edit(props) {
   const contentIdStore = useAppStore();
   const req = require.context('../images/editor', false, /.*\.png$/);
+  const click = handleImg();
 
   useEffect (() => {
+    console.log('enter');
     if (contentIdStore.isEdit) {
       getContent(contentIdStore.selectedId, (data) => {
         document.querySelector('#selectCategory').value = data.detailId;
         document.querySelector('#inputTitle').value = data.title;
         document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
       })
+    }
+    
+    window.addEventListener('click', click, true)
+    return () => {
+      console.log('leave');
+      window.removeEventListener('click', click, true)
     }
   }, [])
 
@@ -93,8 +115,8 @@ function Edit(props) {
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button id='saveBtn' onClick={() => {
           saveData(contentIdStore);
-          alert('저장되었습니다.');
-          props.history.push('/admin');
+          // alert('저장되었습니다.');
+          // props.history.push('/admin');
         }}>저장</button>
       </div>
 
@@ -113,20 +135,14 @@ const getYoutube = async() => {
   let youtubeCode = result.split('watch?v=');
   if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
 
-  let youtubeVideo = `
-  <div style="text-align: center;">
-    <iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>
-  </div>`;
+  let youtubeVideo = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`;
   document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeVideo);
 }
 
 const readImage = async(e) => {
   const file = await e.target.files[0];
   uploadImage(file, (result) => {
-    let img = `
-    <div style="text-align: center;">
-      <img id='image' src=${result.data} style='width: 40vw'>
-    </div>`;
+    let img = `<img class='image' src=${result.data} style='width: 20vw'>`;
     document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
   }); 
 }

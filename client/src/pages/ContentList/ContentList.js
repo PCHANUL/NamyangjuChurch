@@ -29,7 +29,6 @@ const ContentList = () => {
       {
         loading &&
         data[appStore.selectedCategory].details[appStore.selectedDetail].posts.map((data, i) => {
-          console.log(data)
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>
