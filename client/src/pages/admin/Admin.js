@@ -33,8 +33,12 @@ const Admin = (props) => {
   return useObserver (() => (
     <div id='admin'>
       <div id='addBox'>
-        <h2 style={{fontSize: '2vw'}}>관리자 페이지</h2> 
+        <h2>관리자 페이지</h2> 
+        <button onClick={() => {
+          props.history.push('/');
+        }}>나가기</button>
       </div>
+
 
       <Tab tab={tab} setTab={setTab} />
 

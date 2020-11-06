@@ -139,10 +139,7 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true">
-        <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/1_ZvmbMEmtGR15Xj-eb3osXA.png' style={{width: '20vw'}}></img>
-        <img className='image youtubeThumnail' src="https://img.youtube.com/vi/7nqdbXaP77o/hqdefault.jpg" style={{width: '20vw'}}></img>
-      </div>
+      <div id="editFrame" contentEditable="true"></div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>

@@ -3,7 +3,6 @@ html, body {
 }
 .container {
   min-height: 100vh;
-  margin: 7vw 0 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   grid-template-rows: auto 7fr 1fr;
@@ -11,30 +10,20 @@ html, body {
 }
 
 
-#main {
+#videoList,
+#video,
+#edit
+{
+  margin-top: 10vw;
   grid-column: 3;
   grid-row: 2;
 }
-#community {
-  grid-column: 3;
-  grid-row: 2;
-}
-#admin {
-  grid-column: 3;
-  grid-row: 2;
-}
-#edit {
+ 
+#main,
+#admin 
+{
   grid-column: 3;
   grid-row: 2;
 }
 
-#videoList {
-  margin-top: 7vw;
-  grid-column: 3;
-  grid-row: 2;
-}
-#video {
-  grid-column: 3;
-  grid-row: 2;
-}
 

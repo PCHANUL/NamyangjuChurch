@@ -19,7 +19,7 @@
   grid-column: 1/6;  
   height: 30vw;
   overflow: hidden;
-  margin: 3vw 3vw 4vw 3vw;
+  margin: 10vw 3vw 4vw 3vw;
   box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
 }
 #mainImg img {

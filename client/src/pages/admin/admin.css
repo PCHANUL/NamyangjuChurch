@@ -3,7 +3,27 @@
 }
 
 #addBox {
-  height: 2vw;
+  height: 4vw;
+}
+#addBox h2 {
+  all: unset;
+  font-size: 3vw;
+  display: inline;
+  font-weight: 700;
+}
+
+#addBox button {
+  all: unset;
+  float: right;
+  cursor: pointer;
+  border: 1px solid #000;
+  padding: 1vw 2vw 1vw 2vw;
+  font-size: 1vw;
+}
+
+#addBox button:hover {
+  color: #fff;
+  background-color: #000;
 }
 
 #addBtn {
@@ -34,7 +54,7 @@
   z-index: 1;
   height: 6vw;
   font-size: 1.3vw;
-  padding-top: 1vw;
+  margin-top: 2vw;
   background-color: #fff;
 }
 #adminTabBox {
