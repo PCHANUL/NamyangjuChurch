@@ -4,34 +4,47 @@ import './edit.css';
 
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
+
+
+
 function handleImg() {
   let target;
+  let setToolbarPos
   let imageToolTarget = document.querySelector('#imageTool');
 
   const inputSize = (e) => {
     target.style.width = `${e.target.value}vw`;
   }
 
-  return function(e) {
-    console.log('e.target: ', e.target.tagName);
-    if (e.target.className === 'image') {
-      if (target) target.className = 'image';
-      e.target.className = 'selectedImg';
-      target = e.target;
+  const toolbarPos = () => {
+    const targetSize = target.getBoundingClientRect()
+    imageToolTarget.style.visibility = 'visible';
+    imageToolTarget.style.top = `${targetSize.y + window.scrollY - imageToolTarget.clientHeight - 10}px`;
+    imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - imageToolTarget.clientWidth/2}px`;
+  }
 
-      const targetSize = e.target.getBoundingClientRect()
-      imageToolTarget.style.visibility = 'visible';
-      imageToolTarget.style.top = `${targetSize.y - 60 + window.scrollY}px`;
-      imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - 75}px`;
+  return function(e) {
+    console.log('e.target.className: ', e.target.className);
+    if (e.target.className.includes('image')) {
+      if (target) {
+        target.className = target.className.replace('selectedImg', 'image');  //change prev target class
+        clearInterval(setToolbarPos);
+      }
+
+      target = e.target;
+      target.className = target.className.replace('image', 'selectedImg');
       
       document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
       document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
-      
+      setToolbarPos = setInterval(() => toolbarPos(), 300);
       
     } else if (target && e.target.tagName !== 'INPUT') {
-      target.className = 'image';
-      imageToolTarget.style.visibility = 'hidden';
+      target.className = target.className.replace('selectedImg', 'image');
+      
+      // clear
+      clearInterval(setToolbarPos);
       document.querySelector('#resizeInput').removeEventListener('change', inputSize, true);
+      imageToolTarget.style.visibility = 'hidden';
     }
 
   }
@@ -128,6 +141,7 @@ function Edit(props) {
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
       <div id="editFrame" contentEditable="true">
         <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/1_ZvmbMEmtGR15Xj-eb3osXA.png' style={{width: '20vw'}}></img>
+        <img className='image youtubeThumnail' src="https://img.youtube.com/vi/7nqdbXaP77o/hqdefault.jpg" style={{width: '20vw'}}></img>
       </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
@@ -142,6 +156,7 @@ function Edit(props) {
 
       {/* imageTool */}
       <div id='imageTool'>
+        <img className='imageToolIcon' src={req(`./resize.png`).default}/>
         <input id='resizeInput' type='text' />
       </div>
 
@@ -160,7 +175,7 @@ const getYoutube = async() => {
   let youtubeCode = result.split('watch?v=');
   if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
 
-  let youtubeVideo = `<iframe src="https://www.youtube.com/embed/${youtubeCode[1]}"></iframe>`;
+  let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw'></img>`;
   document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeVideo);
 }
 
@@ -172,9 +187,21 @@ const readImage = async(e) => {
   }); 
 }
 
+const changeYoutubeImg = () => {
+  const elements = document.getElementsByClassName('youtubeThumnail');
+  while (elements.length !== 0) {
+    const youtubeIframe = document.createElement('iframe');
+    youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
+    youtubeIframe.style.width = elements[0].style.width;
+    elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
+  }
+}
+
 const saveData = (contentState) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
+
+  changeYoutubeImg();
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
 
   console.log('contentState.selectedId, category, title, content: ', contentState.selectedId, category, title, content);

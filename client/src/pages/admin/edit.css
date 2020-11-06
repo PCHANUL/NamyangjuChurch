@@ -220,12 +220,13 @@ input[type="button"] {
 
 #imageTool {
   position: absolute;
-  z-index: 3;
-  width: 150px;
-  height: 50px;
+  padding: 5px 10px 5px 10px;
   box-shadow: 0 5px 10px rgb(0,0,0, 0.2);
   background-color: #fff;
   visibility: hidden;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto auto;
 }
 
 #imageTool::after {
@@ -237,4 +238,18 @@ input[type="button"] {
   border-width: 10px;
   border-style: solid;
   border-color: #fff transparent transparent transparent;
+}
+
+#resizeInput {
+  all: unset;
+  width: 30px;
+  height: 20px;
+  border: 1px solid rgb(134, 134, 134);
+  text-align: right;
+  padding-right: 5px;
+}
+
+.imageToolIcon {
+  width: 20px;
+  margin: 0px;
 }
