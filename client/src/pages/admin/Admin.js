@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import addIcon from '../images/add-file.png';
+import addIcon from '../../images/add-file.png';
 
 import './admin.css';
 import DataList from './DataList'
 
-import { getDataList } from './axiosRequest';
+import { getDataList } from '../axiosRequest';
 
 import { useObserver } from 'mobx-react-lite';
-import { useAppStore } from '../state/appContext';
+import { useAppStore } from '../../state/appContext';
 
 
 

@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
-import updateIcon from '../images/edit.png';
-import deleteIcon from '../images/delete.png';
+import updateIcon from '../../images/edit.png';
+import deleteIcon from '../../images/delete.png';
 import { withRouter } from 'react-router';
 
-import { getDataList } from "./axiosRequest";
-import { transDate } from './Methods';
+import { getDataList } from "../axiosRequest";
+import { transDate } from '../Methods';
 
-import { useAppStore } from '../state/appContext';
+import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react-lite';
 
 function ContentData(props) {

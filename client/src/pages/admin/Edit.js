@@ -1,19 +1,31 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { commands } from './editCommands';
+import { commands } from '../editCommands';
 import './edit.css';
 
-import { uploadImage, addData, getContent, updateData } from './axiosRequest';
-import { useAppStore } from '../state/appContext';
+import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
+import { useAppStore } from '../../state/appContext';
 
 function handleImg() {
   let target;
-
+  let imageToolTarget = document.querySelector('#imageTool');
   return function(e) {
+    console.log('e.target: ', e.target);
     if (e.target.className === 'image') {
+      if (target) target.className = 'image';
+
+      const targetSize = e.target.getBoundingClientRect()
+      console.log('targetSize: ', targetSize);
+
+      imageToolTarget.style.visibility = 'visible';
+      imageToolTarget.style.top = `${targetSize.top}px`;
+      imageToolTarget.style.left = `${targetSize.left + targetSize.width/2 - 75}px`;
+      
+      
       e.target.className = 'selectedImg';
       target = e.target;
     } else if (target) {
       target.className = 'image';
+      imageToolTarget.style.visibility = 'hidden';
     }
 
   }
@@ -21,9 +33,8 @@ function handleImg() {
 
 function Edit(props) {
   const contentIdStore = useAppStore();
-  const req = require.context('../images/editor', false, /.*\.png$/);
-  const click = handleImg();
-
+  const req = require.context('../../images/editor', false, /.*\.png$/);
+  
   useEffect (() => {
     console.log('enter');
     if (contentIdStore.isEdit) {
@@ -34,6 +45,7 @@ function Edit(props) {
       })
     }
     
+    const click = handleImg();
     window.addEventListener('click', click, true)
     return () => {
       console.log('leave');
@@ -108,7 +120,9 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true"></div>
+      <div id="editFrame" contentEditable="true">
+        <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/1_ZvmbMEmtGR15Xj-eb3osXA.png' style={{width: '20vw'}}></img>
+      </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>
@@ -118,6 +132,11 @@ function Edit(props) {
           // alert('저장되었습니다.');
           // props.history.push('/admin');
         }}>저장</button>
+      </div>
+
+      {/* imageTool */}
+      <div id='imageTool'>
+
       </div>
 
   </div>
@@ -152,12 +171,14 @@ const saveData = (contentState) => {
   const title = document.querySelector('#inputTitle').value;
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
 
-  if (category && title) {
-    console.log('contentState.isEdit: ', contentState.isEdit);
-    if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
-    else addData(category, title, content);
-  }
-  else alert('카테고리와 제목을 작성해주세요');
+  console.log('contentState.selectedId, category, title, content: ', contentState.selectedId, category, title, content);
+
+  // if (category && title) {
+  //   console.log('contentState.isEdit: ', contentState.isEdit);
+  //   if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
+  //   else addData(category, title, content);
+  // }
+  // else alert('카테고리와 제목을 작성해주세요');
 }
 
 const editFunc = (cmd) => {
