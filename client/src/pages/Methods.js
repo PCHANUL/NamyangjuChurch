@@ -7,6 +7,7 @@ export const transDate = (date) => {
   return `${year}. ${month}. ${day}`
 }
 
-export const isEmptyObject = (param) => {
+export const isEmptyObject = async (param) => {
+  console.log('param: ', await param);
   return Object.keys(param).length === 0 && param.constructor === Object;
 }

@@ -5,10 +5,6 @@ import './edit.css';
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
 
-import { isEmptyObject } from '../Methods';
-
-
-
 function handleImg() {
   let target;
   let setToolbarPos
@@ -153,7 +149,7 @@ function Edit(props) {
 
       {/* imageTool */}
       <div id='imageTool'>
-        <img className='imageToolIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/resize.png'/>
+        <img className='ToolIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/resize.png'/>
         <input id='resizeInput' type='text' />
       </div>
 
@@ -164,8 +160,14 @@ function Edit(props) {
 
 
 const getYoutube = async(targetId) => {
-  console.log(navigator.clipboard)
-  let youtubeUrl = isEmptyObject(navigator.clipboard) ? await navigator.clipboard.readText() : '';
+  const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
+  const permissionStatus = await navigator.permissions.query(queryOpts);
+  // Will be 'granted', 'denied' or 'prompt':
+  console.log(permissionStatus.state);
+
+
+  // console.log(await navigator.clipboard.readText())
+  let youtubeUrl = '';
   let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
   let result;
 
@@ -183,9 +185,19 @@ const getYoutube = async(targetId) => {
 
 const readImage = async(e, targetId) => {
   const file = await e.target.files[0];
+  let loading = "<img class='loading' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' style='width: 20vw'>";
+  document.getElementById(targetId).insertAdjacentHTML('beforeend', loading);
+
+
   uploadImage(file, (result) => {
-    let img = `<img class='image' src=${result.data} style='width: 20vw'>`;
-    document.getElementById(targetId).insertAdjacentHTML('beforeend', img);
+    let loadings = document.getElementsByClassName('loading');
+    console.log('loadings: ', loadings);
+    let img = document.createElement('img');
+    img.className = 'image';
+    img.src = result.data;
+    img.style.width = '20vw';
+
+    loadings[0].parentElement.replaceChild(img, loadings[0]);
   }); 
 }
 
