@@ -5,6 +5,8 @@ import './edit.css';
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
 
+import { isEmptyObject } from '../Methods';
+
 
 
 function handleImg() {
@@ -24,7 +26,6 @@ function handleImg() {
   }
 
   return function(e) {
-    console.log('e.target.className: ', e.target.className);
     if (e.target.className.includes('image')) {
       if (target) {
         target.className = target.className.replace('selectedImg', 'image');  //change prev target class
@@ -96,11 +97,11 @@ function Edit(props) {
 
         <input type="file" id="file-upload"
           accept="image/png, image/jpeg" 
-          onChange={(e) => readImage(e)} 
+          onChange={(e) => readImage(e, 'editFrame')} 
         />
 
         <input type='button' id='youtube-upload'
-          onClick={() => getYoutube()}
+          onClick={() => getYoutube('editFrame')}
         />
           
         {
@@ -161,26 +162,30 @@ function Edit(props) {
   )
 }
 
-const getYoutube = async() => {
-  let youtubeUrl = await navigator.clipboard.readText();
+
+
+const getYoutube = async(targetId) => {
+  let youtubeUrl = isEmptyObject(navigator.clipboard) ? await navigator.clipboard.readText() : '';
   let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
-  let result = '';
+  let result;
 
   if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
   else result = window.prompt(msg, '');
 
-  let youtubeCode = result.split('watch?v=');
-  if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
-
-  let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw'></img>`;
-  document.querySelector('#editFrame').insertAdjacentHTML('beforeend', youtubeVideo);
+  if (result) {
+    let youtubeCode = result.split('watch?v=');
+    if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
+  
+    let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw'></img>`;
+    document.getElementById(targetId).insertAdjacentHTML('beforeend', youtubeVideo);
+  }
 }
 
-const readImage = async(e) => {
+const readImage = async(e, targetId) => {
   const file = await e.target.files[0];
   uploadImage(file, (result) => {
     let img = `<img class='image' src=${result.data} style='width: 20vw'>`;
-    document.querySelector('#editFrame').insertAdjacentHTML('beforeend', img);
+    document.getElementById(targetId).insertAdjacentHTML('beforeend', img);
   }); 
 }
 

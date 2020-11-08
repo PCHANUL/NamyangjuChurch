@@ -29,11 +29,14 @@ export default function Nav() {
 
   useEffect(() => {
     const checkScroll = setInterval(() => {
-      if (location.pathname === '/contentlist') {
+      if (window.location.href.includes('/contentlist')) {
         let checked = scroll();
         if (checked !== undefined) setScrollDown(checked);
       }
     }, 500)
+    return () => {
+      clearInterval(checkScroll);
+    }
   }, [])
 
   return useObserver(() => (
