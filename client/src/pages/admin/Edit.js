@@ -51,7 +51,6 @@ function Edit(props) {
   const contentIdStore = useAppStore();
   
   useEffect (() => {
-    console.log('enter');
     if (contentIdStore.isEdit) {
       getContent(contentIdStore.selectedId, (data) => {
         document.querySelector('#selectCategory').value = data.detailId;
@@ -61,10 +60,9 @@ function Edit(props) {
     }
     
     const click = handleImg();
-    window.addEventListener('click', click, true)
+    window.addEventListener('click', click, true);
     return () => {
-      console.log('leave');
-      window.removeEventListener('click', click, true)
+      window.removeEventListener('click', click, true);
     }
   }, [])
 
@@ -135,7 +133,9 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true"></div>
+      <div id="editFrame" contentEditable="true">
+
+      </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>
@@ -178,26 +178,45 @@ const getYoutube = async(targetId) => {
     let youtubeCode = result.split('watch?v=');
     if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
   
-    let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw'></img>`;
+    let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw; text'></img>`;
     document.getElementById(targetId).insertAdjacentHTML('beforeend', youtubeVideo);
   }
 }
 
 const readImage = async(e, targetId) => {
   const file = await e.target.files[0];
-  let loading = "<img class='loading' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' style='width: 20vw'>";
-  document.getElementById(targetId).insertAdjacentHTML('beforeend', loading);
+
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = async(event) => {
+    let preview = `<img class='loading' src="${event.target.result}">`;
+    await document.getElementById(targetId).insertAdjacentHTML('beforeend', preview);
+    let previews = document.getElementsByClassName('loading');
+    let targetPreview = previews[previews.length -1];
+    let pos = targetPreview.getBoundingClientRect();
+    let top = pos.top + pos.height / 2 - 25 + window.scrollY;
+    let left = pos.left + pos.width / 2 - 25;
+
+    let loadingIcon = `
+      <img class='loadingIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' 
+      style='top: ${top}px; left: ${left}px;' />
+    `;
+    targetPreview.insertAdjacentHTML('afterend', loadingIcon);
+  }
 
 
   uploadImage(file, (result) => {
     let loadings = document.getElementsByClassName('loading');
-    console.log('loadings: ', loadings);
     let img = document.createElement('img');
     img.className = 'image';
     img.src = result.data;
     img.style.width = '20vw';
+    let wrapperDiv = document.createElement('div');
+    wrapperDiv.style.textAlign = 'center';
+    wrapperDiv.appendChild(img)
 
-    loadings[0].parentElement.replaceChild(img, loadings[0]);
+    loadings[0].parentElement.replaceChild(wrapperDiv, loadings[0]);
+    document.getElementsByClassName('loadingIcon')[0].remove();
   }); 
 }
 

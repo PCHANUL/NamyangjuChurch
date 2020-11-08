@@ -106,11 +106,6 @@ input[type="button"] {
   display: none;
 }
 
-#editFrame img {
-  width: 40vw;
-  padding-top: 10px;
-}
-
 .custom-file-upload:hover {
   border: 1px solid #000;
 }
@@ -252,4 +247,16 @@ input[type="button"] {
 .ToolIcon {
   width: 20px;
   margin: 0px;
+}
+
+.loading {
+  width: 20vw;
+  border: 1px solid #000;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
+
+.loadingIcon {
+  position: absolute;
+  width: 50px;
 }
