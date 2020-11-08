@@ -53,7 +53,6 @@ function handleImg() {
 
 function Edit(props) {
   const contentIdStore = useAppStore();
-  const req = require.context('../../images/editor', false, /.*\.png$/);
   
   useEffect (() => {
     console.log('enter');
@@ -79,7 +78,7 @@ function Edit(props) {
       <div id='toolbar'>
         <div className="dropdown">
           <button className="dropbtn editorIcon">
-            <img src={req('./image.png').default} className='iconImg'></img>
+            <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/image.png' className='iconImg'></img>
           </button>
           <div className="dropdown-content">
             <a href="#">
@@ -111,7 +110,7 @@ function Edit(props) {
                 <span className="tooltiptext">{command.icon}</span>
                 {
                   command.src ? (
-                    <img src={req(`./${command.src}.png`).default} className='iconImg'></img>
+                    <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
                   ) : (
                     <a>{command.icon}</a>
                   )
@@ -154,7 +153,7 @@ function Edit(props) {
 
       {/* imageTool */}
       <div id='imageTool'>
-        <img className='imageToolIcon' src={req(`./resize.png`).default}/>
+        <img className='imageToolIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/resize.png'/>
         <input id='resizeInput' type='text' />
       </div>
 
@@ -165,6 +164,7 @@ function Edit(props) {
 
 
 const getYoutube = async(targetId) => {
+  console.log(navigator.clipboard)
   let youtubeUrl = isEmptyObject(navigator.clipboard) ? await navigator.clipboard.readText() : '';
   let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
   let result;

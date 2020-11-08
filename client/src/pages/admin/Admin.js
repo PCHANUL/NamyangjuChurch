@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 
-import addIcon from '../../images/add-file.png';
-
 import './admin.css';
 import DataList from './DataList'
 
@@ -46,7 +44,7 @@ const Admin = (props) => {
         appStore.setEditState(false);
         props.history.push('/admin/edit');
       }}>
-        <img id='addFileIcon' src={addIcon} />
+        <img id='addFileIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/add-file.png' />
       </button> 
       <DataList data={data} loading={loading} tab={tab}/>
     </div>

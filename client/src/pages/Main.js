@@ -1,9 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import mainImage from '../images/main.jpg';
-import thumbnail from '../images/thumbnail.png';
-
 import './main.css'
 
 import Map from './Map';
@@ -28,7 +24,7 @@ function Main() {
   return (
     <>
       <div id="mainImg">
-        <img src={mainImage} alt="..." ></img>
+        <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/main.jpg' alt="..." ></img>
       </div>
 
       <div id="main">
@@ -69,7 +65,7 @@ function Main() {
 
         <div id='paster'>
           <div id='pasterImg'>
-            <img src={thumbnail} alt="..." />
+            <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/thumbnail.png' alt="..." />
             <h2>담임목사 박종수</h2>
           </div>
           <p>

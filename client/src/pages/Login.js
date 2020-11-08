@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import closeIcon from '../images/close-button.png';
 import './login.css';
 
 function Login(props) {
@@ -19,9 +18,6 @@ function Login(props) {
 
   const { isOpen, setIsOpen } = props;
 
-  console.log(props.history)
-
-
   return (
     <>
       {
@@ -30,7 +26,7 @@ function Login(props) {
           <div id='login'>
             <h1>관리자 로그인</h1>
             <button className='btn' onClick={() => setIsOpen(false)}>
-              <img src={closeIcon} className='closeIcon' />
+              <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
             </button>
             <form onSubmit={handleSubmit}>
               <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />

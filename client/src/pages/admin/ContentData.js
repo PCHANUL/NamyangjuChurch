@@ -1,6 +1,4 @@
 import React, { useContext, useState } from 'react';
-import updateIcon from '../../images/edit.png';
-import deleteIcon from '../../images/delete.png';
 import { withRouter } from 'react-router';
 
 import { getDataList } from "../axiosRequest";
@@ -26,13 +24,13 @@ function ContentData(props) {
         ishover &&
         <div className='buttonBox'>
           <button className='dataButton' onClick={() => deleteDataBox(data.id, setData)}>
-            <img className='deleteIcon' src={deleteIcon}></img>
+            <img className='deleteIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/delete.png'></img>
           </button>
           <button className='dataButton' onClick={() => {
             contentIdStore.setEditState(true, data.id);
             history.push('/admin/edit');
           }}>
-            <img className='updateIcon' src={updateIcon}></img>
+            <img className='updateIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
           </button>
         </div>
       }
