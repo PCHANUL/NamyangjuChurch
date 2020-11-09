@@ -62,6 +62,17 @@ function Edit(props) {
         document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
       })
     }
+
+    window.addEventListener('drop', (e) => {
+      document.querySelector('#file-upload').style.visibility = 'hidden';
+    })
+    window.addEventListener('dragleave', (e) => {
+      document.querySelector('#file-upload').style.visibility = 'hidden';
+    })
+    window.addEventListener('dragenter', (e) => {
+      document.querySelector('#file-upload').style.visibility = 'visible';
+      console.log('이미지를 놓으세요');
+    })
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -190,7 +201,7 @@ const getYoutube = async(targetId) => {
 }
 
 const readImage = async(e, targetId) => {
-  // e.preventDefault();
+  
   const files = e.target.files;
 
   for (let file of files) {
