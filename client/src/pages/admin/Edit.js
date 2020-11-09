@@ -47,6 +47,10 @@ function handleImg() {
   }
 }
 
+const dropFile = (event) => {
+  event.preventDefault();
+}
+
 function Edit(props) {
   const contentIdStore = useAppStore();
   
@@ -88,7 +92,8 @@ function Edit(props) {
           </div>
         </div>
 
-        <input type="file" id="file-upload"
+        <input multiple='multiple' name='filename[]'
+          type="file" id="file-upload"
           accept="image/png, image/jpeg" 
           onChange={(e) => readImage(e, 'editFrame')} 
         />
@@ -133,8 +138,7 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true">
-
+      <div id="editFrame" contentEditable="true" >
       </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
@@ -178,46 +182,55 @@ const getYoutube = async(targetId) => {
     let youtubeCode = result.split('watch?v=');
     if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
   
-    let youtubeVideo = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw; text'></img>`;
-    document.getElementById(targetId).insertAdjacentHTML('beforeend', youtubeVideo);
+    let youtubeVideo = document.createElement('div');
+    youtubeVideo.style.textAlign = 'center';
+    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw; text'></img>`;
+    document.getElementById(targetId).appendChild(youtubeVideo);
   }
 }
 
 const readImage = async(e, targetId) => {
-  const file = await e.target.files[0];
+  // e.preventDefault();
+  const files = e.target.files;
 
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = async(event) => {
-    let preview = `<img class='loading' src="${event.target.result}">`;
-    await document.getElementById(targetId).insertAdjacentHTML('beforeend', preview);
-    let previews = document.getElementsByClassName('loading');
-    let targetPreview = previews[previews.length -1];
-    let pos = targetPreview.getBoundingClientRect();
-    let top = pos.top + pos.height / 2 - 25 + window.scrollY;
-    let left = pos.left + pos.width / 2 - 25;
-
-    let loadingIcon = `
-      <img class='loadingIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' 
-      style='top: ${top}px; left: ${left}px;' />
-    `;
-    targetPreview.insertAdjacentHTML('afterend', loadingIcon);
+  for (let file of files) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async(event) => {
+      let preview = document.createElement('div');
+      preview.style.textAlign = 'center';
+      preview.innerHTML = `<img class='loading' src="${event.target.result}">`;
+      await document.getElementById(targetId).appendChild(preview);
+      let previews = document.getElementsByClassName('loading');
+      let targetPreview = previews[previews.length -1];
+      let pos = targetPreview.getBoundingClientRect();
+      let top = pos.top + pos.height / 2 - 25 + window.scrollY;
+      let left = pos.left + pos.width / 2 - 25;
+  
+      let loadingIcon = `
+        <img class='loadingIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' 
+        style='top: ${top}px; left: ${left}px;' />
+      `;
+      targetPreview.insertAdjacentHTML('afterend', loadingIcon);
+    }
   }
 
+  for (let file of files) {
+    uploadImage(file, (result) => {
+      let loadings = document.getElementsByClassName('loading');
+      let img = document.createElement('img');
+      img.className = 'image';
+      img.src = result.data;
+      img.style.width = '20vw';
+      let wrapperDiv = document.createElement('div');
+      wrapperDiv.style.textAlign = 'center';
+      wrapperDiv.appendChild(img)
 
-  uploadImage(file, (result) => {
-    let loadings = document.getElementsByClassName('loading');
-    let img = document.createElement('img');
-    img.className = 'image';
-    img.src = result.data;
-    img.style.width = '20vw';
-    let wrapperDiv = document.createElement('div');
-    wrapperDiv.style.textAlign = 'center';
-    wrapperDiv.appendChild(img)
+      loadings[0].parentElement.replaceChild(wrapperDiv, loadings[0]);
+      document.getElementsByClassName('loadingIcon')[0].remove();
+    }); 
+  }
 
-    loadings[0].parentElement.replaceChild(wrapperDiv, loadings[0]);
-    document.getElementsByClassName('loadingIcon')[0].remove();
-  }); 
 }
 
 const changeYoutubeImg = () => {
@@ -239,12 +252,12 @@ const saveData = (contentState) => {
 
   console.log('contentState.selectedId, category, title, content: ', contentState.selectedId, category, title, content);
 
-  // if (category && title) {
-  //   console.log('contentState.isEdit: ', contentState.isEdit);
-  //   if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
-  //   else addData(category, title, content);
-  // }
-  // else alert('카테고리와 제목을 작성해주세요');
+  if (category && title) {
+    console.log('contentState.isEdit: ', contentState.isEdit);
+    if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
+    else addData(category, title, content);
+  }
+  else alert('카테고리와 제목을 작성해주세요');
 }
 
 const editFunc = (cmd) => {

@@ -56,6 +56,7 @@ const root = {
     })
   },
   addContent: async ({ category, title, desc, url, content }, context) => {
+    console.log('context.prisma: ', context.prisma);
     const isCreated = await context.prisma.post.create({
       data: {
         title,

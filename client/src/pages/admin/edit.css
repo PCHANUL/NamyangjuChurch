@@ -100,7 +100,7 @@
 }
 
 input[type="file"] {
-  display: none;
+  /* display: none; */
 }
 input[type="button"] {
   display: none;
@@ -251,12 +251,19 @@ input[type="button"] {
 
 .loading {
   width: 20vw;
-  border: 1px solid #000;
-  filter: blur(3px);
-  -webkit-filter: blur(3px);
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
 }
 
 .loadingIcon {
   position: absolute;
   width: 50px;
+}
+
+#file-upload {
+  position: absolute;
+  top: 0%;
+  width: 10vw;
+  height: 10vw;
+  border: 1px solid #000;
 }

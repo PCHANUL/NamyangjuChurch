@@ -5,6 +5,7 @@ import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import root from './src/root';
 import schema from './src/schema';
+console.log('root: ', root);
 
 import multer from 'multer';
 import multerS3 from 'multer-s3';
@@ -67,7 +68,7 @@ app.get('*', (req, res) => {
 
 app.post('/post/img', upload.single('img'), (req, res) => {
   try {
-      console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
+      // console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
       res.json(req.file.location);
   } catch (err) {
       console.log(err);
