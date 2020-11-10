@@ -63,14 +63,16 @@ function Edit(props) {
       })
     }
 
-    window.addEventListener('drop', (e) => {
-      document.querySelector('#file-upload').style.visibility = 'hidden';
+    document.querySelector('#editFrame').addEventListener('drop', (e) => {
+      // document.querySelector('#file-upload').style.visibility = 'hidden';
+      console.log('이미지를 넣습니다');
     })
-    window.addEventListener('dragleave', (e) => {
-      document.querySelector('#file-upload').style.visibility = 'hidden';
+    document.querySelector('#editFrame').addEventListener('dragleave', (e) => {
+      console.log('leave')
+      // document.querySelector('#file-upload').style.visibility = 'hidden';
     })
-    window.addEventListener('dragenter', (e) => {
-      document.querySelector('#file-upload').style.visibility = 'visible';
+    document.querySelector('#editFrame').addEventListener('dragenter', (e) => {
+      // document.querySelector('#file-upload').style.visibility = 'visible';
       console.log('이미지를 놓으세요');
     })
     
