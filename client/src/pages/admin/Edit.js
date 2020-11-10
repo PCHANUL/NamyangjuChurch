@@ -51,6 +51,20 @@ const dropFile = (event) => {
   event.preventDefault();
 }
 
+function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+function handleDrop(e) {
+  let dt = e.dataTransfer
+  let files = dt.files
+
+  document.querySelector('#drop-area').style.visibility = 'hidden';
+  readImage(files, 'editFrame')
+  console.log(files)
+}
+
 function Edit(props) {
   const contentIdStore = useAppStore();
   
@@ -63,18 +77,23 @@ function Edit(props) {
       })
     }
 
-    document.querySelector('#editFrame').addEventListener('drop', (e) => {
-      // document.querySelector('#file-upload').style.visibility = 'hidden';
-      console.log('이미지를 넣습니다');
-    })
-    document.querySelector('#editFrame').addEventListener('dragleave', (e) => {
+    document.querySelector('#drop-area').addEventListener('dragleave', (e) => {
       console.log('leave')
-      // document.querySelector('#file-upload').style.visibility = 'hidden';
+      document.querySelector('#drop-area').style.visibility = 'hidden';
     })
     document.querySelector('#editFrame').addEventListener('dragenter', (e) => {
-      // document.querySelector('#file-upload').style.visibility = 'visible';
+      document.querySelector('#drop-area').style.visibility = 'visible';
       console.log('이미지를 놓으세요');
     })
+
+    let dragEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
+    dragEvents.forEach(eventName => {
+      document.querySelector('#drop-area').addEventListener(eventName, preventDefaults, false)
+    })
+
+    document.querySelector('#drop-area').addEventListener('drop', handleDrop, false)
+
+
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -86,6 +105,11 @@ function Edit(props) {
   return (
     <div id='edit'>
       <div id='toolbarDiv' />
+
+      <div id="drop-area">
+        <p>파일을 내려놓으면 업로드됩니다</p>
+      </div>
+
       <div id='toolbar'>
         <div className="dropdown">
           <button className="dropbtn editorIcon">
@@ -108,7 +132,7 @@ function Edit(props) {
         <input multiple='multiple' name='filename[]'
           type="file" id="file-upload"
           accept="image/png, image/jpeg" 
-          onChange={(e) => readImage(e, 'editFrame')} 
+          onChange={(e) => readImage(e.target.files, 'editFrame')} 
         />
 
         <input type='button' id='youtube-upload'
@@ -151,7 +175,7 @@ function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true" >
+      <div id="editFrame" contentEditable="true">
       </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
@@ -202,9 +226,7 @@ const getYoutube = async(targetId) => {
   }
 }
 
-const readImage = async(e, targetId) => {
-  
-  const files = e.target.files;
+const readImage = async(files, targetId) => {
 
   for (let file of files) {
     let reader = new FileReader();
