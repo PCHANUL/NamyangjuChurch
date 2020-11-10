@@ -107,7 +107,7 @@ function Edit(props) {
       <div id='toolbarDiv' />
 
       <div id="drop-area">
-        <p>파일을 내려놓으면 업로드됩니다</p>
+        파일을 내려놓으면 업로드됩니다
       </div>
 
       <div id='toolbar'>
