@@ -92,9 +92,7 @@
   margin: 5px 0 0 35px;
 }
 
-.editorIconActive {
-  padding: 5px;
-  margin: 5px 0 0 35px;
+.activeIcon {
   background-color: rgb(0,0,0, 0.2);
 }
 

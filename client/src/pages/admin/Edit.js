@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { commands, commandPos } from '../editCommands';
+import { betweenTwoStr, isSameArr } from '../Methods';
 import './edit.css';
 
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
@@ -92,7 +93,6 @@ function setPrevData(store) {
 
 
 const getStyle = (child, style = []) => {
-  console.log(child)
   const parent = child.parentNode;
 
   if (parent.tagName === 'DIV') {
@@ -104,17 +104,46 @@ const getStyle = (child, style = []) => {
   }
 }
 
-const markStyleTab = (styles) => {
-  console.log(styles)
-  styles.forEach((style) => {
-    commands
-  })
+const markStyleTab = () => {
+  let prevStyles = [];
 
+  return (styles) => {
+    console.log('styles: ', styles);
+    if (isSameArr(styles, prevStyles) === false) {
+      clearTabStyle();
+  
+      styles.forEach((style) => {
+        console.log('style: ', style);
+        if (style.length > 4) {
+          let keys = betweenTwoStr(style, '-', ':');
+          let values = betweenTwoStr(style, ': ', ';');
+          for (let i = 0; i < keys.length; i++) {
+            if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
+          }
+        } else if (style !== 'LI') {
+          changeTabStyle(commandPos[style]);
+        }
+      })
+    }
+  }
+}
+
+const clearTabStyle = () => {
+  let tabs = document.getElementsByClassName('editorIcon')
+  for (let i = 1; i < tabs.length; i++) {
+    tabs[i].className = 'editorIcon tooltip';
+  }
+}
+
+const changeTabStyle = (pos) => {
+  let tabs = document.getElementsByClassName('editorIcon');
+  tabs[pos].className = 'editorIcon tooltip activeIcon';
 }
 
 
 function Edit(props) {
   const contentIdStore = useAppStore();
+  const activeTabStyle = markStyleTab();
   
   useEffect (() => {
     setPrevData(contentIdStore);
@@ -122,11 +151,11 @@ function Edit(props) {
 
 
     ['keydown', 'mouseup'].forEach((event) => {
-      document.querySelector('#editFrame').addEventListener(event, () => {
-        const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-        markStyleTab(getStyle(selected));
-
-
+      document.querySelector('#editFrame').addEventListener(event, (e) => {
+        if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
+          const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+          activeTabStyle(getStyle(selected));
+        }
       })
     })
     
@@ -177,7 +206,11 @@ function Edit(props) {
         {
           commands.map((command, idx) => {
             return (
-              <div key={idx} className='editorIcon tooltip' onClick={() => editFunc(command)}>
+              <div key={idx} className='editorIcon tooltip' onClick={() => {
+                editFunc(command);
+                const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+                activeTabStyle(getStyle(selected));
+              }}>
                 <span className="tooltiptext">{command.icon}</span>
                 {
                   command.src ? (

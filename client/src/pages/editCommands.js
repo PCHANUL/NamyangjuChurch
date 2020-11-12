@@ -4,9 +4,11 @@ export const commandPos = {
   B: 3,
   I: 4,
   U: 5,
-  left: 6,
-  center: 7,
-  right: 8,
+  align: {
+    left: 6,
+    center: 7,
+    right: 8,
+  },
   UL: 9,
   OL: 10
 }
