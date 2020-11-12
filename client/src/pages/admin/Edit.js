@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { commands } from '../editCommands';
+import { commands, commandPos } from '../editCommands';
 import './edit.css';
 
 import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
@@ -91,7 +91,7 @@ function setPrevData(store) {
 
 
 
-const checkStyle = (child, style = []) => {
+const getStyle = (child, style = []) => {
   console.log(child)
   const parent = child.parentNode;
 
@@ -100,8 +100,16 @@ const checkStyle = (child, style = []) => {
     return style;
   } else {
     style.push(parent.tagName);
-    return checkStyle(parent, style)
+    return getStyle(parent, style)
   }
+}
+
+const markStyleTab = (styles) => {
+  console.log(styles)
+  styles.forEach((style) => {
+    commands
+  })
+
 }
 
 
@@ -116,7 +124,9 @@ function Edit(props) {
     ['keydown', 'mouseup'].forEach((event) => {
       document.querySelector('#editFrame').addEventListener(event, () => {
         const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-        console.log(checkStyle(selected))
+        markStyleTab(getStyle(selected));
+
+
       })
     })
     
