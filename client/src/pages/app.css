@@ -14,13 +14,13 @@ html, body {
 #video,
 #edit
 {
-  margin-top: 10vw;
+  margin-top: 7.5vw;
   grid-column: 3;
   grid-row: 2;
 }
  
 #main,
-#admin 
+#admin
 {
   grid-column: 3;
   grid-row: 2;

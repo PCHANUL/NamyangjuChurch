@@ -22,6 +22,7 @@ function handleImg() {
   }
 
   return function(e) {
+    
     if (e.target.className.includes('image')) {
       if (target) {
         target.className = target.className.replace('selectedImg', 'image');  //change prev target class
@@ -47,10 +48,6 @@ function handleImg() {
   }
 }
 
-const dropFile = (event) => {
-  event.preventDefault();
-}
-
 function preventDefaults (e) {
   e.preventDefault()
   e.stopPropagation()
@@ -62,38 +59,66 @@ function handleDrop(e) {
 
   document.querySelector('#drop-area').style.visibility = 'hidden';
   readImage(files, 'editFrame')
-  console.log(files)
 }
+
+function setDropEvent() {
+  document.querySelector('#drop-area').addEventListener('dragleave', (e) => {
+    console.log('leave')
+    document.querySelector('#drop-area').style.visibility = 'hidden';
+  })
+  document.querySelector('#editFrame').addEventListener('dragenter', (e) => {
+    document.querySelector('#drop-area').style.visibility = 'visible';
+    console.log('이미지를 놓으세요');
+  })
+
+  let dragEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
+  dragEvents.forEach(eventName => {
+    document.querySelector('#drop-area').addEventListener(eventName, preventDefaults, false)
+  })
+
+  document.querySelector('#drop-area').addEventListener('drop', handleDrop, false);
+}
+
+function setPrevData(store) {
+  if (store.isEdit) {
+    getContent(store.selectedId, (data) => {
+      document.querySelector('#selectCategory').value = data.detailId;
+      document.querySelector('#inputTitle').value = data.title;
+      document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
+    })
+  }
+}
+
+
+
+const checkStyle = (child, style = []) => {
+  console.log(child)
+  const parent = child.parentNode;
+
+  if (parent.tagName === 'DIV') {
+    if (parent.attributes.style) style.push(parent.attributes.style.value)
+    return style;
+  } else {
+    style.push(parent.tagName);
+    return checkStyle(parent, style)
+  }
+}
+
 
 function Edit(props) {
   const contentIdStore = useAppStore();
   
   useEffect (() => {
-    if (contentIdStore.isEdit) {
-      getContent(contentIdStore.selectedId, (data) => {
-        document.querySelector('#selectCategory').value = data.detailId;
-        document.querySelector('#inputTitle').value = data.title;
-        document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
+    setPrevData(contentIdStore);
+    setDropEvent();
+
+
+    ['keydown', 'mouseup'].forEach((event) => {
+      document.querySelector('#editFrame').addEventListener(event, () => {
+        const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+        console.log(checkStyle(selected))
       })
-    }
-
-    document.querySelector('#drop-area').addEventListener('dragleave', (e) => {
-      console.log('leave')
-      document.querySelector('#drop-area').style.visibility = 'hidden';
     })
-    document.querySelector('#editFrame').addEventListener('dragenter', (e) => {
-      document.querySelector('#drop-area').style.visibility = 'visible';
-      console.log('이미지를 놓으세요');
-    })
-
-    let dragEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
-    dragEvents.forEach(eventName => {
-      document.querySelector('#drop-area').addEventListener(eventName, preventDefaults, false)
-    })
-
-    document.querySelector('#drop-area').addEventListener('drop', handleDrop, false)
-
-
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -221,7 +246,7 @@ const getYoutube = async(targetId) => {
   
     let youtubeVideo = document.createElement('div');
     youtubeVideo.style.textAlign = 'center';
-    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw; text'></img>`;
+    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw;'></img>`;
     document.getElementById(targetId).appendChild(youtubeVideo);
   }
 }
@@ -296,8 +321,19 @@ const saveData = (contentState) => {
 }
 
 const editFunc = (cmd) => {
-  console.log(document.execCommand(cmd.cmd, false, cmd.val));
-  let select = window.getSelection().getRangeAt(0)
+  document.execCommand(cmd.cmd, false, cmd.val)
+
+
+  // let select = window.getSelection().getRangeAt(0)
+
+
+  // let newNode = document.createElement('div');
+  // newNode.setAttribute('style', cmd.cmd);
+
+
+  // select.surroundContents(newNode)
+
+
 }
 
 export default Edit;
