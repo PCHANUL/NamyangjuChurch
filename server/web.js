@@ -5,8 +5,6 @@ import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import root from './src/root';
 import schema from './src/schema';
-console.log('root: ', root);
-
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 import AWS from 'aws-sdk';

@@ -55,18 +55,15 @@ const root = {
       }
     })
   },
-  addContent: async ({ category, title, desc, url, content }, context) => {
-    console.log('context.prisma: ', context.prisma);
+  addContent: async ({ category, title, content }, context) => {
     const isCreated = await context.prisma.post.create({
       data: {
         title,
-        desc,
         detail: {
           connect: { id: Number(category) }
         },
         content: {
           create: { 
-            url,
             content
           }
         }
@@ -74,21 +71,18 @@ const root = {
     })
     return isCreated ? true : false;
   },
-  updateContent: async({ id, category, title, desc, url, content }, context) => {
-    console.log('id, category, title, desc, url, content: ', id, category, title, desc, url, content);
+  updateContent: async({ id, category, title, content }, context) => {
     const isUpdated = await context.prisma.post.update({
       where: {
         id: id
       },
       data: {
         title,
-        desc,
         detail: {
           connect: { id: Number(category) }
         },
         content: {
           create: { 
-            url,
             content
           }
         }

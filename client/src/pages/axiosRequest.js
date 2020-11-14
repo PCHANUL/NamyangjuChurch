@@ -15,8 +15,6 @@ const addData = async(category, title, content) => {
         addContent(
           category: "${category}"
           title: "${title}"
-          desc: ""
-          url: ""
           content: ${JSON.stringify(content)}
         ) 
       }
@@ -42,8 +40,6 @@ const updateData = async(id, category, title, content) => {
           id: ${id}
           category: "${category}"
           title: "${title}"
-          desc: ""
-          url: ""
           content: ${JSON.stringify(content)}
         ) 
       }

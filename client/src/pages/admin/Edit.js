@@ -108,12 +108,10 @@ const markStyleTab = () => {
   let prevStyles = [];
 
   return (styles) => {
-    console.log('styles: ', styles);
     if (isSameArr(styles, prevStyles) === false) {
       clearTabStyle();
   
       styles.forEach((style) => {
-        console.log('style: ', style);
         if (style.length > 4) {
           let keys = betweenTwoStr(style, '-', ':');
           let values = betweenTwoStr(style, ': ', ';');
@@ -124,6 +122,7 @@ const markStyleTab = () => {
           changeTabStyle(commandPos[style]);
         }
       })
+      prevStyles = styles;
     }
   }
 }
@@ -152,10 +151,10 @@ function Edit(props) {
 
     ['keydown', 'mouseup'].forEach((event) => {
       document.querySelector('#editFrame').addEventListener(event, (e) => {
-        if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
+        // if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
           const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
           activeTabStyle(getStyle(selected));
-        }
+        // }
       })
     })
     
