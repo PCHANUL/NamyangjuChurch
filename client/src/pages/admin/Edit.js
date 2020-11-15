@@ -249,9 +249,7 @@ function Edit(props) {
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button id='saveBtn' onClick={() => {
-          saveData(contentIdStore);
-          // alert('저장되었습니다.');
-          // props.history.push('/admin');
+          saveData(contentIdStore, props);
         }}>저장</button>
       </div>
 
@@ -345,19 +343,21 @@ const changeYoutubeImg = () => {
   }
 }
 
-const saveData = (contentState) => {
+const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
 
   changeYoutubeImg();
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
-
-  console.log('contentState.selectedId, category, title, content: ', contentState.selectedId, category, title, content);
-
   if (category && title) {
-    console.log('contentState.isEdit: ', contentState.isEdit);
-    if (contentState.isEdit) updateData(contentState.selectedId, category, title, content);
-    else addData(category, title, content);
+    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content);
+    else {
+      let result = await addData(category, title, content);
+      if (result.statusText === 'OK') {
+        alert('저장되었습니다.');
+        props.history.push('/admin');
+      }
+    }
   }
   else alert('카테고리와 제목을 작성해주세요');
 }

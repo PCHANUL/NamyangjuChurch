@@ -21,7 +21,7 @@ const addData = async(category, title, content) => {
       `
     }
   })
-  console.log(result);
+  return result
 }
 
 const updateData = async(id, category, title, content) => {
