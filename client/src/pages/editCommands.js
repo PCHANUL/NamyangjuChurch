@@ -14,17 +14,17 @@ export const commandPos = {
 }
 
 export const commands = [
-  {
-    cmd: 'insertOrderedList',
-    icon: '서체',
-    style: 'font-family'
-  },
-  {
-    cmd: 'increaseFontSize',
-    icon: '크기',
-    style: 'font-size'
-    // val: 3,
-  },
+  // {
+  //   cmd: 'insertOrderedList',
+  //   icon: '서체',
+  //   style: 'font-family'
+  // },
+  // {
+  //   cmd: 'increaseFontSize',
+  //   icon: '크기',
+  //   style: 'font-size'
+  //   // val: 3,
+  // },
   {
     cmd: 'bold',
     icon: '굵게',

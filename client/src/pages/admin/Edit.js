@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { commands, commandPos } from '../editCommands';
-import { betweenTwoStr, isSameArr } from '../Methods';
+import React, { useEffect } from 'react';
 import './edit.css';
 
-import { uploadImage, addData, getContent, updateData } from '../axiosRequest';
+import { addData, getContent, updateData } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
+
+import Toolbar from './Toolbar';
 
 function handleImg() {
   let target;
@@ -104,57 +104,21 @@ const getStyle = (child, style = []) => {
   }
 }
 
-const markStyleTab = () => {
-  let prevStyles = [];
-
-  return (styles) => {
-    if (isSameArr(styles, prevStyles) === false) {
-      clearTabStyle();
-  
-      styles.forEach((style) => {
-        if (style.length > 4) {
-          let keys = betweenTwoStr(style, '-', ':');
-          let values = betweenTwoStr(style, ': ', ';');
-          for (let i = 0; i < keys.length; i++) {
-            if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
-          }
-        } else if (style !== 'LI') {
-          changeTabStyle(commandPos[style]);
-        }
-      })
-      prevStyles = styles;
-    }
-  }
-}
-
-const clearTabStyle = () => {
-  let tabs = document.getElementsByClassName('editorIcon')
-  for (let i = 1; i < tabs.length; i++) {
-    tabs[i].className = 'editorIcon tooltip';
-  }
-}
-
-const changeTabStyle = (pos) => {
-  let tabs = document.getElementsByClassName('editorIcon');
-  tabs[pos].className = 'editorIcon tooltip activeIcon';
-}
 
 
 function Edit(props) {
   const contentIdStore = useAppStore();
-  const activeTabStyle = markStyleTab();
   
   useEffect (() => {
     setPrevData(contentIdStore);
     setDropEvent();
 
-
     ['keydown', 'mouseup'].forEach((event) => {
       document.querySelector('#editFrame').addEventListener(event, (e) => {
-        // if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
+        if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
           const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
           activeTabStyle(getStyle(selected));
-        // }
+        }
       })
     })
     
@@ -173,57 +137,8 @@ function Edit(props) {
         파일을 내려놓으면 업로드됩니다
       </div>
 
-      <div id='toolbar'>
-        <div className="dropdown">
-          <button className="dropbtn editorIcon">
-            <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/image.png' className='iconImg'></img>
-          </button>
-          <div className="dropdown-content">
-            <a href="#">
-              <label htmlFor="file-upload" className="">
-                사진 업로드
-              </label>
-            </a>
-            <a href="#">
-              <label htmlFor="youtube-upload" className="">
-                유튜브 업로드
-              </label>
-            </a>
-          </div>
-        </div>
-
-        <input multiple='multiple' name='filename[]'
-          type="file" id="file-upload"
-          accept="image/png, image/jpeg" 
-          onChange={(e) => readImage(e.target.files, 'editFrame')} 
-        />
-
-        <input type='button' id='youtube-upload'
-          onClick={() => getYoutube('editFrame')}
-        />
-          
-        {
-          commands.map((command, idx) => {
-            return (
-              <div key={idx} className='editorIcon tooltip' onClick={() => {
-                editFunc(command);
-                const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-                activeTabStyle(getStyle(selected));
-              }}>
-                <span className="tooltiptext">{command.icon}</span>
-                {
-                  command.src ? (
-                    <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
-                  ) : (
-                    <a>{command.icon}</a>
-                  )
-                }
-              </div>
-            )
-          })
-        }
+      <Toolbar />
       
-      </div>
 
       <select id='selectCategory'>
         <option value="">카테고리</option>
@@ -265,74 +180,6 @@ function Edit(props) {
 
 
 
-const getYoutube = async(targetId) => {
-  const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
-  const permissionStatus = await navigator.permissions.query(queryOpts);
-  // Will be 'granted', 'denied' or 'prompt':
-  console.log(permissionStatus.state);
-
-
-  // console.log(await navigator.clipboard.readText())
-  let youtubeUrl = '';
-  let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
-  let result;
-
-  if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
-  else result = window.prompt(msg, '');
-
-  if (result) {
-    let youtubeCode = result.split('watch?v=');
-    if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
-  
-    let youtubeVideo = document.createElement('div');
-    youtubeVideo.style.textAlign = 'center';
-    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw;'></img>`;
-    document.getElementById(targetId).appendChild(youtubeVideo);
-  }
-}
-
-const readImage = async(files, targetId) => {
-
-  for (let file of files) {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async(event) => {
-      let preview = document.createElement('div');
-      preview.style.textAlign = 'center';
-      preview.innerHTML = `<img class='loading' src="${event.target.result}">`;
-      await document.getElementById(targetId).appendChild(preview);
-      let previews = document.getElementsByClassName('loading');
-      let targetPreview = previews[previews.length -1];
-      let pos = targetPreview.getBoundingClientRect();
-      let top = pos.top + pos.height / 2 - 25 + window.scrollY;
-      let left = pos.left + pos.width / 2 - 25;
-  
-      let loadingIcon = `
-        <img class='loadingIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loading.gif' 
-        style='top: ${top}px; left: ${left}px;' />
-      `;
-      targetPreview.insertAdjacentHTML('afterend', loadingIcon);
-    }
-  }
-
-  for (let file of files) {
-    uploadImage(file, (result) => {
-      let loadings = document.getElementsByClassName('loading');
-      let img = document.createElement('img');
-      img.className = 'image';
-      img.src = result.data;
-      img.style.width = '20vw';
-      let wrapperDiv = document.createElement('div');
-      wrapperDiv.style.textAlign = 'center';
-      wrapperDiv.appendChild(img)
-
-      loadings[0].parentElement.replaceChild(wrapperDiv, loadings[0]);
-      document.getElementsByClassName('loadingIcon')[0].remove();
-    }); 
-  }
-
-}
-
 const changeYoutubeImg = () => {
   const elements = document.getElementsByClassName('youtubeThumnail');
   while (elements.length !== 0) {
@@ -362,20 +209,6 @@ const saveData = async(contentState, props) => {
   else alert('카테고리와 제목을 작성해주세요');
 }
 
-const editFunc = (cmd) => {
-  document.execCommand(cmd.cmd, false, cmd.val)
 
-
-  // let select = window.getSelection().getRangeAt(0)
-
-
-  // let newNode = document.createElement('div');
-  // newNode.setAttribute('style', cmd.cmd);
-
-
-  // select.surroundContents(newNode)
-
-
-}
 
 export default Edit;
