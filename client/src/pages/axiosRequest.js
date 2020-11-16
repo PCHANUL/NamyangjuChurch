@@ -115,7 +115,6 @@ const getDataList = async(callback) => {
             posts {
               id
               title
-              desc
               createdAt
             }
           }
