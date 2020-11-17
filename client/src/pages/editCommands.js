@@ -1,16 +1,22 @@
 export const commandPos = {
-  family: 1,
-  size: 2,
-  B: 3,
-  I: 4,
-  U: 5,
+  B: 1,
+  I: 2,
+  U: 3,
   align: {
-    left: 6,
-    center: 7,
-    right: 8,
+    left: 4,
+    center: 5,
+    right: 6,
   },
-  UL: 9,
-  OL: 10
+  UL: 7,
+  OL: 8
+}
+
+export const excludedCommands = {
+  LI: true, 
+  H1: true, 
+  H3: true, 
+  H6: true, 
+  P: true
 }
 
 export const commands = [

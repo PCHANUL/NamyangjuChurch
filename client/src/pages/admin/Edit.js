@@ -91,36 +91,12 @@ function setPrevData(store) {
 }
 
 
-
-const getStyle = (child, style = []) => {
-  const parent = child.parentNode;
-
-  if (parent.tagName === 'DIV') {
-    if (parent.attributes.style) style.push(parent.attributes.style.value)
-    return style;
-  } else {
-    style.push(parent.tagName);
-    return getStyle(parent, style)
-  }
-}
-
-
-
 function Edit(props) {
   const contentIdStore = useAppStore();
   
   useEffect (() => {
     setPrevData(contentIdStore);
     setDropEvent();
-
-    ['keydown', 'mouseup'].forEach((event) => {
-      document.querySelector('#editFrame').addEventListener(event, (e) => {
-        if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
-          const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-          activeTabStyle(getStyle(selected));
-        }
-      })
-    })
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -138,7 +114,6 @@ function Edit(props) {
       </div>
 
       <Toolbar />
-      
 
       <select id='selectCategory'>
         <option value="">카테고리</option>

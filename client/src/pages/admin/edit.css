@@ -46,6 +46,7 @@
 }
 
 #editFrame {
+  font-size: 1vw;
   width: 800px;
   min-height: 300px;
   outline: none;
@@ -159,6 +160,13 @@ input[type="button"] {
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 /* .dropdown:hover .dropbtn {background-color: #b4b4b4;} */
+
+
+/* Paragraph style */
+
+
+
+
 
 
 /* Tooltip container */
