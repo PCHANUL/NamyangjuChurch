@@ -24,7 +24,7 @@ export default function Toolbar() {
     <div id='toolbar'>
         <DropdownContent />
 
-        <select className="selectStyle" onChange={(e) => {
+        <select id="paragraphSelect" className="selectTab" onChange={(e) => {
           editFunc({cmd: 'formatBlock', val: e.target.value})
           setFontSize(e.target.value)
         }}>
@@ -34,7 +34,7 @@ export default function Toolbar() {
           <option value="H6">소제목</option>
         </select>
 
-        <select className="selectStyle" onChange={(e) => {
+        <select id="fontSelect" className="selectTab" onChange={(e) => {
           editFunc({cmd: 'formatBlock', val: e.target.value})
           setFontSize(e.target.value)
         }}>
@@ -67,22 +67,21 @@ const markStyleTab = () => {
   let prevStyles = [];
 
   return (styles) => {
+    console.log('styles: ', styles);
     if (isSameArr(styles, prevStyles) === false) {
       clearTabStyle();
   
       console.log('styles: ', styles);
-
-      styles.forEach((style) => {
-        if (style.length > 4) {
-          let keys = betweenTwoStr(style, '-', ':');
-          let values = betweenTwoStr(style, ': ', ';');
+      let objKeys = Object.keys(styles)
+      objKeys.forEach((key) => {
+        if (styles[key] !== 'none') {
+          let keys = betweenTwoStr(styles[key], '-', ':');
+          let values = betweenTwoStr(styles[key], ': ', ';');
           for (let i = 0; i < keys.length; i++) {
             if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
           }
         } 
-        else if (!excludedCommands[style]) changeTabStyle(commandPos[style]);
-
-
+        if (!excludedCommands[key]) changeTabStyle(commandPos[key]);
       })
       prevStyles = styles;
     }
@@ -99,19 +98,17 @@ const clearTabStyle = () => {
 
 const changeTabStyle = (pos) => {
   let tabs = document.getElementsByClassName('editorIcon');
-  console.log('tabs: ', tabs, pos);
   tabs[pos].className = 'editorIcon tooltip activeIcon';
 }
 
-const getStyle = (child, style = []) => {
+const getStyle = (child, style = {}) => {
   const parent = child.parentNode;
-  console.log('parent: ', parent);
 
-  if (['editFrame', 'edit'].includes(parent.id)) {
+  if ({editFrame: '', edit: ''}[parent.id] !== undefined) {
     return style;
   } else {
-    if (parent.attributes.style) style.push(parent.attributes.style.value)
-    style.push(parent.tagName);
+    if (parent.tagName !== 'LI') style[parent.tagName] = 'none';
+    if (parent.attributes.style) style[parent.tagName] = parent.attributes.style.value;
     return getStyle(parent, style)
   }
 }

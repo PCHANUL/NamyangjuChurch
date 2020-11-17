@@ -23,10 +23,13 @@ export const betweenTwoStr = (string, target1, target2, result = [], start = 0) 
   }
 }
 
-export const isSameArr = (arr1, arr2) => {
-  if (arr1.length !== arr2.length) return false;
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) return false;
+export const isSameArr = (obj, prevObj) => {
+  let objKeys = Object.keys(obj)
+  let prevObjKeys = Object.keys(prevObj)
+  
+  if (objKeys.length !== prevObjKeys.length) return false;
+  for (let i = 0; i < objKeys.length; i++) {
+    if (objKeys[i] !== prevObjKeys[i]) return false;
   }
   return true;
 }

@@ -163,7 +163,10 @@ input[type="button"] {
 
 
 /* Paragraph style */
-
+.selectTab{
+  border: none;
+  outline: none;
+}
 
 
 
