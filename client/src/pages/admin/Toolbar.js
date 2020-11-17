@@ -9,7 +9,7 @@ export default function Toolbar() {
   const activeTabStyle = markStyleTab();
 
   useEffect(() => {
-    ['keydown', 'mouseup'].forEach((event) => {
+    ['keyup', 'mouseup'].forEach((event) => {
       document.querySelector('#editFrame').addEventListener(event, (e) => {
         if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
           const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
@@ -71,8 +71,8 @@ const markStyleTab = () => {
     if (isSameArr(styles, prevStyles) === false) {
       clearTabStyle();
   
-      console.log('styles: ', styles);
-      let objKeys = Object.keys(styles)
+      let objKeys = Object.keys(styles);
+      let isPara = false;
       objKeys.forEach((key) => {
         if (styles[key] !== 'none') {
           let keys = betweenTwoStr(styles[key], '-', ':');
@@ -82,7 +82,14 @@ const markStyleTab = () => {
           }
         } 
         if (!excludedCommands[key]) changeTabStyle(commandPos[key]);
+        else {
+          document.querySelector('#paragraphSelect').value = key;
+          isPara = true;
+        }
       })
+      if (isPara === false) document.querySelector('#paragraphSelect').value = 'P';
+
+
       prevStyles = styles;
     }
   }
@@ -98,7 +105,7 @@ const clearTabStyle = () => {
 
 const changeTabStyle = (pos) => {
   let tabs = document.getElementsByClassName('editorIcon');
-  tabs[pos].className = 'editorIcon tooltip activeIcon';
+  if (pos !== undefined) tabs[pos].className = 'editorIcon tooltip activeIcon';
 }
 
 const getStyle = (child, style = {}) => {
@@ -107,8 +114,10 @@ const getStyle = (child, style = {}) => {
   if ({editFrame: '', edit: ''}[parent.id] !== undefined) {
     return style;
   } else {
-    if (parent.tagName !== 'LI') style[parent.tagName] = 'none';
-    if (parent.attributes.style) style[parent.tagName] = parent.attributes.style.value;
+    if ({LI: '', SPAN: ''}[parent.tagName] === undefined) {
+      style[parent.tagName] = 'none';
+      if (parent.attributes.style) style[parent.tagName] = parent.attributes.style.value;
+    }
     return getStyle(parent, style)
   }
 }

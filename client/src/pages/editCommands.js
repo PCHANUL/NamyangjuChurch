@@ -12,7 +12,6 @@ export const commandPos = {
 }
 
 export const excludedCommands = {
-  LI: true, 
   H1: true, 
   H3: true, 
   H6: true, 
