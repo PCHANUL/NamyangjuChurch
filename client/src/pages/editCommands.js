@@ -18,21 +18,10 @@ export const paragraphCommands = {
   P: '본문',
   H1: '제목', 
   H3: '부제목', 
-  H6: '소제목', 
+  BLOCKQUOTE: '인용구', 
 }
 
 export const commands = [
-  // {
-  //   cmd: 'insertOrderedList',
-  //   icon: '서체',
-  //   style: 'font-family'
-  // },
-  // {
-  //   cmd: 'increaseFontSize',
-  //   icon: '크기',
-  //   style: 'font-size'
-  //   // val: 3,
-  // },
   {
     cmd: 'bold',
     icon: '굵게',
@@ -87,38 +76,4 @@ export const commands = [
     icon: '링크',
     src: 'link',
   },
-  // {
-  //   cmd: 'insertImage',
-  //   icon: '이미지추가',
-  //   val: 'client/src/images/add-file.png'
-  // },
-  // {
-  //   cmd: 'fontSize',
-  //   icon: '크기',
-  //   val: '10',
-  //   src: 'format-size',
-  // },
-  // {
-  //   cmd: 'formatBlock',
-  //   icon: '제목',
-  //   val: 'H1',
-  //   src: 'header-1',
-  // },
-  // {
-  //   cmd: 'formatBlock',
-  //   icon: '제목',
-  //   val: 'H2',
-  //   src: 'header-2',
-  // },
-  // {
-  //   cmd: 'formatBlock',
-  //   icon: '부제목',
-  //   val: 'H3',
-  //   src: 'header-3',
-  // },
-
- 
- 
-  
- 
 ]

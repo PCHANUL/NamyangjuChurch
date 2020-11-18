@@ -91,7 +91,7 @@ const markStyleTab = () => {
         }
       })
       if (isHeading === false) setParagraph(paragraphCommands.P);
-      if (normalize) changeTabStyle(1, false);
+      if (normalize) changeTabStyle(0, false);
       // memo state
       prevStyles = styles;
     } else if (Object.keys(styles).length === 0) {
