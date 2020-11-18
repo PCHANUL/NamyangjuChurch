@@ -122,11 +122,12 @@ input[type="button"] {
   background-color: transparent;
   font-size: 16px;
   border: none;
+  margin: 5px 0 0 0 ;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   min-width: 20px;
   /* height: 20px; */
   position: relative;
@@ -134,17 +135,25 @@ input[type="button"] {
   font-size: 12px;
   text-align: left;
   padding-right: 15px;
+  margin-left: 10px;
 }
+
 
 .dropdown::after {
   content: "";
   position: absolute;
   bottom: 20%;
-  right: 0%;
+  right: 5%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
   border-color: #555 transparent transparent transparent;
+}
+
+
+
+.dropdown .curSelected{
+  margin: 5px;
 }
 
 
@@ -169,12 +178,14 @@ input[type="button"] {
 .dropdown-content p, h1, h3, h6 {
   margin: 0%;
 }
+
 .dropdown-content a {
   color: black;
   padding: 7px 7px;
   text-decoration: none;
   display: block;
 }
+
 .dropdown-content label {
   display: grid;
   grid-template-columns: auto auto;
@@ -191,8 +202,20 @@ input[type="button"] {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
-.selectText {
-  margin-bottom: 10px;
+.curSelected {
+  width: 45px;
+}
+
+#paragraphOption button {
+  all: unset;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  padding: 3px 0 3px 0;
+}
+
+#paragraphOption button:hover {
+  background-color: rgb(235, 235, 235);
 }
 
 

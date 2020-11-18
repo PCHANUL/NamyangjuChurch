@@ -1,24 +1,24 @@
 export const commandPos = {
-  B: 1,
-  I: 2,
-  U: 3,
+  B: 0,
+  I: 1,
+  U: 2,
   align: {
-    left: 4,
-    center: 5,
-    right: 6,
+    left: 3,
+    center: 4,
+    right: 5,
   },
-  UL: 7,
-  OL: 8,
-  H1: 1,
-  H3: 1,
-  H6: 1
+  UL: 6,
+  OL: 7,
+  H1: 0,
+  H3: 0,
+  H6: 0
 }
 
-export const excludedCommands = {
-  H1: true, 
-  H3: true, 
-  H6: true, 
-  P: true
+export const paragraphCommands = {
+  P: '본문',
+  H1: '제목', 
+  H3: '부제목', 
+  H6: '소제목', 
 }
 
 export const commands = [
