@@ -47,15 +47,23 @@ export default function Toolbar() {
         </div>
 
         {
-          commands.map((command, idx) => {
+          Object.keys(commands).map((key) => {
             return (
-              <div key={idx} className='editorIcon tooltip' onClick={() => {
-                editFunc(command);
-                const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-                activeTabStyle(getStyle(selected), setParagraph);
-              }}>
-                <span className="tooltiptext">{command.icon}</span>
-                <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
+              <div className='tabGroup'>
+                {
+                  commands[key].map((command, idx) => {
+                    return (
+                      <div key={idx} className='editorIcon tooltip' onClick={() => {
+                        editFunc(command);
+                        activeTabStyle(getStyle(selected), setParagraph);
+                        const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+                      }}>
+                        <span className="tooltiptext">{command.icon}</span>
+                        <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
+                      </div>
+                    )
+                  })
+                }
               </div>
             )
           })

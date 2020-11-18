@@ -21,59 +21,64 @@ export const paragraphCommands = {
   BLOCKQUOTE: '인용구', 
 }
 
-export const commands = [
-  {
-    cmd: 'bold',
-    icon: '굵게',
-    src: 'bold',
-    style: 'B'
-  },
-  {
-    cmd: 'italic',
-    icon: '이텔릭체',
-    src: 'italic',
-    style: 'I'
-  },
-  {
-    cmd: 'underline',
-    icon: '밑줄',
-    src: 'underline',
-    style: 'U'
-  },
-  {
-    cmd: 'justifyLeft',
-    icon: '좌측정렬',
-    src: 'align-left',
-    style: 'text-align: left;'
-  },
-  {
-    cmd: 'justifycenter',
-    icon: '가운데정렬',
-    src: 'align-center',
-    style: 'text-align: center;'
-  },
-  {
-    cmd: 'justifyRight',
-    icon: '우측정렬',
-    src: 'align-right',
-    style: 'text-align: right;'
-  },
-  {
-    cmd: 'insertUnorderedList',
-    icon: '목록',
-    src: 'dotList',
-    style: 'UL'
-  },
-  {
-    cmd: 'insertOrderedList',
-    icon: '숫자목록',
-    src: 'numList',
-    style: 'OL'
-  },
-  
-  {
-    cmd: 'createLink',
-    icon: '링크',
-    src: 'link',
-  },
-]
+export const commands = {
+  font: [
+    {
+      cmd: 'bold',
+      icon: '굵게',
+      src: 'bold',
+      style: 'B'
+    },
+    {
+      cmd: 'italic',
+      icon: '이텔릭체',
+      src: 'italic',
+      style: 'I'
+    },
+    {
+      cmd: 'underline',
+      icon: '밑줄',
+      src: 'underline',
+      style: 'U'
+    },
+  ],
+  align: [
+    {
+      cmd: 'justifyLeft',
+      icon: '좌측정렬',
+      src: 'align-left',
+      style: 'text-align: left;'
+    },
+    {
+      cmd: 'justifycenter',
+      icon: '가운데정렬',
+      src: 'align-center',
+      style: 'text-align: center;'
+    },
+    {
+      cmd: 'justifyRight',
+      icon: '우측정렬',
+      src: 'align-right',
+      style: 'text-align: right;'
+    },
+  ],
+  list: [
+    {
+      cmd: 'insertUnorderedList',
+      icon: '목록',
+      src: 'dotList',
+      style: 'UL'
+    },
+    {
+      cmd: 'insertOrderedList',
+      icon: '숫자목록',
+      src: 'numList',
+      style: 'OL'
+    },
+    {
+      cmd: 'createLink',
+      icon: '링크',
+      src: 'link',
+    },
+  ],
+}
