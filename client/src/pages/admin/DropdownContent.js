@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { uploadImage } from '../axiosRequest';
 
 
 export default function DropdownContent() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div className="dropdown">
         <button className="dropbtn editorIcon">
-          <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/image.png' className='iconImg'></img>
+          <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/insert-picture-icon.png' className='iconImg'></img>
         </button>
+        
         <div className="dropdown-content">
           <a href="#">
             <label htmlFor="file-upload" className="">
-              사진 업로드
+              <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/insert-picture-icon.png' className='iconImg'></img>
+              이미지
             </label>
           </a>
           <a href="#">
             <label htmlFor="youtube-upload" className="">
-              유튜브 업로드
+              <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/youtubeIcon.png' className='iconImg'></img>
+              동영상
             </label>
           </a>
         </div>

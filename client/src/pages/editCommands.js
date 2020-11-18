@@ -8,7 +8,10 @@ export const commandPos = {
     right: 6,
   },
   UL: 7,
-  OL: 8
+  OL: 8,
+  H1: 1,
+  H3: 1,
+  H6: 1
 }
 
 export const excludedCommands = {

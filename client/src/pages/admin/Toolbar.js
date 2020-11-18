@@ -24,6 +24,8 @@ export default function Toolbar() {
     <div id='toolbar'>
         <DropdownContent />
 
+        
+
         <select id="paragraphSelect" className="selectTab" onChange={(e) => {
           editFunc({cmd: 'formatBlock', val: e.target.value})
           setFontSize(e.target.value)
@@ -67,30 +69,33 @@ const markStyleTab = () => {
   let prevStyles = [];
 
   return (styles) => {
-    console.log('styles: ', styles);
     if (isSameArr(styles, prevStyles) === false) {
       clearTabStyle();
   
       let objKeys = Object.keys(styles);
-      let isPara = false;
+      let isHeading = false;
+      let normalize = false;
       objKeys.forEach((key) => {
         if (styles[key] !== 'none') {
           let keys = betweenTwoStr(styles[key], '-', ':');
           let values = betweenTwoStr(styles[key], ': ', ';');
           for (let i = 0; i < keys.length; i++) {
             if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
+            else if (keys[i] === 'weight' && values[i] === 'normal') normalize = true;
           }
         } 
-        if (!excludedCommands[key]) changeTabStyle(commandPos[key]);
-        else {
+        if (key !== 'P') changeTabStyle(commandPos[key]);
+        if (excludedCommands[key]) {
           document.querySelector('#paragraphSelect').value = key;
-          isPara = true;
+          isHeading = true;
         }
       })
-      if (isPara === false) document.querySelector('#paragraphSelect').value = 'P';
-
-
+      if (isHeading === false) document.querySelector('#paragraphSelect').value = 'P';
+      if (normalize) changeTabStyle(1, false);
+      // memo state
       prevStyles = styles;
+    } else if (Object.keys(styles).length === 0) {
+      document.querySelector('#paragraphSelect').value = 'P';
     }
   }
 }
@@ -103,9 +108,10 @@ const clearTabStyle = () => {
   }
 }
 
-const changeTabStyle = (pos) => {
+const changeTabStyle = (pos, toggle = true) => {
   let tabs = document.getElementsByClassName('editorIcon');
   if (pos !== undefined) tabs[pos].className = 'editorIcon tooltip activeIcon';
+  if (pos !== undefined && !toggle) tabs[pos].className = 'editorIcon tooltip';
 }
 
 const getStyle = (child, style = {}) => {
@@ -114,7 +120,7 @@ const getStyle = (child, style = {}) => {
   if ({editFrame: '', edit: ''}[parent.id] !== undefined) {
     return style;
   } else {
-    if ({LI: '', SPAN: ''}[parent.tagName] === undefined) {
+    if ({LI: ''}[parent.tagName] === undefined) {
       style[parent.tagName] = 'none';
       if (parent.attributes.style) style[parent.tagName] = parent.attributes.style.value;
     }
