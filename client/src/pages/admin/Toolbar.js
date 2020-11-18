@@ -24,9 +24,35 @@ export default function Toolbar() {
     <div id='toolbar'>
         <DropdownContent />
 
-        
+        <div id="paragraphSelect" className="dropdown selectText" >
+          <div>본문</div>
+          <div className='dropdown-content' onClick={(e) => {
+            e.persist();
+            console.log(e.target.tagName)
+            // editFunc({cmd: 'formatBlock', val: e.target.value})
+            // setFontSize(e.target.value)
+          }}>
+            <a value='P'><p>본문</p></a>
+            <a value='H1'><h1>제목</h1></a>
+            <a value='H3'><h3>부제목</h3></a>
+            <a value='H6'><h6>소제목</h6></a>
+          </div>
+        </div>
 
-        <select id="paragraphSelect" className="selectTab" onChange={(e) => {
+        <div id="fontSelect" className="dropdown selectText" onChange={(e) => {
+          editFunc({cmd: 'formatBlock', val: e.target.value})
+          setFontSize(e.target.value)
+        }}>
+          <div>기본서체</div>
+          <div className='dropdown-content'>
+            <a>본문</a>
+            <a>제목</a>
+            <a>부제목</a>
+            <a>소제목</a>
+          </div>
+        </div>
+
+        {/* <select id="paragraphSelect" className="selectTab" onChange={(e) => {
           editFunc({cmd: 'formatBlock', val: e.target.value})
           setFontSize(e.target.value)
         }}>
@@ -34,9 +60,9 @@ export default function Toolbar() {
           <option value="H1">제목</option>
           <option value="H3">부제목</option>
           <option value="H6">소제목</option>
-        </select>
+        </select> */}
 
-        <select id="fontSelect" className="selectTab" onChange={(e) => {
+        {/* <select id="fontSelect" className="selectTab" onChange={(e) => {
           editFunc({cmd: 'formatBlock', val: e.target.value})
           setFontSize(e.target.value)
         }}>
@@ -44,7 +70,7 @@ export default function Toolbar() {
           <option value="H1">제목</option>
           <option value="H3">부제목</option>
           <option value="H6">소제목</option>
-        </select>
+        </select> */}
           
         {
           commands.map((command, idx) => {

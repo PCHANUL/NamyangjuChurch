@@ -106,9 +106,9 @@
   width: 18px;
 }
 
-/* input[type="file"] {
-  visibility: hidden;
-} */
+input[type="file"] {
+  display: none;
+}
 input[type="button"] {
   display: none;
 }
@@ -126,9 +126,27 @@ input[type="button"] {
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
+  border: 1px solid #000;
+  min-width: 20px;
+  /* height: 20px; */
   position: relative;
   display: inline-block;
+  font-size: 12px;
+  text-align: left;
+  padding-right: 15px;
 }
+
+.dropdown::after {
+  content: "";
+  position: absolute;
+  bottom: 20%;
+  right: 0%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
 
 .dropdown-content label{
   cursor: pointer;
@@ -140,13 +158,17 @@ input[type="button"] {
   position: absolute;
   background-color: #fff;
   min-width: 70px;
-  margin-left: 10px;
+  margin-left: 50%;
+  transform: translate(-50%);
   box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.1);
   z-index: 1;
   font-size: 13px;
 }
 
 /* Links inside the dropdown */
+.dropdown-content p, h1, h3, h6 {
+  margin: 0%;
+}
 .dropdown-content a {
   color: black;
   padding: 7px 7px;
@@ -159,8 +181,7 @@ input[type="button"] {
   grid-gap: 5px;
   text-align: center;
 }
-
-.dropdown-content img {
+.iconImg {
   width: 15px;
 }
 
@@ -170,8 +191,11 @@ input[type="button"] {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-/* .dropdown:hover .dropbtn {background-color: #b4b4b4;} */
+.selectText {
+  margin-bottom: 10px;
+}
+
+
 
 
 /* Paragraph style */
@@ -287,15 +311,6 @@ input[type="button"] {
 .loadingIcon {
   position: absolute;
   width: 50px;
-}
-
-#file-upload {
-  all: unset;
-  visibility: hidden;
-  position: fixed;
-  top: 0%;
-  left: 0%;
-  background-color: rgb(0,0,0, 0.2);
 }
 
 #drop-area {
