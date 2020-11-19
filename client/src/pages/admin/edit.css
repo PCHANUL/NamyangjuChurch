@@ -216,6 +216,19 @@ input[type="button"] {
   width: 45px;
 }
 
+#fontOption button {
+  all: unset;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  padding: 5px 0 5px 5px;
+  font-size: 12px;
+}
+
+#fontOption button:hover {
+  background-color: rgb(235, 235, 235);
+}
+
 #paragraphOption button {
   all: unset;
   width: 100%;

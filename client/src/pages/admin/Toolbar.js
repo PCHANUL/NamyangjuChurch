@@ -15,10 +15,9 @@ export default function Toolbar() {
   const activeTabStyle = markStyleTab();
 
   const checkCurrentStyle = (e) => {
-    console.log('asdf')
     if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
       const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-      activeTabStyle(getStyle(selected), setParagraph);
+      activeTabStyle(getStyle(selected), setParagraph, setFontFamily);
     }
   }
 
@@ -63,7 +62,7 @@ export default function Toolbar() {
                       <div key={idx} className='editorIcon tooltip' onClick={() => {
                         editFunc(command);
                         const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-                        activeTabStyle(getStyle(selected), setParagraph);
+                        activeTabStyle(getStyle(selected), setParagraph, setFontFamily);
                       }}>
                         <span className="tooltiptext">{command.icon}</span>
                         <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
@@ -83,14 +82,14 @@ export default function Toolbar() {
 const markStyleTab = () => {
   let prevStyles = [];
 
-  return (styles, setParagraph) => {
+  return (styles, setParagraph, setFontFamily) => {
     if (isSameArr(styles, prevStyles) === false) {
       clearTabStyle();
-  
       let objKeys = Object.keys(styles);
       let isHeading = false;
       let normalize = false;
       objKeys.forEach((key) => {
+        if (key === 'FONT') return setFontFamily(fontCommands[styles[key]])
         if (styles[key] !== 'none') {
           let keys = betweenTwoStr(styles[key], '-', ':');
           let values = betweenTwoStr(styles[key], ': ', ';');
@@ -138,6 +137,7 @@ const getStyle = (child, style = {}) => {
     if ({LI: ''}[parent.tagName] === undefined) {
       style[parent.tagName] = 'none';
       if (parent.attributes.style) style[parent.tagName] = parent.attributes.style.value;
+      else if (parent.attributes.face) style[parent.tagName] = parent.attributes.face.value;
     }
     return getStyle(parent, style)
   }
