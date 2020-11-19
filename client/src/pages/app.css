@@ -11,8 +11,7 @@ html, body {
 
 
 #videoList,
-#video,
-#edit
+#video
 {
   margin-top: 7.5vw;
   grid-column: 3;
@@ -22,6 +21,13 @@ html, body {
 #main,
 #admin
 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#edit
+{
+  margin-top: 40px;
   grid-column: 3;
   grid-row: 2;
 }

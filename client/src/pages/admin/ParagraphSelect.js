@@ -4,8 +4,8 @@ export default function ParagraphSelect(props) {
   const { paragraph, setParagraph, paragraphCommands, editFunc } = props;
 
   const selecteOptions = () => {
+    let target = document.querySelector('#paragraphOption');
     Object.keys(paragraphCommands).map((key) => {
-      console.log('key: ', key);
       let button = document.createElement('button');
       let child = document.createElement(key);
       child.innerText = paragraphCommands[key];
@@ -14,7 +14,7 @@ export default function ParagraphSelect(props) {
         editFunc({cmd: 'formatBlock', val: key});
         setParagraph(paragraphCommands[key])
       })
-      document.querySelector('#paragraphOption').appendChild(button);
+      target.appendChild(button);
     })
   
   }

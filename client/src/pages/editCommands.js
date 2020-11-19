@@ -21,6 +21,14 @@ export const paragraphCommands = {
   BLOCKQUOTE: '인용구', 
 }
 
+export const fontCommands = {
+  'NanumBarunGothic' : '기본서체',
+  'Wemakeprice-Bold' : '위메프체',
+  'Arita-dotum-Medium' : '아리따돋움',
+  'Chosunilbo_myungjo' : '조선일보명조',
+  'MapoGoldenPier' : '마포금빛나루',
+}
+
 export const commands = {
   font: [
     {

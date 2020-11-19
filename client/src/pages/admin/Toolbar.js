@@ -2,29 +2,43 @@ import React, { useState, useEffect } from 'react';
 
 import DropdownContent from './DropdownContent';
 import { betweenTwoStr, isSameArr } from '../Methods';
-import { commands, commandPos, paragraphCommands } from '../editCommands';
+import { commands, commandPos, paragraphCommands, fontCommands } from '../editCommands';
 import ParagraphSelect from './ParagraphSelect';
+import FontSelect from './FontSelect';
+
+
 
 export default function Toolbar() {
   const [paragraph, setParagraph] = useState('본문');
+  const [fontFamily, setFontFamily] = useState('기본서체');
 
   const activeTabStyle = markStyleTab();
 
+  const checkCurrentStyle = (e) => {
+    console.log('asdf')
+    if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
+      const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+      activeTabStyle(getStyle(selected), setParagraph);
+    }
+  }
+
   useEffect(() => {
     ['keyup', 'mouseup'].forEach((event) => {
-      document.querySelector('#editFrame').addEventListener(event, (e) => {
-        if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
-          const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-          activeTabStyle(getStyle(selected), setParagraph);
-        }
-      })
+      document.querySelector('#editFrame').addEventListener(event, checkCurrentStyle)
     })
+
+    return () => {
+      ['keyup', 'mouseup'].forEach((event) => {
+        document.querySelector('#editFrame').removeEventListener(event, checkCurrentStyle)
+      })
+    }
 
   })
 
   return (
     <div id='toolbar'>
         <DropdownContent />
+
         <ParagraphSelect 
           paragraph={paragraph}
           setParagraph={setParagraph}
@@ -32,31 +46,24 @@ export default function Toolbar() {
           editFunc={editFunc}
         />
         
-
-        <div id="fontSelect" className="dropdown selectText" onChange={(e) => {
-          editFunc({cmd: 'formatBlock', val: e.target.value})
-          setFontSize(e.target.value)
-        }}>
-          <div className='curSelected'>기본서체</div>
-          <div className='dropdown-content'>
-            <a>본문</a>
-            <a>제목</a>
-            <a>부제목</a>
-            <a>소제목</a>
-          </div>
-        </div>
+        <FontSelect 
+          fontFamily={fontFamily}
+          setFontFamily={setFontFamily}
+          fontCommands={fontCommands}
+          editFunc={editFunc}
+        />
 
         {
-          Object.keys(commands).map((key) => {
+          Object.keys(commands).map((key, idx) => {
             return (
-              <div className='tabGroup'>
+              <div key={idx} className='tabGroup'>
                 {
                   commands[key].map((command, idx) => {
-                    return (
+                    return ( 
                       <div key={idx} className='editorIcon tooltip' onClick={() => {
                         editFunc(command);
-                        activeTabStyle(getStyle(selected), setParagraph);
                         const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
+                        activeTabStyle(getStyle(selected), setParagraph);
                       }}>
                         <span className="tooltiptext">{command.icon}</span>
                         <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
