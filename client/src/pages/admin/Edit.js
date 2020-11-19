@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import './edit.css';
 
-import { addData, getContent, updateData } from '../axiosRequest';
+import { addData, getContent, updateData, readImage } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
 
 import Toolbar from './Toolbar';
 
 function handleImg() {
-  let target;
-  let setToolbarPos
+  let target, setToolbarPos, setHandlePos;
   let imageToolTarget = document.querySelector('#imageTool');
+  let handle1 = document.querySelector('#handle1');
+  let handle2 = document.querySelector('#handle2');
+  let handle3 = document.querySelector('#handle3');
+  let handle4 = document.querySelector('#handle4');
 
   const inputSize = (e) => {
     target.style.width = `${e.target.value}vw`;
@@ -21,6 +24,23 @@ function handleImg() {
     imageToolTarget.style.top = `${targetSize.y + window.scrollY - imageToolTarget.clientHeight - 10}px`;
     imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - imageToolTarget.clientWidth/2}px`;
   }
+  
+  const handlePos = () => {
+    const targetSize = target.getBoundingClientRect();
+    handle1.style.visibility = 'visible';
+    handle2.style.visibility = 'visible';
+    handle3.style.visibility = 'visible';
+    handle4.style.visibility = 'visible';
+
+    handle1.style.top = `${targetSize.y + window.scrollY - 5}px`;
+    handle1.style.left = `${targetSize.x - 5}px`;
+    handle2.style.top = `${targetSize.y + window.scrollY - 5}px`;
+    handle2.style.left = `${targetSize.x + targetSize.width - 5}px`;
+    handle3.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
+    handle3.style.left = `${targetSize.x - 5}px`;
+    handle4.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
+    handle4.style.left = `${targetSize.x + targetSize.width - 5}px`;
+  }
 
   return function(e) {
     
@@ -28,6 +48,7 @@ function handleImg() {
       if (target) {
         target.className = target.className.replace('selectedImg', 'image');  //change prev target class
         clearInterval(setToolbarPos);
+        clearInterval(setHandlePos);
       }
 
       target = e.target;
@@ -35,15 +56,21 @@ function handleImg() {
       
       document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
       document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
-      setToolbarPos = setInterval(() => toolbarPos(), 300);
+      setToolbarPos = setInterval(() => toolbarPos(), 500);
+      setHandlePos = setInterval(() => handlePos(), 500);
       
     } else if (target && e.target.tagName !== 'INPUT') {
       target.className = target.className.replace('selectedImg', 'image');
       
       // clear
       clearInterval(setToolbarPos);
+      clearInterval(setHandlePos);
       document.querySelector('#resizeInput').removeEventListener('change', inputSize, true);
       imageToolTarget.style.visibility = 'hidden';
+      handle1.style.visibility = 'hidden';
+      handle2.style.visibility = 'hidden';
+      handle3.style.visibility = 'hidden';
+      handle4.style.visibility = 'hidden';
     }
 
   }
@@ -57,6 +84,7 @@ function preventDefaults (e) {
 function handleDrop(e) {
   let dt = e.dataTransfer
   let files = dt.files
+  console.log('files: ', files);
 
   document.querySelector('#drop-area').style.visibility = 'hidden';
   readImage(files, 'editFrame')
@@ -133,6 +161,8 @@ function Edit(props) {
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
       <div id="editFrame" contentEditable="true">
+        {/* test img tag */}
+        <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/insert-picture-icon.png' style={{width: '20vw'}}></img>
       </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
@@ -149,6 +179,12 @@ function Edit(props) {
         <input id='resizeInput' type='text' />
       </div>
 
+      {/* resize handle */}
+      <div id='handle1' className='resizeHandle' />
+      <div id='handle2' className='resizeHandle' />
+      <div id='handle3' className='resizeHandle' />
+      <div id='handle4' className='resizeHandle' />
+
   </div>
   )
 }
@@ -164,7 +200,7 @@ const changeYoutubeImg = () => {
     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
   }
 }
-
+ 
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
@@ -183,7 +219,6 @@ const saveData = async(contentState, props) => {
   }
   else alert('카테고리와 제목을 작성해주세요');
 }
-
 
 
 export default Edit;

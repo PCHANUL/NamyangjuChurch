@@ -320,6 +320,21 @@ blockquote {
   border: 1px solid rgb(211, 211, 211);
 }
 
+.resizeHandle {
+  visibility: hidden;
+  position: absolute;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 8px;
+  height: 8px;
+}
+
+#handle1 { cursor: nw-resize; }
+#handle2 { cursor: ne-resize; }
+#handle3 { cursor: sw-resize; }
+#handle4 { cursor: se-resize; }
+
 #imageTool {
   position: absolute;
   padding: 5px 10px 5px 10px;
