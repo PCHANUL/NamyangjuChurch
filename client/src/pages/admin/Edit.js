@@ -9,66 +9,55 @@ import Toolbar from './Toolbar';
 function handleImg() {
   let target, setToolbarPos, setHandlePos;
   let imageToolTarget = document.querySelector('#imageTool');
-  let handle1 = document.querySelector('#handle1');
-  let handle2 = document.querySelector('#handle2');
-  let handle3 = document.querySelector('#handle3');
-  let handle4 = document.querySelector('#handle4');
-
+  let resizeHandle = document.getElementsByClassName('resizeHandle');
+  
+  
   const inputSize = (e) => {
     target.style.width = `${e.target.value}vw`;
   }
 
-  const toolbarPos = () => {
+  const getToolbarPos = () => {
     const targetSize = target.getBoundingClientRect()
     imageToolTarget.style.visibility = 'visible';
     imageToolTarget.style.top = `${targetSize.y + window.scrollY - imageToolTarget.clientHeight - 10}px`;
     imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - imageToolTarget.clientWidth/2}px`;
   }
   
-  const handlePos = () => {
+  const getHandlePos = () => {
     const targetSize = target.getBoundingClientRect();
-    handle1.style.visibility = 'visible';
-    handle2.style.visibility = 'visible';
-    handle3.style.visibility = 'visible';
-    handle4.style.visibility = 'visible';
+    let handlePos = [
+      {
+        top : `${targetSize.y + targetSize.height + window.scrollY - 25}px`,
+        left : `${targetSize.x + targetSize.width - 25}px`,
+      },
+    ]
 
-    handle1.style.top = `${targetSize.y + window.scrollY - 5}px`;
-    handle1.style.left = `${targetSize.x - 5}px`;
-    handle2.style.top = `${targetSize.y + window.scrollY - 5}px`;
-    handle2.style.left = `${targetSize.x + targetSize.width - 5}px`;
-    handle3.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
-    handle3.style.left = `${targetSize.x - 5}px`;
-
-
-    handle4.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
-    handle4.style.left = `${targetSize.x + targetSize.width - 5}px`;
-    
+    for (let i = 0; i < resizeHandle.length; i++) {
+      resizeHandle[i].style.visibility = 'visible';
+      resizeHandle[i].style.top = handlePos[i].top;
+      resizeHandle[i].style.left = handlePos[i].left;
+    }
   }
 
  
 
   return function(e) {
-    // window.addEventListener('mousemove', (e) => console.log(e))
 
     const mousemove = (eMouse) => {
-      console.log('move')
       e.target.style.width = `${((eMouse.pageX - e.target.getBoundingClientRect().left) / window.innerWidth * 100).toFixed(3)}vw`
-      // handle4.style.top = `${eMouse.y + 25}px`
-      // handle4.style.left = `${eMouse.x - 5}px`
     }
 
-    const resizeStart = (e) => {
-      console.log('start')
+    const resizeStart = (e, resizeHandleTarget) => {
       e.preventDefault()
       window.addEventListener('mousemove', mousemove);
-      window.addEventListener('mouseup', resizeStop);
+      window.addEventListener('mouseup', () => resizeStop(resizeHandleTarget));
     }
 
-    const resizeStop = () => {
+    const resizeStop = (resizeHandleTarget) => {
       console.log('stop')
       window.removeEventListener('mousemove', mousemove);
       window.removeEventListener('mouseup', resizeStop);
-      handle4.removeEventListener('mousemove', resizeStart);
+      resizeHandleTarget.removeEventListener('mousemove', resizeStart);
     }
 
     if (e.target.className.includes('image')) {
@@ -83,10 +72,13 @@ function handleImg() {
       
       document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
       document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
-      setToolbarPos = setInterval(() => toolbarPos(), 500);
-      setHandlePos = setInterval(() => handlePos(), 500);
+      setToolbarPos = setInterval(() => getToolbarPos(), 500);
+      setHandlePos = setInterval(() => getHandlePos(), 500);
 
-      handle4.addEventListener('mousedown', resizeStart);
+
+      for (let i = 0; i < resizeHandle.length; i++) {
+        resizeHandle[i].addEventListener('mousedown', (e) => resizeStart(e, resizeHandle[i]));
+      }
 
       
       
@@ -211,10 +203,9 @@ function Edit(props) {
       </div>
 
       {/* resize handle */}
-      <div id='handle1' className='resizeHandle' />
-      <div id='handle2' className='resizeHandle' />
-      <div id='handle3' className='resizeHandle' />
-      <div id='handle4' className='resizeHandle' />
+      <div id='handle1' className='resizeHandle' >
+        <img className='ToolIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/resizeArrow.png'/>
+      </div>
 
   </div>
   )

@@ -317,28 +317,25 @@ blockquote {
   cursor: pointer;
 }
 .selectedImg {
-  border: 1px solid rgb(211, 211, 211);
+  /* border: 1px solid rgb(211, 211, 211); */
+  box-shadow: 3px 3px 10px 0 rgb(0,0,0, 0.3); 
 }
 
 .resizeHandle {
   visibility: hidden;
   position: absolute;
-  border: 1px solid #000;
-  border-radius: 5px;
   background-color: #fff;
-  width: 8px;
-  height: 8px;
+  padding: 7px 7px 2px 7px;
+  border-radius: 17px;
+  box-shadow: 3px 3px 10px 0 rgb(0,0,0, 0.5); 
 }
 
-#handle1 { cursor: nw-resize; }
-#handle2 { cursor: ne-resize; }
-#handle3 { cursor: sw-resize; }
-#handle4 { cursor: se-resize; }
+#handle1 { cursor: se-resize; }
 
 #imageTool {
   position: absolute;
   padding: 5px 10px 5px 10px;
-  box-shadow: 0 5px 10px rgb(0,0,0, 0.2);
+  box-shadow: 0 5px 10px rgb(0,0,0, 0.2); 
   background-color: #fff;
   visibility: hidden;
   display: grid;
