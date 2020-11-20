@@ -38,12 +38,39 @@ function handleImg() {
     handle2.style.left = `${targetSize.x + targetSize.width - 5}px`;
     handle3.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
     handle3.style.left = `${targetSize.x - 5}px`;
+
+
     handle4.style.top = `${targetSize.y + targetSize.height + window.scrollY - 5}px`;
     handle4.style.left = `${targetSize.x + targetSize.width - 5}px`;
+    
   }
 
+ 
+
   return function(e) {
-    
+    // window.addEventListener('mousemove', (e) => console.log(e))
+
+    const mousemove = (eMouse) => {
+      console.log('move')
+      e.target.style.width = `${((eMouse.pageX - e.target.getBoundingClientRect().left) / window.innerWidth * 100).toFixed(3)}vw`
+      // handle4.style.top = `${eMouse.y + 25}px`
+      // handle4.style.left = `${eMouse.x - 5}px`
+    }
+
+    const resizeStart = (e) => {
+      console.log('start')
+      e.preventDefault()
+      window.addEventListener('mousemove', mousemove);
+      window.addEventListener('mouseup', resizeStop);
+    }
+
+    const resizeStop = () => {
+      console.log('stop')
+      window.removeEventListener('mousemove', mousemove);
+      window.removeEventListener('mouseup', resizeStop);
+      handle4.removeEventListener('mousemove', resizeStart);
+    }
+
     if (e.target.className.includes('image')) {
       if (target) {
         target.className = target.className.replace('selectedImg', 'image');  //change prev target class
@@ -58,6 +85,10 @@ function handleImg() {
       document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
       setToolbarPos = setInterval(() => toolbarPos(), 500);
       setHandlePos = setInterval(() => handlePos(), 500);
+
+      handle4.addEventListener('mousedown', resizeStart);
+
+      
       
     } else if (target && e.target.tagName !== 'INPUT') {
       target.className = target.className.replace('selectedImg', 'image');
