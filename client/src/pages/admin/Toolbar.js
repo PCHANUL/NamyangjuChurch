@@ -12,7 +12,6 @@ export default function Toolbar() {
   const [paragraph, setParagraph] = useState('본문');
   const [fontFamily, setFontFamily] = useState('기본서체');
 
-
   const checkCurrentStyle = (e) => {
     if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
       const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
@@ -31,7 +30,7 @@ export default function Toolbar() {
       })
     }
 
-  })
+  }, [])
 
   return (
     <div id='toolbar'>
@@ -82,10 +81,7 @@ const markStyleTab = () => {
   let prevStyles = {};
 
   return (styles, setParagraph, setFontFamily) => {
-    console.log('styles: ', styles, prevStyles);
-
     if (isSameArr(styles, prevStyles) === false) {
-      console.log('false');
       clearTabStyle();
       let objKeys = Object.keys(styles);
       let isHeading = false;
@@ -109,10 +105,9 @@ const markStyleTab = () => {
           isHeading = true;
         }
 
+        // memo state
         prevStyles[key] = String(styles[key]);
-        console.log('prevStyles: ', prevStyles);
       })
-      console.log('prevStyles: ', prevStyles);
 
       if (isHeading === false) setParagraph(paragraphCommands.P);
       if (normalize) changeTabStyle(0, false);
@@ -157,7 +152,8 @@ const getStyle = (child, style = {}) => {
 }
 
 const editFunc = (cmd) => {
-  document.execCommand(cmd.cmd, false, cmd.val)
+  // document.execCommand(cmd.cmd, false);
+  document.execCommand(cmd.cmd, false);
 
   // let select = window.getSelection().getRangeAt(0)
   // let newNode = document.createElement('div');

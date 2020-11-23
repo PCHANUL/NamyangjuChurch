@@ -54,7 +54,6 @@ function handleImg() {
     }
 
     const resizeStop = (resizeHandleTarget) => {
-      console.log('stop')
       window.removeEventListener('mousemove', mousemove);
       window.removeEventListener('mouseup', resizeStop);
       resizeHandleTarget.removeEventListener('mousemove', resizeStart);
@@ -72,15 +71,12 @@ function handleImg() {
       
       document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
       document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
-      setToolbarPos = setInterval(() => getToolbarPos(), 500);
+      // setToolbarPos = setInterval(() => getToolbarPos(), 500);
       setHandlePos = setInterval(() => getHandlePos(), 500);
-
 
       for (let i = 0; i < resizeHandle.length; i++) {
         resizeHandle[i].addEventListener('mousedown', (e) => resizeStart(e, resizeHandle[i]));
       }
-
-      
       
     } else if (target && e.target.tagName !== 'INPUT') {
       target.className = target.className.replace('selectedImg', 'image');
@@ -182,7 +178,7 @@ function Edit(props) {
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
       <div id="editFrame" contentEditable="true">
         {/* test img tag */}
-        <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/insert-picture-icon.png' style={{width: '20vw'}}></img>
+        {/* <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/insert-picture-icon.png' style={{width: '20vw'}}></img> */}
       </div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 

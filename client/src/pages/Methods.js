@@ -29,7 +29,7 @@ export const isSameArr = (obj, prevObj) => {
   
   if (objKeys.length !== prevObjKeys.length) return false;
   for (let i = 0; i < objKeys.length; i++) {
-    if (objKeys[i] !== prevObjKeys[i]) return false;
+    if (obj[objKeys[i]] !== prevObj[prevObjKeys[i]]) return false;
   }
   return true;
 }
