@@ -91,9 +91,6 @@ function handleImg() {
       document.querySelector('#resizeInput').removeEventListener('change', inputSize, true);
       imageToolTarget.style.visibility = 'hidden';
       handle1.style.visibility = 'hidden';
-      handle2.style.visibility = 'hidden';
-      handle3.style.visibility = 'hidden';
-      handle4.style.visibility = 'hidden';
     }
 
   }

@@ -12,12 +12,11 @@ export default function Toolbar() {
   const [paragraph, setParagraph] = useState('본문');
   const [fontFamily, setFontFamily] = useState('기본서체');
 
-  const activeTabStyle = markStyleTab();
 
   const checkCurrentStyle = (e) => {
     if ([37, 38, 39, 40].includes(e.keyCode) || e.type === 'mouseup') {
       const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-      activeTabStyle(getStyle(selected), setParagraph, setFontFamily);
+      markStyleTabClosure(getStyle(selected), setParagraph, setFontFamily);
     }
   }
 
@@ -62,7 +61,7 @@ export default function Toolbar() {
                       <div key={idx} className='editorIcon tooltip' onClick={() => {
                         editFunc(command);
                         const selected = document.getSelection().getRangeAt(0).commonAncestorContainer;
-                        activeTabStyle(getStyle(selected), setParagraph, setFontFamily);
+                        markStyleTabClosure(getStyle(selected), setParagraph, setFontFamily);
                       }}>
                         <span className="tooltiptext">{command.icon}</span>
                         <img src={`https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/${command.src}.png`} className='iconImg'></img>
@@ -80,44 +79,58 @@ export default function Toolbar() {
 
 
 const markStyleTab = () => {
-  let prevStyles = [];
+  let prevStyles = {};
 
   return (styles, setParagraph, setFontFamily) => {
+    console.log('styles: ', styles, prevStyles);
+
     if (isSameArr(styles, prevStyles) === false) {
+      console.log('false');
       clearTabStyle();
       let objKeys = Object.keys(styles);
       let isHeading = false;
       let normalize = false;
+
       objKeys.forEach((key) => {
-        if (key === 'FONT') return setFontFamily(fontCommands[styles[key]])
-        if (styles[key] !== 'none') {
-          let keys = betweenTwoStr(styles[key], '-', ':');
-          let values = betweenTwoStr(styles[key], ': ', ';');
-          for (let i = 0; i < keys.length; i++) {
-            if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
-            else if (keys[i] === 'weight' && values[i] === 'normal') normalize = true;
-          }
-        } 
+        if (key === 'FONT') setFontFamily(fontCommands[styles[key]]);
+        else {
+          if (styles[key] !== 'none') {
+            let keys = betweenTwoStr(styles[key], '-', ':');
+            let values = betweenTwoStr(styles[key], ': ', ';');
+            for (let i = 0; i < keys.length; i++) {
+              if (keys[i] === 'align') changeTabStyle(commandPos[keys[i]][values[i]]);
+              else if (keys[i] === 'weight' && values[i] === 'normal') normalize = true;
+            }
+          } 
+        }
         if (key !== 'P') changeTabStyle(commandPos[key]);
         if (paragraphCommands[key]) {
           setParagraph(paragraphCommands[key])
           isHeading = true;
         }
+
+        prevStyles[key] = String(styles[key]);
+        console.log('prevStyles: ', prevStyles);
       })
+      console.log('prevStyles: ', prevStyles);
+
       if (isHeading === false) setParagraph(paragraphCommands.P);
       if (normalize) changeTabStyle(0, false);
-      // memo state
-      prevStyles = styles;
+      if (styles.FONT === undefined) setFontFamily('기본서체');
+
     } else if (Object.keys(styles).length === 0) {
+      // init
       setParagraph(paragraphCommands.P);
+      setFontFamily('기본서체');
     }
   }
 }
 
+const markStyleTabClosure = markStyleTab();
 
 const clearTabStyle = () => {
   let tabs = document.getElementsByClassName('editorIcon')
-  for (let i = 1; i < tabs.length; i++) {
+  for (let i = 0; i < tabs.length; i++) {
     tabs[i].className = 'editorIcon tooltip';
   }
 }
