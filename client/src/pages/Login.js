@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import './login.css';
+import './responsibleCSS/mobileLogin.css';
 
 function Login(props) {
   const [userId, setUserId] = useState('');
@@ -24,7 +25,7 @@ function Login(props) {
         isOpen && (
           <>
           <div id='login'>
-            <h1>관리자 로그인</h1>
+            <h1>관리자 <br /> 로그인</h1>
             <button className='btn' onClick={() => setIsOpen(false)}>
               <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
             </button>
@@ -33,7 +34,7 @@ function Login(props) {
               <br />
               <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
               <br />
-              <button type="submit" value="로그인" onClick={() => setIsOpen(false)}>
+              <button id="loginBtn" onClick={() => setIsOpen(false)}>
                 <Link to='/admin'>
                   로그인
                 </Link>
