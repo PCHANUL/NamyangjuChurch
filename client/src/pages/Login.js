@@ -49,7 +49,7 @@ function Login(props) {
             </Link>
             <br />
           </div>
-          <div id='background'></div>
+          <div className='background'></div>
           </>
         )
       }

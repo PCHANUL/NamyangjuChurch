@@ -63,10 +63,26 @@ export default function Nav() {
           말씀보기
         </Link>
       </div>
+      {/* content tab */}
       {
         location.pathname === '/contentlist' && 
           <NavTabs appStore={appStore} />
       }
+      {/* menu */}
+      <div id='menuBtn'></div>
+      <div className='background'></div>
+      <div id='drawerMenu'>
+        {/* <h4>남양주 사랑교회</h4> */}
+        <Link to="/" className='menuBtn'>
+          홈
+        </Link>
+        <Link to="/contentlist" className='menuBtn' onClick={() => appStore.setVideoList(1, 0)}>
+          교회소식
+        </Link>
+        <Link to="/contentlist" className='menuBtn' onClick={() => appStore.setVideoList(0, 0)}>
+          말씀보기
+        </Link>
+      </div>
     </nav>
   ))
 }
