@@ -9,6 +9,7 @@ import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
 import './videoList.css';
+import '../responsibleCSS/mobileVideoList.css';
 
 const ContentList = () => {
   const appStore = useAppStore();

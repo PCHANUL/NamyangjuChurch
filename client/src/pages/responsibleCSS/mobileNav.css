@@ -1,0 +1,53 @@
+@media only screen and (max-width : 640px) {
+  #nav {
+    width: 95vw;
+    height: 12vw;
+    border-bottom: 1px solid #000;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    background-color: #fff;
+    z-index: 2;
+  }
+
+  .home {
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+
+    font-family: 'MapoFlowerIsland';
+    font-weight: 400;
+    color: #000;
+    font-size: 7vw; 
+
+    cursor: pointer;
+    margin-top: 1.5vw;
+  }
+
+  .button {
+    display: none;
+  }
+
+
+  .tabList {
+    font-family: 'NanumBarunGothic';
+    font-size: 3.5vw;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 14.5vw;
+    transform: translate(-50%);
+    width: 100vw;
+    height: 8vw;
+    background-color: #fff;
+    display: grid;
+    z-index: 1;
+    box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
+  }
+  .tab {
+    padding-top: 2vw;
+    cursor: pointer;
+  }
+
+
+}

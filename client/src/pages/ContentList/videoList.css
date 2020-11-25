@@ -7,6 +7,9 @@ a:hover {
 }
 #videoList {
   width: 70vw;
+  margin-top: 7.5vw;
+  grid-column: 3;
+  grid-row: 2;
 }
 .video {
   position: relative;
@@ -23,8 +26,6 @@ a:hover {
   font-size: 3vw;
   font-weight: 700;
 }
-
-
 
 .videoTitle p {
   font-size: 1.5vw;

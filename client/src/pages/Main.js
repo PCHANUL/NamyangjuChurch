@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './main.css'
+import './responsibleCSS/mobileMain.css'
 
 import Map from './Map';
 import TimeTable from './TimeTable';

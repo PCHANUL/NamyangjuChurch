@@ -1,0 +1,17 @@
+@media only screen and (max-width : 640px) {
+
+  #mainImg {
+    /* position: absolute; */
+    grid-row: 1;
+    grid-column: 1/6;  
+    width: 100vw;
+    height: 50vw;
+    overflow: hidden;
+    margin: 13vw 0 4vw -1.5vw;
+    box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
+  }
+  #mainImg img {
+    margin: -6vw 0 0 -40vw;
+    width: 150vw;
+  }
+}

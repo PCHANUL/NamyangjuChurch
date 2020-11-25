@@ -7,10 +7,11 @@ html, body {
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
   grid-template-rows: auto 7fr 1fr;
   grid-gap: 20px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 
-#videoList,
 #video
 {
   margin-top: 7.5vw;

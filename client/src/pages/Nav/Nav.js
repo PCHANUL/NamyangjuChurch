@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './nav.css';
+import '../responsibleCSS/mobileNav.css';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
@@ -29,9 +30,19 @@ export default function Nav() {
 
   useEffect(() => {
     const checkScroll = setInterval(() => {
+      console.log('window.innerWidth: ', window.innerWidth);
       if (window.location.href.includes('/contentlist')) {
         let checked = scroll();
-        if (checked !== undefined) setScrollDown(checked);
+        if (checked !== undefined) {
+          if (checked === true) {
+            document.querySelector('#videoTabList').className = 'tabList';
+            if (window.innerWidth <= 648) document.querySelector('#nav').className = '';
+          } else {
+            document.querySelector('#videoTabList').className = 'tabList hidden';
+            if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hidden';
+
+          }
+        }
       }
     }, 500)
     return () => {
@@ -53,7 +64,7 @@ export default function Nav() {
         </Link>
       </div>
       {
-        location.pathname === '/contentlist' && scrollDown &&
+        location.pathname === '/contentlist' && 
           <NavTabs appStore={appStore} />
       }
     </nav>

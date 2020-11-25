@@ -1,0 +1,24 @@
+@media only screen and (max-width : 640px) {
+
+  #videoList {
+    grid-column: 1 / 5;
+    width: 90vw;
+    margin: 23vw 0 0 3.5vw;
+  }
+  .video {
+    position: relative;
+    height: 15vw;
+    padding: 2vw 2vw 0 2vw;
+    border-top: 1px solid rgb(210, 210, 210);
+  }
+  .videoTitle a {
+    font-size: 5vw;
+    font-weight: 700;
+  }
+  .videoTitle p {
+    font-size: 3vw;
+  }
+  
+
+
+}
