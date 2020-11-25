@@ -8,6 +8,9 @@
     left: 0px;
     background-color: #fff;
     z-index: 2;
+
+    transition-property: all;
+    transition-duration: 0.3s;
   }
 
   .home {
@@ -49,7 +52,7 @@
     cursor: pointer;
   }
 
-  #menuBtn {
+  #drawerMenuBtn {
     display: block;
     position: absolute;
     right: 5vw;
@@ -83,14 +86,21 @@
 
     text-align: center;
     font-size: 9vw;
+
+    transition-property: all;
+    transition-duration: 1s;
   }
+  .drawerMenuOpen {
+    margin: 0 -80vw 0 0;
+  }
+
   #drawerMenu h4 {
     all: unset;
     font-size: 6vw;
   }
   .menuBtn {
     font-family: 'MapoGoldenPier';
-    /* border-bottom: 1px solid rgb(0,0,0, 0.2); */
+    transition: right 0.3s;
   }
 
 

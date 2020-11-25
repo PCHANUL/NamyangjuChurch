@@ -69,9 +69,9 @@ export default function Nav() {
           <NavTabs appStore={appStore} />
       }
       {/* menu */}
-      <div id='menuBtn'></div>
-      <div className='background'></div>
-      <div id='drawerMenu'>
+      <div id='drawerMenuBtn' onClick={openMemu}></div>
+      <div id='drawerBack' className='background hidden'></div>
+      <div id='drawerMenu' className='drawerMenuOpen'>
         {/* <h4>남양주 사랑교회</h4> */}
         <Link to="/" className='menuBtn'>
           홈
@@ -85,6 +85,13 @@ export default function Nav() {
       </div>
     </nav>
   ))
+}
+
+function openMemu() {
+  let target = document.querySelector('#drawerMenu');
+  let targetBackground = document.querySelector('#drawerBack');
+  target.className = target.className === 'drawerMenuOpen' ? '' : 'drawerMenuOpen';
+  targetBackground.className = targetBackground.className === 'background hidden' ? 'background' : 'background hidden';
 }
 
 function NavTabs({ appStore }) {

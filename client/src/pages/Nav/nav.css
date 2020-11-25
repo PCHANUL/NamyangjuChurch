@@ -43,6 +43,9 @@
   display: grid;
   z-index: 1;
   box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
+
+  transition-property: all;
+  transition-duration: 0.3s;
 }
 #videoTabList {
   grid-template-columns: auto auto auto auto auto;
@@ -72,7 +75,11 @@
 }
 
 .hidden {
-  transition: opacity 0.3s;
+  /* transition: opacity 0.5s; */
   opacity: 0%;
+
+  transition-property: all;
+  transition-duration: 0.3s;
+  
 }
 
