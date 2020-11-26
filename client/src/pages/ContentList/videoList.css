@@ -7,7 +7,7 @@ a:hover {
 }
 #videoList {
   width: 70vw;
-  margin-top: 7.5vw;
+  margin-top: 10vw;
   grid-column: 3;
   grid-row: 2;
 }

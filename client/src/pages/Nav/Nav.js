@@ -15,7 +15,7 @@ function isScrollDown() {
     // console.log('document.body.scrollHeight: ', document.body.scrollHeight);
     // console.log('document.body.scrollHeight - window.innerHeight: ', document.body.scrollHeight - window.innerHeight);
     
-    if (window.scrollY <= 0) {
+    if (window.scrollY <= 100) {
       return true;
     } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
       return false;
@@ -45,10 +45,10 @@ export default function Nav() {
         let checked = scroll();
         if (checked !== undefined) {
           if (checked === true) {
-            document.querySelector('#videoTabList').className = 'tabList';
+            document.getElementsByClassName('tabList')[0].className = 'tabList';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = '';
           } else {
-            document.querySelector('#videoTabList').className = 'tabList hiddenDrawer';
+            document.getElementsByClassName('tabList')[0].className = 'tabList hiddenDrawer';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hiddenDrawer';
 
           }
@@ -92,6 +92,7 @@ export default function Nav() {
         <Link to="/contentlist" className='menuBtn' onClick={() => appStore.setVideoList(0, 0)}>
           말씀보기
         </Link>
+        <h4>검색</h4>
       </div>
     </nav>
   ))
