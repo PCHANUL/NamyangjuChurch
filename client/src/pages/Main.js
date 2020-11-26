@@ -85,10 +85,10 @@ function Main() {
 
         <div id='route'>
           <h1>오시는길</h1>
-          <Map
+          {/* <Map
             startPoint={{ lat: places[0].lat, lng: places[0].lng }}
             endPoint={{ lat: places[1].lat, lng: places[1].lng }}
-          />
+          /> */}
         </div>
         {/* <div style={{height: '60vw', border: '2px solid #000'}}>
           <h1>예배시간</h1>

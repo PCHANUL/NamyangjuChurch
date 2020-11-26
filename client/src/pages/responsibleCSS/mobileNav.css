@@ -10,7 +10,7 @@
     z-index: 2;
 
     transition-property: all;
-    transition-duration: 0.3s;
+    transition-duration: 1s;
   }
 
   .home {
@@ -54,7 +54,7 @@
 
   #drawerMenuBtn {
     display: block;
-    position: absolute;
+    position: fixed;
     right: 5vw;
     top: 3vw;
     z-index: 3;

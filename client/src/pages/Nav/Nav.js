@@ -9,14 +9,24 @@ import { useObserver } from 'mobx-react';
 
 function isScrollDown() {
   let pos = window.scrollY;
-
+  
   return function() {
-    if (pos < window.scrollY) {
-      pos = window.scrollY;
-      return false;
-    } else if (pos > window.scrollY){
-      pos = window.scrollY;
+    // console.log('window.scrollY: ', window.scrollY);
+    // console.log('document.body.scrollHeight: ', document.body.scrollHeight);
+    // console.log('document.body.scrollHeight - window.innerHeight: ', document.body.scrollHeight - window.innerHeight);
+    
+    if (window.scrollY <= 0) {
       return true;
+    } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
+      return false;
+    } else {
+      if (pos < window.scrollY) {
+        pos = window.scrollY;
+        return false;
+      } else if (pos > window.scrollY){
+        pos = window.scrollY;
+        return true;
+      }
     }
   }
 }
@@ -30,16 +40,16 @@ export default function Nav() {
 
   useEffect(() => {
     const checkScroll = setInterval(() => {
-      console.log('window.innerWidth: ', window.innerWidth);
       if (window.location.href.includes('/contentlist')) {
+        if (window.innerWidth > 648) document.querySelector('#nav').className = '';
         let checked = scroll();
         if (checked !== undefined) {
           if (checked === true) {
             document.querySelector('#videoTabList').className = 'tabList';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = '';
           } else {
-            document.querySelector('#videoTabList').className = 'tabList hidden';
-            if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hidden';
+            document.querySelector('#videoTabList').className = 'tabList hiddenDrawer';
+            if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hiddenDrawer';
 
           }
         }
