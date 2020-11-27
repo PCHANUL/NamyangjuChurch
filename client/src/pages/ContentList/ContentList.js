@@ -18,12 +18,13 @@ import '../responsibleCSS/mobileVideoList.css';
 const ContentList = () => {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState()
+  const [data, setData] = useState();
+  
+  console.log('data: ', data);
   
   useEffect(() => {
     getDataList((getData) => {
       setData(getData);
-      console.log('getData: ', getData);
       setLoading(true);
     });
   }, [])
@@ -32,6 +33,7 @@ const ContentList = () => {
     <div id='videoList'>
       <SearchContent 
         data={data}
+        setData={setData}
       />
       {
         loading &&
