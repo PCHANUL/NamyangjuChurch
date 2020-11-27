@@ -9,9 +9,7 @@ export default function SearchContent(props) {
   const appStore = useAppStore();
   const [searchInput, setSearchInput] = useState('');
   const [keywords, setKeywords] = useState([]);
-  const { data, setFiltered, setData } = props;
-
-  console.log('keywords: ', keywords);
+  const { data, setFiltered } = props;
 
   const initKeywords = () => {
     setFiltered([]);
@@ -32,12 +30,12 @@ export default function SearchContent(props) {
     let keywordsArr = paraKeywords;
 
     if (keywords.length === 0 && searchInput === '') {
-      setFiltered([]);
-      return
+      return setFiltered([]);
     } else if (searchInput !== '') {
       initInput();
       keywordsArr = [...keywords, searchInput];
     }
+
     let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
     setKeywords(keywordsArr);
     let filteredContent = filterContents(filterTarget, keywordsArr, 'title');
@@ -53,16 +51,19 @@ export default function SearchContent(props) {
 
   return useObserver(() => (
     <>
-      <input id='inputKeyword' placeholder='검색 키워드 추가' onChange={(e) => setSearchInput(e.target.value)}></input>
-      <button onClick={searchKeywords}>검색</button>
-      <button onClick={initKeywords}>초기화</button>
-      <div id='keywords'>
+      <div id='keywordDiv'>
+        <input id='inputKeyword' placeholder='검색 키워드 추가' onChange={(e) => setSearchInput(e.target.value)}></input>
+        <button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</button>
+        <button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</button>
         {
           keywords.length !== 0 &&
             keywords.map((keyword, idx) => {
               return (
-                <div key={idx} className='keyword' onClick={() => deleteKeyword(keyword)}>
+                <div key={idx} className='keyword'>
                   <p>{keyword}</p>
+                  <button className='deleteKeyword' onClick={() => deleteKeyword(keyword)}>
+                    <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
+                  </button>
                 </div>
               )
             })

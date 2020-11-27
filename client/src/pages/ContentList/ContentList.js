@@ -14,16 +14,12 @@ import { useObserver } from 'mobx-react';
 
 import './videoList.css';
 import '../responsibleCSS/mobileVideoList.css';
-import { fill, filter } from 'lodash';
 
 const ContentList = () => {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
   const [filteredArr, setFiltered] = useState([]);
   const [data, setData] = useState([]);
-  
-  console.log('rerendering');
-  console.log('filteredArr: ', filteredArr);
   
   useEffect(() => {
     getDataList((getData) => {
