@@ -14,13 +14,16 @@ import { useObserver } from 'mobx-react';
 
 import './videoList.css';
 import '../responsibleCSS/mobileVideoList.css';
+import { fill, filter } from 'lodash';
 
 const ContentList = () => {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState();
+  const [filteredArr, setFiltered] = useState([]);
+  const [data, setData] = useState([]);
   
-  console.log('data: ', data);
+  console.log('rerendering');
+  console.log('filteredArr: ', filteredArr);
   
   useEffect(() => {
     getDataList((getData) => {
@@ -34,10 +37,14 @@ const ContentList = () => {
       <SearchContent 
         data={data}
         setData={setData}
+        setFiltered={setFiltered}
       />
       {
         loading &&
-        data[appStore.selectedCategory].details[appStore.selectedDetail].posts.map((data, i) => {
+        ( filteredArr.length === 0 
+          ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
+          : filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts
+        ).map((data, i) => {
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>

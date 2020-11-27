@@ -7,7 +7,12 @@ export default function SearchContent(props) {
   const appStore = useAppStore();
   const [searchInput, setSearchInput] = useState('');
   const [keywords, setKeywords] = useState([]);
-  const { data, setData } = props;
+  const { data, setFiltered, setData } = props;
+
+  const initKeywords = () => {
+    setFiltered([]);
+    setKeywords([])
+  }
   
 
   return useObserver(() => (
@@ -16,15 +21,16 @@ export default function SearchContent(props) {
       <button onClick={() => {
         let searchKeywords = [...keywords, searchInput];
         let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
-
+        
         setKeywords(searchKeywords);
         let filteredContent = filterContents(filterTarget, searchKeywords, 'title');
-        data[appStore.selectedCategory].details[appStore.selectedDetail].posts = filteredContent;
-        
-        setData({ ...data });
+        let filteredArr = JSON.parse(JSON.stringify(data))
+        filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts = filteredContent;
+        setFiltered(filteredArr);
 
       }}>검색</button>
-      <button>초기화</button>
+
+      <button onClick={initKeywords}>초기화</button>
       <div id='keywords'>
         {
           keywords.length !== 0 &&
@@ -40,6 +46,8 @@ export default function SearchContent(props) {
     </>
   ))
 }
+
+
 
 function filterContents(data, conditions, ...objKeys) {
   let filtered = data.filter((ele) => {
