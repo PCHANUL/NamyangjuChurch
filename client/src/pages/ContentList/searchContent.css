@@ -18,28 +18,79 @@
 }
 
 .keywordBtn {
-  background-color: transparent;
   outline: none;
   border: none;
   padding: 0.6vw;
   cursor: pointer;
   margin-left: 0.3vw;
   box-shadow: 0.2vw 0.2vw 0.3vw rgba(0, 0, 0, 0.3);
+
+  overflow: hidden;
+
+  transition-duration: 0.2s;
+  transform-origin: center center;
+}
+
+.keywordBtn:active {
+  background-color: rgba(0, 0, 0, 0.3);
+
+  transition-duration: 1s;
+  transform-origin: center center;
+}
+
+.label {
+  user-select: none;
+}
+
+.root {
+  /* position: absolute; */
+  overflow: hidden;
 }
 
 .leftBtn {
+  width: 3vw;
+  height: 1vw;
   padding-left: 1vw;
   border-radius: 1vw 0 0 1vw;
 }
+
+.clickMotion_visible {
+  opacity: 100%;
+  transform: scale(100);
+
+  background-color: rgba(0, 0, 0, 0.3);
+  transition-property: all;
+  transition-duration: 0.5s;
+  transform-origin: center center;
+}
+
+
+
+.clickMotion {
+  position: relative;
+  width: 1px;
+  height: 1px;
+  
+  border-radius: 50px;
+
+  transition-property: all;
+  transition-duration: 0.5s;
+  transform-origin: center center;
+}
+
+/* 
+.leftBtn div :hover {
+  background-color: rgb(71, 145, 255);
+} */
 
 .rightBtn {
   padding-right: 1vw;
   border-radius: 0 1vw 1vw 0;
 }
 
-.keywordBtn:hover {
+/* .keywordBtn:hover {
   background-color: rgb(210, 210, 210);
-}
+} */
 
 #keywordDiv {
   /* border: 1px solid #000; */

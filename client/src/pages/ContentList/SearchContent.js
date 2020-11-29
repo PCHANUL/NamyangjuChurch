@@ -53,7 +53,9 @@ export default function SearchContent(props) {
     <>
       <div id='keywordDiv'>
         <input id='inputKeyword' placeholder='검색 키워드 추가' onChange={(e) => setSearchInput(e.target.value)}></input>
-        <button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</button>
+
+        <Button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</Button>
+
         <button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</button>
         {
           keywords.length !== 0 &&
@@ -71,6 +73,62 @@ export default function SearchContent(props) {
       </div>
     </>
   ))
+}
+
+function Button(props) {
+  console.log('props: ', props);
+  const { children, className, onClick } = props;
+
+
+ 
+
+  const onMouseDown = (e) => {
+    e.persist();
+    let target = findRoot(e.target);
+    let targetPos = target.getBoundingClientRect();
+    console.log('e.target: ', e.target, target);
+    
+    let mouseX = e.clientX - targetPos.x + 30;
+    let mouseY = e.clientY - targetPos.y - 10;
+
+    onClick();
+    clickAction(target, mouseX, mouseY);
+  }
+
+  const findRoot = (target) => {
+    if (target.className === 'label') return target.parentNode.childNodes[1];
+    if (target.className === 'clickMotion clickMotion_visible') return target.parentNode.parentNode.childNodes[1];
+    else return target.childNodes[1];
+  }
+
+  const clickAction = (target, x, y) => {
+    console.log('target: ', target);
+    let div = document.createElement('div');
+    div.className = 'clickMotion';
+    div.style.top = `${y}px`;
+    div.style.left = `${x}px`;
+    target.appendChild(div);
+
+    setTimeout(() => {
+      div.className = div.className + ' clickMotion_visible';
+      setTimeout(() => {
+        div.className = 'clickMotion';
+          div.parentNode.removeChild(div)
+      }, 500)
+    }, 0);
+  }
+
+  const onMouseUp = (e) => {
+    e.persist();
+    // if (e.target.className === 'activeDiv') e.target.parentNode.removeChild(e.target);
+  }
+
+  return (
+    <div className={className} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+        <span className='label'>{children}</span>
+        <span className='root'></span>
+    </div>
+  )
 }
 
 
