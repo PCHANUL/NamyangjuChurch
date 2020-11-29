@@ -81,8 +81,8 @@ function Button(props) {
   const onMouseDown = (e) => {
     let target = findRoot(e.target);
     
-    let mouseX = e.clientX
-    let mouseY = e.clientY
+    let mouseX = e.nativeEvent.layerX
+    let mouseY = e.nativeEvent.layerY
 
     onClick();
     clickAction(target, mouseX, mouseY);
