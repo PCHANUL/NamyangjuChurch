@@ -76,20 +76,13 @@ export default function SearchContent(props) {
 }
 
 function Button(props) {
-  console.log('props: ', props);
   const { children, className, onClick } = props;
 
-
- 
-
   const onMouseDown = (e) => {
-    e.persist();
     let target = findRoot(e.target);
-    let targetPos = target.getBoundingClientRect();
-    console.log('e.target: ', e.target, target);
     
-    let mouseX = e.clientX - targetPos.x + 30;
-    let mouseY = e.clientY - targetPos.y - 10;
+    let mouseX = e.clientX
+    let mouseY = e.clientY
 
     onClick();
     clickAction(target, mouseX, mouseY);
@@ -102,7 +95,6 @@ function Button(props) {
   }
 
   const clickAction = (target, x, y) => {
-    console.log('target: ', target);
     let div = document.createElement('div');
     div.className = 'clickMotion';
     div.style.top = `${y}px`;
@@ -118,13 +110,8 @@ function Button(props) {
     }, 0);
   }
 
-  const onMouseUp = (e) => {
-    e.persist();
-    // if (e.target.className === 'activeDiv') e.target.parentNode.removeChild(e.target);
-  }
-
   return (
-    <div className={className} onMouseDown={onMouseDown} onMouseUp={onMouseUp}>
+    <div className={className} onMouseDown={onMouseDown}>
         <span className='label'>{children}</span>
         <span className='root'></span>
     </div>
