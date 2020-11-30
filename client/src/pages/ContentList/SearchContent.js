@@ -118,7 +118,7 @@ function Button(props) {
   }
 
   return (
-    <div className={className} onClick={onMouseDown}>
+    <div className={className} onMouseDown={onMouseDown}>
         <span className='label'>{children}</span>
         <span className='root'></span>
     </div>

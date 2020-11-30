@@ -44,8 +44,10 @@ export default function Nav() {
     <nav>
       {
         // 모바일 화면에서 컨텐츠를 볼 때 nav 제외
-        location.pathname.includes('/content/') === false && window.innerWidth < 648 
+        location.pathname.includes('/content/') === true && window.innerWidth < 648 
         ? (
+          <GobackButton />
+        ) : (
         <div id='nav'>
           <Link to="/" className='home'>
             남양주 사랑교회
@@ -57,8 +59,6 @@ export default function Nav() {
             말씀보기
           </Link>
         </div>
-        ) : (
-          <></>
         )
       }
 
@@ -120,3 +120,39 @@ function NavTabs({ appStore }) {
   return <div />
 }
 
+function GobackButton() {
+  const clickFunc = () => {
+    let target = document.getElementsByClassName('goback')[0].childNodes[1];
+    clickMotion(target);
+    
+  }
+
+  const clickMotion = (target) => {
+    let div = document.createElement('div');
+    div.className = 'clickMotion';
+    let rect = target.getBoundingClientRect();
+    console.log('rect: ', rect);
+    div.style.top = `${rect.height / 2 - rect.height / 7}px`;
+    div.style.left = `${rect.width / 2 - rect.width / 9}px`;
+    target.appendChild(div);
+
+    setTimeout(() => {
+      div.className = div.className + ' clickMotion_visible';
+      setTimeout(() => {
+        div.className = 'clickMotion';
+        window.history.back();
+        div.parentNode.removeChild(div)
+      }, 200)
+    }, 0);
+  }
+
+  return (
+    <button className='goback' onMouseDown={clickFunc}>
+      <div className='label'>
+        <div className='gobackIcon gobackIcon_top'></div>
+        <div className='gobackIcon gobackIcon_bot'></div>
+      </div>
+      <div className='root'></div>
+    </button>
+  )
+}

@@ -16,16 +16,16 @@ export default function MobileMenuButton() {
           홈
         </Link>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
-          appStore.setVideoList(1, 0);
-          clickFunction()
-        }}>
-          교회소식
-        </Link>
-        <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(0, 0);
           clickFunction()
         }}>
           말씀보기
+        </Link>
+        <Link to="/contentlist" className='menuBtn' onClick={() => {
+          appStore.setVideoList(1, 0);
+          clickFunction()
+        }}>
+          교회소식
         </Link>
       </div>
     </>

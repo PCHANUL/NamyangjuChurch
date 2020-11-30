@@ -59,7 +59,7 @@
   width: 10px;
   height: 10px;
   border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
 
   transition-property: all;
   transition-duration: 0.5s;

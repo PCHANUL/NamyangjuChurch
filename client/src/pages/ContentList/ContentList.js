@@ -22,6 +22,7 @@ const ContentList = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
+    window.scroll(0, 0);
     getDataList((getData) => {
       setData(getData);
       setLoading(true);
