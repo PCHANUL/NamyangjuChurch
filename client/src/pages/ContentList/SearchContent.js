@@ -27,8 +27,8 @@ export default function SearchContent(props) {
   }
 
   const searchKeywords = (paraKeywords = []) => {
-    let keywordsArr = paraKeywords;
-
+    let keywordsArr = paraKeywords.length === 0 ? keywords : paraKeywords;
+ 
     if (keywords.length === 0 && searchInput === '') {
       return setFiltered([]);
     } else if (searchInput !== '') {
@@ -52,11 +52,14 @@ export default function SearchContent(props) {
   return useObserver(() => (
     <>
       <div id='keywordDiv'>
-        <input id='inputKeyword' placeholder='검색 키워드 추가' onChange={(e) => setSearchInput(e.target.value)}></input>
+        <input id='inputKeyword' placeholder='검색 키워드 추가' 
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
+        ></input>
 
+        <Button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</Button>
         <Button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</Button>
 
-        <button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</button>
         {
           keywords.length !== 0 &&
             keywords.map((keyword, idx) => {
