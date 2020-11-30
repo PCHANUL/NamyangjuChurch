@@ -114,14 +114,14 @@ function MenuButton(props) {
         children[0].className = 'menuBtnIcon';
         children[1].className = 'menuBtnIcon';
         children[2].className = 'menuBtnIcon';
-      }, 500)
+      }, 200)
     } else {
       isOpen = true;
       setTimeout(() => {
         children[0].className = 'menuBtnIcon icon_top closedIcon_top';
         children[1].className = 'menuBtnIcon icon_mid';
         children[2].className = 'menuBtnIcon icon_bot closedIcon_bot';
-      }, 500)
+      }, 200)
     }
   }
 

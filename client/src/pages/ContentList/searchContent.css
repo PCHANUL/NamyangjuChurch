@@ -4,6 +4,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   margin-right: 1vw;
+  float: left;
 
   transition-property: all;
   transition-duration: 0.5s;
@@ -17,6 +18,7 @@
 
 .keywordBtn {
   position: relative;
+  float: left;
   outline: none;
   border: none;
   padding: 0.6vw;
@@ -26,12 +28,17 @@
   box-sizing: border-box;
   transition-duration: 0.5s;
   transform-origin: center center;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 .keywordBtn:active {
   background-color: rgba(0, 0, 0, 0.1);
   transition-duration: 1s;
   transform-origin: center center;
+}
+
+.label {
+  font-size: 1.5vw;
 }
 
 .root {
@@ -70,18 +77,16 @@
 
 .leftBtn {
   text-align: center;
-  float: right;
-  width: 4vw;
-  height: 2.5vw;
+  width: 5vw;
+  height: 3vw;
   border-radius: 0.5vw 0 0 0.5vw;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .rightBtn {
   text-align: center;
-  float: right;
-  width: 5vw;
-  height: 2.5vw;
+  width: 6vw;
+  height: 3vw;
   border-radius: 0 0.5vw 0.5vw 0;
   border: 1px solid rgba(0, 0, 0, 0.3);
 }

@@ -4,6 +4,7 @@ import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
 import './searchContent.css';
+import '../responsibleCSS/mobileSearchContent.css';
 
 export default function SearchContent(props) {
   const appStore = useAppStore();
@@ -51,28 +52,31 @@ export default function SearchContent(props) {
 
   return useObserver(() => (
     <>
-      <div id='keywordDiv'>
-        <input id='inputKeyword' placeholder='검색 키워드 추가' 
-          onChange={(e) => setSearchInput(e.target.value)}
-          onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-        ></input>
+      <div id='searchKeyword'>
+        <div id='searchDiv'>
+          <input id='inputKeyword' placeholder='검색 키워드 추가' 
+            onChange={(e) => setSearchInput(e.target.value)}
+            onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
+          ></input>
+          <Button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</Button>
+          <Button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</Button>
+        </div>
 
-        <Button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</Button>
-        <Button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</Button>
-
-        {
-          keywords.length !== 0 &&
-            keywords.map((keyword, idx) => {
-              return (
-                <div key={idx} className='keyword'>
-                  <p>{keyword}</p>
-                  <button className='deleteKeyword' onClick={() => deleteKeyword(keyword)}>
-                    <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
-                  </button>
-                </div>
-              )
-            })
-        }
+        <div id='keywordDiv'>
+          {
+            keywords.length !== 0 &&
+              keywords.map((keyword, idx) => {
+                return (
+                  <div key={idx} className='keyword'>
+                    <p>{keyword}</p>
+                    <button className='deleteKeyword' onClick={() => deleteKeyword(keyword)}>
+                      <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
+                    </button>
+                  </div>
+                )
+              })
+          }
+        </div>
       </div>
     </>
   ))
@@ -114,7 +118,7 @@ function Button(props) {
   }
 
   return (
-    <div className={className} onMouseDown={onMouseDown}>
+    <div className={className} onClick={onMouseDown}>
         <span className='label'>{children}</span>
         <span className='root'></span>
     </div>

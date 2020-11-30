@@ -57,12 +57,13 @@
     margin: 0;
 
     position: fixed;
-    right: 7vw;
-    top: 4.5vw;
+    right: 5vw;
+    top: 2.5vw;
     z-index: 3;
 
-    width: 5vw;
-    height: 5vw;
+    padding: 2vw 2vw 1vw 2vw;
+    border-radius: 5vw;
+    border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: transparent;
   }
   
@@ -71,19 +72,20 @@
     margin: 0;
     padding: 0;
     height: 1vw;
+    width: 5vw;
     margin-bottom: 1vw;
     border-radius: 0.5vw;
     background-color: rgb(105, 105, 105);
 
     transition-property: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
 
   .icon_top {
     transform: translateY(2vw);
 
     transition-property: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
   .icon_mid {
     opacity: 0;
@@ -94,20 +96,20 @@
     transform: translateY(-2vw);
 
     transition-property: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
   .closedIcon_top {
     transform: translateY(2vw) rotate(45deg);
 
     transition-property: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
 
   .closedIcon_bot {
     transform: translateY(-2vw) rotate(-45deg);
 
     transition-property: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.2s;
   }
   
   #drawerMenu {
