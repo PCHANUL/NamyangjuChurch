@@ -105,6 +105,7 @@
   display: block;
   float: left;
   user-select: none;
+  margin-right: 0.5vw;
 }
 
 .keyword p {

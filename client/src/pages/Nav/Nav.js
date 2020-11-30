@@ -79,8 +79,8 @@ export default function Nav() {
           <NavTabs appStore={appStore} />
       }
       {/* menu */}
-      <div id='drawerMenuBtn' onClick={openMemu}></div>
-      <div id='drawerBack' className='background hidden'></div>
+      <MenuButton onClick={openMemu} />
+      <div id='drawerBackground' className='background hidden'></div>
       <div id='drawerMenu' className='drawerMenuOpen'>
         {/* <h4>남양주 사랑교회</h4> */}
         <Link to="/" className='menuBtn'>
@@ -98,9 +98,45 @@ export default function Nav() {
   ))
 }
 
+function MenuButton(props) {
+  const { onClick } = props;
+  let isOpen = false;
+
+  const clickFunction = (e) => {
+    onClick();
+    let children = document.querySelector('#drawerMenuBtn').childNodes;
+    children[0].className = 'menuBtnIcon icon_top';
+    children[2].className = 'menuBtnIcon icon_bot';
+
+    if (isOpen) {
+      isOpen = false;
+      setTimeout(() => {
+        children[0].className = 'menuBtnIcon';
+        children[1].className = 'menuBtnIcon';
+        children[2].className = 'menuBtnIcon';
+      }, 500)
+    } else {
+      isOpen = true;
+      setTimeout(() => {
+        children[0].className = 'menuBtnIcon icon_top closedIcon_top';
+        children[1].className = 'menuBtnIcon icon_mid';
+        children[2].className = 'menuBtnIcon icon_bot closedIcon_bot';
+      }, 500)
+    }
+  }
+
+  return (
+    <div id='drawerMenuBtn' onClick={clickFunction}>
+      <div className='menuBtnIcon'></div>
+      <div className='menuBtnIcon'></div>
+      <div className='menuBtnIcon'></div>
+    </div>
+  )
+}
+
 function openMemu() {
   let target = document.querySelector('#drawerMenu');
-  let targetBackground = document.querySelector('#drawerBack');
+  let targetBackground = document.querySelector('#drawerBackground');
   target.className = target.className === 'drawerMenuOpen' ? '' : 'drawerMenuOpen';
   targetBackground.className = targetBackground.className === 'background hidden' ? 'background' : 'background hidden';
 }
