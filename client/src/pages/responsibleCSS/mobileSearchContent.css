@@ -31,12 +31,10 @@
     height: 5vw;
   }
 
-
   /* keyword */
   #keywordDiv {
-    box-sizing: content-box;
     margin-top: 2vw;
-    min-height: 5vw;
+    overflow: scroll;
   }
 
 
