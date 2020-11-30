@@ -1,35 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import './nav.css';
 import '../responsibleCSS/mobileNav.css';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
-function isScrollDown() {
-  let pos = window.scrollY;
-  
-  return function() {
-    // console.log('window.scrollY: ', window.scrollY);
-    // console.log('document.body.scrollHeight: ', document.body.scrollHeight);
-    // console.log('document.body.scrollHeight - window.innerHeight: ', document.body.scrollHeight - window.innerHeight);
-    
-    if (window.scrollY <= 100) {
-      return true;
-    } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
-      return false;
-    } else {
-      if (pos < window.scrollY) {
-        pos = window.scrollY;
-        return false;
-      } else if (pos > window.scrollY){
-        pos = window.scrollY;
-        return true;
-      }
-    }
-  }
-}
+// component
+import MobileMenuButton from './MobileMenuButton';
+
+
 
 export default function Nav() {
   const [scrollDown, setScrollDown] = useState(true);
@@ -62,83 +42,57 @@ export default function Nav() {
 
   return useObserver(() => (
     <nav>
-      <div id='nav'>
-        <Link to="/" className='home'>
-          남양주 사랑교회
-        </Link>
-        <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
-          교회소식
-        </Link>
-        <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
-          말씀보기
-        </Link>
-      </div>
-      {/* content tab */}
       {
+        // 모바일 화면에서 컨텐츠를 볼 때 nav 제외
+        location.pathname.includes('/content/') === false && window.innerWidth < 648 
+        ? (
+        <div id='nav'>
+          <Link to="/" className='home'>
+            남양주 사랑교회
+          </Link>
+          <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
+            교회소식
+          </Link>
+          <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
+            말씀보기
+          </Link>
+        </div>
+        ) : (
+          <></>
+        )
+      }
+
+      {
+        // 리스트 화면에서만 탭 생성
         location.pathname === '/contentlist' && 
           <NavTabs appStore={appStore} />
       }
-      {/* menu */}
-      <MenuButton onClick={openMemu} />
-      <div id='drawerBackground' className='background hidden'></div>
-      <div id='drawerMenu' className='drawerMenuOpen'>
-        {/* <h4>남양주 사랑교회</h4> */}
-        <Link to="/" className='menuBtn'>
-          홈
-        </Link>
-        <Link to="/contentlist" className='menuBtn' onClick={() => appStore.setVideoList(1, 0)}>
-          교회소식
-        </Link>
-        <Link to="/contentlist" className='menuBtn' onClick={() => appStore.setVideoList(0, 0)}>
-          말씀보기
-        </Link>
-        <h4>검색</h4>
-      </div>
+
+      {/* 모바일 메뉴 */}
+      <MobileMenuButton />
+      
     </nav>
   ))
 }
 
-function MenuButton(props) {
-  const { onClick } = props;
-  let isOpen = false;
-
-  const clickFunction = (e) => {
-    onClick();
-    let children = document.querySelector('#drawerMenuBtn').childNodes;
-    children[0].className = 'menuBtnIcon icon_top';
-    children[2].className = 'menuBtnIcon icon_bot';
-
-    if (isOpen) {
-      isOpen = false;
-      setTimeout(() => {
-        children[0].className = 'menuBtnIcon';
-        children[1].className = 'menuBtnIcon';
-        children[2].className = 'menuBtnIcon';
-      }, 200)
+function isScrollDown() {
+  let pos = window.scrollY;
+  
+  return function() {
+    if (window.scrollY <= 100) {
+      return true;
+    } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
+      return false;
     } else {
-      isOpen = true;
-      setTimeout(() => {
-        children[0].className = 'menuBtnIcon icon_top closedIcon_top';
-        children[1].className = 'menuBtnIcon icon_mid';
-        children[2].className = 'menuBtnIcon icon_bot closedIcon_bot';
-      }, 200)
+      if (pos < window.scrollY) {
+        pos = window.scrollY;
+        return false;
+      } else if (pos > window.scrollY){
+        pos = window.scrollY;
+        return true;
+      }
     }
   }
-
-  return (
-    <div id='drawerMenuBtn' onClick={clickFunction}>
-      <div className='menuBtnIcon'></div>
-      <div className='menuBtnIcon'></div>
-      <div className='menuBtnIcon'></div>
-    </div>
-  )
-}
-
-function openMemu() {
-  let target = document.querySelector('#drawerMenu');
-  let targetBackground = document.querySelector('#drawerBackground');
-  target.className = target.className === 'drawerMenuOpen' ? '' : 'drawerMenuOpen';
-  targetBackground.className = targetBackground.className === 'background hidden' ? 'background' : 'background hidden';
 }
 
 function NavTabs({ appStore }) {

@@ -44,7 +44,7 @@ const ContentList = () => {
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>
-                <Link to={`/contentlist/${data.id}`}>{data.title}</Link>
+                <Link to={`/content/${data.id}`}>{data.title}</Link>
                 <p>{transDate(data.createdAt)}</p>
               </div>
               <div className='videoContent'>

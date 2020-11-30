@@ -29,7 +29,7 @@ const App = (props) => {
         <Switch key={location.key}>
           <Route exact path='/' component={Main} />
           <Route exact path='/contentlist' component={ContentList} />
-          <Route path='/contentlist/:id' component={ContentViewer} />
+          <Route path='/content/:id' component={ContentViewer} />
 
           <Route exact path='/admin' component={Admin} />
           <Route path='/admin/signin' component={Signin} />
