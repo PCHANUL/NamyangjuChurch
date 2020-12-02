@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css'
 import '../responsibleCSS/mobileMain.css'
@@ -24,13 +24,52 @@ const handleApiLoaded = (map, maps) => {
 function Main() {
 
   const scrollButton = (dir) => {
-    console.log('asdf');
     let outer = document.querySelector('#outer');
     let leftPos = outer.scrollLeft;
     let m = dir === 'left' ? window.innerWidth / 2 : window.innerWidth / -2;
     outer.scroll({ left: leftPos + m, behavior: 'smooth'})
-    
   }
+
+  function touchScrollFunc() {
+    let touchPos = 0;
+    let outer = document.querySelector('#outer');
+    let cardPos = 0;
+    
+    return (e) => { 
+      if (e.type === 'touchend') {
+        if (touchPos <= 180) {
+          cardPos = cardPos + window.innerWidth / 2;
+        } else if (touchPos >= 400) {
+          cardPos = cardPos - window.innerWidth / 2;
+        }
+        outer.scroll({ left: cardPos, behavior: 'smooth' })
+        return touchPos = 0;
+
+      } else {
+        if (touchPos === 0) touchPos = e.touches[0].clientX;
+  
+        let m = e.touches[0].clientX - touchPos;
+        let scrollPos = outer.scrollLeft;
+        outer.scroll({ left: scrollPos - m })
+  
+        touchPos = e.touches[0].clientX;
+        console.log('touchPos: ', touchPos);
+      }
+
+    }
+  }
+
+  
+  useEffect(() => {
+    let touchScroll = touchScrollFunc();
+    document.querySelector('#outer').addEventListener('touchmove', touchScroll, false);
+    document.querySelector('#outer').addEventListener('touchend', touchScroll, false);
+    return () => {
+      document.querySelector('#outer').removeEventListener('touchmove', touchScroll, false);
+    }
+  }, [])
+
+  
 
   return (
     <>

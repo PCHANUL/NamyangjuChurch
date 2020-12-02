@@ -42,9 +42,9 @@
     position: absolute;
     outline: none;
     border: none;
-    height: 60vw;
+    height: 65vw;
     width: 30vw;
-    top: 90vw;
+    /* top: 90vw; */
   }
   
   .scrollButton_right {
@@ -62,9 +62,9 @@
   #cardContainer {
     grid-gap: 5.5vw;
     grid-template-columns: 45vw 45vw 45vw;
-    width: 135vw;
+    width: 134vw;
     height: 50vw;
-    margin: 7vw 3vw 0 -2vw;
+    margin: 5vw 3vw 0 -2vw;
     padding: 4vw 36vw 2vw 36vw;
     background-color: rgba(180, 180, 180, 0.2);
   }
