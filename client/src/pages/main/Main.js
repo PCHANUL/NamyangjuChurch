@@ -36,24 +36,22 @@ function Main() {
     let cardPos = 0;
     
     return (e) => { 
-      if (e.type === 'touchend') {
-        if (touchPos <= 180) {
+      if (e.type === 'touchstart') {
+        return touchPos = e.touches[0].clientX;
+      } else if (e.type === 'touchend') {
+        if (touchPos <= 210 && cardPos < window.innerWidth) {
           cardPos = cardPos + window.innerWidth / 2;
-        } else if (touchPos >= 400) {
+        } else if (touchPos >= 310 && cardPos > 0) {
           cardPos = cardPos - window.innerWidth / 2;
         }
         outer.scroll({ left: cardPos, behavior: 'smooth' })
         return touchPos = 0;
-
-      } else {
-        if (touchPos === 0) touchPos = e.touches[0].clientX;
-  
+      } else if (e.type === 'touchmove') {
         let m = e.touches[0].clientX - touchPos;
         let scrollPos = outer.scrollLeft;
         outer.scroll({ left: scrollPos - m })
   
-        touchPos = e.touches[0].clientX;
-        console.log('touchPos: ', touchPos);
+        return touchPos = e.touches[0].clientX;
       }
 
     }
@@ -64,6 +62,7 @@ function Main() {
     let touchScroll = touchScrollFunc();
     document.querySelector('#outer').addEventListener('touchmove', touchScroll, false);
     document.querySelector('#outer').addEventListener('touchend', touchScroll, false);
+    document.querySelector('#outer').addEventListener('touchstart', touchScroll, false);
     return () => {
       document.querySelector('#outer').removeEventListener('touchmove', touchScroll, false);
     }
@@ -81,8 +80,8 @@ function Main() {
         <div id="prayer">
             <h1>교회 기도제목</h1>
           <div id='outer'>
-            <button className='scrollButton scrollButton_right' onClick={() => scrollButton('right')}>{'<'}</button>
-            <button className='scrollButton scrollButton_left' onClick={() => scrollButton('left')}>{'>'}</button>
+            <button className='scrollButton scrollButton_right'>{'<'}</button>
+            <button className='scrollButton scrollButton_left'>{'>'}</button>
             <div id='cardContainer'>
               <div className='prayerCard'>
                 <h2>하나님이 <br />원하시는 교회</h2>
