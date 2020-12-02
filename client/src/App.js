@@ -3,7 +3,7 @@ import { Route, Switch, Link, useLocation, Redirect } from 'react-router-dom';
 
 import Nav from './pages/Nav/Nav';
 import Footer from './pages/Footer';
-import Main from './pages/Main';
+import Main from './pages/main/Main';
 import Edit from './pages/admin/Edit';
 import Admin from './pages/admin/Admin';
 import Login from './pages/Login';

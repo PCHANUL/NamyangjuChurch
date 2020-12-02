@@ -55,6 +55,10 @@
   font-size: 1vw;
 }
 
+.scrollButton {
+  visibility: hidden;
+}
+
 #cardContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -75,6 +79,10 @@
   font-weight: 600;
   line-height: 2.5vw;
   margin-top: 4.5vw;
+}
+
+.prayerCard:nth-child(3) > h2 {
+  margin-top: 3vw;
 }
           
 /* paster */

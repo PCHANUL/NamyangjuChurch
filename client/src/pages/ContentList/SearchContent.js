@@ -58,8 +58,8 @@ export default function SearchContent(props) {
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
           ></input>
-          <Button className='keywordBtn leftBtn' onClick={searchKeywords}>검색</Button>
-          <Button className='keywordBtn rightBtn' onClick={initKeywords}>초기화</Button>
+          <Button className='keywordBtn' onClick={searchKeywords}>검색</Button>
+          <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
         </div>
 
         <div id='keywordDiv'>
@@ -87,10 +87,8 @@ function Button(props) {
 
   const onMouseDown = (e) => {
     let target = findRoot(e.target);
-    
-    let mouseX = e.nativeEvent.layerX
-    let mouseY = e.nativeEvent.layerY
-
+    let mouseX = e.nativeEvent.offsetX;
+    let mouseY = e.nativeEvent.offsetY;
     onClick();
     clickAction(target, mouseX, mouseY);
   }

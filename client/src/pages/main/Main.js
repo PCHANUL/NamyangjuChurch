@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './main.css'
-import './responsibleCSS/mobileMain.css'
+import '../responsibleCSS/mobileMain.css'
 
-import Map from './Map';
-import TimeTable from './TimeTable';
+import Map from '../Map';
+import TimeTable from '../TimeTable';
 
 import axios from 'axios';
 
@@ -22,6 +22,16 @@ const handleApiLoaded = (map, maps) => {
 
 
 function Main() {
+
+  const scrollButton = (dir) => {
+    console.log('asdf');
+    let outer = document.querySelector('#outer');
+    let leftPos = outer.scrollLeft;
+    let m = dir === 'left' ? window.innerWidth / 2 : window.innerWidth / -2;
+    outer.scroll({ left: leftPos + m, behavior: 'smooth'})
+    
+  }
+
   return (
     <>
       <div id="mainImg">
@@ -30,35 +40,38 @@ function Main() {
 
       <div id="main">
         <div id="prayer">
-          <h1>교회 기도제목</h1>
-          <div id='cardContainer'>
+            <h1>교회 기도제목</h1>
+          <div id='outer'>
+            <button className='scrollButton scrollButton_right' onClick={() => scrollButton('right')}>{'<'}</button>
+            <button className='scrollButton scrollButton_left' onClick={() => scrollButton('left')}>{'>'}</button>
+            <div id='cardContainer'>
+              <div className='prayerCard'>
+                <h2>하나님이 <br />원하시는 교회</h2>
+                <ul>
+                  <li>오직 복음</li>
+                  <li>오직 전도,선교</li>
+                  <li>오직 제자</li>
+                  <li>오직 후대</li>
+                </ul>
+              </div>
 
-            <div className='prayerCard'>
-              <h2>하나님이 <br />원하시는 교회</h2>
-              <ul>
-                <li>오직 복음</li>
-                <li>오직 전도,선교</li>
-                <li>오직 제자</li>
-                <li>오직 후대</li>
-              </ul>
-            </div>
+              <div className='prayerCard'>
+                <h2>하나님이 <br />찾으시는 교회</h2>
+                <ul>
+                  <li>성경적 전도운동하는 교회</li>
+                  <li>다락방, 팀사역, 미션홈 </li>
+                  <li>지교회 5기초 현장</li>
+                </ul>
+              </div>
 
-            <div className='prayerCard'>
-              <h2>하나님이 <br />찾으시는 교회</h2>
-              <ul>
-                <li>성경적 전도운동하는 교회</li>
-                <li>다락방, 팀사역, 미션홈 </li>
-                <li>지교회 5기초 현장</li>
-              </ul>
-            </div>
-
-            <div className='prayerCard'>
-              <h2 style={{marginTop: '3vw'}}>강북 600만, <br /> 남양주, 양주<br />100만 복음화</h2>
-              <ul>
-                <li>5000제자, 2000지교회</li>
-                <li>200절대제자, 200장로</li>
-                <li>200렘넌트 </li>
-              </ul>
+              <div className='prayerCard'>
+                <h2>강북 600만, <br /> 남양주, 양주<br />100만 복음화</h2>
+                <ul>
+                  <li>5000제자, 2000지교회</li>
+                  <li>200절대제자, 200장로</li>
+                  <li>200렘넌트 </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

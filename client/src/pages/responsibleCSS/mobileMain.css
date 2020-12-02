@@ -10,8 +10,82 @@
     margin: 13vw 0 4vw -1.5vw;
     box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
   }
+
   #mainImg img {
     margin: -6vw 0 0 -40vw;
     width: 150vw;
   }
+
+  #prayer {
+    height: 70vw;
+    padding: 5vw 0 0 0;
+  }
+
+  #prayer h1 {
+    font-size: 4vw;
+  }
+
+  #prayer li {
+    font-size: 3vw;
+    margin-bottom: 2vw;
+  }
+
+  #outer {
+    overflow-x: hidden;
+    width: 105vw;
+    height: 70vw;
+    margin-left: -20vw;
+  }
+
+  .scrollButton {
+    visibility: visible;
+    position: absolute;
+    outline: none;
+    border: none;
+    height: 60vw;
+    width: 30vw;
+    top: 90vw;
+  }
+  
+  .scrollButton_right {
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+    padding-right: 10vw;
+    left: 0;
+  }
+  
+  .scrollButton_left {
+    background: linear-gradient(90deg,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    padding-left: 10vw;
+    right: 0;
+  }
+
+  #cardContainer {
+    grid-gap: 5.5vw;
+    grid-template-columns: 45vw 45vw 45vw;
+    width: 135vw;
+    height: 50vw;
+    margin: 7vw 3vw 0 -2vw;
+    padding: 4vw 36vw 2vw 36vw;
+    background-color: rgba(180, 180, 180, 0.2);
+  }
+
+  .prayerCard {
+    width: 40vw;
+    height: 48vw;
+    grid-template-rows: 23vw auto;
+    background-color: #fff;
+    box-shadow: 1vw 1vw 3vw 0 rgba(170, 170, 170, 0.5);
+  }
+
+  .prayerCard h2 {
+    font-size: 4vw;
+    line-height: 6vw;
+    margin-top: 5vw;
+  }
+
+  .prayerCard:nth-child(3) > h2 {
+    margin-top: 2vw;
+  }
+
+  
 }
