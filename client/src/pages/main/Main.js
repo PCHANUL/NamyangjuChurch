@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './main.css'
 import '../responsibleCSS/mobileMain.css'
@@ -22,38 +22,46 @@ const handleApiLoaded = (map, maps) => {
 
 
 function Main() {
-
-  const scrollButton = (dir) => {
-    let outer = document.querySelector('#outer');
-    let leftPos = outer.scrollLeft;
-    let m = dir === 'left' ? window.innerWidth / 2 : window.innerWidth / -2;
-    outer.scroll({ left: leftPos + m, behavior: 'smooth'})
-  }
+  const [leftPos, setLeftPos] = useState(0);
 
   function touchScrollFunc() {
     let touchPos = 0;
-    let outer = document.querySelector('#outer');
-    let cardPos = 0;
+    let cardContainer = document.querySelector('#cardContainer');
+    let cardPos = 1;
     
     return (e) => { 
       if (e.type === 'touchstart') {
-        return touchPos = e.touches[0].clientX;
-      } else if (e.type === 'touchend') {
-        if (touchPos <= 210 && cardPos < window.innerWidth) {
-          cardPos = cardPos + window.innerWidth / 2;
-        } else if (touchPos >= 310 && cardPos > 0) {
-          cardPos = cardPos - window.innerWidth / 2;
-        }
-        outer.scroll({ left: cardPos, behavior: 'smooth' })
-        return touchPos = 0;
-      } else if (e.type === 'touchmove') {
-        let m = e.touches[0].clientX - touchPos;
-        let scrollPos = outer.scrollLeft;
-        outer.scroll({ left: scrollPos - m })
-  
-        return touchPos = e.touches[0].clientX;
-      }
+        let initPos
+        if (cardPos === 1) initPos = 0;
+        else if (cardPos === 2) initPos = window.innerWidth / 2;
+        else if (cardPos === 3) initPos = window.innerWidth;
+        // 카드 위치 초기설정
+        cardContainer.style.left = `-${initPos}px`;
+        // 터치 위치 초기설정
+        touchPos = e.touches[0].clientX;
 
+      } else if (e.type === 'touchend') {
+        let screenCenter = window.innerWidth / 2;
+        if (touchPos <= screenCenter - 20 && cardPos < 3) cardPos += 1;
+        else if (touchPos >= screenCenter + 20 && cardPos > 1) cardPos -= 1;
+        // style 제거 후 className 설정
+        cardContainer.style.left = null;
+        cardContainer.className = `cardPos${cardPos}`;
+        touchPos = 0;  // 터치 초기화
+      } 
+      else if (e.type === 'touchmove') {
+        let m = e.touches[0].clientX - touchPos;  // 움직인 거리
+        let scrollPos = cardContainer.style.left.slice(0, -2);  // 기존 카드 위치
+        console.log('scrollPos: ', scrollPos);
+
+        if (scrollPos > 0 && Math.sign(m) === 1) return;
+        else if (scrollPos < -1 * (window.innerWidth) && Math.sign(m) === -1) return;
+        else {
+          cardContainer.style.left = `${Number(scrollPos) + m}px`
+          touchPos = e.touches[0].clientX;
+
+        }
+      }
     }
   }
 
@@ -82,7 +90,7 @@ function Main() {
           <div id='outer'>
             <button className='scrollButton scrollButton_right'>{'<'}</button>
             <button className='scrollButton scrollButton_left'>{'>'}</button>
-            <div id='cardContainer'>
+            <div id='cardContainer' className='cardPos1'>
               <div className='prayerCard'>
                 <h2>하나님이 <br />원하시는 교회</h2>
                 <ul>

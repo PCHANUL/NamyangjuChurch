@@ -44,6 +44,7 @@
     border: none;
     height: 65vw;
     width: 30vw;
+    z-index: 3;
     /* top: 90vw; */
   }
   
@@ -60,6 +61,7 @@
   }
 
   #cardContainer {
+    position: relative;
     grid-gap: 5.5vw;
     grid-template-columns: 45vw 45vw 45vw;
     width: 134vw;
@@ -67,6 +69,23 @@
     margin: 5vw 3vw 0 -2vw;
     padding: 4vw 36vw 2vw 36vw;
     background-color: rgba(180, 180, 180, 0.2);
+
+  }
+  
+  .cardPos1 {
+    left: 0vw;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .cardPos2 {
+    left: -50vw;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+  .cardPos3 {
+    left: -100vw;
+    transition-property: all;
+    transition-duration: 0.5s;
   }
 
   .prayerCard {
