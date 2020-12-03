@@ -23,53 +23,58 @@ const handleApiLoaded = (map, maps) => {
 
 function Main() {
   const [leftPos, setLeftPos] = useState(0);
+  let scroll;
 
-  function touchScrollFunc() {
-    let touchPos = 0;
+  const scrollFunc = () => {
+    let curPos = 0;
     let cardContainer = document.querySelector('#cardContainer');
     let cardPos = 1;
     let isMoved = false;
+    let isMouse = false;
     
     return (e) => { 
-      if (e.type === 'touchstart') {
+      if (e.type[0] === 'm') isMouse = true;
+      else isMouse = false;
+      
+      if (e.type === 'touchstart' || e.type === 'mousedown') {
+        if (isMouse) cardContainer.addEventListener('mousemove', scroll, false); // 마우스 이벤트 생성
         let initPos
         if (cardPos === 1) initPos = 0;
         else if (cardPos === 2) initPos = window.innerWidth / 2;
         else if (cardPos === 3) initPos = window.innerWidth;
         // 카드 위치 초기설정
         cardContainer.style.left = `-${initPos}px`;
-        // 터치 위치 초기설정
-        touchPos = e.touches[0].clientX;
+        // 초기 위치설정
+        curPos = isMouse ? e.clientX : e.touches[0].clientX;
 
-      } else if (e.type === 'touchend') {
+      } else if (e.type === 'touchend' || e.type === 'mouseup') {
         let screenCenter = window.innerWidth / 2;
+
         if (isMoved === false) {
-          if (touchPos <= screenCenter - 20 && cardPos > 1) cardPos += -1;
-          else if (touchPos >= screenCenter + 20 && cardPos < 3) cardPos += 1;
+          if (curPos <= screenCenter - 20 && cardPos > 1) cardPos += -1;
+          else if (curPos >= screenCenter + 20 && cardPos < 3) cardPos += 1;
         } else {
-          if (touchPos <= screenCenter - 20 && cardPos < 3) cardPos += 1;
-          else if (touchPos >= screenCenter + 20 && cardPos > 1) cardPos += -1;
+          if (curPos <= screenCenter - 20 && cardPos < 3) cardPos += 1;
+          else if (curPos >= screenCenter + 20 && cardPos > 1) cardPos += -1;
         }
         
-        console.log('cardPos: ', cardPos);
-
         // style 제거 후 className 설정
         cardContainer.style.left = null;
         cardContainer.className = `cardPos${cardPos}`;
-        touchPos = 0;  // 터치 초기화
+        curPos = 0;  // 터치 초기화
         isMoved = false;  // move 토글 초기화
+        if (isMouse) cardContainer.removeEventListener('mousemove', scroll, false); // 마우스 이벤트 제거
 
-      } else if (e.type === 'touchmove') {
+      } else if (e.type === 'touchmove' || e.type === 'mousemove') {
         isMoved = true;
-        let m = e.touches[0].clientX - touchPos;  // 움직인 거리
+        let m = (isMouse ? e.clientX : e.touches[0].clientX) - curPos;  // 움직인 거리
         let scrollPos = cardContainer.style.left.slice(0, -2);  // 기존 카드 위치
 
         if (scrollPos > 0 && Math.sign(m) === 1) return;
         else if (scrollPos < -1 * (window.innerWidth) && Math.sign(m) === -1) return;
         else {
           cardContainer.style.left = `${Number(scrollPos) + m}px`
-          touchPos = e.touches[0].clientX;
-
+          curPos = isMouse ? e.clientX : e.touches[0].clientX;
         }
       }
     }
@@ -78,10 +83,18 @@ function Main() {
 
   
   useEffect(() => {
-    let touchScroll = touchScrollFunc();
-    document.querySelector('#outer').addEventListener('touchmove', touchScroll, false);
-    document.querySelector('#outer').addEventListener('touchend', touchScroll, false);
-    document.querySelector('#outer').addEventListener('touchstart', touchScroll, false);
+    scroll = scrollFunc();
+    if ('ontouchstart' in window) {
+      // touch
+      document.querySelector('#outer').addEventListener('touchmove', scroll, false);
+      document.querySelector('#outer').addEventListener('touchend', scroll, false);
+      document.querySelector('#outer').addEventListener('touchstart', scroll, false);
+    } else {
+      // click
+      document.querySelector('#outer').addEventListener('mousedown', scroll, false);
+      document.querySelector('#outer').addEventListener('mouseup', scroll, false);
+    }
+
     return () => {
       document.querySelector('#outer').removeEventListener('touchmove', touchScroll, false);
     }

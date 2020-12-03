@@ -64,6 +64,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 3vw;
   margin: 7vw 3vw 0 3vw;
+  cursor: grab;
 }
 
 .prayerCard {

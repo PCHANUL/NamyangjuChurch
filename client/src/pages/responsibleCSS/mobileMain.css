@@ -44,7 +44,7 @@
     border: none;
     height: 65vw;
     width: 30vw;
-    z-index: 3;
+    z-index: 1;
     /* top: 90vw; */
   }
   
@@ -69,7 +69,7 @@
     margin: 5vw 3vw 0 -2vw;
     padding: 4vw 36vw 2vw 36vw;
     background-color: rgba(180, 180, 180, 0.2);
-
+    user-select: none;
   }
   
   .cardPos1 {
