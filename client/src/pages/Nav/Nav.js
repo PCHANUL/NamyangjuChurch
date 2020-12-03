@@ -9,8 +9,6 @@ import { useObserver } from 'mobx-react';
 // component
 import MobileMenuButton from './MobileMenuButton';
 
-
-
 export default function Nav() {
   const [scrollDown, setScrollDown] = useState(true);
   const appStore = useAppStore();

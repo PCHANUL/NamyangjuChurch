@@ -28,6 +28,7 @@ function Main() {
     let touchPos = 0;
     let cardContainer = document.querySelector('#cardContainer');
     let cardPos = 1;
+    let isMoved = false;
     
     return (e) => { 
       if (e.type === 'touchstart') {
@@ -42,17 +43,26 @@ function Main() {
 
       } else if (e.type === 'touchend') {
         let screenCenter = window.innerWidth / 2;
-        if (touchPos <= screenCenter - 20 && cardPos < 3) cardPos += 1;
-        else if (touchPos >= screenCenter + 20 && cardPos > 1) cardPos -= 1;
+        if (isMoved === false) {
+          if (touchPos <= screenCenter - 20 && cardPos > 1) cardPos += -1;
+          else if (touchPos >= screenCenter + 20 && cardPos < 3) cardPos += 1;
+        } else {
+          if (touchPos <= screenCenter - 20 && cardPos < 3) cardPos += 1;
+          else if (touchPos >= screenCenter + 20 && cardPos > 1) cardPos += -1;
+        }
+        
+        console.log('cardPos: ', cardPos);
+
         // style 제거 후 className 설정
         cardContainer.style.left = null;
         cardContainer.className = `cardPos${cardPos}`;
         touchPos = 0;  // 터치 초기화
-      } 
-      else if (e.type === 'touchmove') {
+        isMoved = false;  // move 토글 초기화
+
+      } else if (e.type === 'touchmove') {
+        isMoved = true;
         let m = e.touches[0].clientX - touchPos;  // 움직인 거리
         let scrollPos = cardContainer.style.left.slice(0, -2);  // 기존 카드 위치
-        console.log('scrollPos: ', scrollPos);
 
         if (scrollPos > 0 && Math.sign(m) === 1) return;
         else if (scrollPos < -1 * (window.innerWidth) && Math.sign(m) === -1) return;
@@ -64,6 +74,7 @@ function Main() {
       }
     }
   }
+
 
   
   useEffect(() => {
