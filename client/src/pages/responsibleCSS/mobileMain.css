@@ -107,9 +107,14 @@
     margin-top: 2vw;
   }
 
-
   #pasterImg {
     float: unset;
+  }
+
+  #route {
+    height: 60vw;
+    width: 90vw;
+    margin: 15vw 0 0 -10vw;
   }
 
   

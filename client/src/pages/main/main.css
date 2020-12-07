@@ -116,19 +116,21 @@
 }
 
 .gMap {
-  height: 50vw;
-  width: 90vw;
+  height: 30vw;
+  width: 95vw;
 }
-/* 
-.gmnoprint {
+
+.gm-style-mtc,
+.gm-svpc
+{
   visibility: hidden;
-} */
+}
 
 /* style={{height: '40vw', marginTop: '30vw'}} */
 #route {
-  height: 50vw;
-  width: 90vw;
-  margin: 15vw 0 0 -10vw;
+  height: 30vw;
+  width: 95vw;
+  margin: 15vw 0 0 -12.5vw;
   padding-top: 8vw;
   border-top: 1px solid rgb(220, 220, 220);
   text-align: center;
