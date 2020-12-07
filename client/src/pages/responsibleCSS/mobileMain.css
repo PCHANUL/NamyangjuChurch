@@ -114,15 +114,19 @@
   #route {
     height: 60vw;
     width: 90vw;
-    margin: 15vw 0 0 -10vw;
+    margin: 15vw 0 35vw -10vw;
   }
-
+  
   #route h1 {
     font-size: 4vw;
   }
-
+  
   #infoWindow button {
     font-size: 3.5vw;
+  }
+
+  #timetable h1 {
+    font-size: 4vw;
   }
 
   

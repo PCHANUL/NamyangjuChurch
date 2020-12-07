@@ -9,7 +9,7 @@ let worshipTimes = {
   새벽예배: [0, 5, 20],
 }
 
-function GetCloseTime() {
+function GetClosestTime() {
   let result = '1';
   let date = new Date()
   let now = {
@@ -38,33 +38,38 @@ function GetCloseTime() {
 function TimeTable() {
 
   return (
-    <>
-      {/* <h1>    3일 후 수요예배 시작</h1>
-      <h1>    5시간 후 수요예배 시작</h1>
-      <h1>    잠시후 수요예배 시작</h1>
-      <h1>    수요예배 중 (유튜브 라이브)</h1> */}
-      {/* <table style={{width: '100%', fontSize: '2vw'}}>
+    <div id='timetableDiv'>
+      <h1>예배시간</h1>
+      <table>
         <tr>
           <td>주일 학교</td>
-          <td>오전 9시 30분</td>
-          <td>수요예배</td>
-          <td>오후 7시 30분</td>
+          <td>오전 09시 30분</td>
         </tr>
         <tr>
           <td>주일 대예배</td>
-          <td>오전 11시</td>
-          <td>금요예배</td>
-          <td>오후 8시</td>
+          <td>오전 11시 00분</td>
         </tr>
         <tr>
           <td>주일 오후예배</td>
-          <td>오후 2시</td>
-          <td>새벽예배</td>
-          <td>오전 5시 20분</td>
+          <td>오후 02시 00분</td>
         </tr>
-      </table> */}
-      <GetCloseTime />
-  </>
+      </table>
+
+      <table>
+        <tr>
+          <td>수요예배</td>
+          <td>오후 07시 30분</td>
+        </tr>
+        <tr>
+          <td>금요예배</td>
+          <td>오후 08시 00분</td>
+        </tr>
+        <tr>
+          <td>새벽예배</td>
+          <td>오전 05시 20분</td>
+        </tr>
+      </table>
+  </div>
   )
 }
 
