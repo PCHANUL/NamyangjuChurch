@@ -131,14 +131,31 @@
   height: 30vw;
   width: 95vw;
   margin: 15vw 0 0 -12.5vw;
-  padding-top: 8vw;
+  padding-top: 5vw;
   border-top: 1px solid rgb(220, 220, 220);
   text-align: center;
 }
 
 #route h1 {
   color: rgb(120, 120, 120);
-  font-size: 5vw;
+  font-size: 2.5vw;
   font-weight: 700;
-  margin-bottom: 3vw;
+}
+
+#route p {
+  margin-bottom: 4vw;
+}
+
+#infoWindow button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 5px;
+  font-size: 1.5vw;
+  font-family: 'MapoGoldenPier';
+}
+
+#infoWindow button:hover {
+  border: none;
+  background-color: whitesmoke;
 }

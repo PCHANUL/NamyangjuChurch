@@ -84,17 +84,13 @@ const Map = (props) => {
       >
         <Marker position={{ lat: 37.659365, lng: 127.179435 }}>
           <InfoWindow>
-            <div style={{ opacity: 0.75, padding: `5px` }}>
-              <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-                한진상가 304호
-              </div>
+            <div id='infoWindow'>
               <button onClick={findRoute}>
-                길찾기
+                교회 길찾기
               </button>
             </div>
           </InfoWindow>
         </Marker>
-        {/* <Directions origin={startPoint} destination={endPoint} /> */}
       </GoogleMap>
     </LoadScript>
   )

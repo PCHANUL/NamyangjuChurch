@@ -172,10 +172,8 @@ function Main() {
 
         <div id='route'>
           <h1>오시는길</h1>
-          <Map
-            // startPoint={{ lat: places[0].lat, lng: places[0].lng }}
-            // endPoint={{ lat: places[1].lat, lng: places[1].lng }}
-          />
+          <p>경기도 남양주시 진건읍 진건오남로 98 한신그린상가 304호</p>
+          <Map />
         </div>
         {/* <div style={{height: '60vw', border: '2px solid #000'}}>
           <h1>예배시간</h1>
