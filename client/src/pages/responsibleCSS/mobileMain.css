@@ -70,6 +70,7 @@
     padding: 4vw 36vw 2vw 36vw;
     background-color: rgba(180, 180, 180, 0.2);
     user-select: none;
+    cursor: grab;
   }
   
   .cardPos1 {
@@ -104,6 +105,11 @@
 
   .prayerCard:nth-child(3) > h2 {
     margin-top: 2vw;
+  }
+
+
+  #pasterImg {
+    float: unset;
   }
 
   

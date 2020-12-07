@@ -64,7 +64,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 3vw;
   margin: 7vw 3vw 0 3vw;
-  cursor: grab;
 }
 
 .prayerCard {
@@ -116,10 +115,20 @@
   font-size: 1.5vw;
 }
 
+.gMap {
+  height: 50vw;
+  width: 90vw;
+}
+/* 
+.gmnoprint {
+  visibility: hidden;
+} */
+
 /* style={{height: '40vw', marginTop: '30vw'}} */
 #route {
-  height: 40vw;
-  margin-top: 15vw;
+  height: 50vw;
+  width: 90vw;
+  margin: 15vw 0 0 -10vw;
   padding-top: 8vw;
   border-top: 1px solid rgb(220, 220, 220);
   text-align: center;
@@ -127,5 +136,7 @@
 
 #route h1 {
   color: rgb(120, 120, 120);
+  font-size: 5vw;
   font-weight: 700;
+  margin-bottom: 3vw;
 }
