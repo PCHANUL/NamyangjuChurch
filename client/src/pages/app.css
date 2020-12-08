@@ -6,7 +6,7 @@ html, body {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
-  grid-template-rows: auto 7fr 1fr;
+  grid-template-rows: auto 7fr 10vw;
   grid-gap: 20px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;

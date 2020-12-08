@@ -131,7 +131,7 @@
 #route {
   height: 30vw;
   width: 95vw;
-  margin: 15vw 0 15vw -12.5vw;
+  margin: 15vw 0 20vw -12.5vw;
   padding-top: 5vw;
   border-top: 1px solid rgb(220, 220, 220);
   text-align: center;
@@ -166,6 +166,7 @@
   border-top: 1px solid rgb(220, 220, 220);
   border-bottom: 1px solid rgb(220, 220, 220);
   padding: 3vw 0;
+  margin: 5vw 0;
   text-align: center;
   display: grid;
   grid-template-rows: auto auto;
@@ -184,8 +185,6 @@
 #timetableDiv table, tr, th, td  {
   color: rgb(120, 120, 120);
   width: 12vw;
-  font-size: 1vw;
-  /* border: 1px solid #000; */
   float: left;
 }
 
@@ -212,5 +211,11 @@
   font-family: 'MapoGoldenPier';
   margin-bottom: 4vw;
   font-size: 1.5vw;
+}
+
+#noticeLive {
+  text-align: center;
+  font-family: 'MapoGoldenPier';
+  line-height: 35px;
 }
 

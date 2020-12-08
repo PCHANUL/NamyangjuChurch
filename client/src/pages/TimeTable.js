@@ -69,7 +69,7 @@ function TimeTable() {
           <td>오전 05시 20분</td>
         </tr>
       </table>
-  </div>
+    </div>
   )
 }
 

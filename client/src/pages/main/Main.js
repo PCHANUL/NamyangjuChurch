@@ -177,7 +177,11 @@ function Main() {
         </div>
 
         <TimeTable />
-        
+        <p id='noticeLive'>
+          예배시간에 홈페이지에 접속하시면
+          <br />
+          생방송을 보실 수 있습니다.
+        </p>
       </div>
     </>
   )

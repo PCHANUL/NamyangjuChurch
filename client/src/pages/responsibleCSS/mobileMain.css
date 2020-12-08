@@ -114,7 +114,7 @@
   #route {
     height: 60vw;
     width: 90vw;
-    margin: 15vw 0 35vw -10vw;
+    margin: 15vw 0 40vw -10vw;
   }
   
   #route h1 {
@@ -125,8 +125,31 @@
     font-size: 3.5vw;
   }
 
-  #timetable h1 {
+  #timetableDiv h1 {
     font-size: 4vw;
+
+  }
+
+  #timetableDiv table, tr, th, td  {
+    width: 25vw;
+  }
+
+  #timetableDiv table {
+    margin: 8vw 0 -2vw 0;
+  }
+
+  #timetableDiv tr td {
+    margin-bottom: 2vw;
+  }
+
+  #timetableDiv tr td:nth-child(1) {
+    font-size: 4vw;
+    padding-bottom: 2vw;
+  }
+
+  #timetableDiv tr td:nth-child(2) {
+    font-size: 3vw;
+    margin-bottom: 8vw;
   }
 
   
