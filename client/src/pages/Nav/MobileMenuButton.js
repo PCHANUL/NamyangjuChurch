@@ -10,7 +10,7 @@ export default function MobileMenuButton() {
   return (
     <>
       <MenuButton />
-      <div id='drawerBackground' className='background hidden'></div>
+      <div id='drawerBackground' className=''></div>
       <div id='drawerMenu' className='drawerMenuOpen'>
         <Link to="/" className='menuBtn'>
           홈
@@ -72,7 +72,8 @@ const openMemu = () => {
     return false;
   } else {
     target.className = 'drawerMenuOpen';
-    targetBackground.className = 'backgroundClosed';
+    targetBackground.className = 'background backgroundClosed';
+    setTimeout(() => targetBackground.className = '', 500);
     return true;
   }
 }
