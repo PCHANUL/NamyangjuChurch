@@ -120,6 +120,10 @@
   #route h1 {
     font-size: 4vw;
   }
+
+  #route p {
+    font-size: 2vw;
+  }
   
   #infoWindow button {
     font-size: 3.5vw;
@@ -150,6 +154,11 @@
   #timetableDiv tr td:nth-child(2) {
     font-size: 3vw;
     margin-bottom: 8vw;
+  }
+
+  #lastSentence {
+    font-size: 3vw;
+    line-height: 6vw;
   }
 
   

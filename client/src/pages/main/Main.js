@@ -5,15 +5,8 @@ import '../responsibleCSS/mobileMain.css'
 
 import Map from './Map';
 import TimeTable from '../TimeTable';
+import ImgBoard from './ImgBoard';
 
-import axios from 'axios';
-
-const places = [
-  {},
-  {},
-  // { lat: 37.658863, lng: 127.178282 },
-  // { lat: 37.659365, lng: 127.179435 },
-]
 
 const handleApiLoaded = (map, maps) => {
   // use map and maps objects
@@ -115,9 +108,7 @@ function Main() {
 
   return (
     <>
-      <div id="mainImg">
-        <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/main.jpg' alt="..." ></img>
-      </div>
+      <ImgBoard />
 
       <div id="main">
         <div id="prayer">
@@ -158,7 +149,7 @@ function Main() {
         </div>
 
 
-        <div id='paster'>
+        {/* <div id='paster'>
           <div id='pasterImg'>
             <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/thumbnail.png' alt="..." />
             <h2>담임목사 박종수</h2>
@@ -168,7 +159,7 @@ function Main() {
             하나님은 당신에게 예수 그리스도를 믿고 참 자유함과 치유함을 얻고 영적 서밋으로 세워지길 원하십니다.
             여러분이 오직 복음의 증인, 말씀의 증인, 기도의 증인으로 세워지길 원하십니다.
           </p>
-        </div>
+        </div> */}
 
         <div id='route'>
           <h1>오시는길</h1>
@@ -177,7 +168,7 @@ function Main() {
         </div>
 
         <TimeTable />
-        <p id='noticeLive'>
+        <p id='lastSentence'>
           예배시간에 홈페이지에 접속하시면
           <br />
           생방송을 보실 수 있습니다.

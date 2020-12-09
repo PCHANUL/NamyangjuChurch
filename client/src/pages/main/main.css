@@ -13,26 +13,12 @@
   transform: translate(-50%, 0); */
 }
 
-#mainImg {
-  /* position: absolute; */
-  grid-row: 1;
-  grid-column: 1/6;  
-  height: 30vw;
-  overflow: hidden;
-  margin: 10vw 3vw 4vw 3vw;
-  box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
-}
-
-#mainImg img {
-  margin: -6vw 0 0 -3.8vw;
-  width: 100vw;
-}
-
 /* prayer */
 #prayer {
   height: 40vw;
   border-top: 1px solid rgb(220, 220, 220);
-  padding: 10vw 0 0 0;
+  padding-top: 10vw;
+  margin-top: -10vw;
   text-align: center;
   font-family: 'Nanum Gothic', sans-serif;
   color: rgb(120, 120, 120);
@@ -144,6 +130,7 @@
 }
 
 #route p {
+  font-size: 1vw;
   margin-bottom: 4vw;
 }
 
@@ -151,7 +138,7 @@
   outline: none;
   border: none;
   background-color: transparent;
-  padding: 5px;
+  padding: 1vw;
   font-size: 1.5vw;
   font-family: 'MapoGoldenPier';
 }
@@ -213,9 +200,10 @@
   font-size: 1.5vw;
 }
 
-#noticeLive {
+#lastSentence {
+  font-size: 1.5vw;
   text-align: center;
   font-family: 'MapoGoldenPier';
-  line-height: 35px;
+  line-height: 3vw;
 }
 
