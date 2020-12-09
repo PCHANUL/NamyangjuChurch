@@ -10,6 +10,7 @@ import {
 
 import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 import KEYS from './keys';
+
 import './map.css';
 import '../responsibleCSS/mobileMap.css';
 

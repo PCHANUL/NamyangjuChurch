@@ -3,7 +3,7 @@ import axios from 'axios';
 const addData = async(category, title, content) => {
   console.log('category, title, content: ', category, title, content);
   const result = await axios({
-    url: 'http://nsarang.cafe24app.com/graphql',
+    url: 'http://localhost:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -27,7 +27,7 @@ const addData = async(category, title, content) => {
 const updateData = async(id, category, title, content) => {
   console.log('id, category, title, content: ', id, category, title, content);
   return await axios({
-    url: 'http://nsarang.cafe24app.com/graphql',
+    url: 'http://localhost:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -50,7 +50,7 @@ const updateData = async(id, category, title, content) => {
 
 const deleteData = async(id, callback) => {
   const result = await axios({
-    url: 'http://nsarang.cafe24app.com/graphql',
+    url: 'http://localhost:4000/graphql',
     method: 'DELETE',
     withCredentials : true,
     headers: {
@@ -73,7 +73,7 @@ const deleteData = async(id, callback) => {
 
 const getContent = async( id, callback ) => {
   const content = await axios({
-    url: 'http://nsarang.cafe24app.com/graphql',
+    url: 'http://localhost:4000/graphql',
     method: 'GET',
     withCredentials: true,
     headers: {
@@ -99,7 +99,7 @@ const getContent = async( id, callback ) => {
 
 const getDataList = async(callback) => {
   const data = await axios({
-    url: 'http://nsarang.cafe24app.com/graphql',
+    url: 'http://localhost:4000/graphql',
     method: 'GET',
     withCredentials : true,
     headers: {
@@ -130,7 +130,7 @@ const uploadImage = async(file, callback) => {
   let formData = new FormData();
   await formData.append("img", file);
 
-  const imgUrl = await axios.post('http://nsarang.cafe24app.com/post/img', formData, {
+  const imgUrl = await axios.post('http://localhost:4000/post/img', formData, {
     headers: {'Content-Type': 'multipart/form-data'},
   })
 

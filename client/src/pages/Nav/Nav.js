@@ -1,10 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import './nav.css';
-import '../responsibleCSS/mobileNav.css';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
+
+import './nav.css';
+import '../responsibleCSS/mobileNav.css';
 
 // component
 import MobileMenuButton from './MobileMenuButton';
@@ -16,9 +17,18 @@ export default function Nav() {
 
   const scroll = isScrollDown();
 
+  const rootScroll = () => {
+    if (window.innerWidth / window.scrollY > 2.7) {
+      document.querySelector('#home').className = 'hiddenHome';
+    } else {
+      document.querySelector('#home').removeAttribute('class')
+    }
+  }
+
+  let checkScroll;  // interval
   useEffect(() => {
-    const checkScroll = setInterval(() => {
-      if (window.location.href.includes('/contentlist')) {
+    if (window.location.href.includes('/contentlist')) {
+      checkScroll = setInterval(() => {
         if (window.innerWidth > 648) document.querySelector('#nav').className = '';
         let checked = scroll();
         if (checked !== undefined) {
@@ -28,16 +38,21 @@ export default function Nav() {
           } else {
             document.getElementsByClassName('tabList')[0].className = 'tabList hiddenDrawer';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hiddenDrawer';
-
           }
         }
-      }
-    }, 500)
+      }, 500)
+    } else if (window.location.pathname === '/') {
+      document.querySelector('#home').className = 'hiddenHome';
+      window.addEventListener('scroll', rootScroll);
+    }
+
     return () => {
       clearInterval(checkScroll);
+      document.querySelector('#home').removeAttribute('class');
+      window.removeEventListener('scroll', rootScroll);
     }
-  }, [])
-
+  })
+  
   return useObserver(() => (
     <nav>
       {
@@ -47,9 +62,9 @@ export default function Nav() {
           <GobackButton />
         ) : (
         <div id='nav'>
-          <Link to="/" className='home'>
+          <a id='home' onClick={() => window.location = '/'}>
             남양주 사랑교회
-          </Link>
+          </a>
           <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
             교회소식
           </Link>

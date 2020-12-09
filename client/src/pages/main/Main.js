@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './main.css'
-import '../responsibleCSS/mobileMain.css'
+
 
 import Map from './Map';
 import TimeTable from '../TimeTable';
 import ImgBoard from './ImgBoard';
 
+import './main.css';
+import '../responsibleCSS/mobileMain.css';
 
 const handleApiLoaded = (map, maps) => {
   // use map and maps objects
@@ -108,7 +109,16 @@ function Main() {
 
   return (
     <>
-      <ImgBoard />
+
+      <div id='firstPage'>
+        <div id='greeting'>
+          <h1>오직</h1>
+          <p>그리스도, 하나님나라, 성령충만</p>
+          <p>예배, 말씀, 기도, 전도, 후대에 집중하는</p>
+          <h1>남양주 사랑교회입니다</h1>
+        </div>
+        <ImgBoard />
+      </div>
 
       <div id="main">
         <div id="prayer">
@@ -147,19 +157,6 @@ function Main() {
             </div>
           </div>
         </div>
-
-
-        {/* <div id='paster'>
-          <div id='pasterImg'>
-            <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/thumbnail.png' alt="..." />
-            <h2>담임목사 박종수</h2>
-          </div>
-          <p>
-            예수 그리스도만이 우리 인생의 모든 문제의 해답이며 유일한 길입니다.
-            하나님은 당신에게 예수 그리스도를 믿고 참 자유함과 치유함을 얻고 영적 서밋으로 세워지길 원하십니다.
-            여러분이 오직 복음의 증인, 말씀의 증인, 기도의 증인으로 세워지길 원하십니다.
-          </p>
-        </div> */}
 
         <div id='route'>
           <h1>오시는길</h1>
