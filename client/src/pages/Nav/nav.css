@@ -1,7 +1,6 @@
 #nav {
   width: 95vw;
   height: 4vw;
-  border-bottom: 1px solid #000;
   padding: 1.5vw 0 1vw 5vw;
   position: fixed;
   top: 0;
@@ -9,6 +8,8 @@
   background-color: #fff;
   z-index: 2;
 }
+
+
 
 #home {
   font-family: 'MapoFlowerIsland';
@@ -19,13 +20,13 @@
   cursor: pointer;
 
   transition-property: all;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 }
 
 .hiddenHome {
   opacity: 0;
   transition-property: all;
-  transition-duration: 0.5s;
+  transition-duration: 0.3s;
 }
 
 .button {
@@ -85,6 +86,7 @@
 
 .hidden {
   display: none;
+  backdrop-filter: blur(0px);
   transition-property: all;
   transition-duration: 0.3s;
 }

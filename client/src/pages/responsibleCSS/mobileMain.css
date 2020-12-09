@@ -1,24 +1,23 @@
 @media only screen and (max-width : 640px) {
-
-  #mainImg {
-    /* position: absolute; */
-    grid-row: 1;
-    grid-column: 1/6;  
-    width: 100vw;
+  #greeting {
     height: 50vw;
-    overflow: hidden;
-    margin: 13vw 0 4vw -1.5vw;
-    box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
   }
 
-  #mainImg img {
-    margin: -6vw 0 0 -40vw;
-    width: 150vw;
+  #greeting h1 {
+    font-size: 5vw;
   }
+  #greeting h1:nth-child(1) {
+    font-size: 8vw;
+  }
+  #greeting p {
+    font-size: 3vw;
+  }
+
 
   #prayer {
     height: 70vw;
-    padding: 5vw 0 0 0;
+    margin-top: 5vw;
+    padding: 10vw 0 0 0;
   }
 
   #prayer h1 {
@@ -34,7 +33,7 @@
     overflow-x: hidden;
     width: 105vw;
     height: 70vw;
-    margin-left: -20vw;
+    margin: 5vw 0 0 -20vw;
   }
 
   .scrollButton {
@@ -50,13 +49,13 @@
   
   .scrollButton_right {
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
-    padding-right: 10vw;
+    padding-right: 18vw;
     left: 0;
   }
   
   .scrollButton_left {
     background: linear-gradient(90deg,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-    padding-left: 10vw;
+    padding-left: 18vw;
     right: 0;
   }
 
@@ -114,24 +113,37 @@
   #route {
     height: 60vw;
     width: 90vw;
-    margin: 15vw 0 40vw -10vw;
+    margin: 15vw 0 50vw -10vw;
+    padding: 10vw 0 0 0;
   }
   
   #route h1 {
     font-size: 4vw;
+    margin-bottom: 4vw;
   }
 
   #route p {
-    font-size: 2vw;
+    font-size: 3vw;
+    margin-bottom: 10vw;
   }
   
   #infoWindow button {
     font-size: 3.5vw;
   }
 
+  .gMap {
+    height: 70vw;
+    width: 90vw;
+  }
+
+  #timetableDiv {
+    padding: 7vw 0;
+    margin: 7vw 0;
+  }
+
   #timetableDiv h1 {
     font-size: 4vw;
-
+    padding-bottom: 7vw;
   }
 
   #timetableDiv table, tr, th, td  {
@@ -139,7 +151,7 @@
   }
 
   #timetableDiv table {
-    margin: 8vw 0 -2vw 0;
+    margin: 10vw 0 -2vw 0;
   }
 
   #timetableDiv tr td {

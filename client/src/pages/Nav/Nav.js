@@ -11,17 +11,18 @@ import '../responsibleCSS/mobileNav.css';
 import MobileMenuButton from './MobileMenuButton';
 
 export default function Nav() {
-  const [scrollDown, setScrollDown] = useState(true);
   const appStore = useAppStore();
   const location = useLocation();
 
   const scroll = isScrollDown();
 
   const rootScroll = () => {
-    if (window.innerWidth / window.scrollY > 2.7) {
+    if (window.innerWidth / window.scrollY > 3.5) {
       document.querySelector('#home').className = 'hiddenHome';
+      document.querySelector('#nav').removeAttribute('style');
     } else {
-      document.querySelector('#home').removeAttribute('class')
+      document.querySelector('#home').removeAttribute('class');
+      document.querySelector('#nav').style.borderBottom = '1px solid #000';
     }
   }
 
@@ -41,14 +42,16 @@ export default function Nav() {
           }
         }
       }, 500)
-    } else if (window.location.pathname === '/') {
-      document.querySelector('#home').className = 'hiddenHome';
+    } 
+    
+    if (window.location.pathname === '/') {
       window.addEventListener('scroll', rootScroll);
     }
 
     return () => {
       clearInterval(checkScroll);
       document.querySelector('#home').removeAttribute('class');
+      document.querySelector('#nav').style.borderBottom = '1px solid #000';
       window.removeEventListener('scroll', rootScroll);
     }
   })
@@ -61,8 +64,8 @@ export default function Nav() {
         ? (
           <GobackButton />
         ) : (
-        <div id='nav'>
-          <a id='home' onClick={() => window.location = '/'}>
+        <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
+          <a id='home' className={window.location.pathname === '/' && 'hiddenHome'} onClick={() => window.location = '/'}>
             남양주 사랑교회
           </a>
           <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>

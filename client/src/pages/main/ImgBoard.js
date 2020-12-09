@@ -1,5 +1,6 @@
 import React from 'react';
 import './imgBoard.css';
+import '../responsibleCSS/mobileImgBoard.css';
 
 export default function ImgBoard() {
 
@@ -23,8 +24,8 @@ export default function ImgBoard() {
         </div>
       </div>
       <div id='btnOuter'>
-        <button className='boardBtn leftBtn' onClick={moveLeft}>{'<'}</button>
-        <button className='boardBtn rightBtn' onClick={moveRight}>{'>'}</button>
+        <button className='boardBtn boardLeft' onClick={moveLeft}>{'<'}</button>
+        <button className='boardBtn boardRight' onClick={moveRight}>{'>'}</button>
       </div>
     </div>
   )

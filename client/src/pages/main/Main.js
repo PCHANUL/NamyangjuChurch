@@ -9,14 +9,7 @@ import ImgBoard from './ImgBoard';
 import './main.css';
 import '../responsibleCSS/mobileMain.css';
 
-const handleApiLoaded = (map, maps) => {
-  // use map and maps objects
-  console.log(map, maps)
-};
-
-
 function Main() {
-  const [leftPos, setLeftPos] = useState(0);
   let scroll;
 
   const scrollFunc = () => {
@@ -91,6 +84,10 @@ function Main() {
       document.querySelector('#outer').addEventListener('mouseup', scroll, false);
     }
 
+    setTimeout(() => {
+      document.querySelector('#greeting').removeAttribute('class');
+    }, 1000)
+
     return () => {
       if ('ontouchstart' in window) {
         // touch
@@ -111,8 +108,8 @@ function Main() {
     <>
 
       <div id='firstPage'>
-        <div id='greeting'>
-          <h1>오직</h1>
+        <div id='greeting' className='landingEffect'>
+          <h1>오직.</h1>
           <p>그리스도, 하나님나라, 성령충만</p>
           <p>예배, 말씀, 기도, 전도, 후대에 집중하는</p>
           <h1>남양주 사랑교회입니다</h1>

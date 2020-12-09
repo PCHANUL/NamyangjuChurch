@@ -1,0 +1,22 @@
+@media only screen and (max-width : 640px) {
+  #imgOuter {
+    height: 50vw;
+  }
+  #mainImg {
+    height: 50vw;
+    margin: 0 4.5vw 0 5.5vw;
+  }
+  #mainImg img {
+    margin: -5vw 0 0 -23vw;
+    width: 130vw;
+  }
+
+
+  .boardBtn {
+    width: 2vw;
+  }
+
+  
+
+
+}
