@@ -35,6 +35,15 @@ const upload = multer({
   limits: { fileSize: 5 * 1024 * 1024 },
 })
 
+app.post('/post/img', upload.single('img'), (req, res) => {
+  try {
+      // console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
+      res.json(req.file.location);
+  } catch (err) {
+      console.log(err);
+  }
+});
+
 
 app.use(cors({
   "origin": "http://localhost:3000",
@@ -44,7 +53,6 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
-app.use(express.static(path.join(__dirname, './views')))
 
 app.use('/graphql', (req, res, next) => {
   if (req.method === 'DELETE' || req.method === 'PUT') req.method = 'POST';
@@ -60,18 +68,13 @@ app.use('/graphql', graphqlHTTP({
   },
 }));
 
+
+
+
+app.use(express.static(path.join(__dirname, './views')))
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './views/index.html'));
 })
-
-app.post('/post/img', upload.single('img'), (req, res) => {
-  try {
-      // console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
-      res.json(req.file.location);
-  } catch (err) {
-      console.log(err);
-  }
-});
 
 app.listen(4000);
 console.log('Running GraphQL API server')
