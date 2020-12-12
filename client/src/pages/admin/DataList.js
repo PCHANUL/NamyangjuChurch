@@ -2,6 +2,7 @@ import React from 'react';
 import ContentData from './ContentData';
 
 function DataList({ loading, data, tab }) {
+  console.log('data: ', data, tab);
 
   return (
     <>
