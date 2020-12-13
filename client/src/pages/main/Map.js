@@ -1,55 +1,10 @@
-import React, { memo, useState, useRef, useEffect, } from 'react';
-import {
-  GoogleMap,
-  LoadScript,
-  DirectionsService,
-  DirectionsRenderer,
-  Marker,
-  InfoWindow
-} from '@react-google-maps/api';
+import React, { Component, memo, useState, useRef, useEffect } from 'react';
+import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox";
 import KEYS from './keys';
 
 import './map.css';
 import '../responsibleCSS/mobileMap.css';
-
-// const Directions = (props) => {
-//   const [directions, setDirections] = useState();
-//   const { origin, destination } = props;
-//   const count = useRef(0);
-
-//   const options = {
-//     polylineOptions: {
-//       strokeColor: 'red',
-//       strokeWeight: 6,
-//       strokeOpacity: 0.8,
-//     }
-//   };
-
-//   useEffect(() => {
-//     count.current = 0;
-//     console.log(origin, destination);
-//   }, [origin.lat, origin.lng, destination.lat, destination.lng]);
-
-//   const directionsCallback = (result, status) => {
-//     console.log(result, status);
-//     if (status === 'OK' && count.current === 0) {
-//       count.current += 1;
-//       setDirections(result);
-//     }
-//   };
-
-//   return (
-//     <>
-//       <DirectionsService
-//         options={{ origin, destination, travelMode: 'TRANSIT' }}
-//         callback={directionsCallback}
-//       />
-//       <DirectionsRenderer directions={directions} options={options}/>
-//     </>
-//   );
-// };
 
 const findRoute = () => {
   // alert('길을 찾는 중...')
@@ -61,40 +16,47 @@ const onEventChecker = (e, aug, geo) => {
   console.log(e, aug, geo)
 }
 
-// function getLocation() {
-//   if (navigator.geolocation) { // GPS를 지원하면
-//     navigator.geolocation.getCurrentPosition(function(position) {
-//       alert(position.coords.latitude + ' ' + position.coords.longitude);
-//     }, function(error) {
-//       console.error(error);
-//     });
-//   } else {
-//     alert('GPS를 지원하지 않습니다');
-//   }
-// }
+export class GoogleMap extends React.Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+ 
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+ 
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
 
-const Map = (props) => {
-
-  return (
-    <LoadScript googleMapsApiKey={KEYS.G_API}>
-      <GoogleMap
-        mapContainerClassName='gMap'
-        zoom={14}
-        center={{lat: 37.659365, lng: 127.179435 }}
-        onClick={onEventChecker}
-      >
-        <Marker position={{ lat: 37.659365, lng: 127.179435 }}>
-          <InfoWindow>
-            <div id='infoWindow'>
-              <button onClick={findRoute}>
-                교회 길찾기
-              </button>
-            </div>
-          </InfoWindow>
-        </Marker>
-      </GoogleMap>
-    </LoadScript>
-  )
+  render()  {
+    return (
+      <div className='gMap'>
+        <button onClick={findRoute}>
+          교회 길찾기
+        </button>
+        <Map
+          google={this.props.google}
+          onClick={this.onMapClicked}
+          initialCenter={{lat: 37.659365, lng: 127.179435 }}
+        >
+          <Marker/>
+        </Map>
+      </div>
+    )
+  }
 }
 
-export default memo(Map)
+export default GoogleApiWrapper({
+  apiKey: KEYS.G_API
+})(GoogleMap);

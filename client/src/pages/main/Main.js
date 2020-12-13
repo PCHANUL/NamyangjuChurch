@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
-import Map from './Map';
+import GoogleMap from './Map';
 import TimeTable from '../TimeTable';
 import ImgBoard from './ImgBoard';
 
@@ -158,7 +157,7 @@ function Main() {
         <div id='route'>
           <h1>오시는길</h1>
           <p>경기도 남양주시 진건읍 진건오남로 98 한신그린상가 304호</p>
-          <Map />
+          <GoogleMap />
         </div>
 
         <TimeTable />

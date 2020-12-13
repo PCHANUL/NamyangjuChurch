@@ -126,14 +126,25 @@
     font-size: 3vw;
     margin-bottom: 10vw;
   }
-  
-  #infoWindow button {
-    font-size: 3.5vw;
-  }
 
   .gMap {
     height: 70vw;
     width: 90vw;
+  }
+
+  .gMap > button {
+    border-radius: 0 0 2vw 2vw;
+    background-color: #fff;
+    box-shadow: 0 1vw 1vw rgb(120, 120, 120, 0.3);
+  
+    padding: 2vw;
+    font-size: 4vw;
+    font-family: 'MapoGoldenPier';
+  }
+  
+  .gMap > button:hover {
+    border: none;
+    background-color: whitesmoke;
   }
 
   #timetableDiv {

@@ -14,6 +14,7 @@ import ContentViewer from './pages/ContentViewer/ContentViewer';
 import './pages/app.css';
 import './pages/fontFamily.css';
 
+
 const App = (props) => {
   const [ isOpen, setIsOpen ] = useState(false);
   let location = useLocation();
@@ -34,7 +35,6 @@ const App = (props) => {
           <Route exact path='/admin' component={Admin} />
           <Route path='/admin/signin' component={Signin} />
           <Route path='/admin/edit' component={Edit} />
-          {/* <Redirect path='*' to="/" /> */}
         </Switch>
 
       </div>

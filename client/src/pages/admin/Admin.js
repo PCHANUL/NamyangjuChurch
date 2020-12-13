@@ -23,7 +23,6 @@ const Admin = (props) => {
     window.scroll(0,0);
     getDataList(async (getData) => {
       console.log('getData: ', getData);
-      if (getData[0].name !== 'video') getData.push(getData.shift());
 
       await setData(getData);
       setTimeout(setLoading(true), 2000);

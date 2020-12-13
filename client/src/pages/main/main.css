@@ -170,23 +170,35 @@
   margin-bottom: 4vw;
 }
 
-#infoWindow button {
+.gMap {
+  position: relative;
+  height: 30vw;
+  width: 95vw;
+}
+
+.gMap > button {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 1;
+
   outline: none;
   border: none;
-  background-color: transparent;
+  border-radius: 0 0 1vw 1vw;
+  background-color: #fff;
+  box-shadow: 0 0.2vw 0.2vw rgb(120, 120, 120, 0.3);
+
+
   padding: 1vw;
   font-size: 1.5vw;
   font-family: 'MapoGoldenPier';
+  cursor: pointer;
 }
 
-#infoWindow button:hover {
+.gMap > button:hover {
   border: none;
   background-color: whitesmoke;
-}
-
-.gMap {
-  height: 30vw;
-  width: 95vw;
 }
 
 /* 시간표 */

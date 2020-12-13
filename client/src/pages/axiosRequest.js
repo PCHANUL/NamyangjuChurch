@@ -122,8 +122,11 @@ const getDataList = async(callback) => {
       }
       `
     }
-  })
-  callback(data.data.data.getCategory);
+  });
+  let result = data.data.data.getCategory;
+  if (result[0].name !== 'video') result.push(result.shift());
+
+  callback(result);
 }
 
 const uploadImage = async(file, callback) => {
