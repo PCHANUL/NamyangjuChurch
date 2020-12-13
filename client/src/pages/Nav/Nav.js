@@ -65,7 +65,7 @@ export default function Nav() {
           <GobackButton />
         ) : (
         <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
-          <a id='home' className={window.location.pathname === '/' && 'hiddenHome'} onClick={() => window.location = '/'}>
+          <a id='home' className={window.location.pathname === '/' ? 'hiddenHome' : ''} onClick={() => window.location = '/'}>
             남양주 사랑교회
           </a>
           <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>

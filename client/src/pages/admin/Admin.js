@@ -22,6 +22,8 @@ const Admin = (props) => {
   useEffect(() => {
     window.scroll(0,0);
     getDataList(async (getData) => {
+      console.log('getData: ', getData);
+
       await setData(getData);
       setTimeout(setLoading(true), 2000);
     })

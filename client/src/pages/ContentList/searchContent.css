@@ -1,5 +1,14 @@
+#searchDiv {
+  position: relative;
+  left: 55%;
+  align-content: center;
+  width: 32vw;
+  height: 5vw;
+}
+
 #inputKeyword {
   height: 2vw;
+  width: 20vw;
   font-size: 1.5vw;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
@@ -76,6 +85,8 @@
   transition-duration: 0.5s;
   transform-origin: center center;
 }
+
+
 
 
 
