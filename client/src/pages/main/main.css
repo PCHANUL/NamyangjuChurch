@@ -153,8 +153,8 @@
 #route {
   height: 30vw;
   width: 95vw;
-  margin: 15vw 0 20vw -12.5vw;
-  padding-top: 5vw;
+  margin: 5vw 0 20vw -12.5vw;
+  padding-top: 10vw;
   border-top: 1px solid rgb(220, 220, 220);
   text-align: center;
 }
@@ -167,7 +167,7 @@
 
 #route p {
   font-size: 1vw;
-  margin-bottom: 4vw;
+  margin-bottom: 6vw;
 }
 
 .gMap {
