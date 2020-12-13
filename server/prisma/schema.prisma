@@ -1,5 +1,6 @@
 datasource db {
   provider = "mysql"
+  url = "mysql://root:Qcksdnf95162!@localhost:3306/nsarang"
 }
 
 generator client {
