@@ -98,35 +98,38 @@ const getContent = async( id, callback ) => {
 }
 
 const getDataList = async(callback) => {
-  const data = await axios({
-    url: 'http://localhost:4000/graphql',
-    method: 'GET',
-    withCredentials : true,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    params: {
-      query: `
-      {
-        getCategory {
-          name
-          details {
+  try {
+    const data = await axios({
+      url: 'http://localhost:4000/graphql',
+      method: 'GET',
+      withCredentials : true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        query: `
+        {
+          getCategory {
             name
-            posts {
-              id
-              title
-              createdAt
+            details {
+              name
+              posts {
+                id
+                title
+                createdAt
+              }
             }
           }
         }
+        `
       }
-      `
-    }
-  });
-  let result = data.data.data.getCategory;
-  if (result[0].name !== 'video') result.push(result.shift());
-
-  callback(result);
+    });
+    let result = data.data.data.getCategory;
+    if (result[0].name !== 'video') result.push(result.shift());
+    callback(result);
+  } catch (err) {
+    alert(err);
+  }
 }
 
 const uploadImage = async(file, callback) => {
