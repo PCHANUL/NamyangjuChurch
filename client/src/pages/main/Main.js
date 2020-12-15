@@ -31,8 +31,6 @@ function Main() {
     }
   }, [])
 
-  
-
   return (
     <>
 

@@ -7,25 +7,19 @@ import { scrollFunc } from '../Methods';
 export default function ImgBoard() {
 
   useEffect(() => {
-    let target = document.querySelector('#imgOuter');
-    const scroll = scrollFunc(target, 2, window.innerWidth * 0.9, 'img');
-    
+    const scroll = scrollFunc(
+      document.querySelector('#imgOuter'),
+      document.querySelector('#btnOuter'),
+      2, 
+      window.innerWidth * 0.9, 
+      'img'
+    );
+    scroll.addScrollEvent();
 
     return () => {
-
+      scroll.removeScrollEvent();
     }
-  })
-
-  const moveLeft = () => {
-    console.log('left')
-    document.querySelector('#imgOuter').className = 'img_2';
-    // document.querySelector('#imgOuter').style.left = `-${window.innerWidth * 0.9}px`;
-  }
-  const moveRight = () => {
-    document.querySelector('#imgOuter').className = 'img_1';
-    // document.querySelector('#imgOuter').style.left = 0;
-  }
-
+  }, [])
 
   return (
     <div id='imgBoard'>
@@ -39,8 +33,8 @@ export default function ImgBoard() {
         </div>
       </div>
       <div id='btnOuter'>
-        <button className='boardBtn boardLeft' onClick={moveLeft}>{'<'}</button>
-        <button className='boardBtn boardRight' onClick={moveRight}>{'>'}</button>
+        <button className='boardBtn boardLeft'>{'<'}</button>
+        <button className='boardBtn boardRight'>{'>'}</button>
       </div>
     </div>
   )

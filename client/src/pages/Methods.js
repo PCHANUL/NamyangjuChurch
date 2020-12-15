@@ -92,12 +92,13 @@ export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, ca
   }
 
   const mousedown = (e) => {
-    movingTarget.addEventListener('mousemove', scroll, false);
+    interactTarget.addEventListener('mousemove', scroll, false);
     scroll(e);
   }
+
   const mouseup = (e) => {
     scroll(e);
-    movingTarget.removeEventListener('mousemove', scroll, false);
+    interactTarget.removeEventListener('mousemove', scroll, false);
   }
 
   const addScrollEvent = () => {
@@ -130,7 +131,4 @@ export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, ca
     addScrollEvent,
     removeScrollEvent
   }
-
-
-
 }
