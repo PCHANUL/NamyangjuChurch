@@ -8,96 +8,26 @@ import ImgBoard from './ImgBoard';
 import './main.css';
 import '../responsibleCSS/mobileMain.css';
 
+import { scrollFunc } from '../Methods';
+
 function Main() {
-  let scroll;
-
-  const scrollFunc = () => {
-    let curPos = 0;
-    let initCurPos = 0;
-    let cardContainer = document.querySelector('#cardContainer');
-    let cardPos = 1;
-    let isMoved = false;
-    let isMouse = false;
-    let nextPage = false;
-    
-    return (e) => { 
-      if (e.type[0] === 'm') isMouse = true;
-      else isMouse = false;
-      
-      if (e.type === 'touchstart' || e.type === 'mousedown') {
-        if (isMouse) cardContainer.addEventListener('mousemove', scroll, false); // 마우스 이벤트 생성
-        let initCardPos
-        if (cardPos === 1) initCardPos = 0;
-        else if (cardPos === 2) initCardPos = window.innerWidth / 2;
-        else if (cardPos === 3) initCardPos = window.innerWidth;
-        // 카드 위치 초기설정
-        cardContainer.style.left = `-${initCardPos}px`;
-        // 초기 위치설정
-        curPos = isMouse ? e.clientX : e.touches[0].clientX;
-        initCurPos = curPos;
-
-      } else if (e.type === 'touchend' || e.type === 'mouseup') {
-        let screenCenter = window.innerWidth / 2;
-
-        if (isMoved === false) {
-          if (curPos <= screenCenter - 20 && cardPos > 1) cardPos += -1;
-          else if (curPos >= screenCenter + 20 && cardPos < 3) cardPos += 1;
-        } else {
-          if (curPos <= initCurPos - 20 && cardPos < 3) cardPos += 1;
-          else if (curPos >= initCurPos + 20 && cardPos > 1) cardPos += -1;
-        }
-        cardContainer.style.left = null;  // style 제거 후 className 설정
-        cardContainer.className = `cardPos${cardPos}`;
-        curPos = 0;  // 위치 초기화
-        initCurPos = 0;  
-        isMoved = false;  // move 토글 초기화
-        if (isMouse) cardContainer.removeEventListener('mousemove', scroll, false); // 마우스 이벤트 제거
-
-      } else if (e.type === 'touchmove' || e.type === 'mousemove') {
-        isMoved = true;
-        let m = (isMouse ? e.clientX : e.touches[0].clientX) - curPos;  // 움직인 거리
-        let scrollPos = cardContainer.style.left.slice(0, -2);  // 기존 카드 위치
-
-        if (scrollPos > 0 && Math.sign(m) === 1) return;
-        else if (scrollPos < -1 * (window.innerWidth) && Math.sign(m) === -1) return;
-        else {
-          cardContainer.style.left = `${Number(scrollPos) + m}px`
-          curPos = isMouse ? e.clientX : e.touches[0].clientX;
-        }
-      }
-    }
-  }
-
-
   
   useEffect(() => {
-    scroll = scrollFunc();
-    if ('ontouchstart' in window) {
-      // touch
-      document.querySelector('#outer').addEventListener('touchmove', scroll, false);
-      document.querySelector('#outer').addEventListener('touchend', scroll, false);
-      document.querySelector('#outer').addEventListener('touchstart', scroll, false);
-    } else {
-      // click
-      document.querySelector('#outer').addEventListener('mousedown', scroll, false);
-      document.querySelector('#outer').addEventListener('mouseup', scroll, false);
-    }
-
+    const scroll = scrollFunc(
+      document.querySelector('#cardContainer'), 
+      document.querySelector('#outer'),
+      3, 
+      window.innerWidth / 2,
+      'cardPos'
+    );
+    scroll.addScrollEvent();
+      
     setTimeout(() => {
       document.querySelector('#greeting').removeAttribute('class');
     }, 1000)
 
     return () => {
-      if ('ontouchstart' in window) {
-        // touch
-        document.querySelector('#outer').removeEventListener('touchmove', scroll, false);
-        document.querySelector('#outer').removeEventListener('touchend', scroll, false);
-        document.querySelector('#outer').removeEventListener('touchstart', scroll, false);
-      } else {
-        // click
-        document.querySelector('#outer').removeEventListener('mousedown', scroll, false);
-        document.querySelector('#outer').removeEventListener('mouseup', scroll, false);
-      }
+      scroll.removeScrollEvent();
     }
   }, [])
 
@@ -122,7 +52,7 @@ function Main() {
           <div id='outer'>
             <button className='scrollButton scrollButton_right'>{'<'}</button>
             <button className='scrollButton scrollButton_left'>{'>'}</button>
-            <div id='cardContainer' className='cardPos1'>
+            <div id='cardContainer' className='cardPos0'>
               <div className='prayerCard'>
                 <h2>하나님이 <br />원하시는 교회</h2>
                 <ul>

@@ -72,17 +72,17 @@
     cursor: grab;
   }
   
-  .cardPos1 {
+  .cardPos0 {
     left: 0vw;
     transition-property: all;
     transition-duration: 0.5s;
   }
-  .cardPos2 {
+  .cardPos1 {
     left: -50vw;
     transition-property: all;
     transition-duration: 0.5s;
   }
-  .cardPos3 {
+  .cardPos2 {
     left: -100vw;
     transition-property: all;
     transition-duration: 0.5s;
