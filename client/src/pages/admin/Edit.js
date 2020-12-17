@@ -134,11 +134,23 @@ function setPrevData(store) {
   }
 }
 
+function getTempData() {
+  let category = localStorage.getItem('category');
+  let title = localStorage.getItem('title');
+  let content = localStorage.getItem('content');
+  if (category || title || content) {
+    document.querySelector('#selectCategory').value = category;
+    document.querySelector('#inputTitle').value = title;
+    document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content);
+  }
+}
+
 
 function Edit(props) {
   const contentIdStore = useAppStore();
   
   useEffect (() => {
+    getTempData();
     setPrevData(contentIdStore);
     setDropEvent();
     
@@ -187,6 +199,9 @@ function Edit(props) {
         <button id='saveBtn' onClick={() => {
           saveData(contentIdStore, props);
         }}>저장</button>
+        <button id='saveBtn' onClick={() => {
+          saveTempData();
+        }}>임시저장</button>
       </div>
 
       {/* imageTool */}
@@ -215,13 +230,24 @@ const changeYoutubeImg = () => {
     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
   }
 }
+
+const saveTempData = async() => {
+  const category = document.querySelector('#selectCategory').value;
+  const title = document.querySelector('#inputTitle').value;
+  const content = document.getElementById('editFrame').innerHTML;
+  console.log('category: ', category, title, content);
+
+  localStorage.setItem('category', `${category}`);
+  localStorage.setItem('title', `${title}`);
+  localStorage.setItem('content', `${content}`);
+}
  
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
 
   changeYoutubeImg();
-  const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'");
+  const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
   if (category && title) {
     if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content);
     else {

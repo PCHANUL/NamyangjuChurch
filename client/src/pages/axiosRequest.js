@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const addData = async(category, title, content) => {
-  console.log('category, title, content: ', category, title, content);
+  console.log('category, title, content: ', category, title, JSON.stringify(content));
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'POST',
