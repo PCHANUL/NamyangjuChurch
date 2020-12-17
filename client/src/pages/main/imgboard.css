@@ -33,12 +33,24 @@
 
   overflow: hidden;
   box-shadow: 1vw 1vw 3vw 0 rgb(180, 180, 180);
+
 }
 
-#mainImg img {
+#main-thumbnail {
   margin: -6vw 0 0 -3.8vw;
   width: 100vw;
+} 
+
+#ytp-thumbnail {
+  position: absolute;
+  height: 60vw;
+  width: 80vw;
+  /* padding: 0 5vw; */
+  background-color: #000;
+  margin: -8vw 0 0 0;
+  /* left: 50%; */
 }
+
 
 #btnOuter {
   position: absolute;
@@ -46,8 +58,42 @@
   left: 0;
   width: 100%;
   height: 100%;
-  cursor: grab;
 }
+
+#ytp-Btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8vw;
+  height: 8vw;
+
+  z-index: 2;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  cursor: pointer;
+
+}
+
+#ytp-Btn-Bg {
+  fill: #000;
+
+  opacity: 50%;
+  background-color: #000;
+}
+
+#ytp-Btn:hover > #ytp-Btn-Bg{
+  fill: #f00;
+  opacity: 100%;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+}
+#ytp-Btn:active > #ytp-Btn-Bg{
+  opacity: 100%;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+}
+
 
 .boardBtn {
   all: unset;
@@ -58,6 +104,9 @@
   height: 100%;
 
   text-align: center;
+  cursor: pointer;
+  z-index: 2;
+
 }
 .boardLeft {
   left: 0;
