@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const addData = async(category, title, content) => {
+export const addData = async(category, title, content) => {
   console.log('category, title, content: ', category, title, JSON.stringify(content));
   const result = await axios({
     url: 'http://localhost:4000/graphql',
@@ -24,7 +24,7 @@ const addData = async(category, title, content) => {
   return result
 }
 
-const updateData = async(id, category, title, content) => {
+export const updateData = async(id, category, title, content) => {
   console.log('id, category, title, content: ', id, category, title, content);
   return await axios({
     url: 'http://localhost:4000/graphql',
@@ -48,7 +48,7 @@ const updateData = async(id, category, title, content) => {
   })
 }
 
-const deleteData = async(id, callback) => {
+export const deleteData = async(id, callback) => {
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'DELETE',
@@ -71,7 +71,7 @@ const deleteData = async(id, callback) => {
   }
 }
 
-const getContent = async( id, callback ) => {
+export const getContent = async( id, callback ) => {
   const content = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'GET',
@@ -97,7 +97,7 @@ const getContent = async( id, callback ) => {
   callback(content.data.data.getContent);
 }
 
-const getDataList = async(callback) => {
+export const getDataList = async(callback) => {
   try {
     const data = await axios({
       url: 'http://localhost:4000/graphql',
@@ -132,7 +132,7 @@ const getDataList = async(callback) => {
   }
 }
 
-const uploadImage = async(file, callback) => {
+export const uploadImage = async(file, callback) => {
   let formData = new FormData();
   await formData.append("img", file);
 
@@ -143,7 +143,7 @@ const uploadImage = async(file, callback) => {
   callback(imgUrl)
 }
 
-const readImage = async(files, targetId) => {
+export const readImage = async(files, targetId) => {
   for (let file of files) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -183,4 +183,17 @@ const readImage = async(files, targetId) => {
   }
 }
 
-export { getDataList, deleteData, uploadImage, addData, getContent, updateData, readImage }
+export const getLiveUrl = async(callback) => {
+  const resultUrl = await axios.get('http://localhost:4000/live');
+  callback(resultUrl);
+}
+
+export const postLiveUrl = async(url, callback) => {
+  const resultMsg = await axios({
+    url: 'http://localhost:4000/live',
+    method: 'post',
+    params: { url }
+  })
+
+  console.log('resultMsg: ', resultMsg);
+}

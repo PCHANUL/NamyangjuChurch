@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import './admin.css';
 import DataList from './DataList'
 
-import { getDataList } from '../axiosRequest';
+import { getDataList, postLiveUrl } from '../axiosRequest';
 
 import { useObserver } from 'mobx-react-lite';
 import { useAppStore } from '../../state/appContext';
@@ -36,6 +36,14 @@ const Admin = (props) => {
           props.history.push('/');
         }}>나가기</button>
       </div>
+
+      <span>생방송 url입력</span>
+      <input id='liveUrl' style={{height:'30px'}}></input>
+      <button onClick={() => {
+        postLiveUrl(document.querySelector('#liveUrl').value, (result) => {
+          console.log('result: ', result);
+        })
+      }}>입력</button>
 
 
       <Tab tab={tab} setTab={setTab} />

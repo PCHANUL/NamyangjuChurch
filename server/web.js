@@ -29,6 +29,7 @@ const upload = multer({
     acl: 'public-read',
     key: (req, file, cb) => {
       console.log(file);
+
       cb(null, file.originalname)
     }
   }),
@@ -52,6 +53,14 @@ app.use(cors({
   "preflightContinue": false,
   "optionsSuccessStatus": 204
 }));
+
+let liveUrl = 'asdf';
+app.use('/live', (req, res) => {
+  console.log('liveUrl: ', liveUrl);
+  console.log('req.query.url: ', req.query);
+  if (req.method === 'POST') liveUrl = req.query.url;
+  else if (req.method === 'GET') res.send(liveUrl);
+})
 
 
 app.use('/graphql', (req, res, next) => {

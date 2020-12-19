@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './imgBoard.css';
 import '../responsibleCSS/mobileImgBoard.css';
 
 import { scrollFunc } from '../Methods';
+import { getLiveUrl } from '../axiosRequest';
 
 export default function ImgBoard() {
+  const [liveUrl, setLiveUrl] = useState('')
   let infoData = calcTime();
   console.log('infoData: ', infoData);
-
+  
+  useEffect(() => {
+    getLiveUrl((url) => {
+      setLiveUrl(url.data)
+      console.log('url.data: ', url.data);
+    });
+  },[])
 
   return (
     <div id='imgBoard'>
@@ -34,7 +42,9 @@ export default function ImgBoard() {
       <div id='imgOuter'>
         <div id="mainImg">
           <img id="main-thumbnail" src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/main.jpg' alt="..." ></img>
-          <iframe id='yt-player' width="100%" height="100%" src="https://www.youtube.com/embed/EFnXozbldns" frameBorder="0" allow='autoplay' allowFullScreen></iframe>
+          <iframe id='yt-player' width="100%" height="100%" src={`https://www.youtube.com/embed/${liveUrl}`}
+            frameBorder="0" allow='autoplay' allowFullScreen
+          ></iframe>
         </div>
       </div>
     </div>
