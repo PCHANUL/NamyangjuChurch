@@ -19,7 +19,7 @@ export default function ImgBoard() {
 
   return (
     <div id='imgBoard'>
-      {/* <div id='onairInfo'>
+      <div id='onairInfo'>
         <h1>{infoData[0]}에 {infoData[1]}가 시작됩니다</h1>
       </div>
       <div id='prevPlay' onClick={playYoutube}>
@@ -27,9 +27,9 @@ export default function ImgBoard() {
         <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="100%" >
           <path d="M 45,24 27,14 27,34" fill="#fff"></path>
         </svg>
-      </div> */}
+      </div>
 
-      <div id='onairInfo'>
+      {/* <div id='onairInfo'>
         <h1>{infoData[1]} 중입니다</h1>
       </div>
       <div id='prevPlay' onClick={playYoutube}>
@@ -37,7 +37,7 @@ export default function ImgBoard() {
         <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="100%" >
           <path d="M 45,24 27,14 27,34" fill="#fff"></path>
         </svg>
-      </div>
+      </div> */}
 
       <div id='imgOuter'>
         <div id="mainImg">
@@ -53,7 +53,7 @@ export default function ImgBoard() {
 
 let worshipTimes = {
   '0': {
-    '9': '주일학교',
+    '9': '주일학교예배',
     '11': '주일대예배',
     '14': '주일오후예배',
   },

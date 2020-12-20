@@ -54,12 +54,12 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
-let liveUrl = 'asdf';
+let liveInfo = ['W_w8ENF4VFU', 0];
 app.use('/live', (req, res) => {
-  console.log('liveUrl: ', liveUrl);
-  console.log('req.query.url: ', req.query);
-  if (req.method === 'POST') liveUrl = req.query.url;
-  else if (req.method === 'GET') res.send(liveUrl);
+  if (req.method === 'POST') {
+    liveInfo = [req.query.url, Date.now()];
+  }
+  else if (req.method === 'GET') res.send(liveInfo);
 })
 
 
