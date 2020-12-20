@@ -54,12 +54,15 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
-let liveInfo = ['W_w8ENF4VFU', 0];
+let liveInfo = {
+  url: 'W_w8ENF4VFU', 
+  time: 0
+};
 app.use('/live', (req, res) => {
   if (req.method === 'POST') {
-    liveInfo = [req.query.url, Date.now()];
-  }
-  else if (req.method === 'GET') res.send(liveInfo);
+    liveInfo.url = req.query.url
+    liveInfo.time = Date.now()
+  } else if (req.method === 'GET') res.send(liveInfo);
 })
 
 

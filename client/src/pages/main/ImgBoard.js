@@ -2,28 +2,37 @@ import React, { useEffect, useState } from 'react';
 import './imgBoard.css';
 import '../responsibleCSS/mobileImgBoard.css';
 
-import { scrollFunc } from '../Methods';
+import { calcPassedTime } from '../Methods';
 import { getLiveUrl } from '../axiosRequest';
 
 export default function ImgBoard() {
-  const [liveUrl, setLiveUrl] = useState('')
+  const [liveInfo, setLiveUrl] = useState({url: '', time: 0})
   let infoData = calcTime();
   console.log('infoData: ', infoData);
+  console.log('liveInfo: ', liveInfo);
   
   useEffect(() => {
     getLiveUrl((url) => {
-      setLiveUrl(url.data)
-      console.log('url.data: ', url.data);
+      setLiveUrl({
+        url: url.data.url,
+        time: Math.trunc((Date.now() - url.data.time) / 60000),
+      });
     });
   },[])
 
   return (
     <div id='imgBoard'>
       <div id='onairInfo'>
-        <h1>{infoData[0]}에 {infoData[1]}가 시작됩니다</h1>
+        {
+          liveInfo.time > 60 ? (
+            <h1>{infoData[0]}에 {infoData[1]}가 시작됩니다</h1>
+          ) : (
+            <h1>{infoData[1]} 중입니다</h1>
+          )
+        }
       </div>
       <div id='prevPlay' onClick={playYoutube}>
-        <h1>이전예배</h1>
+        <h1>{liveInfo.time > 60 ? '이전예배' : '생방송'}</h1>
         <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="100%" >
           <path d="M 45,24 27,14 27,34" fill="#fff"></path>
         </svg>
@@ -42,7 +51,7 @@ export default function ImgBoard() {
       <div id='imgOuter'>
         <div id="mainImg">
           <img id="main-thumbnail" src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/mainPage/main.jpg' alt="..." ></img>
-          <iframe id='yt-player' width="100%" height="100%" src={`https://www.youtube.com/embed/${liveUrl}`}
+          <iframe id='yt-player' width="100%" height="100%" src={`https://www.youtube.com/embed/${liveInfo.url}`}
             frameBorder="0" allow='autoplay' allowFullScreen
           ></iframe>
         </div>
