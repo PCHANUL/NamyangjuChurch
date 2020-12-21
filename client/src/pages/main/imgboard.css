@@ -65,8 +65,8 @@
   position: absolute;
   z-index: 1;
   color: #fff;
-  /* border: 0.5vw solid #fff; */
-  padding: 0.5vw;
+  text-align: center;
+
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);

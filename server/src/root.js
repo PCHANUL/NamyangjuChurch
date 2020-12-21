@@ -1,3 +1,6 @@
+import { request } from "express";
+
+
 const root = {
   getUsers: async (_, context) => {
     return await context.prisma.user.findMany()
@@ -19,8 +22,12 @@ const root = {
     })
     return isDeleted ? true : false;
   },
-  getCategory: async (_, context) => {
-    return await context.prisma.category.findMany({
+  getCategory: async (_, { prisma, req, res }) => {
+    console.log('a, b: ', req);
+    req.session.isLogged = 'asdfasdf';
+    // console.log('a, b: ', req);
+
+    let result = await prisma.category.findMany({
       select: { 
         id: true,
         name: true,
@@ -36,6 +43,7 @@ const root = {
         }
       },
     })
+    return result;
   },
   getContent: async ({ id }, context) => {
     return await context.prisma.post.findOne({

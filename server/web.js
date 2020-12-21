@@ -1,6 +1,9 @@
 import express from "express";
 import path from 'path';
 import { graphqlHTTP } from "express-graphql";
+import { createModule } from 'graphql-modules';
+import { GraphQLModule } from '@graphql-modules/core';
+
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import root from './src/root';
@@ -8,6 +11,8 @@ import schema from './src/schema';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 import AWS from 'aws-sdk';
+
+import session from 'express-session';
 
 import {accessKeyId, secretAccessKey} from './awsconfig.json';
 
@@ -54,6 +59,17 @@ app.use(cors({
   "optionsSuccessStatus": 204
 }));
 
+app.use(session({ 
+  secret: 'cat', 
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    secure: true,
+    maxAge: 60000 
+  }
+}))
+
+
 let liveInfo = {
   url: 'W_w8ENF4VFU', 
   time: 0
@@ -71,14 +87,14 @@ app.use('/graphql', (req, res, next) => {
   next();
 })
 
-app.use('/graphql', graphqlHTTP({
+
+app.use('/graphql', graphqlHTTP(async(req, res) => ({
   schema: schema,
   rootValue: root,
   graphiql: true,
-  context: {
-    prisma,
-  },
-}));
+  context: { prisma, req, res },
+})
+));
 
 app.use(express.static(path.join(__dirname, './views')))
 app.get('*', (req, res) => {
