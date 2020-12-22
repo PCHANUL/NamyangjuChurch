@@ -1,5 +1,48 @@
 import axios from 'axios';
 
+export const signin = async(id, pw) => {
+  const result = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    // headers: {
+    //   'Content-Type': 'application/json',
+    // },
+    data: {
+      query: `
+      query {
+        signin (
+        nickname: "${id}"
+        password: "${pw}"
+        )
+      }
+      `
+    }
+  })
+  console.log('result: ', result);
+}
+
+export const signup = async(id, pw) => {
+  const result = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      query: `
+      mutation {
+        signup (
+          nickname: ${id}
+          password: ${pw}
+        )
+      }
+      `
+    }
+  })
+}
+
 export const addData = async(category, title, content) => {
   console.log('category, title, content: ', category, title, JSON.stringify(content));
   const result = await axios({
@@ -192,6 +235,10 @@ export const postLiveUrl = async(url, callback) => {
   const resultMsg = await axios({
     url: 'http://localhost:4000/live',
     method: 'post',
+    withCredentials : true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     params: { url }
   })
 

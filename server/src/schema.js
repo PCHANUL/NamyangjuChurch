@@ -34,13 +34,13 @@ var schema = buildSchema(`
   }
 
   type Query {
-    getUsers: [Users]!
+    signin(nickname: String!, password: String!): Boolean!
     getCategory: [Category]!
     getContent(id: Int!): Post!
   }
 
   type Mutation {
-    addUser(nickname: String!, password: String!): Users!
+    signup(nickname: String!, password: String!): Users!
     addContent(
       category: String!
       title: String!

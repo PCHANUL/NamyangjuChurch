@@ -132,3 +132,7 @@ export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, ca
     removeScrollEvent
   }
 }
+
+const calcPassedTime = (now, past) => {
+  return (now - past) / 60000;
+}

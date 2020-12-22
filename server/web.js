@@ -1,9 +1,6 @@
 import express from "express";
 import path from 'path';
 import { graphqlHTTP } from "express-graphql";
-import { createModule } from 'graphql-modules';
-import { GraphQLModule } from '@graphql-modules/core';
-
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import root from './src/root';
@@ -13,6 +10,7 @@ import multerS3 from 'multer-s3';
 import AWS from 'aws-sdk';
 
 import session from 'express-session';
+import cookieParser from 'cookie-parser'
 
 import {accessKeyId, secretAccessKey} from './awsconfig.json';
 
@@ -55,18 +53,15 @@ app.use(cors({
   "origin": "http://localhost:3000",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "credentials": true,
-  "preflightContinue": false,
+  "preflightContinue": true,
   "optionsSuccessStatus": 204
 }));
 
+app.use(cookieParser());
 app.use(session({ 
   secret: 'cat', 
   resave: false,
   saveUninitialized: true,
-  cookie: { 
-    secure: true,
-    maxAge: 60000 
-  }
 }))
 
 
@@ -74,10 +69,12 @@ let liveInfo = {
   url: 'W_w8ENF4VFU', 
   time: 0
 };
-app.use('/live', (req, res) => {
+
+app.use('/live', async(req, res) => {
   if (req.method === 'POST') {
     liveInfo.url = req.query.url
     liveInfo.time = Date.now()
+    res.send('success')
   } else if (req.method === 'GET') res.send(liveInfo);
 })
 
@@ -86,7 +83,6 @@ app.use('/graphql', (req, res, next) => {
   if (req.method === 'DELETE' || req.method === 'PUT') req.method = 'POST';
   next();
 })
-
 
 app.use('/graphql', graphqlHTTP(async(req, res) => ({
   schema: schema,

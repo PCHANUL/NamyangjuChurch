@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { signin, signup, signout } from './axiosRequest';
+
 import './login.css';
 import './responsibleCSS/mobileLogin.css';
 
-function Login(props) {
+export default function Login(props) {
   const [userId, setUserId] = useState('');
   const [userPw, setUserPw] = useState('');
+  const [isJoinPage, setJoinPage] = useState(false);
 
   const handleChangeId = (e) => {
     setUserId(e.target.value)
@@ -29,25 +32,23 @@ function Login(props) {
             <button className='btn' onClick={() => setIsOpen(false)}>
               <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
             </button>
-            <form onSubmit={handleSubmit}>
-              <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />
-              <br />
-              <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
-              <br />
-              <button id="loginBtn" onClick={() => setIsOpen(false)}>
-                <Link to='/admin'>
-                  로그인
-                </Link>
-              </button>
-            </form>
-            <Link to='/admin/signin'>
-                관리자 가입
-            </Link>
+            <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />
             <br />
-            <Link to='/admin'>
-                권한없이 둘러보기
-            </Link>
+            <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
             <br />
+            <button id="loginBtn" onClick={() => {
+              console.log('userId, userPw: ', userId, userPw);
+              signin(userId, userPw)
+              // setIsOpen(false);
+              // window.location = '/admin';
+            }}>
+              로그인
+            </button>
+            {/* <a id='joinBtn' onClick={() => {
+              setJoinPage(true)
+            }}>
+              관리자 가입
+            </a> */}
           </div>
           <div className='background'></div>
           </>
@@ -56,5 +57,3 @@ function Login(props) {
     </>
   )
 }
-
-export default (Login);

@@ -1,11 +1,48 @@
-import { request } from "express";
-
+import bcrypt from 'bcryptjs';
+const saltRounds = 10;
 
 const root = {
-  getUsers: async (_, context) => {
-    return await context.prisma.user.findMany()
+  signin: async ({nickname, password}, { prisma, req, res }) => {
+
+    console.log('req: ', req.session, req.sessionID, req.sessionStore.sessions);
+
+    console.log(bcrypt.genSalt(saltRounds, async(err, salt) => {
+      return await bcrypt.hash(password, salt, (err, hash) => {
+        console.log('hash111: ', hash);
+      })
+    }))
+
+    bcrypt.genSalt(saltRounds, async(err, salt) => {
+      await bcrypt.hash(password, salt, (err, hash) => {
+        console.log('hash: ', hash);
+        
+      })
+    })
+    
+    bcrypt.compare(password, hash, (err, result) => {
+      console.log(result)
+    })
+    
+
+    try {
+      const result = await prisma.user.findUnique({
+        where: {
+          nickname
+        }
+      })
+      if (result === null || result.password !== password) return false;
+      else {
+        req.session.isLogged = true;
+        return true;
+      }
+
+    } catch(err) {
+      return false;
+    }
   },
-  addUser: async ({nickname, password}, context) => {
+  signup: async ({nickname, password}, context) => {
+    
+
     return await context.prisma.user.create({
       data: {
         nickname,
@@ -13,7 +50,7 @@ const root = {
       }
     })
   },
-  deleteUser: async ({ nickname }, context) => {
+  signout: async ({ nickname }, context) => {
     console.log(nickname)
     const isDeleted = await context.prisma.user.delete({
       where: {
@@ -23,10 +60,8 @@ const root = {
     return isDeleted ? true : false;
   },
   getCategory: async (_, { prisma, req, res }) => {
-    console.log('a, b: ', req);
-    req.session.isLogged = 'asdfasdf';
-    // console.log('a, b: ', req);
-
+    
+    
     let result = await prisma.category.findMany({
       select: { 
         id: true,
@@ -46,7 +81,7 @@ const root = {
     return result;
   },
   getContent: async ({ id }, context) => {
-    return await context.prisma.post.findOne({
+    return await context.prisma.post.findUnique({
       where: {
         id: id
       },

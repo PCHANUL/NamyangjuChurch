@@ -70,11 +70,14 @@ input:focus {
   /* border: #000 solid 1px; */
 }
 
-
-
 #loginBtn {
   display: inline;
   margin: 10px;
   width: 200px;
   height: 50px;
+  cursor: pointer;
+}
+
+#joinBtn {
+  cursor: pointer;
 }
