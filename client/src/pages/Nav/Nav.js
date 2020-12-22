@@ -44,15 +44,19 @@ export default function Nav() {
       }, 500)
     } 
     
+    let scrollEvent = false;
     if (window.location.pathname === '/') {
       window.addEventListener('scroll', rootScroll);
+      scrollEvent = true;
     }
 
     return () => {
       clearInterval(checkScroll);
-      document.querySelector('#home').removeAttribute('class');
-      document.querySelector('#nav').style.borderBottom = '1px solid #000';
-      window.removeEventListener('scroll', rootScroll);
+      if (scrollEvent) {
+        window.removeEventListener('scroll', rootScroll);
+        document.querySelector('#home').removeAttribute('class');
+        document.querySelector('#nav').style.borderBottom = '1px solid #000';
+      }
     }
   })
   

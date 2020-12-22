@@ -8,8 +8,6 @@ import { getLiveUrl } from '../axiosRequest';
 export default function ImgBoard() {
   const [liveInfo, setLiveUrl] = useState({url: '', time: 0})
   let infoData = calcTime();
-  console.log('infoData: ', infoData);
-  console.log('liveInfo: ', liveInfo);
   
   useEffect(() => {
     getLiveUrl((url) => {
@@ -70,7 +68,7 @@ function calcTime() {
   let date = new Date();
   let now = {
     day: 0,
-    hours: 12,
+    hours: 13,
     mins: date.getMinutes(),
   }
 

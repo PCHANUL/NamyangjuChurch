@@ -16,7 +16,28 @@
     width: 2vw;
   }
 
-  
+  #ytp-Btn {
+    width: 20vw;
+    height: 20vw;
+    top: 10%;
+  }
 
+  #prevPlay {
+    padding: 0.5vw 0.5vw 10vw 0.5vw;
+    border: 0.5vw solid #fff;
+  }
+
+  #prevPlay h1 {
+    font-size: 5vw;
+  }
+
+  #onairInfo {
+    bottom: 3vw;
+    width: 70vw;
+  }
+
+  #onairInfo h1 {
+    font-size: 4vw;
+  }
 
 }

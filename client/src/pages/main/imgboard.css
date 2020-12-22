@@ -11,6 +11,7 @@
   transform: translate(0, -50%);
   width: 200vw;
   height: 30vw;
+  -webkit-filter:grayscale(100%);
 }
 
 .img0 {
@@ -67,9 +68,9 @@
   color: #fff;
   text-align: center;
 
-  top: 70%;
+  bottom: 12vw;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -85,7 +86,7 @@
   transform: translate(-50%, -50%);
   
   color: #fff;
-  border: 0.5vw solid #fff;
+  border: 0.3vw solid #fff;
   padding: 0.5vw 0.5vw 4vw 0.5vw;
 
   background-color: rgba(0, 0, 0, 0.3);
