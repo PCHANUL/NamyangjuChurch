@@ -33,7 +33,7 @@ const root = {
     return true;
   },
   isSignin: async(_, {prisma, req, res}) => {
-    return req.session.isLogged;
+    return req.session.isLogged === undefined ? false : req.session.isLogged;
   },
   getCategory: async (_, { prisma, req, res }) => {
     let result = await prisma.category.findMany({

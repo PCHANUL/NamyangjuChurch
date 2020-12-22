@@ -1,27 +1,5 @@
 import axios from 'axios';
 
-export const signin = async(id, pw) => {
-  const result = await axios({
-    url: 'http://localhost:4000/graphql',
-    method: 'POST',
-    withCredentials: true,
-    // headers: {
-    //   'Content-Type': 'application/json',
-    // },
-    data: {
-      query: `
-      query {
-        signin (
-        nickname: "${id}"
-        password: "${pw}"
-        )
-      }
-      `
-    }
-  })
-  console.log('result: ', result);
-}
-
 export const signup = async(id, pw) => {
   const result = await axios({
     url: 'http://localhost:4000/graphql',
@@ -41,6 +19,64 @@ export const signup = async(id, pw) => {
       `
     }
   })
+}
+
+export const signin = async(id, pw) => {
+  const result = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      query: `
+      query {
+        signin (
+        nickname: "${id}"
+        password: "${pw}"
+        )
+      }
+      `
+    }
+  })
+  return result.data.data.signin;
+}
+
+export const isSignin = async() => {
+  const result = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    data: {
+      query: `
+      query {
+        isSignin
+      }
+      `
+    }
+  })
+  console.log('isSignin', result.data.data.isSignin);
+  return result.data.data.isSignin;
+}
+
+export const signout = async() => {
+  const result = await axios({
+    url: 'http://localhost:4000/graphql',
+    method: 'POST',
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: {
+      query: `
+      query {
+        signout
+      }
+      `
+    }
+  })
+  return result.data.data.signout;
 }
 
 export const addData = async(category, title, content) => {

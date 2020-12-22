@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Link, useLocation, Redirect } from 'react-router-dom';
 
 import Nav from './pages/Nav/Nav';
@@ -7,17 +7,31 @@ import Main from './pages/main/Main';
 import Edit from './pages/admin/Edit';
 import Admin from './pages/admin/Admin';
 import Login from './pages/Login';
-import Signin from './pages/Signin';
 import ContentList from './pages/ContentList/ContentList';
 import ContentViewer from './pages/ContentViewer/ContentViewer';
 
 import './pages/app.css';
 import './pages/fontFamily.css';
 
+import { signout, isSignin } from './pages/axiosRequest';
+
 
 const App = (props) => {
   const [ isOpen, setIsOpen ] = useState(false);
   let location = useLocation();
+
+
+  useEffect(() => {
+    if (location.pathname.includes('/admin') === false) {
+      (async() => {
+        if (await isSignin()) {
+          await signout();
+          alert('보안을 위해 자동으로 로그아웃되었습니다.')
+        }
+      })();
+    }
+  },[location.pathname])
+
 
   return (
     <>
@@ -33,7 +47,6 @@ const App = (props) => {
           <Route path='/content/:id' component={ContentViewer} />
 
           <Route exact path='/admin' component={Admin} />
-          <Route path='/admin/signin' component={Signin} />
           <Route path='/admin/edit' component={Edit} />
         </Switch>
 

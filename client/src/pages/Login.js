@@ -36,11 +36,13 @@ export default function Login(props) {
             <br />
             <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
             <br />
-            <button id="loginBtn" onClick={() => {
-              console.log('userId, userPw: ', userId, userPw);
-              signin(userId, userPw)
-              // setIsOpen(false);
-              // window.location = '/admin';
+            <button id="loginBtn" onClick={async() => {
+              if (await signin(userId, userPw)) {
+                setIsOpen(false);
+                window.location = '/admin';
+              } else {
+                alert('로그인 정보가 틀렸습니다.');
+              }
             }}>
               로그인
             </button>

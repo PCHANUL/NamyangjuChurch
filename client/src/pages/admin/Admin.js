@@ -1,30 +1,36 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import './admin.css';
 import DataList from './DataList'
 
-import { getDataList, postLiveUrl } from '../axiosRequest';
+import { getDataList, postLiveUrl, isSignin, signout } from '../axiosRequest';
 
 import { useObserver } from 'mobx-react-lite';
 import { useAppStore } from '../../state/appContext';
 
-
-
 const Admin = (props) => {
   const [tab, setTab] = useState([0, 0]);
-
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
 
   const appStore = useAppStore();
-  
-  
+
   useEffect(() => {
+
     window.scroll(0,0);
-    getDataList(async (getData) => {
+
+    getDataList(async(getData) => {
       await setData(getData);
       setTimeout(setLoading(true), 2000);
-    })
+    });
+
+    (async() => {
+      if (!(await isSignin())) {
+        alert('접근권한이 없습니다.');
+        window.location = '/';
+      }
+    })();
+
   }, [tab])
 
 
