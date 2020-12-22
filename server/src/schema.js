@@ -35,6 +35,8 @@ var schema = buildSchema(`
 
   type Query {
     signin(nickname: String!, password: String!): Boolean!
+    signout: Boolean!
+    isSignin: Boolean!
     getCategory: [Category]!
     getContent(id: Int!): Post!
   }

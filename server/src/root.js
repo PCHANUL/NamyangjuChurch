@@ -3,65 +3,39 @@ const saltRounds = 10;
 
 const root = {
   signin: async ({nickname, password}, { prisma, req, res }) => {
-
-    console.log('req: ', req.session, req.sessionID, req.sessionStore.sessions);
-
-    console.log(bcrypt.genSalt(saltRounds, async(err, salt) => {
-      return await bcrypt.hash(password, salt, (err, hash) => {
-        console.log('hash111: ', hash);
-      })
-    }))
-
-    bcrypt.genSalt(saltRounds, async(err, salt) => {
-      await bcrypt.hash(password, salt, (err, hash) => {
-        console.log('hash: ', hash);
-        
-      })
-    })
-    
-    bcrypt.compare(password, hash, (err, result) => {
-      console.log(result)
-    })
-    
-
     try {
       const result = await prisma.user.findUnique({
         where: {
           nickname
         }
       })
-      if (result === null || result.password !== password) return false;
+      let isCorrect = await bcrypt.compare(password, result.password)
+      if (result === null || !isCorrect) return false;
       else {
         req.session.isLogged = true;
         return true;
       }
-
     } catch(err) {
       return false;
     }
   },
-  signup: async ({nickname, password}, context) => {
-    
-
+  signup: async({nickname, password}, context) => {
+    const hash = await bcrypt.hash(password, saltRounds);
     return await context.prisma.user.create({
       data: {
         nickname,
-        password,
+        password: hash,
       }
     })
   },
-  signout: async ({ nickname }, context) => {
-    console.log(nickname)
-    const isDeleted = await context.prisma.user.delete({
-      where: {
-        nickname
-      }
-    })
-    return isDeleted ? true : false;
+  signout: async (_, { prisma, req, res }) => {
+    req.session.isLogged = false;
+    return true;
+  },
+  isSignin: async(_, {prisma, req, res}) => {
+    return req.session.isLogged;
   },
   getCategory: async (_, { prisma, req, res }) => {
-    
-    
     let result = await prisma.category.findMany({
       select: { 
         id: true,
