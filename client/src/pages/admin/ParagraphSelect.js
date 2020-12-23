@@ -11,6 +11,7 @@ export default function ParagraphSelect(props) {
       child.innerText = paragraphCommands[key];
       button.appendChild(child);
       button.addEventListener('click', () => {
+        console.log('key: ', key);
         editFunc({cmd: 'formatBlock', val: key});
         setParagraph(paragraphCommands[key])
       })

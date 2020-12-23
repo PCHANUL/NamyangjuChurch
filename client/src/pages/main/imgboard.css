@@ -11,7 +11,7 @@
   transform: translate(0, -50%);
   width: 200vw;
   height: 30vw;
-  -webkit-filter:grayscale(100%);
+  
 }
 
 .img0 {
@@ -41,6 +41,7 @@
   position: absolute;
   margin: -6vw 0 0 -3.8vw;
   width: 100vw;
+  filter: grayscale(100%);
 } 
 
 #ytp-thumbnail {

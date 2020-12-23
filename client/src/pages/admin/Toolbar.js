@@ -81,8 +81,11 @@ const markStyleTab = () => {
   let prevStyles = {};
 
   return (styles, setParagraph, setFontFamily) => {
-    if (isSameArr(styles, prevStyles) === false) {
+    let isSame = isSameArr(styles, prevStyles)
+    console.log('isSame: ', isSame, styles, prevStyles);
+    if (isSame === false) {
       clearTabStyle();
+      prevStyles = {};
       let objKeys = Object.keys(styles);
       let isHeading = false;
       let normalize = false;
@@ -152,8 +155,9 @@ const getStyle = (child, style = {}) => {
 }
 
 const editFunc = (cmd) => {
-  // document.execCommand(cmd.cmd, false);
-  document.execCommand(cmd.cmd, false);
+
+  let result = document.execCommand(cmd.cmd, false, cmd.val);
+  console.log('result: ', result);
 
   // let select = window.getSelection().getRangeAt(0)
   // let newNode = document.createElement('div');

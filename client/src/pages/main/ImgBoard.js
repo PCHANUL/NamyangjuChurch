@@ -67,8 +67,8 @@ function calcTime() {
 
   let date = new Date();
   let now = {
-    day: 0,
-    hours: 13,
+    day: date.getDay(),
+    hours: date.getHours(),
     mins: date.getMinutes(),
   }
 
@@ -97,7 +97,6 @@ function calcTime() {
 
 
 function playYoutube() {
-  document.querySelector('#onairIcon').style.visibility = 'hidden';
   document.querySelector('#main-thumbnail').style.visibility = 'hidden';
   document.querySelector('#imgOuter').style.zIndex = 1;
   document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
