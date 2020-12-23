@@ -174,7 +174,6 @@
   position: relative;
   height: 30vw;
   width: 95vw;
-  filter: grayscale(100%)
 }
 
 .gMap > button {
@@ -200,6 +199,11 @@
 .gMap > button:hover {
   border: none;
   background-color: whitesmoke;
+}
+
+.gm-style > div:nth-child(1) > div:nth-child(1) > div:nth-child(5) {
+  filter: grayscale(100%)
+
 }
 
 /* 시간표 */

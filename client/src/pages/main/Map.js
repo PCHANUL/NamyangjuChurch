@@ -49,8 +49,9 @@ export class GoogleMap extends React.Component {
           google={this.props.google}
           onClick={this.onMapClicked}
           initialCenter={{lat: 37.659365, lng: 127.179435 }}
+          // style={{filter: 'grayscale(1)'}}
         >
-          <Marker/>
+          <Marker />
         </Map>
       </div>
     )
