@@ -39,16 +39,23 @@ export default function DropdownContent() {
   )
 }
 
+const isEditFrame = (node) => {
+  if (node.id === 'edit') return false;
+  else if (node.id === 'editFrame') return true;
+  else return isEditFrame(node.parentElement);
+}
+
 const getYoutube = async(targetId) => {
-  const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
-  const permissionStatus = await navigator.permissions.query(queryOpts);
-  // Will be 'granted', 'denied' or 'prompt':
-  console.log(permissionStatus.state);
-
-
+  // 클립보드에서 유튜브 url 가져오기
+  // const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
+  // const permissionStatus = await navigator.permissions.query(queryOpts);
+  // // Will be 'granted', 'denied' or 'prompt':
+  // console.log(permissionStatus.state);
   // console.log(await navigator.clipboard.readText())
+
+
   let youtubeUrl = '';
-  let msg = '유튜브 영상 주소를 입력하세요.\n(주소를 복사한 상태라면 입력되어있습니다.)';
+  let msg = '유튜브 영상 주소를 입력하세요.';
   let result;
 
   if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
@@ -61,7 +68,19 @@ const getYoutube = async(targetId) => {
     let youtubeVideo = document.createElement('div');
     youtubeVideo.style.textAlign = 'center';
     youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw;'>`;
-    document.getElementById(targetId).appendChild(youtubeVideo);
+    // document.getElementById(targetId).appendChild(youtubeVideo);
+    console.log('document.getSelection(): ', document.getSelection().getRangeAt(0).commonAncestorContainer.parentElement.id);
+    
+    let selected = document.getSelection();
+    console.log('selected: ', selected, selected.getRangeAt(0), isEditFrame(selected.getRangeAt(0).commonAncestorContainer));
+    
+    if (isEditFrame(selected.getRangeAt(0).commonAncestorContainer)) {
+      console.log('selected.anchorNode: ', selected.anchorNode);
+      if (selected.anchorNode.nodeName === '#text') selected = selected.anchorNode.parentElement;
+      console.log('selected: ', selected);
+      selected.insertAdjacentHTML('beforeend', '<br/>')
+      selected.appendChild(youtubeVideo);
+    }
   }
 }
 

@@ -82,7 +82,6 @@ const markStyleTab = () => {
 
   return (styles, setParagraph, setFontFamily) => {
     let isSame = isSameArr(styles, prevStyles)
-    console.log('isSame: ', isSame, styles, prevStyles);
     if (isSame === false) {
       clearTabStyle();
       prevStyles = {};

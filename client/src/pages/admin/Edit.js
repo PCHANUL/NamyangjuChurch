@@ -230,17 +230,6 @@ const changeYoutubeImg = () => {
     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
   }
 }
-
-const saveTempData = async() => {
-  const category = document.querySelector('#selectCategory').value;
-  const title = document.querySelector('#inputTitle').value;
-  const content = document.getElementById('editFrame').innerHTML;
-  console.log('category: ', category, title, content);
-
-  localStorage.setItem('category', `${category}`);
-  localStorage.setItem('title', `${title}`);
-  localStorage.setItem('content', `${content}`);
-}
  
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
@@ -259,6 +248,18 @@ const saveData = async(contentState, props) => {
     }
   }
   else alert('카테고리와 제목을 작성해주세요');
+}
+
+
+const saveTempData = async() => {
+  const category = document.querySelector('#selectCategory').value;
+  const title = document.querySelector('#inputTitle').value;
+  const content = document.getElementById('editFrame').innerHTML;
+  console.log('category: ', category, title, content);
+
+  localStorage.setItem('category', `${category}`);
+  localStorage.setItem('title', `${title}`);
+  localStorage.setItem('content', `${content}`);
 }
 
 
