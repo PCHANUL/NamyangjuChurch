@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import './edit.css';
 
-import { addData, getContent, updateData, readImage } from '../axiosRequest';
 import { useAppStore } from '../../state/appContext';
+import { addData, getContent, updateData, readImage } from '../axiosRequest';
+import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
 
 import Toolbar from './Toolbar';
 
@@ -106,7 +107,7 @@ function handleDrop(e) {
   readImage(files, 'editFrame')
 }
 
-function setDropEvent() {
+const setDropEvent = () => {
   document.querySelector('#drop-area').addEventListener('dragleave', (e) => {
     console.log('leave')
     document.querySelector('#drop-area').style.visibility = 'hidden';
@@ -120,11 +121,10 @@ function setDropEvent() {
   dragEvents.forEach(eventName => {
     document.querySelector('#drop-area').addEventListener(eventName, preventDefaults, false)
   })
-
   document.querySelector('#drop-area').addEventListener('drop', handleDrop, false);
 }
 
-function setPrevData(store) {
+const setContent = (store) => {
   if (store.isEdit) {
     getContent(store.selectedId, (data) => {
       document.querySelector('#selectCategory').value = data.detailId;
@@ -134,30 +134,22 @@ function setPrevData(store) {
   }
 }
 
-function getTempData() {
-  let category = localStorage.getItem('category');
-  let title = localStorage.getItem('title');
-  let content = localStorage.getItem('content');
-  if (category || title || content) {
-    document.querySelector('#selectCategory').value = category;
-    document.querySelector('#inputTitle').value = title;
-    document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content);
-  }
-}
 
 
-function Edit(props) {
+export default function Edit(props) {
   const contentIdStore = useAppStore();
   
   useEffect (() => {
     getTempData();
-    setPrevData(contentIdStore);
+    setContent(contentIdStore);
     setDropEvent();
     
     const click = handleImg();
     window.addEventListener('click', click, true);
+    let autoSave = window.setInterval(saveTempData, 50000);
     return () => {
       window.removeEventListener('click', click, true);
+      window.clearInterval(autoSave);
     }
   }, [])
 
@@ -198,6 +190,7 @@ function Edit(props) {
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button id='saveBtn' onClick={() => {
           saveData(contentIdStore, props);
+          deleteTempData();
         }}>저장</button>
         <button id='saveBtn' onClick={() => {
           saveTempData();
@@ -250,17 +243,3 @@ const saveData = async(contentState, props) => {
   else alert('카테고리와 제목을 작성해주세요');
 }
 
-
-const saveTempData = async() => {
-  const category = document.querySelector('#selectCategory').value;
-  const title = document.querySelector('#inputTitle').value;
-  const content = document.getElementById('editFrame').innerHTML;
-  console.log('category: ', category, title, content);
-
-  localStorage.setItem('category', `${category}`);
-  localStorage.setItem('title', `${title}`);
-  localStorage.setItem('content', `${content}`);
-}
-
-
-export default Edit;

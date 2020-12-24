@@ -76,10 +76,8 @@ const getYoutube = async(targetId) => {
     
     if (isEditFrame(selected.getRangeAt(0).commonAncestorContainer)) {
       console.log('selected.anchorNode: ', selected.anchorNode);
-      if (selected.anchorNode.nodeName === '#text') selected = selected.anchorNode.parentElement;
-      console.log('selected: ', selected);
-      selected.insertAdjacentHTML('beforeend', '<br/>')
-      selected.appendChild(youtubeVideo);
+      if (selected.anchorNode.nodeName === '#text') selected.anchorNode.parentElement.appendChild(youtubeVideo);
+      else selected.anchorNode.appendChild(youtubeVideo);
     }
   }
 }
