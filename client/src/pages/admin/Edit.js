@@ -40,24 +40,24 @@ function handleImg() {
     }
   }
 
- 
-
   return function(e) {
-
-    const mousemove = (eMouse) => {
-      e.target.style.width = `${((eMouse.pageX - e.target.getBoundingClientRect().left) / window.innerWidth * 100).toFixed(3)}vw`
+    const resizeImage = (eMouse) => {
+      console.log('e.target: ', e.target);
+      // (마우스 위치 - 타깃 이미지 왼쪽위치)
+      target.style.width = `${(eMouse.pageX - target.getBoundingClientRect().left).toFixed(3)}px`
     }
 
     const resizeStart = (e, resizeHandleTarget) => {
+      console.log('resizeHandleTarget: ', resizeHandleTarget);
       e.preventDefault()
-      window.addEventListener('mousemove', mousemove);
+      window.addEventListener('mousemove', resizeImage);
       window.addEventListener('mouseup', () => resizeStop(resizeHandleTarget));
     }
 
     const resizeStop = (resizeHandleTarget) => {
-      window.removeEventListener('mousemove', mousemove);
-      window.removeEventListener('mouseup', resizeStop);
-      resizeHandleTarget.removeEventListener('mousemove', resizeStart);
+      window.removeEventListener('mousemove', resizeImage);
+      window.removeEventListener('mouseup', () => resizeStop(resizeHandleTarget));
+      resizeHandleTarget.removeEventListener('mousemove', (e) => resizeStart(e, resizeHandleTarget));
     }
 
     if (e.target.className.includes('image')) {
@@ -70,9 +70,11 @@ function handleImg() {
       target = e.target;
       target.className = target.className.replace('image', 'selectedImg');
       
-      document.querySelector('#resizeInput').value = e.target.style.width.split('vw')[0];
-      document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
+      // document.querySelector('#resizeInput').value = e.target.style.width.split('px')[0];
+      // document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
       // setToolbarPos = setInterval(() => getToolbarPos(), 500);
+
+      // resize handle repositioning
       setHandlePos = setInterval(() => getHandlePos(), 500);
 
       for (let i = 0; i < resizeHandle.length; i++) {
@@ -180,17 +182,17 @@ export default function Edit(props) {
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
-      <div id="editFrame" contentEditable="true">
-        {/* test img tag */}
-        {/* <img className='image' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/insert-picture-icon.png' style={{width: '20vw'}}></img> */}
-      </div>
+      <div id="editFrame" contentEditable="true"></div>
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
 
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
-        <button id='saveBtn' onClick={() => {
-          saveData(contentIdStore, props);
-          deleteTempData();
+        <button id='saveBtn' onClick={async() => {
+          let isSaved = await saveData(contentIdStore, props);
+          if (isSaved) {
+            deleteTempData();
+            window.location = '/admin';
+          }
         }}>저장</button>
         <button id='saveBtn' onClick={() => {
           saveTempData();
@@ -207,7 +209,6 @@ export default function Edit(props) {
       <div id='handle1' className='resizeHandle' >
         <img className='ToolIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/editorTab/resizeArrow.png'/>
       </div>
-
   </div>
   )
 }
@@ -236,7 +237,7 @@ const saveData = async(contentState, props) => {
       let result = await addData(category, title, content);
       if (result.statusText === 'OK') {
         alert('저장되었습니다.');
-        props.history.push('/admin');
+        return result;
       }
     }
   }

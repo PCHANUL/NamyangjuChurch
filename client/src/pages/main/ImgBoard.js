@@ -30,9 +30,9 @@ export default function ImgBoard() {
         }
       </div>
       <div id='prevPlay' onClick={playYoutube}>
-        <h1>{liveInfo.time > 60 ? '이전예배' : '생방송'}</h1>
+        <h1>{liveInfo.time > 60 ? '이전 예배' : '생방송'}</h1>
         <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="100%" >
-          <path d="M 45,24 27,14 27,34" fill="#fff"></path>
+          <path d="M 45,24 27,14 27,34"></path>
         </svg>
       </div>
 

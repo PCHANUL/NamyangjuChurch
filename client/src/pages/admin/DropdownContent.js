@@ -67,17 +67,17 @@ const getYoutube = async(targetId) => {
   
     let youtubeVideo = document.createElement('div');
     youtubeVideo.style.textAlign = 'center';
-    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 20vw;'>`;
-    // document.getElementById(targetId).appendChild(youtubeVideo);
-    console.log('document.getSelection(): ', document.getSelection().getRangeAt(0).commonAncestorContainer.parentElement.id);
+    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 400px;'>`;
     
     let selected = document.getSelection();
-    console.log('selected: ', selected, selected.getRangeAt(0), isEditFrame(selected.getRangeAt(0).commonAncestorContainer));
-    
     if (isEditFrame(selected.getRangeAt(0).commonAncestorContainer)) {
-      console.log('selected.anchorNode: ', selected.anchorNode);
-      if (selected.anchorNode.nodeName === '#text') selected.anchorNode.parentElement.appendChild(youtubeVideo);
-      else selected.anchorNode.appendChild(youtubeVideo);
+      if (selected.anchorNode.nodeName === '#text') {
+        selected.anchorNode.parentElement.appendChild(youtubeVideo);
+        selected.anchorNode.parentElement.insertAdjacentHTML('beforeend', '<div><br></div>');
+      } else {
+        selected.anchorNode.appendChild(youtubeVideo);
+        selected.anchorNode.insertAdjacentHTML('beforeend', '<div><br></div>');
+      }
     }
   }
 }
