@@ -79,8 +79,7 @@ export const signout = async() => {
   return result.data.data.signout;
 }
 
-export const addData = async(category, title, content) => {
-  console.log('category, title, content: ', category, title, JSON.stringify(content));
+export const addData = async(category, title, content, dateNow) => {
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'POST',
@@ -95,6 +94,7 @@ export const addData = async(category, title, content) => {
           category: "${category}"
           title: "${title}"
           content: ${JSON.stringify(content)}
+          datetime: "${dateNow}"
         ) 
       }
       `
@@ -103,7 +103,7 @@ export const addData = async(category, title, content) => {
   return result
 }
 
-export const updateData = async(id, category, title, content) => {
+export const updateData = async(id, category, title, content, dateNow) => {
   console.log('id, category, title, content: ', id, category, title, content);
   return await axios({
     url: 'http://localhost:4000/graphql',
@@ -120,6 +120,7 @@ export const updateData = async(id, category, title, content) => {
           category: "${category}"
           title: "${title}"
           content: ${JSON.stringify(content)}
+          datetime: "${dateNow}"
         ) 
       }
       `

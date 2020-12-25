@@ -46,7 +46,7 @@ const ContentList = () => {
             <div className='video' key={i} >
               <div className='videoTitle'>
                 <Link to={`/content/${data.id}`}>{data.title}</Link>
-                <p>{transDate(data.createdAt)}</p>
+                <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
               <div className='videoContent'>
                 <div>{data.gender}</div>

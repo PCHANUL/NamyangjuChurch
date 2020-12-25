@@ -3,6 +3,7 @@ import './edit.css';
 
 import { useAppStore } from '../../state/appContext';
 import { addData, getContent, updateData, readImage } from '../axiosRequest';
+import { transDate } from '../Methods';
 import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
 
 import Toolbar from './Toolbar';
@@ -131,9 +132,16 @@ const setContent = (store) => {
     getContent(store.selectedId, (data) => {
       document.querySelector('#selectCategory').value = data.detailId;
       document.querySelector('#inputTitle').value = data.title;
+      document.querySelector('#inputDate').value = data.createdAt;
       document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
     })
   }
+}
+
+const setDateNow = () => {
+  transDate(Date.now(), (result) => {
+    document.querySelector('#inputDate').value = `${result.year}-${result.month}-${result.day}`
+  })
 }
 
 
@@ -145,6 +153,7 @@ export default function Edit(props) {
     getTempData();
     setContent(contentIdStore);
     setDropEvent();
+    setDateNow();
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -165,19 +174,23 @@ export default function Edit(props) {
 
       <Toolbar />
 
-      <select id='selectCategory'>
-        <option value="">카테고리</option>
-        <optgroup label="예배">
-          <option value="1">주일</option>
-          <option value="2">수요일</option>
-          <option value="3">금요일</option>
-          <option value="4">새벽</option>
-          <option value="5">기도수첩</option>
-        </optgroup>
-        <optgroup label="소식">
-          <option value="6">사진</option>
-        </optgroup>
-      </select>
+      <div id='inputDiv'>
+        <select id='selectCategory'>
+          <option value="">카테고리</option>
+          <optgroup label="예배">
+            <option value="1">주일</option>
+            <option value="2">수요일</option>
+            <option value="3">금요일</option>
+            <option value="4">새벽</option>
+            <option value="5">기도수첩</option>
+          </optgroup>
+          <optgroup label="소식">
+            <option value="6">사진</option>
+          </optgroup>
+        </select>
+        <input id='inputDate' type="date"></input>
+      </div>
+      
 
       <input id='inputTitle' placeholder='제목을 입력하세요'></input>
 
@@ -228,13 +241,14 @@ const changeYoutubeImg = () => {
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
+  const dateNow = document.querySelector('#inputDate').value;
 
   changeYoutubeImg();
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
   if (category && title) {
-    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content);
+    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content, dateNow);
     else {
-      let result = await addData(category, title, content);
+      let result = await addData(category, title, content, dateNow);
       if (result.statusText === 'OK') {
         alert('저장되었습니다.');
         return result;

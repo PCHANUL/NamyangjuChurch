@@ -17,7 +17,7 @@ function ContentData(props) {
       <div className='textBox'>
         <h3 className='title'>{ data.title }
         &nbsp;
-        <p className='date'>{ transDate(data.createdAt) }</p>
+        <p className='date'>{ (data.createdAt).replaceAll('-', '. ') }</p>
         </h3>
       </div>
       {

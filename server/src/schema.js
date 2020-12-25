@@ -47,6 +47,7 @@ var schema = buildSchema(`
       category: String!
       title: String!
       content: String!
+      datetime: String!
     ): Boolean!
 
     updateContent(
@@ -54,6 +55,7 @@ var schema = buildSchema(`
       category: String!
       title: String!
       content: String!
+      datetime: String!
     ): Boolean!
 
     deleteUser(nickname: String!): Boolean!

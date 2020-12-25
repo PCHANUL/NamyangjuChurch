@@ -72,10 +72,12 @@ const root = {
       }
     })
   },
-  addContent: async ({ category, title, content }, context) => {
+  addContent: async ({ category, title, content, datetime }, context) => {
+    console.log('category, title, content, dateTime: ', category, title, content, datetime);
     const isCreated = await context.prisma.post.create({
       data: {
         title,
+        createdAt: datetime,
         detail: {
           connect: { id: Number(category) }
         },
@@ -88,13 +90,14 @@ const root = {
     })
     return isCreated ? true : false;
   },
-  updateContent: async({ id, category, title, content }, context) => {
+  updateContent: async({ id, category, title, content, datetime }, context) => {
     const isUpdated = await context.prisma.post.update({
       where: {
         id: id
       },
       data: {
         title,
+        createdAt: datetime,
         detail: {
           connect: { id: Number(category) }
         },
