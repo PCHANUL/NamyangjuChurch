@@ -44,6 +44,9 @@ const root = {
           include: {
             category: true,
             posts: {
+              orderBy: {
+                createdAt: 'desc'
+              },
               include: {
                 detail: true,
               }

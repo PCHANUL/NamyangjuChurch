@@ -60,7 +60,10 @@ const Admin = (props) => {
       }}>
         <img id='addFileIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/add-file.png' />
       </button> 
-      <DataList data={data} loading={loading} tab={tab}/>
+      {
+        loading &&
+        <DataList data={data} loading={loading} tab={tab}/>
+      }
     </div>
   ))
 }

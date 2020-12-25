@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ContentData from './ContentData';
 
-function DataList({ loading, data, tab }) {
-  console.log('data: ', loading, data, tab);
-
-  if (loading === 'success') {
-    console.log(data[tab[0]].details[tab[1]].posts);
-  }
+export default function DataList({ loading, data, tab }) {
+  const [contents, setContent] = useState(data);
 
   const MakeDataList = () => {
     return (
       <>
         {
-          data[tab[0]].details[tab[1]].posts.length !== 0 ? (
-            data[tab[0]].details[tab[1]].posts.map((data, index) => {
-              return <ContentData key={index} data={data}/>
+          contents[tab[0]].details[tab[1]].posts.length !== 0 ? (
+            contents[tab[0]].details[tab[1]].posts.map((content, index) => {
+              return <ContentData key={index} content={content} setContent={setContent}/>
             })
           ) : (
             <div className='dataBox'>
@@ -41,4 +37,3 @@ function DataList({ loading, data, tab }) {
   )
 }
 
-export default DataList;
