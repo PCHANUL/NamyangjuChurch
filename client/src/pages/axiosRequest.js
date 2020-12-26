@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const signup = async(id, pw) => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -23,7 +23,7 @@ export const signup = async(id, pw) => {
 
 export const signin = async(id, pw) => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -45,7 +45,7 @@ export const signin = async(id, pw) => {
 
 export const isSignin = async() => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     data: {
@@ -62,7 +62,7 @@ export const isSignin = async() => {
 
 export const signout = async() => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -81,7 +81,7 @@ export const signout = async() => {
 
 export const addData = async(category, title, content, dateNow) => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -106,7 +106,7 @@ export const addData = async(category, title, content, dateNow) => {
 export const updateData = async(id, category, title, content, dateNow) => {
   console.log('id, category, title, content: ', id, category, title, content);
   return await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'POST',
     withCredentials: true,
     headers: {
@@ -130,7 +130,7 @@ export const updateData = async(id, category, title, content, dateNow) => {
 
 export const deleteData = async(id, callback) => {
   const result = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'DELETE',
     withCredentials : true,
     headers: {
@@ -153,7 +153,7 @@ export const deleteData = async(id, callback) => {
 
 export const getContent = async( id, callback ) => {
   const content = await axios({
-    url: 'http://localhost:4000/graphql',
+    url: 'http://183.111.253.241:4000/graphql',
     method: 'GET',
     withCredentials: true,
     headers: {
@@ -180,7 +180,7 @@ export const getContent = async( id, callback ) => {
 export const getDataList = async(callback) => {
   try {
     const data = await axios({
-      url: 'http://localhost:4000/graphql',
+      url: 'http://183.111.253.241:4000/graphql',
       method: 'GET',
       withCredentials : true,
       headers: {
@@ -216,7 +216,7 @@ export const uploadImage = async(file, callback) => {
   let formData = new FormData();
   await formData.append("img", file);
 
-  const imgUrl = await axios.post('http://localhost:4000/post/img', formData, {
+  const imgUrl = await axios.post('http://183.111.253.241:4000/post/img', formData, {
     headers: {'Content-Type': 'multipart/form-data'},
   })
 
@@ -264,13 +264,13 @@ export const readImage = async(files, targetId) => {
 }
 
 export const getLiveUrl = async(callback) => {
-  const resultUrl = await axios.get('http://localhost:4000/live');
+  const resultUrl = await axios.get('http://183.111.253.241:4000/live');
   callback(resultUrl);
 }
 
 export const postLiveUrl = async(url, callback) => {
   const resultMsg = await axios({
-    url: 'http://localhost:4000/live',
+    url: 'http://183.111.253.241:4000/live',
     method: 'post',
     withCredentials : true,
       headers: {
