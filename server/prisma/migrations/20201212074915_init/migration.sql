@@ -32,7 +32,7 @@ UNIQUE INDEX `DetailCategory.name_unique`(`name`),
 CREATE TABLE `Post` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `title` VARCHAR(191) NOT NULL,
+    `title` LONGTEXT NOT NULL,
     `detailId` INT NOT NULL,
 
     PRIMARY KEY (`id`)
@@ -41,7 +41,7 @@ CREATE TABLE `Post` (
 -- CreateTable
 CREATE TABLE `Content` (
     `id` INT NOT NULL AUTO_INCREMENT,
-    `content` VARCHAR(191) NOT NULL,
+    `content` LONGTEXT NOT NULL,
     `postId` INT,
 UNIQUE INDEX `Content.postId_unique`(`postId`),
 

@@ -73,7 +73,7 @@ function Main() {
               <div className='prayerCard'>
                 <h2>강북 600만, <br /> 남양주, 양주<br />100만 복음화</h2>
                 <ul>
-                  <li>5000제자, 2000지교회</li>
+                  <li>5000제자, 200지교회</li>
                   <li>200절대제자, 200장로</li>
                   <li>200렘넌트 </li>
                 </ul>

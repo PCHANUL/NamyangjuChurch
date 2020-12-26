@@ -3,9 +3,11 @@ export const saveTempData = async() => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
   const content = document.getElementById('editFrame').innerHTML;
+  const contentDate = document.getElementById('inputDate').value;
 
   localStorage.setItem('category', `${category}`);
   localStorage.setItem('title', `${title}`);
+  localStorage.setItem('contentDate', `${contentDate}`);
   localStorage.setItem('content', `${content}`);
   localStorage.setItem('time', `${new Date()}`);
 
@@ -15,12 +17,15 @@ export const saveTempData = async() => {
 export const getTempData = () => {
   let category = localStorage.getItem('category');
   let title = localStorage.getItem('title');
+  let contentDate = localStorage.getItem('contentDate');
   let content = localStorage.getItem('content');
   let time = localStorage.getItem('time');
+
   if (category || title || content) {
     if (window.confirm(`${time}에 저장된 데이터를 가져오시겠습니까?`)) {
       document.querySelector('#selectCategory').value = category;
       document.querySelector('#inputTitle').value = title;
+      document.querySelector('#inputDate').value = contentDate;
       document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content);
     }
   }

@@ -153,7 +153,7 @@ export default function Edit(props) {
     getTempData();
     setContent(contentIdStore);
     setDropEvent();
-    setDateNow();
+    if (!document.querySelector('#inputDate').value) setDateNow();
     
     const click = handleImg();
     window.addEventListener('click', click, true);
@@ -231,20 +231,25 @@ export default function Edit(props) {
 const changeYoutubeImg = () => {
   const elements = document.getElementsByClassName('youtubeThumnail');
   while (elements.length !== 0) {
+    const targetSize = elements[0].getBoundingClientRect();
+    console.log('targetSize: ', targetSize.height);
     const youtubeIframe = document.createElement('iframe');
     youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
     youtubeIframe.style.width = elements[0].style.width;
+    youtubeIframe.style.height = `${targetSize.height}px`;
     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
   }
 }
  
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
-  const title = document.querySelector('#inputTitle').value;
   const dateNow = document.querySelector('#inputDate').value;
+  let title = document.querySelector('#inputTitle').value;
 
   changeYoutubeImg();
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
+  title = title.replace(/"/g, "'");
+
   if (category && title) {
     if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content, dateNow);
     else {

@@ -56,18 +56,19 @@ const getYoutube = async(targetId) => {
 
   let youtubeUrl = '';
   let msg = '유튜브 영상 주소를 입력하세요.';
-  let result;
+  let result = window.prompt(msg, '');
 
-  if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
-  else result = window.prompt(msg, '');
+
+  // if (youtubeUrl.includes('youtube.com/watch?v=')) result = window.prompt(msg, youtubeUrl);
+  // else result = window.prompt(msg, '');
 
   if (result) {
-    let youtubeCode = result.split('watch?v=');
-    if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
+    // let youtubeCode = result.split('watch?v=');
+    // if (!youtubeCode[1]) alert('잘못 입력하셨습니다.');
   
     let youtubeVideo = document.createElement('div');
     youtubeVideo.style.textAlign = 'center';
-    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${youtubeCode[1]}/hqdefault.jpg" style='width: 400px;'>`;
+    youtubeVideo.innerHTML = `<img class='image youtubeThumnail' src="https://img.youtube.com/vi/${result}/hqdefault.jpg" style='width: 400px;'>`;
     
     let selected = document.getSelection();
     if (isEditFrame(selected.getRangeAt(0).commonAncestorContainer)) {
