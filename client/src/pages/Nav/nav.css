@@ -1,10 +1,11 @@
 #nav {
-  width: 95vw;
-  height: 50px;
-  padding: 1.5vw 0 1vw 5vw;
+  width: 100vw;
+  height: 45px;
+  padding: 20px 0 15px 0px;
   position: fixed;
   top: 0;
-  left: 0px;
+  left: 50%;
+  transform: translate(-50%);
   background-color: #fff;
   z-index: 2;
 }
@@ -13,9 +14,11 @@
   font-family: 'MapoFlowerIsland';
   text-decoration: none;
   color: #000;
-  font-size: 35px; 
+  font-size: 30px; 
   font-weight: 400;
   cursor: pointer;
+
+  margin-left: 15vw;
 
   transition-property: all;
   transition-duration: 0.3s;
@@ -27,13 +30,18 @@
   transition-duration: 0.3s;
 }
 
+#NavButtonDiv {
+  float: right;
+  margin-right: 8vw;
+  margin-top: 10px;
+}
+
 .button {
   font-family: 'MapoGoldenPier';
   text-decoration: none;
   color: #000;
   font-size: 20px; 
-  margin-right: 5vw;
-  margin-top: 1vw;
+  margin-left: 40px;
   float: right;
   cursor: pointer;
 }
@@ -43,7 +51,7 @@
   text-align: center;
   position: fixed;
   left: 50%;
-  top: 100px;
+  top: 90px;
   transform: translate(-50%);
 
   width: 70vw;

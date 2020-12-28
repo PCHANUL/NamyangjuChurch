@@ -1,10 +1,8 @@
 @media only screen and (max-width : 640px) {
   #nav {
-    width: 95vw;
-    height: 12vw;
+    height: 9vw;
     position: fixed;
     top: 0;
-    left: 0px;
     background-color: #fff;
     z-index: 2;
 
@@ -24,6 +22,7 @@
 
     cursor: pointer;
     margin-top: 1.5vw;
+    margin-left: 0;
   }
 
   .button {

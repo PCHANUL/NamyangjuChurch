@@ -72,12 +72,14 @@ export default function Nav() {
           <a id='home' className={window.location.pathname === '/' ? 'hiddenHome' : ''} onClick={() => window.location = '/'}>
             남양주 사랑교회
           </a>
-          <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
-            교회소식
-          </Link>
-          <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
-            말씀보기
-          </Link>
+          <div id='NavButtonDiv'>
+            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
+              교회소식
+            </Link>
+            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
+              말씀보기
+            </Link>
+          </div>
         </div>
         )
       }
