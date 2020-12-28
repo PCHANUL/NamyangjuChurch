@@ -9,6 +9,7 @@ import '../responsibleCSS/mobileNav.css';
 
 // component
 import MobileMenuButton from './MobileMenuButton';
+import { GobackButton } from '../ContentList/Button';
 
 export default function Nav() {
   const appStore = useAppStore();
@@ -142,39 +143,4 @@ function NavTabs({ appStore }) {
   return <div />
 }
 
-function GobackButton() {
-  const clickFunc = () => {
-    let target = document.getElementsByClassName('goback')[0].childNodes[1];
-    clickMotion(target);
-    
-  }
 
-  const clickMotion = (target) => {
-    let div = document.createElement('div');
-    div.className = 'clickMotion';
-    let rect = target.getBoundingClientRect();
-    console.log('rect: ', rect);
-    div.style.top = `${rect.height / 2 - rect.height / 7}px`;
-    div.style.left = `${rect.width / 2 - rect.width / 9}px`;
-    target.appendChild(div);
-
-    setTimeout(() => {
-      div.className = div.className + ' clickMotion_visible';
-      setTimeout(() => {
-        div.className = 'clickMotion';
-        window.history.back();
-        div.parentNode.removeChild(div)
-      }, 200)
-    }, 0);
-  }
-
-  return (
-    <button className='goback' onMouseDown={clickFunc}>
-      <div className='label'>
-        <div className='gobackIcon gobackIcon_top'></div>
-        <div className='gobackIcon gobackIcon_bot'></div>
-      </div>
-      <div className='root'></div>
-    </button>
-  )
-}

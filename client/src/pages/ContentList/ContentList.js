@@ -3,7 +3,7 @@ import { uselocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 // component
-import SearchContent from './SearchContent';
+import FilterContent from './FilterContent';
 
 // methods
 import { getDataList } from '../axiosRequest';
@@ -31,11 +31,12 @@ export default function ContentList() {
 
   return useObserver(() => (
     <div id='videoList'>
-      <SearchContent 
+      <FilterContent
         data={data}
         setData={setData}
         setFiltered={setFiltered}
       />
+
       {
         loading &&
         ( filteredArr.length === 0 
@@ -59,6 +60,8 @@ export default function ContentList() {
     </div>
   ))
 }
+
+
 
 
 

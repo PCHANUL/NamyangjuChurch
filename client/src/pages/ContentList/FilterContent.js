@@ -3,10 +3,13 @@ import React, {useState} from 'react';
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
-import './searchContent.css';
+import './FilterContent.css';
 import '../responsibleCSS/mobileSearchContent.css';
 
-export default function SearchContent(props) {
+import { OrderOfTimeButton } from './OrderOfTimeButton';
+import { Button } from './Button';
+
+export default function FilterContent(props) {
   const appStore = useAppStore();
   const [searchInput, setSearchInput] = useState('');
   const [keywords, setKeywords] = useState([]);
@@ -53,7 +56,9 @@ export default function SearchContent(props) {
   return useObserver(() => (
     <>
       <div id='searchKeyword'>
+
         <div id='searchDiv'>
+          <OrderOfTimeButton />
           <input id='inputKeyword' placeholder='검색 키워드 입력' 
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
@@ -81,48 +86,6 @@ export default function SearchContent(props) {
     </>
   ))
 }
-
-function Button(props) {
-  const { children, className, onClick } = props;
-
-  const onMouseDown = (e) => {
-    let target = findRoot(e.target);
-    let mouseX = e.nativeEvent.offsetX;
-    let mouseY = e.nativeEvent.offsetY;
-    onClick();
-    clickAction(target, mouseX, mouseY);
-  }
-
-  const findRoot = (target) => {
-    if (target.className === 'label') return target.parentNode.childNodes[1];
-    if (target.className === 'clickMotion clickMotion_visible') return target.parentNode.parentNode.childNodes[1];
-    else return target.childNodes[1];
-  }
-
-  const clickAction = (target, x, y) => {
-    let div = document.createElement('div');
-    div.className = 'clickMotion';
-    div.style.top = `${y}px`;
-    div.style.left = `${x}px`;
-    target.appendChild(div);
-
-    setTimeout(() => {
-      div.className = div.className + ' clickMotion_visible';
-      setTimeout(() => {
-        div.className = 'clickMotion';
-          div.parentNode.removeChild(div)
-      }, 500)
-    }, 0);
-  }
-
-  return (
-    <div className={className} onMouseDown={onMouseDown}>
-        <span className='label'>{children}</span>
-        <span className='root'></span>
-    </div>
-  )
-}
-
 
 
 function filterContents(data, conditions, ...objKeys) {

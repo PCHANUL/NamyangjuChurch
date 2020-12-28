@@ -147,31 +147,6 @@
     transition: right 0.3s;
   }
 
-  .goback {
-    position: absolute;
-    left: 3vw;
-    top: 2.5vw;
-    width: 10vw;
-    height: 10vw;
-    background-color: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 6vw;
-    outline: none;
-  }
-
-  .gobackIcon {
-    height: 1vw;
-    width: 5vw;
-    background-color: rgb(105, 105, 105);
-    border-radius: 2vw;
-    margin: 1vw;
-  }
-
-  .gobackIcon_top {
-    transform: rotate(-25deg);
-  }
-  .gobackIcon_bot {
-    transform: rotate(25deg);
-  }
+  
 
 }

@@ -1,0 +1,26 @@
+.orderbtn {
+  float: left;
+}
+
+.arrow {
+  float: right;
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 4px;
+  margin-left: 7px;
+}
+
+.orderbtn > label {
+  float: right;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
