@@ -27,7 +27,7 @@ export default function SearchContent(props) {
     } 
   }
 
-  const searchKeywords = (paraKeywords = []) => {
+  const searchKeywords = (e, paraKeywords = []) => {
     let keywordsArr = paraKeywords.length === 0 ? keywords : paraKeywords;
  
     if (keywords.length === 0 && searchInput === '') {
@@ -54,11 +54,11 @@ export default function SearchContent(props) {
     <>
       <div id='searchKeyword'>
         <div id='searchDiv'>
-          <input id='inputKeyword' placeholder='검색 키워드 추가' 
+          <input id='inputKeyword' placeholder='검색 키워드 입력' 
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
           ></input>
-          <Button className='keywordBtn' onClick={searchKeywords}>검색</Button>
+          <Button className='keywordBtn' onClick={searchKeywords}>추가</Button>
           <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
         </div>
 

@@ -7,28 +7,26 @@ a:hover {
 }
 #videoList {
   width: 70vw;
-  margin-top: 12.5vw;
+  margin-top: 11vw;
   grid-column: 3;
   grid-row: 2;
 }
 .video {
   position: relative;
-  height: 10vw;
-  padding: 2vw 2vw 0 2vw;
+  height: 60px;
+  padding: 15px 2vw 0 2vw;
   border-top: 1px solid rgb(210, 210, 210);
 }
 .videoTitle {
   float: left;
-  padding: 0.5vw 0 0 2vw;
 }
 .videoTitle a {
   cursor: pointer;
-  font-size: 3vw;
+  font-size: 20px;
   font-weight: 700;
 }
-
 .videoTitle p {
-  font-size: 1.5vw;
+  font-size: 10px;
 }
 .videoContent {
   width: 20vw;

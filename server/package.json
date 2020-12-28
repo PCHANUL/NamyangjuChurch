@@ -4,7 +4,7 @@
   "description": "",
   "main": "web.js",
   "scripts": {
-    "start": "nodemon --exec babel-node web.js",
+    "start": "node web.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "getbuild": "cd ./views && rm -rf * && cd ../../client/build && mv *.html *.js ../../server/views",
     "gitupdate": "git add . && git commit -m 'Update' && git push origin master"

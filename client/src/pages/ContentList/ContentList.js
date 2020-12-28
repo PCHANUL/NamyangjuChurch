@@ -15,7 +15,7 @@ import { useObserver } from 'mobx-react';
 import './videoList.css';
 import '../responsibleCSS/mobileVideoList.css';
 
-const ContentList = () => {
+export default function ContentList() {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
   const [filteredArr, setFiltered] = useState([]);
@@ -62,4 +62,4 @@ const ContentList = () => {
 
 
 
-export default ContentList;
+

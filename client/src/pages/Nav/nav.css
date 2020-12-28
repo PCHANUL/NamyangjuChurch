@@ -1,6 +1,6 @@
 #nav {
   width: 95vw;
-  height: 4vw;
+  height: 50px;
   padding: 1.5vw 0 1vw 5vw;
   position: fixed;
   top: 0;
@@ -9,13 +9,11 @@
   z-index: 2;
 }
 
-
-
 #home {
   font-family: 'MapoFlowerIsland';
   text-decoration: none;
   color: #000;
-  font-size: 2.5vw; 
+  font-size: 35px; 
   font-weight: 400;
   cursor: pointer;
 
@@ -33,7 +31,7 @@
   font-family: 'MapoGoldenPier';
   text-decoration: none;
   color: #000;
-  font-size: 1.5vw; 
+  font-size: 20px; 
   margin-right: 5vw;
   margin-top: 1vw;
   float: right;
@@ -41,21 +39,24 @@
 }
 
 .tabList {
-  font-size: 1.5vw;
+  font-size: 20px;
   text-align: center;
   position: fixed;
   left: 50%;
-  top: 6.5vw;
+  top: 100px;
   transform: translate(-50%);
-  width: 80vw;
-  height: 4vw;
+
+  width: 70vw;
+  max-width: 1000px;
+  height: 50px;
+
   background-color: #fff;
   display: grid;
   z-index: 1;
-  box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
+  box-shadow: 0 0 15px 0 rgb(0,0,0, 0.2);
 
   transition-property: all;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
 }
 #videoTabList {
   grid-template-columns: auto auto auto auto auto;
@@ -65,7 +66,7 @@
 }
 
 .tab {
-  padding-top: 1vw;
+  padding-top: 14px;
   cursor: pointer;
 }
 .tab:hover {
@@ -94,7 +95,7 @@
 .hiddenDrawer {
   margin-top: -30vw;
   transition-property: all;
-  transition-duration: 1s;
+  transition-duration: 2s;
 }
 
 
