@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react';
 import './FilterContent.css';
 import '../responsibleCSS/mobileSearchContent.css';
 
-import { OrderOfTimeButton } from './OrderOfTimeButton';
+import { OrderButton } from './OrderOfTimeButton';
 import { Button } from './Button';
 
 export default function FilterContent(props) {
@@ -71,8 +71,8 @@ export default function FilterContent(props) {
       <div id='searchKeyword'>
 
         <div id='searchDiv'>
-          {/* <Button className='keywordBtn'>검색</Button> */}
-          <OrderOfTimeButton />
+          <OrderButton name={'날짜'} />
+          <OrderButton name={'성경'} />
           <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
           <Button className='keywordBtn' onClick={searchKeywords}>검색</Button>
           <input id='inputKeyword' placeholder='검색 키워드 입력' 

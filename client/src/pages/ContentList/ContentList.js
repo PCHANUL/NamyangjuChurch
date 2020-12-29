@@ -12,8 +12,8 @@ import { transDate } from '../Methods';
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
-import './videoList.css';
-import '../responsibleCSS/mobileVideoList.css';
+import './contentList.css';
+import '../responsibleCSS/mobileContentList.css';
 
 export default function ContentList() {
   const appStore = useAppStore();
@@ -31,9 +31,7 @@ export default function ContentList() {
 
   return useObserver(() => (
     <div id='videoList'>
-      <div id='leftSide'></div>
-      <div id='rightSide'></div>
-      
+
       <FilterContent
         data={data}
         setData={setData}
@@ -41,6 +39,7 @@ export default function ContentList() {
       />
 
       {
+        // set content list
         loading &&
         ( filteredArr.length === 0 
           ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
@@ -53,15 +52,12 @@ export default function ContentList() {
                 <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
               <div className='videoContent'>
-                <div>{data.gender}</div>
-                {/* <Link className='videoButton' to={`/contentlist/${data.id}`}>영상보기</Link> */}
+                <div>고후13:30-14:10</div>
               </div>
             </div>
           );
         })
       }
-
-      
     </div>
   ))
 }
