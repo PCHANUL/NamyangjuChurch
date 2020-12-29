@@ -6,7 +6,7 @@ a:hover {
   color: #000;
 }
 #videoList {
-  width: 70vw;
+  width: 800px;
   margin-top: 150px;
   grid-column: 3;
   grid-row: 2;
@@ -26,7 +26,10 @@ a:hover {
   font-weight: 700;
 }
 .videoTitle p {
-  font-size: 10px;
+  all: unset;
+  display: block;
+  margin-top: 5px;
+  font-size: 15px;
 }
 .videoContent {
   width: 20vw;
@@ -50,4 +53,6 @@ a:hover {
   background-color: #fff;
   color: #000;
 }
+
+
 

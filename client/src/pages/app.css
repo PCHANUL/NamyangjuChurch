@@ -1,11 +1,11 @@
 html, body {
   height: 100%;
-
+  margin: 0;
 }
 .container {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr 2fr 1fr 1.5fr;
   grid-template-rows: auto 7fr 10vw;
   grid-gap: 20px;
   overflow-y: scroll;
@@ -34,4 +34,17 @@ html, body {
   grid-row: 2;
 }
 
+#leftSide
+{
+  grid-column: 1;
+  grid-row: 2;
+  background-color: rgb(240, 240, 240);
+}
+
+#rightSide
+{
+  grid-column: 5;
+  grid-row: 2;
+  background-color: rgb(240, 240, 240)
+}
 

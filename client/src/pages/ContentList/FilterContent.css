@@ -10,7 +10,7 @@
   font-size: 15px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  float: left;
+  float: right;
 
   transition-property: all;
   transition-duration: 0.5s;
@@ -23,7 +23,7 @@
 }
 
 .keywordBtn {
-  float: left;
+  float: right;
   margin-left: 10px;
 }
 

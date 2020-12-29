@@ -49,7 +49,14 @@ const App = (props) => {
           <Route exact path='/admin' component={Admin} />
           <Route path='/admin/edit' component={Edit} />
         </Switch>
-
+        
+        {
+          location.pathname.includes("content") &&
+          <>
+            <div id='leftSide'></div>
+            <div id='rightSide'></div>
+          </>
+        }
       </div>
       { 
         location.pathname !== "/admin" &&

@@ -31,6 +31,9 @@ export default function ContentList() {
 
   return useObserver(() => (
     <div id='videoList'>
+      <div id='leftSide'></div>
+      <div id='rightSide'></div>
+      
       <FilterContent
         data={data}
         setData={setData}
@@ -57,6 +60,8 @@ export default function ContentList() {
           );
         })
       }
+
+      
     </div>
   ))
 }
