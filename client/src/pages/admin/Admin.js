@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './admin.css';
-import DataList from './DataList'
+import AdminDataList from './AdminDataList'
 
 import { getDataList, postLiveUrl, isSignin, signout } from '../axiosRequest';
 
@@ -62,7 +62,7 @@ const Admin = (props) => {
       </button> 
       {
         loading &&
-        <DataList data={data} loading={loading} tab={tab}/>
+        <AdminDataList data={data} loading={loading} tab={tab}/>
       }
     </div>
   ))
@@ -102,8 +102,6 @@ function Tab({ tab, setTab }) {
           })
         )
       }
-      <div className='extraDiv left'/>
-      <div className='extraDiv right'/>
     </div>
   )
 }

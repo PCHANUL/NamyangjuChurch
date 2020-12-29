@@ -51,7 +51,7 @@ const App = (props) => {
         </Switch>
         
         {
-          location.pathname.includes("content") &&
+          (location.pathname.includes("admin") || location.pathname.includes("content")) &&
           <>
             <div id='leftSide'></div>
             <div id='rightSide'></div>

@@ -67,6 +67,8 @@ const root = {
         title: true, 
         detailId: true,
         createdAt: true,
+        thumbnail: true,
+        verse: true,
         content: {
           include: {
             post: true,
@@ -75,11 +77,11 @@ const root = {
       }
     })
   },
-  addContent: async ({ category, title, content, datetime }, context) => {
+  addContent: async ({ category, title, content, datetime, thumbnail, verse }, context) => {
     console.log('category, title, content, dateTime: ', category, title, content, datetime);
     const isCreated = await context.prisma.post.create({
       data: {
-        title,
+        title, thumbnail, verse,
         createdAt: datetime,
         detail: {
           connect: { id: Number(category) }
@@ -93,13 +95,13 @@ const root = {
     })
     return isCreated ? true : false;
   },
-  updateContent: async({ id, category, title, content, datetime }, context) => {
+  updateContent: async({ id, category, title, content, datetime, thumbnail, verse }, context) => {
     const isUpdated = await context.prisma.post.update({
       where: {
         id: id
       },
       data: {
-        title,
+        title, thumbnail, verse,
         createdAt: datetime,
         detail: {
           connect: { id: Number(category) }

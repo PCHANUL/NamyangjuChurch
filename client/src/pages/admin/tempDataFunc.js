@@ -2,6 +2,7 @@
 export const saveTempData = async() => {
   const category = document.querySelector('#selectCategory').value;
   const title = document.querySelector('#inputTitle').value;
+  const verse = document.querySelector('#inputVerse').value;
   const content = document.getElementById('editFrame').innerHTML;
   const contentDate = document.getElementById('inputDate').value;
 
@@ -10,6 +11,7 @@ export const saveTempData = async() => {
   localStorage.setItem('contentDate', `${contentDate}`);
   localStorage.setItem('content', `${content}`);
   localStorage.setItem('time', `${new Date()}`);
+  localStorage.setItem('verse', `${verse}`);
 
   console.log('내용이 자동으로 임시저장되었습니다.');
 }
@@ -17,14 +19,16 @@ export const saveTempData = async() => {
 export const getTempData = () => {
   let category = localStorage.getItem('category');
   let title = localStorage.getItem('title');
+  let verse = localStorage.getItem('verse');
   let contentDate = localStorage.getItem('contentDate');
   let content = localStorage.getItem('content');
   let time = localStorage.getItem('time');
 
-  if (category || title || content) {
+  if (category || title || verse || content) {
     if (window.confirm(`${time}에 저장된 데이터를 가져오시겠습니까?`)) {
       document.querySelector('#selectCategory').value = category;
       document.querySelector('#inputTitle').value = title;
+      document.querySelector('#inputVerse').value = verse;
       document.querySelector('#inputDate').value = contentDate;
       document.querySelector('#editFrame').insertAdjacentHTML('beforeend', content);
     }
@@ -34,6 +38,7 @@ export const getTempData = () => {
 export const deleteTempData = () => {
   localStorage.removeItem('category');
   localStorage.removeItem('title');
+  localStorage.removeItem('verse');
   localStorage.removeItem('content');
   localStorage.removeItem('time');
 }

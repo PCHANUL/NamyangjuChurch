@@ -6,7 +6,7 @@ import { addData, getContent, updateData, readImage } from '../axiosRequest';
 import { transDate } from '../Methods';
 import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
 
-import Toolbar from './Toolbar';
+import EditToolbar from './EditToolbar';
 
 function handleImg() {
   let target, setToolbarPos, setHandlePos;
@@ -132,9 +132,11 @@ const setContent = (store) => {
     getContent(store.selectedId, (data) => {
       document.querySelector('#selectCategory').value = data.detailId;
       document.querySelector('#inputTitle').value = data.title;
+      document.querySelector('#inputVerse').value = data.verse;
       document.querySelector('#inputDate').value = data.createdAt;
       document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
     })
+    return true;
   }
 }
 
@@ -148,10 +150,10 @@ const setDateNow = () => {
 
 export default function Edit(props) {
   const contentIdStore = useAppStore();
-  
+  window.scrollTo(0,0)
   useEffect (() => {
-    getTempData();
-    setContent(contentIdStore);
+    if (!setContent(contentIdStore)) getTempData();
+
     setDropEvent();
     if (!document.querySelector('#inputDate').value) setDateNow();
     
@@ -172,7 +174,7 @@ export default function Edit(props) {
         파일을 내려놓으면 업로드됩니다
       </div>
 
-      <Toolbar />
+      <EditToolbar />
 
       <div id='inputDiv'>
         <select id='selectCategory'>
@@ -191,8 +193,10 @@ export default function Edit(props) {
         <input id='inputDate' type="date"></input>
       </div>
       
-
-      <input id='inputTitle' placeholder='제목을 입력하세요'></input>
+      <div>
+        <input id='inputTitle' placeholder='제목을 입력하세요'></input>
+        <input id='inputVerse' placeholder='성경 구절을 입력하세요'></input>
+      </div>
 
       <hr style={{width: '800px', height: '0', border: '0.5px solid rgb(0,0,0,0.1)'}}></hr>
       <div id="editFrame" contentEditable="true"></div>
@@ -201,6 +205,12 @@ export default function Edit(props) {
       <div id='bottombar'>
         <button onClick={() => props.history.push('/admin')}>취소</button>
         <button id='saveBtn' onClick={async() => {
+          let title = document.querySelector('#inputTitle');
+          if (title.value.indexOf('(') !== -1) {
+            window.confirm('제목의 성경구절을 옯깁니다.') && checkVerseInput(title);
+            return
+          }
+          console.log('save')
           let isSaved = await saveData(contentIdStore, props);
           if (isSaved) {
             deleteTempData();
@@ -226,7 +236,12 @@ export default function Edit(props) {
   )
 }
 
-
+const checkVerseInput = (title) => {
+  let splitedTitle = title.value.split('(');
+  title.value = splitedTitle[0];
+  document.querySelector('#inputVerse').value = splitedTitle[1].slice(0, -1);
+  window.alert('입력된 내용을 확인하고 다시 저장을 클릭하세요.')
+}
 
 const changeYoutubeImg = () => {
   const elements = document.getElementsByClassName('youtubeThumnail');
@@ -244,6 +259,7 @@ const changeYoutubeImg = () => {
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const dateNow = document.querySelector('#inputDate').value;
+  let verse = document.querySelector('#inputVerse').value;
   let title = document.querySelector('#inputTitle').value;
 
   changeYoutubeImg();
@@ -251,9 +267,9 @@ const saveData = async(contentState, props) => {
   title = title.replace(/"/g, "'");
 
   if (category && title) {
-    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content, dateNow);
+    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content, dateNow, verse);
     else {
-      let result = await addData(category, title, content, dateNow);
+      let result = await addData(category, title, content, dateNow, verse);
       if (result.statusText === 'OK') {
         alert('저장되었습니다.');
         return result;

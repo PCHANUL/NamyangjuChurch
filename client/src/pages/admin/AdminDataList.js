@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import ContentData from './ContentData';
+import AdminData from './AdminData';
 
-export default function DataList({ loading, data, tab }) {
+export default function AdminDataList({ loading, data, tab }) {
   const [contents, setContent] = useState(data);
 
   const MakeDataList = () => {
@@ -10,7 +10,7 @@ export default function DataList({ loading, data, tab }) {
         {
           contents[tab[0]].details[tab[1]].posts.length !== 0 ? (
             contents[tab[0]].details[tab[1]].posts.map((content, index) => {
-              return <ContentData key={index} content={content} setContent={setContent}/>
+              return <AdminData key={index} content={content} setContent={setContent}/>
             })
           ) : (
             <div className='dataBox'>

@@ -14,12 +14,12 @@ a:hover {
 .video {
   position: relative;
   height: 60px;
-  padding: 15px 1vw 0 2vw;
+  padding: 15px 10px 0 20px;
   border-top: 1px solid rgb(210, 210, 210);
 }
 .videoTitle {
   float: left;
-  width: 600px;
+  width: 550px;
 
   /* text overflow */
   text-overflow: ellipsis;
@@ -40,13 +40,19 @@ a:hover {
 }
 
 .videoContent {
-  width: 150px;
-  text-align: left;
+  width: 200px;
+  text-align: right;
   float: right;
 
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 700;
-  color: rgb(100, 100, 100);
+  color: rgba(100, 100, 100, 0.224);
+
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
 }
 .videoButton {
   all: unset;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export default function ParagraphSelect(props) {
+export default function EditToolbarParagraphSelect(props) {
   const { paragraph, setParagraph, paragraphCommands, editFunc } = props;
 
   const selecteOptions = () => {

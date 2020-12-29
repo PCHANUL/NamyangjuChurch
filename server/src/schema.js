@@ -21,8 +21,10 @@ var schema = buildSchema(`
 
   type Post {
     id: Int!
-    title: String!
     createdAt: String!
+    title: String!
+    thumbnail: String
+    verse: String
     detailId: Int!
     content: Content!
   }
@@ -48,6 +50,8 @@ var schema = buildSchema(`
       title: String!
       content: String!
       datetime: String!
+      thumbnail: String!
+      verse: String!
     ): Boolean!
 
     updateContent(
@@ -56,6 +60,8 @@ var schema = buildSchema(`
       title: String!
       content: String!
       datetime: String!
+      thumbnail: String
+      verse: String
     ): Boolean!
 
     deleteUser(nickname: String!): Boolean!

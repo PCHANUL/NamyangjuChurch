@@ -45,6 +45,7 @@ export default function ContentList() {
           ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
           : filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts
         ).map((data, i) => {
+          console.log('data: ', data);
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>
@@ -52,7 +53,7 @@ export default function ContentList() {
                 <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
               <div className='videoContent'>
-                <div>고후13:30-14:10</div>
+                <div>{data.verse}</div>
               </div>
             </div>
           );

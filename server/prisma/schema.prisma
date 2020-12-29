@@ -30,8 +30,10 @@ model DetailCategory {
 
 model Post {
   id          Int            @id @default(autoincrement())
-  createdAt   String       
+  createdAt   String         
   title       String         
+  thumbnail   String         @default("none")
+  verse       String         @default("none")
   detail      DetailCategory @relation(fields: [detailId], references: [id])
   detailId    Int
   content     Content?

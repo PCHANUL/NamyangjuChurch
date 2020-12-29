@@ -48,14 +48,33 @@
 }
 
 #inputTitle {
+  display: block;
   outline: none;
-  width: 800px;
+  width: 550px;
   height: 40px;
   font-size: 30px;
   border: none;
+  float: left;
 }
 
 #inputTitle::placeholder {
+  font-size: 15px;
+}
+
+#inputVerse {
+  display: block;
+  outline: none;
+  width: 200px;
+  height: 20px;
+  padding: 10px 0 10px 20px;
+  margin-top: 10px;
+  font-size: 18px;
+  border: none;
+  border-left: 2px solid rgb(0,0,0,0.2);
+  float: right;
+}
+
+#inputVerse::placeholder {
   font-size: 15px;
 }
 

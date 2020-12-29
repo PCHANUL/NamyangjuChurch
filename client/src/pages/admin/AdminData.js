@@ -7,7 +7,7 @@ import { transDate } from '../Methods';
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react-lite';
 
-function ContentData(props) {
+function AdminData(props) {
   const contentIdStore = useAppStore();
   const [ishover, setHover] = useState(false);
   const { 
@@ -17,14 +17,15 @@ function ContentData(props) {
     setContent,
   } = props;
   
+  console.log('content: ', content);
 
   return useObserver (() => (
     <div className='dataBox' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <div className='textBox'>
-        <h3 className='title'>{ content.title }
-        &nbsp;
+        <h3 className='title'>{ content.title }</h3>
+        <h5 className='title'>{ content.verse }</h5>
+        {/* &nbsp; */}
         <p className='date'>{ content.createdAt.replaceAll('-', '. ') }</p>
-        </h3>
       </div>
       {
         ishover &&
@@ -56,4 +57,4 @@ function deleteDataBox(id, setContent) {
   }
 }
 
-export default withRouter(ContentData);
+export default withRouter(AdminData);

@@ -3,7 +3,7 @@ import React from 'react';
 import { readImage } from '../axiosRequest';
 
 
-export default function DropdownContent() {
+export default function EditToolbarDropdown() {
   return (
     <>
       <div className="dropdown">

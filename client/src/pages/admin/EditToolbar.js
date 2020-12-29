@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import DropdownContent from './DropdownContent';
+import EditToolbarDropdown from './EditToolbarDropdown';
 import { betweenTwoStr, isSameArr } from '../Methods';
 import { commands, commandPos, paragraphCommands, fontCommands } from '../editCommands';
-import ParagraphSelect from './ParagraphSelect';
-import FontSelect from './FontSelect';
+import EditToolbarParagraphSelect from './EditToolbarParagraphSelect';
+import EditToolbarFontSelect from './EditToolbarFontSelect';
 
 
 
-export default function Toolbar() {
+export default function EditToolbar() {
   const [paragraph, setParagraph] = useState('본문');
   const [fontFamily, setFontFamily] = useState('기본서체');
 
@@ -34,16 +34,16 @@ export default function Toolbar() {
 
   return (
     <div id='toolbar'>
-        <DropdownContent />
+        <EditToolbarDropdown />
 
-        <ParagraphSelect 
+        <EditToolbarParagraphSelect 
           paragraph={paragraph}
           setParagraph={setParagraph}
           paragraphCommands={paragraphCommands}
           editFunc={editFunc}
         />
         
-        <FontSelect 
+        <EditToolbarFontSelect 
           fontFamily={fontFamily}
           setFontFamily={setFontFamily}
           fontCommands={fontCommands}

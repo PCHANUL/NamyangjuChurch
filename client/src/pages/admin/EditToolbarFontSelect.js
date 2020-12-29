@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-export default function FontSelect(props) {
+export default function EditToolbarFontSelect(props) {
   const { fontFamily, setFontFamily, editFunc, fontCommands } = props;
 
   const fontSelectOptions = () => {
