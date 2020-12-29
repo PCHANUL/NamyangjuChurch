@@ -4,12 +4,9 @@ import { Button } from './Button';
 import './OrderOfTimeButton.css';
 
 export function OrderButton(props) {
-  const { name } = props;
+  const { name, onClick } = props;
   return (
-    <Button 
-      className='orderbtn' 
-      onClick={() => console.log('asdf')}
-    >
+    <Button className='orderbtn' onClick={onClick}>
       <span className='label'>{name}</span>
       <div className='arrow down'/>
     </Button>

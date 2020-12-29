@@ -22,22 +22,25 @@ function AdminData(props) {
   return useObserver (() => (
     <div className='dataBox' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <div className='textBox'>
-        <h3 className='title'>{ content.title }</h3>
-        <h5 className='title'>{ content.verse }</h5>
-        {/* &nbsp; */}
+        <div className='title'>
+          <h3>{ content.title }</h3>
+        </div>
+        <div className='verse'>
+          <h5>{ content.verse }</h5>
+        </div>
         <p className='date'>{ content.createdAt.replaceAll('-', '. ') }</p>
       </div>
       {
         ishover &&
         <div className='buttonBox'>
-          <button className='dataButton' onClick={() => deleteDataBox(content.id, setContent)}>
-            <img className='deleteIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/delete.png'></img>
+          <button id='deleteBtn' className='dataButton' onClick={() => deleteDataBox(content.id, setContent)}>
+            <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/delete.png'></img>
           </button>
-          <button className='dataButton' onClick={() => {
+          <button id='updateBtn' className='dataButton' onClick={() => {
             contentIdStore.setEditState(true, content.id);
             history.push('/admin/edit');
           }}>
-            <img className='updateIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
+            <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
           </button>
         </div>
       }

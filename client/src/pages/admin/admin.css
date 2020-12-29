@@ -1,13 +1,13 @@
 #admin {
-  width: 60vw;
+  width: 800px;
 }
 
 #addBox {
-  height: 4vw;
+  height: 60px;
 }
 #addBox h2 {
   all: unset;
-  font-size: 3vw;
+  font-size: 40px;
   display: inline;
   font-weight: 700;
 }
@@ -17,8 +17,8 @@
   float: right;
   cursor: pointer;
   border: 1px solid #000;
-  padding: 1vw 2vw 1vw 2vw;
-  font-size: 1vw;
+  padding: 10px 30px 10px 30px;
+  font-size: 20px;
 }
 
 #addBox button:hover {
@@ -29,43 +29,47 @@
 #addBtn {
   box-sizing: border-box;
   position: relative;
-  width: 100%;
-  height: 5vw;
-  border-radius: 2vw;
-  margin: 3vw 0 1vw 0;
+  left: 50%;
+  transform: translate(-50%);
+
+  width: 700px;
+  height: 60px;
+  border-radius: 30px;
+  margin: 20px 0 30px 0;
   background-color: #fff;
-  box-shadow: 0vw 0.5vw 1vw 0 rgba(63, 63, 63, 0.1);
+  box-shadow: 0vw 8px 20px 0 rgba(63, 63, 63, 0.2);
+
   outline: none;
   border: none;
   cursor: pointer;
 }
 
 #addBtn:hover {
-  box-shadow: 0vw 0.5vw 1.5vw 0 rgba(126, 126, 126, 0.2);
+  box-shadow: 0vw 8px 30px 0 rgba(63, 63, 63, 0.2);
 }
 
 #addFileIcon {
-  width: 2vw;
+  width: 30px;
 }
 
 #tabContainer {
   position: sticky;
-  top: 0vw;
+  top: 0;
   z-index: 1;
-  height: 6vw;
-  font-size: 1.3vw;
-  margin-top: 2vw;
+  height: 80px;
+  font-size: 20px;
+  margin-top: 10px;
   background-color: #fff;
 }
 #adminTabBox {
-  margin-top: 1vw;
-  height: 1.8vw;
+  margin-top: 5px;
+  height: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 .adminTab {
   text-align: center;
-  height: 2vw;
+  height: 30px;
   border-bottom: 1px solid #000;
   grid-row: 1;
   cursor: pointer;
@@ -74,16 +78,16 @@
   border-bottom: 2px solid #000;
 }
 #subTabBox {
-  height: 2.8vw;
+  height: 30px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
 }
 .subTab {
   text-align: center;
-  height: 2vw;
+  height: 30px;
   cursor: pointer;
-  padding-top: 1vw;
+  padding-top: 15px;
 }
 .subTab:hover {
   border-bottom: 2px solid #000;
@@ -91,30 +95,16 @@
 .selected {
   border-bottom: 2px solid #000;
 }
-.extraDiv {
-  position: fixed;
-  top: 0vw;
-  background-color: #fff;
-  width: 20vw;
-  height: 7vw;
-}
-.left {
-  left: 0%;
-}
-.right {
-  right: 0%;
-}
-
 
 .dataBox {
+  position: relative;
   display: grid;
   grid-template-columns: auto auto;
   box-sizing: border-box;
-  height: 5vw;
+  height: 70px;
   width: 100%;
   border-bottom: 0.5px solid rgb(190, 190, 190);
-  padding: 1vw 2vw 1vw 2vw;
-  font-size: 1.5vw;
+  padding: 15px 40px 15px 40px;
   float: left;
 }
 .dataBox:hover {
@@ -122,45 +112,70 @@
 }
 .textBox {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: 450px 170px auto;
   line-height: 0vw;
+  font-size: 20px;
 }
-.textBox h3 {
+.textBox > p {
   all: unset;
-  font-size: 2vw;
-  font-weight: bold;
-  margin-top: 1.7vw;
-}
-.textBox p {
-  all: unset;
-  font-size: 1vw;
+  font-size: 15px;
   font-weight: lighter;
   line-height: 0vw;
-  margin-top: 2vw;
+  margin-top: 22px;
 }
 
+.title {
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+.title > h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.verse {
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+.verse > h5 {
+  margin-top: 22px;
+}
+
+.buttonBox{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px;
+  background-color: white;
+  box-shadow: 0vw 10px 15px 0 rgba(126, 126, 126, 0.2);
+}
 .dataButton {
-  width: 3vw;
-  height: 3vw;
-  border: 0px solid #000;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+  
   background-color: transparent;
-  padding: 3px;
-  margin: 3px;
-  font-size: 2vw;
+  padding-top: 5px;
   float: right;
   cursor: pointer;
 }
 .dataButton:hover {
   background-color: #fff;
-  outline: 2px solid #000;
+  border: 1px solid #000;
 }
 .dataButton:active {
   background-color: rgba(0, 0, 0, 0.1);
   outline: none;
 }
-.updateIcon {
-  width: 2vw;
+.buttonIcon {
+  width: 25px;
 }
-.deleteIcon {
-  width: 2vw;
-}
+

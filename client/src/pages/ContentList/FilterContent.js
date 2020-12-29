@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react';
 import './FilterContent.css';
 import '../responsibleCSS/mobileSearchContent.css';
 
-import { OrderButton } from './OrderOfTimeButton';
+import { OrderButton } from './OrderButton';
 import { Button } from './Button';
 
 export default function FilterContent(props) {
