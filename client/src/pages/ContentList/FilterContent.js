@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
@@ -6,114 +6,95 @@ import { useObserver } from 'mobx-react';
 import './FilterContent.css';
 import '../responsibleCSS/mobileSearchContent.css';
 
+// components
+import SearchDiv from './SearchDiv';
 import { OrderButton } from './OrderButton';
-import { Button } from './Button';
+
+
 
 export default function FilterContent(props) {
   const appStore = useAppStore();
+  const { data, loading } = props.value;
+  const { setData, initData } = props.method;
+
+  const initSearch = localStorage.getItem('search');
+  
+  const [isFiltered, setFiltered] = useState(
+    initSearch ? true : false
+  );
   const [searchInput, setSearchInput] = useState('');
-  const [keywords, setKeywords] = useState([]);
-  const { data, setFiltered } = props;
+  const [keywords, setKeywords] = useState({
+    search: initSearch
+  });
+
+  useEffect(() => {
+    console.log('loading: ', loading);
+    // 저장된 필터옵션 적용
+    if (loading && isFiltered) searchKeywords();
+  }, [loading])
+
 
   const initKeywords = () => {
     setFiltered([]);
     setKeywords([]);
   }
 
-  const deleteKeyword = async(keyword) => {
-    let deleted = keywords.filter((ele) => ele !== keyword && ele)
-    if (deleted.length === 0) {
-      initKeywords();
-    } else {
-      setKeywords([...deleted]);
-      searchKeywords(deleted);
+  const deleteFilter = (filterName) => {
+    if (filterName === 'search') localStorage.removeItem('search');
+
+    delete keywords[filterName];
+    setKeywords(keywords);
+    initData();
+  }
+
+  const searchKeywords = () => {
+    if (searchInput !== '') {
+      localStorage.setItem('search', searchInput);
+      setKeywords({
+        ...keywords,
+        search: searchInput
+      })
+      setSearchInput('');
     } 
-  }
+    // else if (searchInput === '') {
+      
+      // }
+      
+    console.log(keywords);
 
-  const searchKeywords = (e, paraKeywords = []) => {
-    let keywordsArr = paraKeywords.length === 0 ? keywords : paraKeywords;
- 
-    if (keywords.length === 0 && searchInput === '') {
-      return setFiltered([]);
-    } else if (searchInput !== '') {
-      initInput();
-      keywordsArr = [...keywords, searchInput];
+    if (keywords.search) {
+      console.log('searched')
+      // 현재 페이지 컨텐츠를 필터링
+      let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
+      let filteredData = JSON.parse(JSON.stringify(data));
+      filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = filterContents(filterTarget, keywords.search, 'title');
+      setData(filteredData);
+      setFiltered(true);
     }
-
-    let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
-    setKeywords(keywordsArr);
-    let filteredContent = filterContents(filterTarget, keywordsArr, 'title');
-    let filteredArr = JSON.parse(JSON.stringify(data))
-    filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts = filteredContent;
-    setFiltered(filteredArr);
-  }
-  
-  const initInput = () => {
-    document.querySelector('#inputKeyword').value = '';
-    setSearchInput('');
   }
 
-  // function SearchButton() {
-  //   return useObserver(() => (
-  //     <>
-  //       <input id='inputKeyword' placeholder='검색 키워드 입력' 
-  //         onChange={(e) => setSearchInput(e.target.value)}
-  //         onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-  //       ></input>
-  //       <Button className='keywordBtn' onClick={searchKeywords}>추가</Button>
-  //       <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
-  //     </>
-  //   ))
-  // }
+  function filterContents(data, word, ...objKeys) {
+    let filtered = data.filter((ele) => {
+      for (let key of objKeys) {
+        if (ele[key].includes(word)) {
+          console.log('ele: ', ele, word);
+          return ele;
+        }
+      }
+    })
+    return filtered;
+  }
 
   return useObserver(() => (
-    <>
-      <div id='searchKeyword'>
-
-        <div id='searchDiv'>
-          {/* <Button className='keywordBtn' onClick={initKeywords}>초기화</Button> */}
-          <Button className='keywordBtn' onClick={searchKeywords}>
-            <span>검색</span>
-            <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
-          </Button>
-          {/* <input id='inputKeyword' placeholder='검색어를 입력하세요' 
-            onChange={(e) => setSearchInput(e.target.value)}
-            onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-          ></input> */}
+      <>
+        <div id='filterDiv'>
           <OrderButton name={'성경순'} status={'default'} />
           <OrderButton name={'날짜순'} status={'default'} />
+          <SearchDiv value={{ keywords }} method={{ setSearchInput, searchKeywords, deleteFilter }}/>
         </div>
-
-        {/* <div id='keywordDiv'>
-          {
-            keywords.length !== 0 &&
-              keywords.map((keyword, idx) => {
-                return (
-                  <div key={idx} className='keyword'>
-                    <p>{keyword}</p>
-                    <button className='deleteKeyword' onClick={() => deleteKeyword(keyword)}>
-                      <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
-                    </button>
-                  </div>
-                )
-              })
-          }
-        </div> */}
-      </div>
     </>
   ))
 }
 
 
-function filterContents(data, conditions, ...objKeys) {
-  let filtered = data.filter((ele) => {
-    for (let key of objKeys) {
-      for (let word of conditions) {
-        if (ele[key].includes(word)) {
-          return ele;
-        }
-      }
-    }
-  })
-  return filtered;
-}
+

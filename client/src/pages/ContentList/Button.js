@@ -6,11 +6,9 @@ export function Button(props) {
 
   const onMouseDown = (e) => {
     e.persist();
-    console.log('target: ', e.target);
     let target = findRoot(e.target);
-    // 클릭위치
-    console.log('target: ', e.target.parentNode, e.target.innerText);
 
+    // 클릭위치
     let mouseX, mouseY;
     if (e.target.className.includes('buttonDefault') || e.target.innerText) {
       mouseX = e.nativeEvent.offsetX;
@@ -19,19 +17,17 @@ export function Button(props) {
       mouseX = e.target.offsetLeft + (e.target.offsetWidth / 2);
       mouseY = e.target.offsetTop + (e.target.offsetHeight / 2);
     }
-    console.log('mouseX, mouseY: ', mouseX, mouseY);
     clickAction(target, mouseX, mouseY);
   }
   
   const clickAction = (target, x, y) => {
-    let targetElement = target.getBoundingClientRect()
-    console.log('targetElement: ', targetElement);
     let div = document.createElement('div');
     div.className = 'clickMotion';
     div.style.top = `${y}px`;
     div.style.left = `${x}px`;
     target.appendChild(div);
-    
+
+    let targetElement = target.getBoundingClientRect();
     setTimeout(() => {
       div.className = div.className + ' clickMotion_visible';
       div.style.transform = `scale(${targetElement.width / 5})`;

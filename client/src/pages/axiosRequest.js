@@ -56,7 +56,6 @@ export const isSignin = async() => {
       `
     }
   })
-  console.log('isSignin', result.data.data.isSignin);
   return result.data.data.isSignin;
 }
 

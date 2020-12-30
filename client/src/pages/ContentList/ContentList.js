@@ -18,7 +18,7 @@ import '../responsibleCSS/mobileContentList.css';
 export default function ContentList() {
   const appStore = useAppStore();
   const [loading, setLoading] = useState(false);
-  const [filteredArr, setFiltered] = useState([]);
+  
   const [data, setData] = useState([]);
   
   useEffect(() => {
@@ -29,34 +29,39 @@ export default function ContentList() {
     });
   }, [])
 
+  const initData = () => {
+    getDataList((getData) => {
+      setData(getData);
+      setLoading(true);
+    });
+  }
+
   return useObserver(() => (
     <div id='videoList'>
 
       <FilterContent
-        data={data}
-        setData={setData}
-        setFiltered={setFiltered}
+        value={{ data, loading }}
+        method={{ setData, initData }}
       />
 
       {
         // set content list
         loading &&
-        ( filteredArr.length === 0 
-          ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
-          : filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts
-        ).map((data, i) => {
-          return (
-            <div className='video' key={i} >
-              <div className='videoTitle'>
-                <Link to={`/content/${data.id}`}>{data.title}</Link>
-                <p>{(data.createdAt).replaceAll('-', '. ')}</p>
-              </div>
-              <div className='videoContent'>
-                <div>{data.verse}</div>
-              </div>
-            </div>
-          );
-        })
+          data[appStore.selectedCategory].details[appStore.selectedDetail].posts
+          .map((data, i) => {
+              return (
+                <div className='video' key={i} >
+                  <div className='videoTitle'>
+                    <Link to={`/content/${data.id}`}>{data.title}</Link>
+                    <p>{(data.createdAt).replaceAll('-', '. ')}</p>
+                  </div>
+                  <div className='videoContent'>
+                    <div>{data.verse}</div>
+                  </div>
+                </div>
+              );
+            }
+          )
       }
     </div>
   ))

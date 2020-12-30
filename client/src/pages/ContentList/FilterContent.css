@@ -1,4 +1,4 @@
-#searchDiv {
+#filterDiv {
   position: relative;
   /* width: 32vw; */
   height: 50px;
@@ -12,6 +12,7 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   float: right;
+  opacity: 0;
 
   transition-property: all;
   transition-duration: 0.5s;
@@ -20,6 +21,17 @@
 #inputKeyword:hover {
   transition-property: all;
   transition-duration: 0.5s;
+}
+
+#searchDiv {
+  float: right;
+  display: inline-block;
+}
+
+#searchDiv:hover #inputKeyword {
+  opacity: 100;
+  transition-property: all;
+  transition-duration: 1s;
 }
 
 .keywordBtn {
@@ -33,40 +45,46 @@
 }
 
 #keywordDiv {
-  /* border: 1px solid #000; */
-  text-align: right;
-  width: 100%;
-  padding: 10px;
+  position: absolute;
+  left: 0;
+
+  text-align: left;
+  width: 400px;
+
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
 }
 
 .keyword {
-  border-radius: 0.5vw;
+  width: 290px;
+  border-radius: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  padding: 0.5vw 0.5vw 0.5vw 1vw;
-  display: block;
+  padding: 8px 0 8px 20px;
   float: left;
   user-select: none;
-  margin: 0 0.5vw 0.5vw 0;
+  margin: 0 10px 10px 30px;
 }
 
 .keyword p {
   all: unset;
-  margin-right: 0.5vw;
+  margin-right: 20px;
 }
 
 .deleteKeyword {
+  all: unset;
   position: relative;
-  border: none;
-  outline: none;
   background-color: transparent;
+  padding: 8px;
+  background-color: rgb(120, 120, 120);
+  border-radius: 10px;
+
+  color: #fff;
+  /* border: 1px solid #000; */
 }
 
-.deleteKeyword > img {
-  width: 1vw;
-  opacity: 0.4;
-  cursor: pointer;
-}
-
-.deleteKeyword > img:hover {
+.deleteKeyword:hover {
   opacity: 1;
 }
