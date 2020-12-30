@@ -45,7 +45,6 @@ export default function ContentList() {
           ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
           : filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts
         ).map((data, i) => {
-          console.log('data: ', data);
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>

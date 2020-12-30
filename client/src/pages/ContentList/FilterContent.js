@@ -71,14 +71,17 @@ export default function FilterContent(props) {
       <div id='searchKeyword'>
 
         <div id='searchDiv'>
-          <OrderButton name={'날짜'} />
-          <OrderButton name={'성경'} />
-          <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
-          <Button className='keywordBtn' onClick={searchKeywords}>검색</Button>
-          <input id='inputKeyword' placeholder='검색 키워드 입력' 
+          {/* <Button className='keywordBtn' onClick={initKeywords}>초기화</Button> */}
+          <Button className='keywordBtn' onClick={searchKeywords}>
+            <span>검색</span>
+            <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
+          </Button>
+          {/* <input id='inputKeyword' placeholder='검색어를 입력하세요' 
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-          ></input>
+          ></input> */}
+          <OrderButton name={'성경순'} status={'default'} />
+          <OrderButton name={'날짜순'} status={'default'} />
         </div>
 
         {/* <div id='keywordDiv'>
