@@ -19,9 +19,8 @@ export default function FilterContent(props) {
 
   const initSearch = localStorage.getItem('search');
   
-  const [isFiltered, setFiltered] = useState(
-    initSearch ? true : false
-  );
+  const [searchError, setsearchError] = useState(false);
+  const [isFiltered, setFiltered] = useState(initSearch ? true : false);
   const [searchInput, setSearchInput] = useState('');
   const [keywords, setKeywords] = useState({
     search: initSearch
@@ -48,6 +47,7 @@ export default function FilterContent(props) {
 
   const searchKeywords = async() => {
     const searchValue = searchInput !== '' ? searchInput : keywords.search;
+    setsearchError(false);
 
     if (searchInput !== '') {
       localStorage.setItem('search', searchInput);
@@ -70,6 +70,7 @@ export default function FilterContent(props) {
       // 검색 결과가 아무것도 없는 경우
       if (result.length === 0) {
         console.log('검색결과가 없습니다.')
+        setsearchError(true)
       }
 
       filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = result;
@@ -94,9 +95,16 @@ export default function FilterContent(props) {
   return useObserver(() => (
       <>
         <div id='filterDiv'>
-          <OrderButton name={'성경순'} status={'default'} />
-          <OrderButton name={'날짜순'} status={'default'} />
-          <SearchDiv value={{ keywords, searchInput }} method={{ setSearchInput, searchKeywords, deleteFilter }}/>
+          <OrderButton 
+            value={{ name: '성경순' }}
+          />
+          <OrderButton 
+            value={{ name: '날짜순' }}
+          />
+          <SearchDiv 
+            value={{ keywords, searchInput, searchError }} 
+            method={{ setSearchInput, searchKeywords, deleteFilter }}
+          />
         </div>
     </>
   ))

@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react';
 import { Button } from './Button';
 
 export default function SearchDiv(props) {
-  const { keywords, searchInput } = props.value;
+  const { keywords, searchInput, searchError } = props.value;
   const { setSearchInput, searchKeywords, deleteFilter } = props.method;
 
   const initInput = () => {
@@ -43,11 +43,11 @@ export default function SearchDiv(props) {
         {
           keywords.search &&
             <>
-              <button className='deleteKeyword' onClick={() => deleteFilter('search')}>
+              <button className={`deleteKeyword ${searchError && 'errorButton'}`} onClick={() => deleteFilter('search')}>
                 취소
               </button>
-              <div className='keyword'>
-                <p>{`"${keywords.search}" 검색결과입니다`}</p>
+              <div className={`keyword ${searchError && 'errorInput'}`}>
+                <p>{`"${keywords.search}" 검색결과${searchError ? '가 없습니다' : '입니다'}`}</p>
               </div>
             </>
         }
