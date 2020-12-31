@@ -28,10 +28,9 @@ export default function FilterContent(props) {
   });
 
   useEffect(() => {
-    console.log('loading: ', loading);
     // 저장된 필터옵션 적용
     if (loading && isFiltered) searchKeywords();
-  }, [loading])
+  }, [loading, appStore.selectedDetail])
 
 
   const initKeywords = () => {
@@ -47,37 +46,44 @@ export default function FilterContent(props) {
     initData();
   }
 
-  const searchKeywords = () => {
+  const searchKeywords = async() => {
+    const searchValue = searchInput !== '' ? searchInput : keywords.search;
+
     if (searchInput !== '') {
       localStorage.setItem('search', searchInput);
-      setKeywords({
+      await setKeywords({
         ...keywords,
         search: searchInput
       })
-      setSearchInput('');
     } 
     // else if (searchInput === '') {
       
       // }
       
-    console.log(keywords);
 
-    if (keywords.search) {
-      console.log('searched')
+    if (searchValue) {
       // 현재 페이지 컨텐츠를 필터링
       let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
       let filteredData = JSON.parse(JSON.stringify(data));
-      filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = filterContents(filterTarget, keywords.search, 'title');
+      let result = filterContents(filterTarget, searchValue, 'title');
+
+      // 검색 결과가 아무것도 없는 경우
+      if (result.length === 0) {
+        console.log('검색결과가 없습니다.')
+      }
+
+      filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = result;
       setData(filteredData);
       setFiltered(true);
+      setSearchInput('');
     }
+
   }
 
   function filterContents(data, word, ...objKeys) {
     let filtered = data.filter((ele) => {
       for (let key of objKeys) {
         if (ele[key].includes(word)) {
-          console.log('ele: ', ele, word);
           return ele;
         }
       }
@@ -90,7 +96,7 @@ export default function FilterContent(props) {
         <div id='filterDiv'>
           <OrderButton name={'성경순'} status={'default'} />
           <OrderButton name={'날짜순'} status={'default'} />
-          <SearchDiv value={{ keywords }} method={{ setSearchInput, searchKeywords, deleteFilter }}/>
+          <SearchDiv value={{ keywords, searchInput }} method={{ setSearchInput, searchKeywords, deleteFilter }}/>
         </div>
     </>
   ))

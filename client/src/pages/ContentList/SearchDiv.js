@@ -6,7 +6,7 @@ import { useObserver } from 'mobx-react';
 import { Button } from './Button';
 
 export default function SearchDiv(props) {
-  const { keywords } = props.value;
+  const { keywords, searchInput } = props.value;
   const { setSearchInput, searchKeywords, deleteFilter } = props.method;
 
   const initInput = () => {
@@ -27,16 +27,18 @@ export default function SearchDiv(props) {
   // }
 
   return useObserver(() => (
-    <div id='searchDiv'>
-      <Button className='keywordBtn' onClick={searchKeywords}>
-        <span>검색</span>
-        <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
-      </Button>
-      <input id='inputKeyword' placeholder='검색어를 입력하세요' 
-        onChange={(e) => setSearchInput(e.target.value)}
-        onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-      ></input>
-
+    <>
+      <div id='searchDiv'>
+        <Button className='keywordBtn' onClick={searchKeywords}>
+          <span>검색</span>
+          <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
+        </Button>
+        <input id='inputKeyword' placeholder='검색어를 입력하세요' 
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
+        ></input>
+      </div>
       <div id='keywordDiv'>
         {
           keywords.search &&
@@ -50,7 +52,7 @@ export default function SearchDiv(props) {
             </>
         }
       </div>
-    </div>
+    </>
   ))
 }
 
