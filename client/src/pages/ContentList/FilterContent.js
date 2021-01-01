@@ -56,7 +56,9 @@ export default function FilterContent(props) {
     if (loading) {
       if (keywords.search) searchKeywords();
       for (let key in keywords.sort) {
-        if (keywords.sort[key]) orderContents(key, keywords.sort[key]);
+        if (keywords.sort[key] !== "0") {
+          orderContents(key, keywords.sort[key]);
+        }
       }
     }
     
@@ -113,7 +115,13 @@ export default function FilterContent(props) {
     })
   }
 
-  
+  const getFirstVerse = (str) => {
+    for (let i in str) {
+      if (Number(str[i])) {
+        return [str.slice(0, i), i];
+      }
+    }
+  }
 
   const orderContents = (sortObjKey, sortBy) => {
     if (sortBy === 0) return initData();
@@ -125,11 +133,16 @@ export default function FilterContent(props) {
         return (Date.parse(a.createdAt) - Date.parse(b.createdAt)) * sortBy
       }
       // 성경순 정렬
-      if (sortObjKey === 'verse') {
-        
+      else if (sortObjKey === 'verse' ) {
+        if (!a.verse || !b.verse) return 1;
+        let verseA = getFirstVerse(a.verse);
+        let verseB = getFirstVerse(b.verse);
+        if (verseA[0] !== verseB[0]) {
+          return (bibleVerse[verseA[0]] - bibleVerse[verseB[0]]) * sortBy;
+        } else {
+          return (a.verse.slice(Number(verseA[1]), a.verse.indexOf(':')) - b.verse.slice(Number(verseB[1]), b.verse.indexOf(':'))) * sortBy;
+        }
       }
-
-
     })
     setData(orderedData)
   }
