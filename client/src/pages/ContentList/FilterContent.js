@@ -78,29 +78,40 @@ export default function FilterContent(props) {
       setFiltered(true);
       setSearchInput('');
     }
-
   }
 
-  function filterContents(data, word, ...objKeys) {
-    let filtered = data.filter((ele) => {
+  const filterContents = (data, word, ...objKeys) => {
+    return data.filter((ele) => {
       for (let key of objKeys) {
         if (ele[key].includes(word)) {
           return ele;
         }
       }
     })
-    return filtered;
+  }
+
+  const orderContents = (sortObjKey, sortBy) => {
+    if (sortBy === 0) return initData();
+    let orderedData = JSON.parse(JSON.stringify(data));
+    orderedData[appStore.selectedCategory].details[appStore.selectedDetail].posts.sort((a, b) => {
+      // sortBy(-1, 0, 1)를 곱하여 순서변경
+      return (Date.parse(a[sortObjKey]) * sortBy) - (Date.parse(b[sortObjKey]) * sortBy)
+    })
+    setData(orderedData)
   }
 
   return useObserver(() => (
       <>
         <div id='filterDiv'>
-          <OrderButton 
-            value={{ name: '성경순' }}
-          />
-          <OrderButton 
-            value={{ name: '날짜순' }}
-          />
+          {
+            [{name: '성경순', key: 'verse'}, {name: '날짜순', key: 'createdAt'}].map((item, i) => (
+              <OrderButton
+                key={i}
+                value={item}
+                method={{ orderContents }}
+              />
+            ))
+          }
           <SearchDiv 
             value={{ keywords, searchInput, searchError }} 
             method={{ setSearchInput, searchKeywords, deleteFilter }}
