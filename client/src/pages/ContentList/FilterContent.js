@@ -10,6 +10,9 @@ import '../responsibleCSS/mobileSearchContent.css';
 import SearchDiv from './SearchDiv';
 import { OrderButton } from './OrderButton';
 
+// object 
+import { bibleVerse } from './bibleVerse';
+
 
 
 export default function FilterContent(props) {
@@ -17,26 +20,48 @@ export default function FilterContent(props) {
   const { data, loading } = props.value;
   const { setData, initData } = props.method;
 
-  const initSearch = localStorage.getItem('search');
-  
-  const [searchError, setsearchError] = useState(false);
-  const [isFiltered, setFiltered] = useState(initSearch ? true : false);
-  const [searchInput, setSearchInput] = useState('');
-  const [keywords, setKeywords] = useState({
-    search: initSearch
-  });
+  // sortButton 초기설정
+  const sortOptions = [{name: '성경순', key: 'verse'}, {name: '날짜순', key: 'createdAt'}];
+  const [sortStatus, setSortStatus] = useState({verse: 0, createdAt: 0});
 
-  useEffect(() => {
-    // 저장된 필터옵션 적용
-    if (loading && isFiltered) searchKeywords();
-  }, [loading, appStore.selectedDetail])
-
-
-  const initKeywords = () => {
-    setFiltered([]);
-    setKeywords([]);
+  const initOrderStatus = (target) => {
+    for (let option in sortStatus) {
+      if (option !== target) {
+        sortStatus[option] = 0;
+        localStorage.setItem(option, 0)
+      }
+    }
+    setSortStatus(sortStatus);
   }
 
+  // keyword 초기설정
+  const [keywords, setKeywords] = useState({})
+  
+  // localStorage에 저장된 값 불러오기
+  useEffect(() => {
+    const initSort = {};
+    for (let option of sortOptions) initSort[option.key] = localStorage.getItem(option.key);
+    const initSearch = localStorage.getItem('search');
+    setKeywords({
+      search: initSearch,
+      sort: initSort
+    })
+  }, [])
+
+  const [searchInput, setSearchInput] = useState('');
+  const [searchError, setsearchError] = useState(false);
+
+  // localStorage에서 불러온 옵션적용
+  useEffect(() => {
+    if (loading) {
+      if (keywords.search) searchKeywords();
+      for (let key in keywords.sort) {
+        if (keywords.sort[key]) orderContents(key, keywords.sort[key]);
+      }
+    }
+    
+  }, [loading, appStore.selectedDetail])
+  
   const deleteFilter = (filterName) => {
     if (filterName === 'search') localStorage.removeItem('search');
 
@@ -45,13 +70,12 @@ export default function FilterContent(props) {
     initData();
   }
 
-  const searchKeywords = async() => {
+  const searchKeywords = () => {
     const searchValue = searchInput !== '' ? searchInput : keywords.search;
     setsearchError(false);
-
     if (searchInput !== '') {
       localStorage.setItem('search', searchInput);
-      await setKeywords({
+      setKeywords({
         ...keywords,
         search: searchInput
       })
@@ -75,7 +99,6 @@ export default function FilterContent(props) {
 
       filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = result;
       setData(filteredData);
-      setFiltered(true);
       setSearchInput('');
     }
   }
@@ -90,12 +113,23 @@ export default function FilterContent(props) {
     })
   }
 
+  
+
   const orderContents = (sortObjKey, sortBy) => {
     if (sortBy === 0) return initData();
     let orderedData = JSON.parse(JSON.stringify(data));
     orderedData[appStore.selectedCategory].details[appStore.selectedDetail].posts.sort((a, b) => {
-      // sortBy(-1, 0, 1)를 곱하여 순서변경
-      return (Date.parse(a[sortObjKey]) * sortBy) - (Date.parse(b[sortObjKey]) * sortBy)
+      // 날짜순 정렬
+      if (sortObjKey === 'createdAt') {
+        // sortBy(-1, 0, 1)를 곱하여 정렬순서변경
+        return (Date.parse(a.createdAt) - Date.parse(b.createdAt)) * sortBy
+      }
+      // 성경순 정렬
+      if (sortObjKey === 'verse') {
+        
+      }
+
+
     })
     setData(orderedData)
   }
@@ -104,11 +138,11 @@ export default function FilterContent(props) {
       <>
         <div id='filterDiv'>
           {
-            [{name: '성경순', key: 'verse'}, {name: '날짜순', key: 'createdAt'}].map((item, i) => (
+            sortOptions.map((item, i) => (
               <OrderButton
                 key={i}
-                value={item}
-                method={{ orderContents }}
+                value={{ item, sortStatus }}
+                method={{ orderContents, setSortStatus, initOrderStatus }}
               />
             ))
           }
