@@ -49,20 +49,24 @@ export default function FilterContent(props) {
   }, [])
 
   const [searchInput, setSearchInput] = useState('');
-  const [searchError, setsearchError] = useState(false);
+  const [searchError, setSearchError] = useState(false);
 
   // localStorage에서 불러온 옵션적용
   useEffect(() => {
+    setLocalStorageData();
+  }, [loading, appStore.selectedDetail])
+  
+  const setLocalStorageData = async() => {
+    let filtered
     if (loading) {
-      if (keywords.search) searchKeywords();
+      if (keywords.search) filtered = await searchKeywords();
       for (let key in keywords.sort) {
         if (keywords.sort[key] !== "0") {
-          orderContents(key, keywords.sort[key]);
+          await orderContents(key, keywords.sort[key], filtered);
         }
       }
     }
-    
-  }, [loading, appStore.selectedDetail])
+  }
   
   const deleteFilter = (filterName) => {
     if (filterName === 'search') localStorage.removeItem('search');
@@ -74,7 +78,8 @@ export default function FilterContent(props) {
 
   const searchKeywords = () => {
     const searchValue = searchInput !== '' ? searchInput : keywords.search;
-    setsearchError(false);
+    setSearchError(false);
+
     if (searchInput !== '') {
       localStorage.setItem('search', searchInput);
       setKeywords({
@@ -82,26 +87,22 @@ export default function FilterContent(props) {
         search: searchInput
       })
     } 
-    // else if (searchInput === '') {
-      
-      // }
-      
 
     if (searchValue) {
       // 현재 페이지 컨텐츠를 필터링
-      let filterTarget = data[appStore.selectedCategory].details[appStore.selectedDetail].posts;
       let filteredData = JSON.parse(JSON.stringify(data));
+      let filterTarget = filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts;
       let result = filterContents(filterTarget, searchValue, 'title');
 
       // 검색 결과가 아무것도 없는 경우
-      if (result.length === 0) {
-        console.log('검색결과가 없습니다.')
-        setsearchError(true)
-      }
+      if (result.length === 0) setSearchError(true)
 
       filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = result;
       setData(filteredData);
       setSearchInput('');
+      
+      console.log('search')
+      return filteredData;
     }
   }
 
@@ -123,9 +124,8 @@ export default function FilterContent(props) {
     }
   }
 
-  const orderContents = (sortObjKey, sortBy) => {
-    if (sortBy === 0) return initData();
-    let orderedData = JSON.parse(JSON.stringify(data));
+  const orderContents = (sortObjKey, sortBy, targetData = data) => {
+    let orderedData = JSON.parse(JSON.stringify(targetData));
     orderedData[appStore.selectedCategory].details[appStore.selectedDetail].posts.sort((a, b) => {
       // 날짜순 정렬
       if (sortObjKey === 'createdAt') {
@@ -133,7 +133,7 @@ export default function FilterContent(props) {
         return (Date.parse(a.createdAt) - Date.parse(b.createdAt)) * sortBy
       }
       // 성경순 정렬
-      else if (sortObjKey === 'verse' ) {
+      else if (sortObjKey === 'verse') {
         if (!a.verse || !b.verse) return 1;
         let verseA = getFirstVerse(a.verse);
         let verseB = getFirstVerse(b.verse);
@@ -144,6 +144,7 @@ export default function FilterContent(props) {
         }
       }
     })
+    console.log('order')
     setData(orderedData)
   }
 

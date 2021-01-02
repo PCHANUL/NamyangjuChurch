@@ -20,6 +20,7 @@ export default function ContentList() {
   const [loading, setLoading] = useState(false);
   
   const [data, setData] = useState([]);
+  console.log('data: ', data);
   
   useEffect(() => {
     window.scroll(0, 0);
