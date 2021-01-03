@@ -7,6 +7,7 @@ import './FilterContent.css';
 import '../responsibleCSS/mobileSearchContent.css';
 
 // components
+import { Button } from './Button';
 import SearchDiv from './SearchDiv';
 import { OrderButton } from './OrderButton';
 
@@ -20,19 +21,12 @@ export default function FilterContent(props) {
   const { data, loading } = props.value;
   const { setData, initData } = props.method;
 
+  const [searchInput, setSearchInput] = useState('');
+  const [searchError, setSearchError] = useState(false);
+
   // sortButton 초기설정
   const sortOptions = [{name: '성경순', key: 'verse'}, {name: '날짜순', key: 'createdAt'}];
   const [sortStatus, setSortStatus] = useState({verse: 0, createdAt: 0});
-
-  const initOrderStatus = (target) => {
-    for (let option in sortStatus) {
-      if (option !== target) {
-        sortStatus[option] = 0;
-        localStorage.setItem(option, 0)
-      }
-    }
-    setSortStatus(sortStatus);
-  }
 
   // keyword 초기설정
   const [keywords, setKeywords] = useState({})
@@ -47,9 +41,6 @@ export default function FilterContent(props) {
       sort: initSort
     })
   }, [])
-
-  const [searchInput, setSearchInput] = useState('');
-  const [searchError, setSearchError] = useState(false);
 
   // localStorage에서 불러온 옵션적용
   useEffect(() => {
@@ -67,7 +58,19 @@ export default function FilterContent(props) {
       }
     }
   }
+
+  // order 초기화
+  const initOrderStatus = (targetKey) => {
+    for (let option in sortStatus) {
+      if (option !== targetKey) {
+        sortStatus[option] = 0;
+        localStorage.setItem(option, 0)
+      }
+    }
+    setSortStatus(sortStatus);
+  }
   
+  // filter 초기화
   const deleteFilter = (filterName) => {
     if (filterName === 'search') localStorage.removeItem('search');
 
@@ -76,6 +79,7 @@ export default function FilterContent(props) {
     initData();
   }
 
+  // filter 생성
   const searchKeywords = () => {
     const searchValue = searchInput !== '' ? searchInput : keywords.search;
     setSearchError(false);
@@ -100,8 +104,6 @@ export default function FilterContent(props) {
       filteredData[appStore.selectedCategory].details[appStore.selectedDetail].posts = result;
       setData(filteredData);
       setSearchInput('');
-      
-      console.log('search')
       return filteredData;
     }
   }
@@ -144,10 +146,10 @@ export default function FilterContent(props) {
         }
       }
     })
-    console.log('order')
     setData(orderedData)
   }
 
+  console.log('JSON.stringify(keywords.sort): ', JSON.stringify(sortStatus));
   return useObserver(() => (
       <>
         <div id='filterDiv'>
@@ -164,6 +166,23 @@ export default function FilterContent(props) {
             value={{ keywords, searchInput, searchError }} 
             method={{ setSearchInput, searchKeywords, deleteFilter }}
           />
+          {
+            JSON.stringify(sortStatus) !== '{"verse":0,"createdAt":0}' ?
+            keywords.search ? 
+            <Button className='initFilter' onClick={() => {
+              console.log(keywords)
+              deleteFilter('search');
+              for (let i in keywords.sort) initOrderStatus(i)
+            }}>모두 취소</Button>
+            :
+            <Button className='initFilter' onClick={() => {
+              console.log(keywords)
+              deleteFilter('search');
+              for (let i in keywords.sort) initOrderStatus(i)
+            }}>취소</Button>
+            : <></>
+
+          }
         </div>
     </>
   ))

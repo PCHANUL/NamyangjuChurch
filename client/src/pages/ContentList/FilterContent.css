@@ -95,3 +95,16 @@
 .errorInput {
   border-color: #f00;
 }
+
+
+/* init filter */
+.initFilter {
+  position: absolute;
+  left: 810px;
+  top: 0;
+
+  width: 60px;
+  color: #fff;
+  background-color: rgb(195, 195, 195);
+  border: none;
+}
