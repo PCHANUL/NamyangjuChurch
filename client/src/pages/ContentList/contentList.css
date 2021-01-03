@@ -39,7 +39,7 @@ a:hover {
   font-size: 15px;
 }
 
-.videoContent {
+.bibleVerse {
   width: 200px;
   text-align: right;
   float: right;
@@ -48,12 +48,23 @@ a:hover {
   font-weight: 700;
   color: rgba(100, 100, 100, 0.224);
 
+  cursor: help;
+
   /* text overflow */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space:nowrap;
   word-wrap:normal;
 }
+
+.bibleVerse:hover {
+  color: #000;
+}
+
+.bibleViewer {
+  position: absolute;
+}
+
 .videoButton {
   all: unset;
   position: absolute;

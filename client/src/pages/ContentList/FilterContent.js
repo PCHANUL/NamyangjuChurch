@@ -168,20 +168,19 @@ export default function FilterContent(props) {
           />
           {
             JSON.stringify(sortStatus) !== '{"verse":0,"createdAt":0}' ?
-            keywords.search ? 
+            keywords.search ? (
             <Button className='initFilter' onClick={() => {
               console.log(keywords)
               deleteFilter('search');
               for (let i in keywords.sort) initOrderStatus(i)
             }}>모두 취소</Button>
-            :
+            ) : (
             <Button className='initFilter' onClick={() => {
               console.log(keywords)
               deleteFilter('search');
               for (let i in keywords.sort) initOrderStatus(i)
             }}>취소</Button>
-            : <></>
-
+            ) : <></>
           }
         </div>
     </>

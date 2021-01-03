@@ -278,11 +278,16 @@ export const postLiveUrl = async(url, callback) => {
     url: 'http://localhost:4000/live',
     method: 'post',
     withCredentials : true,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    headers: {
+      'Content-Type': 'application/json',
+    },
     params: { url }
   })
 
   console.log('resultMsg: ', resultMsg);
+}
+
+export const getBibleVerse = async() => {
+  const result = await axios.get('http://ibibles.net/quote.php?kor-mat/5:3-12')
+  console.log(result);
 }
