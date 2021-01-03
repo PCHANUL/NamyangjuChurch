@@ -41,6 +41,7 @@ a:hover {
 
 .bibleVerse {
   width: 200px;
+  height: 60px;
   text-align: right;
   float: right;
 
@@ -48,21 +49,36 @@ a:hover {
   font-weight: 700;
   color: rgba(100, 100, 100, 0.224);
 
-  cursor: help;
+  cursor: pointer;
 
   /* text overflow */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space:nowrap;
   word-wrap:normal;
+
+  transition-property: color;
+  transition-duration: 0.5s;
 }
 
 .bibleVerse:hover {
   color: #000;
+
+  transition-property: color;
+  transition-duration: 0.5s;
 }
 
-.bibleViewer {
+#bibleViewer {
   position: absolute;
+  top: 75px;
+  right: 0px;
+  width: 500px;
+  height: 230px;
+  z-index: 1;
+}
+
+.bibleViewer > body {
+  background-color: #fff;
 }
 
 .videoButton {
