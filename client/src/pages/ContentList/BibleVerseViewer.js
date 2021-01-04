@@ -6,7 +6,7 @@ import { getBibleVerse } from '../axiosRequest';
 export default function BibleVerseViewer(props) {
   const { data, appStore } = props.value;
   const [isOpenBible, setOpenBible] = useState(false);
-  const [verse, setVerse] = useState('');
+  const [verse, setVerse] = useState([]);
 
   useEffect(() => {
     if (data.verse) {
@@ -15,8 +15,6 @@ export default function BibleVerseViewer(props) {
       bookName[1].split('-').map((item) => {
         item.split(':').forEach(element => result.push(Number(element)));
       });
-
-      console.log(result)
 
       // getBibleVerse(book, chapterA, verseA, chapterB, verseB, callback)
       getBibleVerse(
@@ -65,8 +63,8 @@ const BibleViewer = (props) => {
   return (
     <div className='bibleViewer'>
       {
-        verse.map((item) => {
-          return <p>{`${item.chapter}:${item.verse} ${item.content}`}</p>
+        verse.map((item, i) => {
+          return <p key={i}>{`${item.chapter}:${item.verse} ${item.content}`}</p>
         })
       }
     </div>

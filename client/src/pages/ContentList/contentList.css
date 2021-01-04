@@ -126,5 +126,24 @@ a:hover {
   color: #000;
 }
 
+#pageSelectDiv {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 50px;
+}
 
+.pageButton {
+  float: left;
+  width: 30px;
+  margin-right: 10px;
+  /* border: none; */
+  /* font-size: 30px; */
+}
+
+.selectedPage {
+  background-color: rgb(117, 117, 117);
+  color: #fff;
+}
 
