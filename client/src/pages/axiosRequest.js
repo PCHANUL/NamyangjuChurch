@@ -303,8 +303,12 @@ export const getBibleVerse = async(book, chapterA, verseA, chapterB, verseB, cal
             book: ${book}
             chapterA: ${chapterA}
             chapterB: ${chapterB}
-            verseA: ${verseA}
-            verseB: ${verseB}
+            ${
+              verseA ? (
+              `verseA: ${verseA}
+               verseB: ${verseB}`
+              ) : ''
+            }
           ) {
             book
             chapter
@@ -315,7 +319,6 @@ export const getBibleVerse = async(book, chapterA, verseA, chapterB, verseB, cal
         `
       }
     });
-    console.log('data.data.data.getBible: ', data.data.data.getBible);
     callback(data.data.data.getBible)
   } catch (err) {
     console.log(err);

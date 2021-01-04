@@ -39,6 +39,11 @@ a:hover {
   font-size: 15px;
 }
 
+.bibleVerse > div:nth-child(1) {
+  cursor: pointer;
+
+}
+
 .bibleVerse {
   width: 200px;
   height: 60px;
@@ -49,7 +54,6 @@ a:hover {
   font-weight: 700;
   color: rgba(100, 100, 100, 0.224);
 
-  cursor: pointer;
 
   /* text overflow */
   text-overflow: ellipsis;
