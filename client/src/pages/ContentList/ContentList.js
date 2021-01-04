@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 // component
 import FilterContent from './FilterContent';
-import BibleViewer from './bibleViewer';
+import BibleVerseViewer from './BibleVerseViewer';
 
 // methods
 import { getDataList } from '../axiosRequest';
@@ -55,7 +55,7 @@ export default function ContentList() {
                     <Link to={`/content/${data.id}`}>{data.title}</Link>
                     <p>{(data.createdAt).replaceAll('-', '. ')}</p>
                   </div>
-                  <BibleViewer data={data} />
+                  <BibleVerseViewer data={data} />
                 </div>
               );
             }

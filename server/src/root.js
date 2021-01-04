@@ -120,6 +120,58 @@ const root = {
     const delPost = await context.prisma.post.delete({ where: { id: id } })
     const delContent = await context.prisma.content.delete({ where: { id: findLinked[0].content.id } })
     return delPost && delContent ? true : false;
+  },
+  getBible: async({ book, chapterA, verseA, chapterB, verseB}, context) => {
+    if (chapterA !== chapterB) {
+      const front = await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: chapterA,
+          verse: {
+            gte: verseA,
+          }
+        }
+      })
+      const back = await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: chapterB,
+          verse: {
+            lte: verseB,
+          }
+        }
+      })
+
+      if (chapterA + 1 === chapterB) {
+        return front.concat(back);
+      } else {
+        const mid = await context.prisma.bible_korHRV.findMany({
+          where: {
+            book: book,
+            chapter: {
+              gte: chapterA + 1,
+              lte: chapterB - 1
+            }
+          }
+        })
+        return front.concat(mid).concat(back);
+      }
+      
+    } else {
+      return await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: {
+            gte: chapterA,
+            lte: chapterB
+          },
+          verse: {
+            gte: verseA,
+            lte: verseB,
+          }
+        },
+      })
+    }
   }
 };
 

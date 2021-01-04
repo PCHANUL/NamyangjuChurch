@@ -46,3 +46,11 @@ model Content {
   postId      Int?           @unique
 }
 
+model bible_korHRV {
+  book        Int            
+  chapter     Int            
+  verse       Int            
+  content     String
+
+  @@id([book, chapter, verse])
+}

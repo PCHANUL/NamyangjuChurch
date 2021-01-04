@@ -35,12 +35,20 @@ var schema = buildSchema(`
     postId: Int!
   }
 
+  type bible_korHRV {
+    book: Int!
+    chapter: Int!
+    verse: Int!
+    content: String!
+  }
+
   type Query {
     signin(nickname: String!, password: String!): Boolean!
     signout: Boolean!
     isSignin: Boolean!
     getCategory: [Category]!
     getContent(id: Int!): Post!
+    getBible(book: Int!, chapterA: Int!, verseA: Int, chapterB: Int, verseB: Int): [bible_korHRV]!
   }
 
   type Mutation {

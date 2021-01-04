@@ -287,7 +287,37 @@ export const postLiveUrl = async(url, callback) => {
   console.log('resultMsg: ', resultMsg);
 }
 
-export const getBibleVerse = async() => {
-  const result = await axios.get('http://ibibles.net/quote.php?kor-mat/5:3-12')
-  console.log(result);
+export const getBibleVerse = async(book, chapterA, verseA, chapterB, verseB, callback) => {
+  try {
+    const data = await axios({
+      url: 'http://localhost:4000/graphql',
+      method: 'GET',
+      withCredentials : true,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      params: {
+        query: `
+        {
+          getBible (
+            book: ${book}
+            chapterA: ${chapterA}
+            chapterB: ${chapterB}
+            verseA: ${verseA}
+            verseB: ${verseB}
+          ) {
+            book
+            chapter
+            verse
+            content
+          }
+        }
+        `
+      }
+    });
+    console.log('data.data.data.getBible: ', data.data.data.getBible);
+    callback(data.data.data.getBible)
+  } catch (err) {
+    console.log(err);
+  }
 }

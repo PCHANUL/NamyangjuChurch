@@ -140,7 +140,7 @@ export default function FilterContent(props) {
         let verseA = getFirstVerse(a.verse);
         let verseB = getFirstVerse(b.verse);
         if (verseA[0] !== verseB[0]) {
-          return (bibleVerse[verseA[0]][0] - bibleVerse[verseB[0]][0]) * sortBy;
+          return (bibleVerse[verseA[0]] - bibleVerse[verseB[0]]) * sortBy;
         } else {
           return (a.verse.slice(Number(verseA[1]), a.verse.indexOf(':')) - b.verse.slice(Number(verseB[1]), b.verse.indexOf(':'))) * sortBy;
         }
