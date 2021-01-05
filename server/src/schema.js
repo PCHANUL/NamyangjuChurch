@@ -46,7 +46,7 @@ var schema = buildSchema(`
     signin(nickname: String!, password: String!): Boolean!
     signout: Boolean!
     isSignin: Boolean!
-    getCategory: [Category]!
+    getCategory(category: Int!, detail: Int!): [Post]!
     getContent(id: Int!): Post!
     getBible(book: Int!, chapterA: Int!, verseA: Int, chapterB: Int, verseB: Int): [bible_korHRV]!
   }

@@ -14,11 +14,9 @@ import { OrderButton } from './OrderButton';
 // object 
 import { bibleVerse } from './bibleVerse';
 
-
-
 export default function FilterContent(props) {
   const appStore = useAppStore();
-  const { data, loading } = props.value;
+  const { data } = props.value;
   const { setData, initData } = props.method;
 
   const [searchInput, setSearchInput] = useState('');
@@ -45,16 +43,14 @@ export default function FilterContent(props) {
   // localStorage에서 불러온 옵션적용
   useEffect(() => {
     setLocalStorageData();
-  }, [loading, appStore.selectedDetail])
+  }, [appStore.selectedDetail])
   
   const setLocalStorageData = async() => {
     let filtered
-    if (loading) {
-      if (keywords.search) filtered = await searchKeywords();
-      for (let key in keywords.sort) {
-        if (keywords.sort[key] !== "0") {
-          await orderContents(key, keywords.sort[key], filtered);
-        }
+    if (keywords.search) filtered = await searchKeywords();
+    for (let key in keywords.sort) {
+      if (keywords.sort[key] !== "0") {
+        await orderContents(key, keywords.sort[key], filtered);
       }
     }
   }

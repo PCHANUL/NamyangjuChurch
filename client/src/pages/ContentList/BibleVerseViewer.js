@@ -4,7 +4,7 @@ import { bibleVerse } from './bibleVerse';
 import { getBibleVerse } from '../axiosRequest';
 
 export default function BibleVerseViewer(props) {
-  const { data, appStore } = props.value;
+  const { data } = props.value;
   const [isOpenBible, setOpenBible] = useState(false);
   const [verse, setVerse] = useState([]);
 
@@ -17,7 +17,7 @@ export default function BibleVerseViewer(props) {
       });
 
       // getBibleVerse(book, chapterA, verseA, chapterB, verseB, callback)
-      getBibleVerse(
+      getBibleVerse (
         bibleVerse[bookName[0]],     
         result[0], 
         result[1],
@@ -26,7 +26,9 @@ export default function BibleVerseViewer(props) {
         (result) => setVerse(result)
       )
     }
-  }, [appStore.selectedDetail])
+    return () => console.log('asdf')
+
+  }, [])
  
   return (
     <>

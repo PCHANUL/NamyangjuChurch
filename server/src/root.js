@@ -35,27 +35,28 @@ const root = {
   isSignin: async(_, {prisma, req, res}) => {
     return req.session.isLogged === undefined ? false : req.session.isLogged;
   },
-  getCategory: async (_, { prisma, req, res }) => {
+  getCategory: async ({ category, detail }, { prisma, req, res }) => {
     let result = await prisma.category.findMany({
+      where: {
+        id: category
+      },
       select: { 
-        id: true,
-        name: true,
         details: {
-          include: {
-            category: true,
+          where: {
+            id: detail
+          },
+          select: {
             posts: {
               orderBy: {
                 id: 'desc'
               },
-              include: {
-                detail: true,
-              }
             }
           }
         }
       },
     })
-    return result;
+    console.log('result: ', result[0].details[0]);
+    return result[0].details[0].posts;
   },
   getContent: async ({ id }, context) => {
     return await context.prisma.post.findUnique({
@@ -156,7 +157,7 @@ const root = {
         })
         return front.concat(mid).concat(back);
       }
-      
+
     } else {
       return await context.prisma.bible_korHRV.findMany({
         where: {
