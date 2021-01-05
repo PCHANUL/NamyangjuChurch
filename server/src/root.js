@@ -55,7 +55,6 @@ const root = {
         }
       },
     })
-    console.log('result: ', result[0].details[0]);
     return result[0].details[0].posts;
   },
   getContent: async ({ id }, context) => {

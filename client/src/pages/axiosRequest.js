@@ -198,6 +198,7 @@ export const getDataList = async(category, detail, callback) => {
             category: ${++category}
             detail: ${++detail}
           ) {
+            id
             createdAt
             title
             verse
@@ -206,9 +207,7 @@ export const getDataList = async(category, detail, callback) => {
         `
       }
     });
-    let result = data.data.data.getCategory;
-    if (result[0].name !== 'video') result.push(result.shift());
-    callback(result);
+    callback(data.data.data.getCategory);
   } catch (err) {
     alert(err);
   }

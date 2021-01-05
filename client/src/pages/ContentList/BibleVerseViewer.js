@@ -26,8 +26,6 @@ export default function BibleVerseViewer(props) {
         (result) => setVerse(result)
       )
     }
-    return () => console.log('asdf')
-
   }, [])
  
   return (

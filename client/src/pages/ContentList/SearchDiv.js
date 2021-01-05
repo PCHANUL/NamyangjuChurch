@@ -6,25 +6,15 @@ import { useObserver } from 'mobx-react';
 import { Button } from './Button';
 
 export default function SearchDiv(props) {
-  const { keywords, searchInput, searchError } = props.value;
-  const { setSearchInput, searchKeywords, deleteFilter } = props.method;
+  const appStore = useAppStore();
+  const { searchInput } = props.value;
+  const { setSearchInput } = props.method;
 
-  const initInput = () => {
-    document.querySelector('#inputKeyword').value = '';
+  const searchKeywords = () => {
+    appStore.search = searchInput !== '' ? searchInput : appStore.search;
+    if (searchInput !== '') localStorage.setItem('search', searchInput);
+    setSearchInput('');
   }
-
-  // function SearchButton() {
-  //   return useObserver(() => (
-  //     <>
-  //       <input id='inputKeyword' placeholder='검색 키워드 입력' 
-  //         onChange={(e) => setSearchInput(e.target.value)}
-  //         onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
-  //       ></input>
-  //       <Button className='keywordBtn' onClick={searchKeywords}>추가</Button>
-  //       <Button className='keywordBtn' onClick={initKeywords}>초기화</Button>
-  //     </>
-  //   ))
-  // }
 
   return useObserver(() => (
     <>
@@ -41,13 +31,13 @@ export default function SearchDiv(props) {
       </div>
       <div id='keywordDiv'>
         {
-          keywords.search &&
+          appStore.search &&
             <>
-              <button className={`deleteKeyword ${searchError && 'errorButton'}`} onClick={() => deleteFilter('search')}>
+              <button className={`deleteKeyword ${appStore.searchError && 'errorButton'}`} onClick={appStore.deleteSearch}>
                 취소
               </button>
-              <div className={`keyword ${searchError && 'errorInput'}`}>
-                <p>{`"${keywords.search}" 검색결과${searchError ? '가 없습니다' : '입니다'}`}</p>
+              <div className={`keyword ${appStore.searchError && 'errorInput'}`}>
+                <p>{`"${appStore.search}" 검색결과${appStore.searchError ? '가 없습니다' : '입니다'}`}</p>
               </div>
             </>
         }

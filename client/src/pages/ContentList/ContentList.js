@@ -15,14 +15,14 @@ import '../responsibleCSS/mobileContentList.css';
 
 export default function ContentList() {
   const appStore = useAppStore();
-  const [data, setData] = useState([]);
+  const [dataList, setData] = useState([]);
 
   
   useObserver(() => {
     useEffect(() => {
       window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
       appStore.getContentList((result) => setData(result));
-    }, [appStore.page, appStore.selectedCategory, appStore.selectedDetail])
+    }, [appStore.page, appStore.selectedCategory, appStore.selectedDetail, appStore.verse, appStore.createdAt, appStore.search])
   })
 
   const setPageNumber = () => {
@@ -39,18 +39,17 @@ export default function ContentList() {
       />
       {
         // set content list
-        data.map((data, i) => {
-            return (
-              <div className='video' key={i} >
-                <div className='videoTitle'>
-                  <Link to={`/content/${data.id}`}>{data.title}</Link>
-                  <p>{(data.createdAt).replaceAll('-', '. ')}</p>
-                </div>
-                <BibleVerseViewer value={{ data }} />
+        dataList.map((data, i) => {
+          return (
+            <div className='video' key={i} >
+              <div className='videoTitle'>
+                <Link to={`/content/${data.id}`}>{data.title}</Link>
+                <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
-            );
-          }
-        )
+              <BibleVerseViewer value={{ data }} />
+            </div>
+          );
+        })
       }
       <div id='pageSelectDiv'>
         {
