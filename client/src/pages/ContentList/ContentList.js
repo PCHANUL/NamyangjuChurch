@@ -46,7 +46,7 @@ export default function ContentList() {
                 <Link to={`/content/${data.id}`}>{data.title}</Link>
                 <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
-              <BibleVerseViewer value={{ data }} />
+              <BibleVerseViewer verse={data.verse} />
             </div>
           );
         })

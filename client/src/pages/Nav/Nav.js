@@ -74,10 +74,10 @@ export default function Nav() {
             남양주 사랑교회
           </a>
           <div id='NavButtonDiv'>
-            <Link to="/contentlist" className='button' onClick={() => appStore.selectedCategory = 1}>
+            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
               교회소식
             </Link>
-            <Link to="/contentlist" className='button' onClick={() => appStore.selectedCategory = 0}>
+            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
               말씀보기
             </Link>
           </div>
@@ -119,20 +119,15 @@ function isScrollDown() {
 }
 
 function NavTabs({ appStore }) {
-
-  const changeTab = (i) => {
-    appStore.selectedDetail = i;
-  }
-
   if (appStore.selectedCategory === 0) {
     return useObserver(() => (
       <div id='videoTabList' className='tabList'>
         {
           ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'].map((word, idx) => {
             if (appStore.selectedDetail === idx) {
-              return <div key={idx} className='tab selectedTab' onClick={() => changeTab(idx)}>{word}</div>
+              return <div key={idx} className='tab selectedTab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
             } else {
-              return <div key={idx} className='tab' onClick={() => changeTab(idx)}>{word}</div>
+              return <div key={idx} className='tab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
             }
           })
         }
@@ -141,7 +136,7 @@ function NavTabs({ appStore }) {
   } else if (appStore.selectedCategory === 1) {
     return useObserver(() => (
       <div id='communityTabList' className='tabList'>
-        <div className='tab' onClick={() => changeTab(0)}>교회사진</div>
+        <div className='tab' onClick={() => appStore.setVideoList(1, 0)}>교회사진</div>
       </div>
     ))
   }

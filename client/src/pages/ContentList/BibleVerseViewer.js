@@ -4,13 +4,13 @@ import { bibleVerse } from './bibleVerse';
 import { getBibleVerse } from '../axiosRequest';
 
 export default function BibleVerseViewer(props) {
-  const { data } = props.value;
+  const { verse } = props;
   const [isOpenBible, setOpenBible] = useState(false);
-  const [verse, setVerse] = useState([]);
+  const [bibleContent, setBibleContent] = useState([]);
 
   useEffect(() => {
-    if (data.verse) {
-      let bookName = getFirstVerse(data.verse);
+    if (verse) {
+      let bookName = getFirstVerse(verse);
       let result = []
       bookName[1].split('-').map((item) => {
         item.split(':').forEach(element => result.push(Number(element)));
@@ -23,24 +23,24 @@ export default function BibleVerseViewer(props) {
         result[1],
         result.length === 4 ? result[2] : result[0], 
         result[result.length - 1], 
-        (result) => setVerse(result)
+        (result) => setBibleContent(result)
       )
     }
-  }, [])
+  }, [verse])
  
   return (
     <>
       {
-        data.verse.length !== 0 &&
+        verse.length !== 0 &&
           <div className='bibleVerse' 
-            // onClick={() => setOpenBible(!isOpenBible)}
-            onMouseEnter={() => setOpenBible(true)}
-            onMouseLeave={() => setOpenBible(false)}
+            onClick={() => setOpenBible(!isOpenBible)}
+            // onMouseEnter={() => setOpenBible(true)}
+            // onMouseLeave={() => setOpenBible(false)}
           >
-            <div>{data.verse}</div>
+            <div>{verse}</div>
             {
               isOpenBible && (
-                <BibleViewer verse={verse}/>
+                <BibleViewer bibleContent={bibleContent}/>
               )
             }
           </div>
@@ -58,12 +58,12 @@ const getFirstVerse = (str) => {
 }
 
 const BibleViewer = (props) => {
-  const { verse } = props;
+  const { bibleContent } = props;
 
   return (
     <div className='bibleViewer'>
       {
-        verse.map((item, i) => {
+        bibleContent.map((item, i) => {
           return <p key={i}>{`${item.chapter}:${item.verse} ${item.content}`}</p>
         })
       }

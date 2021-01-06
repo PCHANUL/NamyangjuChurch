@@ -34,6 +34,7 @@ export function createStore() {
     setVideoList(category, detail) {
       this.selectedCategory = category
       this.selectedDetail = detail
+      this.page = 1;
     },
     setEditState(boolean, id) {
       this.isEdit = boolean;

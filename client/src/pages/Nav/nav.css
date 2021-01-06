@@ -52,7 +52,7 @@
   position: fixed;
   left: 50%;
   top: 80px;
-  transform: translate(-50%);
+  transform: translate(-50.5%);
 
   width: 1000px;
   height: 50px;
@@ -63,7 +63,7 @@
   box-shadow: 0 0 15px 0 rgb(0,0,0, 0.2);
 
   transition-property: all;
-  transition-duration: 0.5s;
+  transition-duration: 1s;
 }
 #videoTabList {
   grid-template-columns: auto auto auto auto auto;
@@ -102,7 +102,7 @@
 .hiddenDrawer {
   margin-top: -30vw;
   transition-property: all;
-  transition-duration: 2s;
+  transition-duration: 1s;
 }
 
 
