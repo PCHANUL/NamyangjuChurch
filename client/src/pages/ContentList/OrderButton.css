@@ -3,37 +3,32 @@
   margin-left: 10px;
 }
 
+.orderbtn > .label {
+  float: right;
+}
+
+.orderbtn p {
+  all: unset;
+}
+
 .btnDefault {
   background-color: #fff;
   color: #000;
-
-  /* transition-property: all;
-  transition-duration: 0.5s; */
 }
 
 .btnUp {
   background-color: rgb(255, 100, 100);
   border-color: rgb(255, 100, 100);
   color: #fff;
-
-  /* transition-property: all;
-  transition-duration: 0.5s; */
 }
 
 .btnDown {
   background-color: rgb(60, 130, 255);
   border-color: rgb(60, 130, 255);
   color: #fff;
-
-  /* transition-property: all;
-  transition-duration: 0.5s; */
 }
 
-.orderbtn > label {
-  float: right;
-}
-
-/* 화살표 */
+/* arrow icon */
 .arrow {
   float: right;
   border: solid black;

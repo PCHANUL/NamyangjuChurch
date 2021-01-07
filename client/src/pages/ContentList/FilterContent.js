@@ -4,15 +4,12 @@ import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
 import './FilterContent.css';
-import '../responsibleCSS/mobileSearchContent.css';
+import '../responsibleCSS/mobileFilterContent.css';
 
 // components
 import { Button } from './Button';
 import SearchDiv from './SearchDiv';
 import { OrderButton } from './OrderButton';
-
-// object 
-import { bibleVerse } from './bibleVerse';
 
 export default function FilterContent(props) {
   const appStore = useAppStore();

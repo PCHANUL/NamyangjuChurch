@@ -1,0 +1,92 @@
+#inputKeyword {
+  margin: 0 0 0 10px;
+  height: 34px;
+  width: 150px;
+  font-size: 15px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  float: right;
+  /* opacity: 0; */
+
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+/* #inputKeyword:hover {
+  transition-property: all;
+  transition-duration: 0.5s;
+} */
+
+/* #searchDiv:hover #inputKeyword {
+  opacity: 100;
+  transition-property: all;
+  transition-duration: 1s;
+} */
+
+.keywordBtn {
+  float: right;
+  margin-left: 10px;
+}
+.keywordBtn span {
+  all: unset;
+}
+.keywordBtn p {
+  all: unset;
+}
+
+#searchIcon {
+  all: unset;
+  margin-left: 5px;
+  width: 12px;
+}
+
+#keywordDiv {
+  position: absolute;
+  left: 0;
+
+  text-align: left;
+  width: 400px;
+}
+
+.keyword {
+  width: 290px;
+  border-radius: 10px;
+  border: 1px solid rgba(60, 130, 255);
+  padding: 8px 0 8px 20px;
+  float: left;
+  user-select: none;
+  margin: 0 10px 10px 30px;
+
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+
+.keyword p {
+  all: unset;
+}
+
+.deleteKeyword {
+  all: unset;
+  position: relative;
+  background-color: transparent;
+  padding: 8px;
+  background-color: rgb(60, 130, 255);
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.deleteKeyword:hover {
+  opacity: 1;
+}
+
+.errorButton {
+  background-color: #f00;
+}
+.errorInput {
+  border-color: #f00;
+}

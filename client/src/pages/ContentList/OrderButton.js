@@ -3,6 +3,7 @@ import { useObserver } from 'mobx-react';
 
 import { Button } from './Button';
 import './OrderButton.css';
+import '../responsibleCSS/mobileOrderButton.css';
 
 export function OrderButton(props) {
   const { name, key } = props.value.item;
@@ -22,8 +23,9 @@ export function OrderButton(props) {
 
   return useObserver(() => (
     <Button className={`orderbtn btn${status[appStore[key]]}`} onClick={clickFunc}>
-      <span className='label'>{name}</span>
-      <div className={`arrow ${status[appStore[key]]}`}/>
+      <p>{name}
+        <div className={`arrow ${status[appStore[key]]}`}/>
+      </p>
     </Button>
   ))
 }

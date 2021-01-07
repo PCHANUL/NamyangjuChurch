@@ -3,8 +3,10 @@
     height: 9vw;
     position: fixed;
     top: 0;
-    background-color: #fff;
+
     z-index: 2;
+    background-color: #fff;
+    padding: 4vw 0 3vw 0px;
 
     transition-property: all;
     transition-duration: 1s;
@@ -35,7 +37,7 @@
     text-align: center;
     position: fixed;
     left: 50%;
-    top: 18.5vw;
+    top: 16vw;
     transform: translate(-50%);
     width: 100vw;
     height: 8vw;
@@ -55,7 +57,7 @@
 
     position: fixed;
     right: 5vw;
-    top: 50%;
+    top: 3vw;
     z-index: 3;
 
     padding: 2vw 2vw 1vw 2vw;

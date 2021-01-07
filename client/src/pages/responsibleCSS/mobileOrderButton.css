@@ -1,0 +1,28 @@
+@media only screen and (max-width : 640px) {
+  
+   /* order Button */
+  .orderbtn { 
+    padding: 1.5vw;
+    margin-left: 1vw;
+  }
+  .orderbtn > .label {
+    font-size: 3vw;
+  }
+
+  /* arrow */
+  .Default {
+    border-width: 0 0 0.5vw 0;
+    padding: 1.3vw;
+    margin-top: -1vw;
+  }
+  .Up {
+    border-width: 0 0.5vw 0.5vw 0;
+    padding: 1vw;
+    margin-top: 1vw;
+  }
+  .Down {
+    border-width: 0 0.5vw 0.5vw 0;
+    padding: 1vw;
+    margin-top: -0.3vw;
+  }
+}
