@@ -1,0 +1,55 @@
+@media only screen and (max-width : 640px) {
+  #keywordDiv {
+    display: inline-block;
+    position: relative;
+    left: 0;
+    margin-top: 1vw;
+
+    width: 90vw;
+    text-align: left;
+  }
+
+  .keyword {
+    width: 65vw;
+    border-radius: 2vw;
+    
+    padding: 1.5vw 0 1.5vw 5vw;
+    margin: 0vw 2vw 2vw 2vw;
+  }
+  .keyword p {
+    font-size: 3vw;
+  }
+  .deleteKeyword {
+    padding: 1.5vw 5vw;
+  }
+  .deleteKeyword p {
+    all: unset;
+    font-size: 3vw;
+  }
+
+  /* keyword input */
+  #inputKeyword {
+    margin: 1vw 2vw;
+    height: 5vw;
+    width: 37vw;
+    font-size: 3vw;
+    opacity: 100;
+  }
+
+  /* keyword Button */
+  .keywordBtn {
+    padding: 1.5vw;
+    margin-left: 1vw;
+    height: 3.5vw;
+  }
+  .keywordBtn p {
+    line-height: 0;
+    font-size: 3vw;
+  }
+  #searchIcon {
+    margin-left: 2vw;
+    width: 2.5vw;
+  }
+
+  
+}

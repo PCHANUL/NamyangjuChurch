@@ -35,27 +35,27 @@ const root = {
   isSignin: async(_, {prisma, req, res}) => {
     return req.session.isLogged === undefined ? false : req.session.isLogged;
   },
-  getCategory: async (_, { prisma, req, res }) => {
+  getCategory: async ({ category, detail }, { prisma, req, res }) => {
     let result = await prisma.category.findMany({
+      where: {
+        id: category
+      },
       select: { 
-        id: true,
-        name: true,
         details: {
-          include: {
-            category: true,
+          where: {
+            id: detail
+          },
+          select: {
             posts: {
               orderBy: {
                 id: 'desc'
               },
-              include: {
-                detail: true,
-              }
             }
           }
         }
       },
     })
-    return result;
+    return result[0].details[0].posts;
   },
   getContent: async ({ id }, context) => {
     return await context.prisma.post.findUnique({
@@ -67,6 +67,8 @@ const root = {
         title: true, 
         detailId: true,
         createdAt: true,
+        thumbnail: true,
+        verse: true,
         content: {
           include: {
             post: true,
@@ -75,11 +77,11 @@ const root = {
       }
     })
   },
-  addContent: async ({ category, title, content, datetime }, context) => {
+  addContent: async ({ category, title, content, datetime, thumbnail, verse }, context) => {
     console.log('category, title, content, dateTime: ', category, title, content, datetime);
     const isCreated = await context.prisma.post.create({
       data: {
-        title,
+        title, thumbnail, verse,
         createdAt: datetime,
         detail: {
           connect: { id: Number(category) }
@@ -93,13 +95,13 @@ const root = {
     })
     return isCreated ? true : false;
   },
-  updateContent: async({ id, category, title, content, datetime }, context) => {
+  updateContent: async({ id, category, title, content, datetime, thumbnail, verse }, context) => {
     const isUpdated = await context.prisma.post.update({
       where: {
         id: id
       },
       data: {
-        title,
+        title, thumbnail, verse,
         createdAt: datetime,
         detail: {
           connect: { id: Number(category) }
@@ -118,6 +120,58 @@ const root = {
     const delPost = await context.prisma.post.delete({ where: { id: id } })
     const delContent = await context.prisma.content.delete({ where: { id: findLinked[0].content.id } })
     return delPost && delContent ? true : false;
+  },
+  getBible: async({ book, chapterA, verseA, chapterB, verseB}, context) => {
+    if (chapterA !== chapterB) {
+      const front = await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: chapterA,
+          verse: {
+            gte: verseA,
+          }
+        }
+      })
+      const back = await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: chapterB,
+          verse: {
+            lte: verseB,
+          }
+        }
+      })
+
+      if (chapterA + 1 === chapterB) {
+        return front.concat(back);
+      } else {
+        const mid = await context.prisma.bible_korHRV.findMany({
+          where: {
+            book: book,
+            chapter: {
+              gte: chapterA + 1,
+              lte: chapterB - 1
+            }
+          }
+        })
+        return front.concat(mid).concat(back);
+      }
+
+    } else {
+      return await context.prisma.bible_korHRV.findMany({
+        where: {
+          book: book,
+          chapter: {
+            gte: chapterA,
+            lte: chapterB
+          },
+          verse: {
+            gte: verseA,
+            lte: verseB,
+          }
+        },
+      })
+    }
   }
 };
 

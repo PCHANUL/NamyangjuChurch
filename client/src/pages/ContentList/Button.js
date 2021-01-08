@@ -7,20 +7,27 @@ export function Button(props) {
   const onMouseDown = (e) => {
     e.persist();
     let target = findRoot(e.target);
-    console.log('target: ', target, e);
-    let mouseX = e.nativeEvent.offsetX;
-    let mouseY = e.nativeEvent.offsetY;
+
+    // 클릭위치
+    let mouseX, mouseY;
+    if (e.target.className.includes('buttonDefault') || e.target.innerText) {
+      mouseX = e.nativeEvent.offsetX;
+      mouseY = e.nativeEvent.offsetY;
+    } else {
+      mouseX = e.target.offsetLeft + (e.target.offsetWidth / 2);
+      mouseY = e.target.offsetTop + (e.target.offsetHeight / 2);
+    }
     clickAction(target, mouseX, mouseY);
   }
   
   const clickAction = (target, x, y) => {
-    let targetElement = target.getBoundingClientRect()
     let div = document.createElement('div');
     div.className = 'clickMotion';
     div.style.top = `${y}px`;
     div.style.left = `${x}px`;
     target.appendChild(div);
-    
+
+    let targetElement = target.getBoundingClientRect();
     setTimeout(() => {
       div.className = div.className + ' clickMotion_visible';
       div.style.transform = `scale(${targetElement.width / 5})`;
@@ -38,7 +45,7 @@ export function Button(props) {
   }
 
   return (
-    <div className={`${className} buttonDefault`} onMouseDown={onMouseDown}>
+    <div className={`buttonDefault ${className}`} onMouseDown={onMouseDown}>
       <span className='label'>{children}</span>
       <span className='root'></span>
     </div>
@@ -47,31 +54,28 @@ export function Button(props) {
 
 
 export function GobackButton() {
+  // const clickFunc = () => {
+  //   let target = document.getElementsByClassName('goback')[0].childNodes[1];
+  //   clickMotion(target);
+  // }
 
-  const clickFunc = () => {
-    let target = document.getElementsByClassName('goback')[0].childNodes[1];
-    clickMotion(target);
-    
-  }
+  // const clickMotion = (target) => {
+  //   let div = document.createElement('div');
+  //   div.className = 'clickMotion';
+  //   let rect = target.getBoundingClientRect();
+  //   div.style.top = `${rect.height / 2 - rect.height / 7}px`;
+  //   div.style.left = `${rect.width / 2 - rect.width / 9}px`;
+  //   target.appendChild(div);
 
-  const clickMotion = (target) => {
-    let div = document.createElement('div');
-    div.className = 'clickMotion';
-    let rect = target.getBoundingClientRect();
-    div.style.top = `${rect.height / 2 - rect.height / 7}px`;
-    div.style.left = `${rect.width / 2 - rect.width / 9}px`;
-    target.appendChild(div);
-
-    setTimeout(() => {
-      div.className = div.className + ' clickMotion_visible';
-      setTimeout(() => {
-        div.className = 'clickMotion';
-        window.history.back();
-        div.parentNode.removeChild(div)
-      }, 200)
-    }, 0);
-  }
-
+  //   setTimeout(() => {
+  //     div.className = div.className + ' clickMotion_visible';
+  //     setTimeout(() => {
+  //       div.className = 'clickMotion';
+  //       window.history.back();
+  //       div.parentNode.removeChild(div)
+  //     }, 200)
+  //   }, 0);
+  // }
   return (
     <Button className='goback' onClick={() => window.history.back()}>
       <div className='gobackIcon gobackIcon_top'></div>

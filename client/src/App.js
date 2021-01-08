@@ -32,7 +32,7 @@ const App = (props) => {
     }
   },[location.pathname])
 
-
+  console.log(window.innerWidth)
   return (
     <>
       <div className='container'>
@@ -50,8 +50,9 @@ const App = (props) => {
           <Route path='/admin/edit' component={Edit} />
         </Switch>
         
-        {
-          location.pathname.includes("content") &&
+        { 
+          window.innerWidth > 640 &&
+          (location.pathname.includes("admin") || location.pathname.includes("content")) &&
           <>
             <div id='leftSide'></div>
             <div id='rightSide'></div>

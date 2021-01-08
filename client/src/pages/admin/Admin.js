@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './admin.css';
-import DataList from './DataList'
+import AdminDataList from './AdminDataList'
 
 import { getDataList, postLiveUrl, isSignin, signout } from '../axiosRequest';
 
@@ -43,13 +43,13 @@ const Admin = (props) => {
         }}>나가기</button>
       </div>
 
-      <span>생방송 url입력</span>
+      {/* <span>생방송 url입력</span>
       <input id='liveUrl' style={{height:'30px'}}></input>
       <button onClick={() => {
         postLiveUrl(document.querySelector('#liveUrl').value, (result) => {
           console.log('result: ', result);
         })
-      }}>입력</button>
+      }}>입력</button> */}
 
 
       <Tab tab={tab} setTab={setTab} />
@@ -62,7 +62,7 @@ const Admin = (props) => {
       </button> 
       {
         loading &&
-        <DataList data={data} loading={loading} tab={tab}/>
+        <AdminDataList data={data} loading={loading} tab={tab}/>
       }
     </div>
   ))
@@ -102,8 +102,6 @@ function Tab({ tab, setTab }) {
           })
         )
       }
-      <div className='extraDiv left'/>
-      <div className='extraDiv right'/>
     </div>
   )
 }

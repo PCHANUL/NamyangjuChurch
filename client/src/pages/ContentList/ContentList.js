@@ -4,64 +4,64 @@ import { Link } from 'react-router-dom';
 
 // component
 import FilterContent from './FilterContent';
-
-// methods
-import { getDataList } from '../axiosRequest';
-import { transDate } from '../Methods';
+import BibleVerseViewer from './BibleVerseViewer';
+import { Button } from './Button';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
-import './videoList.css';
-import '../responsibleCSS/mobileVideoList.css';
+import './contentList.css';
+import '../responsibleCSS/mobileContentList.css';
 
 export default function ContentList() {
   const appStore = useAppStore();
-  const [loading, setLoading] = useState(false);
-  const [filteredArr, setFiltered] = useState([]);
-  const [data, setData] = useState([]);
-  
-  useEffect(() => {
-    window.scroll(0, 0);
-    getDataList((getData) => {
-      setData(getData);
-      setLoading(true);
-    });
-  }, [])
+  const [dataList, setData] = useState([]);
 
+  
+  useObserver(() => {
+    useEffect(() => {
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+      appStore.getContentList((result) => setData(result));
+    }, [appStore.page, appStore.selectedCategory, appStore.selectedDetail, appStore.verse, appStore.createdAt, appStore.search])
+  })
+
+  const setPageNumber = () => {
+    let pageArr = [];
+    for (let i = 1; i < (appStore.dataLength / 15) + 1; i++) pageArr.push(i);
+    return pageArr
+  }
+  
   return useObserver(() => (
     <div id='videoList'>
-      <div id='leftSide'></div>
-      <div id='rightSide'></div>
-      
       <FilterContent
-        data={data}
-        setData={setData}
-        setFiltered={setFiltered}
+        value={{ data: appStore.data }}
+        method={{ setData }}
       />
-
       {
-        loading &&
-        ( filteredArr.length === 0 
-          ? data[appStore.selectedCategory].details[appStore.selectedDetail].posts
-          : filteredArr[appStore.selectedCategory].details[appStore.selectedDetail].posts
-        ).map((data, i) => {
+        // set content list
+        dataList.map((data, i) => {
           return (
             <div className='video' key={i} >
               <div className='videoTitle'>
                 <Link to={`/content/${data.id}`}>{data.title}</Link>
                 <p>{(data.createdAt).replaceAll('-', '. ')}</p>
               </div>
-              <div className='videoContent'>
-                <div>{data.gender}</div>
-                {/* <Link className='videoButton' to={`/contentlist/${data.id}`}>영상보기</Link> */}
-              </div>
+              <BibleVerseViewer verse={data.verse} />
             </div>
           );
         })
       }
-
-      
+      <div id='pageSelectDiv'>
+        {
+          setPageNumber().map((num, i) => {
+            return (
+              <Button className={`pageButton ${appStore.page === num && 'selectedPage'}`} key={i} 
+                onClick={() => appStore.page = num}
+              >{num}</Button>
+            )
+          })
+        }
+      </div>
     </div>
   ))
 }

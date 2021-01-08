@@ -21,8 +21,10 @@ var schema = buildSchema(`
 
   type Post {
     id: Int!
-    title: String!
     createdAt: String!
+    title: String!
+    thumbnail: String
+    verse: String
     detailId: Int!
     content: Content!
   }
@@ -33,12 +35,20 @@ var schema = buildSchema(`
     postId: Int!
   }
 
+  type bible_korHRV {
+    book: Int!
+    chapter: Int!
+    verse: Int!
+    content: String!
+  }
+
   type Query {
     signin(nickname: String!, password: String!): Boolean!
     signout: Boolean!
     isSignin: Boolean!
-    getCategory: [Category]!
+    getCategory(category: Int!, detail: Int!): [Post]!
     getContent(id: Int!): Post!
+    getBible(book: Int!, chapterA: Int!, verseA: Int, chapterB: Int, verseB: Int): [bible_korHRV]!
   }
 
   type Mutation {
@@ -48,6 +58,8 @@ var schema = buildSchema(`
       title: String!
       content: String!
       datetime: String!
+      thumbnail: String!
+      verse: String!
     ): Boolean!
 
     updateContent(
@@ -56,6 +68,8 @@ var schema = buildSchema(`
       title: String!
       content: String!
       datetime: String!
+      thumbnail: String
+      verse: String
     ): Boolean!
 
     deleteUser(nickname: String!): Boolean!

@@ -1,0 +1,174 @@
+a {
+  all: unset;
+  color: rgb(100, 100, 100);
+}
+a:hover {
+  color: #000;
+}
+#videoList {
+  width: 800px;
+  margin: 130px 80px 0 80px;
+  grid-column: 3;
+  grid-row: 2;
+  font-family: NanumBarunGothic;
+}
+.video {
+  position: relative;
+  height: 60px;
+  padding: 15px 30px 0 30px;
+  border-top: 1px solid rgb(210, 210, 210);
+}
+.videoTitle {
+  float: left;
+  width: 520px;
+
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+.videoTitle a {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+.videoTitle p {
+  all: unset;
+  display: block;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.bibleVerse > div:nth-child(1) {
+  cursor: pointer;
+
+}
+
+.bibleVerse {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+
+  width: 200px;
+  height: 50px;
+  text-align: right;
+
+  font-size: 25px;
+  font-weight: 700;
+  color: rgba(100, 100, 100, 0.224);
+
+
+  /* text overflow */
+  /* text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal; */
+
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.bibleVerse:hover {
+  color: #000;
+
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.clickedVerse {
+  color: #000;
+
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.closeVerse {
+  position: absolute;
+  right: -70px;
+  top: 0;
+  padding: 4px 10px;
+}
+
+.closeVerse .label {
+  float: right;
+}
+
+
+.bibleViewer {
+  position: relative;
+  top: 15px;
+  right: -230px;
+  width: 500px;
+  height: 230px;
+  z-index: 1;
+  
+  background-color: #fff;
+  border: 1px solid #000;
+  overflow-y: scroll;
+  padding: 0 20px 0 20px;
+
+  box-shadow: 5px 5px 10px 0 rgb(200, 200, 200);
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+.bibleViewer p {
+  width: 500px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: initial;
+
+  font-size: 17px;
+  line-height: 25px;
+  color: #000;
+  font-family: MapoGoldenPier;
+}
+
+.videoButton {
+  all: unset;
+  position: absolute;
+  bottom: 2vw;
+  right: 2vw;
+  padding: 1vw ;
+  cursor: pointer;
+  border: 2px solid #000;
+  background-color: #000;
+  color: #fff;
+  font-size: 1.5vw;
+}
+
+.videoButton:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+#pageSelectDiv {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin-top: 50px;
+}
+
+.pageButton {
+  float: left;
+  width: 30px;
+  margin-right: 10px;
+  /* border: none; */
+  /* font-size: 30px; */
+}
+
+.selectedPage {
+  background-color: rgb(117, 117, 117);
+  color: #fff;
+}
+
