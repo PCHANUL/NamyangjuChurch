@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { bibleVerse } from './bibleVerse';
+import { Button } from './Button';
 
 import { getBibleVerse } from '../axiosRequest';
 
 export default function BibleVerseViewer(props) {
   const { verse } = props;
-  const [isOpenBible, setOpenBible] = useState(false);
+  const [isClicked, setClicked] = useState(false);
+  const [isHover, setHover] = useState(false);
   const [bibleContent, setBibleContent] = useState([]);
 
   useEffect(() => {
@@ -28,22 +30,33 @@ export default function BibleVerseViewer(props) {
     }
   }, [verse])
  
+  // 성경구절을 클릭하거나 마우스를 올리면 텍스트가 나온다.
+  // 모바일 환경에서는 클릭
+  // 닫기 버튼을 추가시킨다.
+
+
   return (
     <>
       {
         verse.length !== 0 &&
-          <div className='bibleVerse' 
-            onClick={() => setOpenBible(!isOpenBible)}
-            // onMouseEnter={() => setOpenBible(true)}
-            // onMouseLeave={() => setOpenBible(false)}
+        <>
+          <div 
+            className={`bibleVerse ${isClicked ? 'clickedVerse' : ''}`} 
+            onClick={() => setClicked(!isClicked)}
           >
-            <div>{verse}</div>
             {
-              isOpenBible && (
-                <BibleViewer bibleContent={bibleContent}/>
+              isClicked && (
+                <Button className='closeVerse'>닫기</Button>
               )
             }
+            <div>{verse}</div>
           </div>
+          {
+            isClicked ? (
+              <BibleViewer bibleContent={bibleContent}/>
+            ) : <></>
+          }
+        </>
       }
     </>
   )

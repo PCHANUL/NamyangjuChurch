@@ -33,17 +33,35 @@
     height: 7vw;
     font-size: 4.5vw;
   }
+  
   .bibleViewer {
     position: relative;
-    top: 2vw;
-    right: 37vw;
+    top: 4vw;
+    right: -13vw;
     
     width: 70vw;
-    height: 60vw;
+    height: 70vw;
+    padding: 4vw 2vw 0 2vw;
+
+    box-shadow: 2vw 2vw 4vw 0 rgb(200, 200, 200);
   }
   .bibleViewer p {
+    font-size: 4vw;
+    line-height: 6vw;
     width: 70vw;
   }
+
+  .closeVerse {
+    background-color: white;
+    z-index: 2;
+    right: 1vw;
+    top: 8vw;
+  }
+  .closeVerse .label {
+    font-size: 4vw;
+    float: left;
+  }
+  
 
 
 }

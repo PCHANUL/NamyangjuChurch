@@ -6,22 +6,22 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.5);
   float: right;
-  /* opacity: 0; */
+  opacity: 0;
 
   transition-property: all;
   transition-duration: 0.5s;
 }
 
-/* #inputKeyword:hover {
+#inputKeyword:hover {
   transition-property: all;
   transition-duration: 0.5s;
-} */
+}
 
-/* #searchDiv:hover #inputKeyword {
+#searchDiv:hover #inputKeyword {
   opacity: 100;
   transition-property: all;
   transition-duration: 1s;
-} */
+}
 
 .keywordBtn {
   float: right;
@@ -32,6 +32,7 @@
 }
 .keywordBtn p {
   all: unset;
+  float: right;
 }
 
 #searchIcon {
@@ -78,6 +79,9 @@
   color: #fff;
   cursor: pointer;
   opacity: 0.5;
+}
+.deleteKeyword p {
+  all: unset;
 }
 
 .deleteKeyword:hover {

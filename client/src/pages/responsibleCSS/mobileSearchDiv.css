@@ -31,8 +31,9 @@
   #inputKeyword {
     margin: 1vw 2vw;
     height: 5vw;
-    width: 35vw;
+    width: 37vw;
     font-size: 3vw;
+    opacity: 100;
   }
 
   /* keyword Button */

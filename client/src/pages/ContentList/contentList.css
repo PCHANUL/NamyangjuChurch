@@ -76,10 +76,29 @@ a:hover {
   transition-duration: 0.5s;
 }
 
+.clickedVerse {
+  color: #000;
+
+  transition-property: color;
+  transition-duration: 0.5s;
+}
+
+.closeVerse {
+  position: absolute;
+  right: -70px;
+  top: 0;
+  padding: 4px 10px;
+}
+
+.closeVerse .label {
+  float: right;
+}
+
+
 .bibleViewer {
   position: relative;
-  top: 23px;
-  right: 320px;
+  top: 15px;
+  right: -230px;
   width: 500px;
   height: 230px;
   z-index: 1;
@@ -87,7 +106,9 @@ a:hover {
   background-color: #fff;
   border: 1px solid #000;
   overflow-y: scroll;
-  padding: 0 20px;
+  padding: 0 20px 0 20px;
+
+  box-shadow: 5px 5px 10px 0 rgb(200, 200, 200);
 }
 
 ::-webkit-scrollbar {

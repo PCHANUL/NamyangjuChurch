@@ -29,7 +29,8 @@ export default function SearchDiv(props) {
             <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
           </p>
         </Button>
-        <input id='inputKeyword' placeholder='검색어를 입력하세요' 
+        <input id='inputKeyword' 
+          placeholder='검색어를 입력하세요' 
           value={searchInput}
           onChange={(e) => setSearchInput(e.target.value)}
           onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
