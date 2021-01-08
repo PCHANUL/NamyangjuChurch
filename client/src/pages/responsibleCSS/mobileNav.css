@@ -4,7 +4,7 @@
     position: fixed;
     top: 0;
 
-    z-index: 2;
+    z-index: 4;
     background-color: #fff;
     padding: 4vw 0 3vw 0px;
 
@@ -43,7 +43,7 @@
     height: 8vw;
     background-color: #fff;
     display: grid;
-    z-index: 1;
+    z-index: 3;
     box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
   }
   .tab {
@@ -58,7 +58,7 @@
     position: fixed;
     right: 5vw;
     top: 3vw;
-    z-index: 3;
+    z-index: 5;
 
     padding: 2vw 2vw 1vw 2vw;
     border-radius: 5vw;
@@ -116,7 +116,7 @@
     position: fixed;
     right: 0%;
     top: 0vw;
-    z-index: 2;
+    z-index: 4;
   
     width: 60vw;
     height: 80vw;

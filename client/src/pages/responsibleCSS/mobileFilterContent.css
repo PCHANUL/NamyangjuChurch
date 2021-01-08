@@ -1,6 +1,8 @@
 @media only screen and (max-width : 640px) {
   #filterDiv {
-    display: inline;
+    display: block;
+    overflow: hidden;
+    height: auto;
   }
 
 }

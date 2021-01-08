@@ -3,25 +3,25 @@
   #videoList {
     grid-column: 1 / 5;
     width: 90vw;
-    margin: 23vw 0 0 3.5vw;
+    margin: 23vw 0 0 5vw;
   }
   .video {
     position: relative;
-    height: 14vw;
-    padding: 2.5vw 2vw 0 2vw;
-    border-top: 1px solid rgb(210, 210, 210);
+    height: 15vw;
+    padding: 5vw 2vw 5vw 2vw;
+    border-top: 0.3vw solid rgb(210, 210, 210);
   }
 
   .videoTitle {
-    width: 80vw;
+    width: 85vw;
   }
   .videoTitle a {
-    font-size: 4.5vw;
+    font-size: 6vw;
     font-weight: 700;
   }
   .videoTitle p {
-    margin-top: 2vw;
-    font-size: 2.5vw;
+    margin: 5vw 1vw;
+    font-size: 3vw;
   }
 
   .bibleVerse {
@@ -30,18 +30,19 @@
     right: 10px;
     
     width: 40vw;
-    height: 7vw;
-    font-size: 4.5vw;
+    height: 10vw;
+    font-size: 5vw;
   }
   
   .bibleViewer {
-    position: relative;
-    top: 4vw;
-    right: -13vw;
+    position: absolute;
+    top: 25vw;
+    right: 50%;
+    transform: translate(50%);
     
     width: 70vw;
-    height: 70vw;
-    padding: 4vw 2vw 0 2vw;
+    height: 80vw;
+    padding: 7vw 2vw 0 2vw;
 
     box-shadow: 2vw 2vw 4vw 0 rgb(200, 200, 200);
   }
@@ -54,11 +55,13 @@
   .closeVerse {
     background-color: white;
     z-index: 2;
-    right: 1vw;
-    top: 8vw;
+    top: 12vw;
+    right: 35%;
+    transform: translate(50%);
+    padding: 2vw;
   }
   .closeVerse .label {
-    font-size: 4vw;
+    font-size: 3vw;
     float: left;
   }
   

@@ -21,7 +21,7 @@
 .buttonDefault > .label {
   all: unset;
   font-size: 15px;
-  /* font-weight: bold; */
+  float: center;
 }
 
 .buttonDefault > .root {

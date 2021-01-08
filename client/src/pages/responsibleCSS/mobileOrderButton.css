@@ -2,14 +2,20 @@
   
    /* order Button */
   .orderbtn { 
+    border-radius: 2vw;
+    border-width: 0.3vw;
     padding: 1.5vw;
     margin-left: 1vw;
   }
-  .orderbtn > .label {
+  .orderbtn p {
     font-size: 3vw;
   }
 
   /* arrow */
+  .arrow {
+    padding: 1vw;
+    margin-left: 2vw;
+  }
   .Default {
     border-width: 0 0 0.5vw 0;
     padding: 1.3vw;

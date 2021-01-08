@@ -35,11 +35,10 @@ export default function FilterContent(props) {
   const initOrderStatus = (targetKey) => {
     for (let option in sortStatus) {
       if (option !== targetKey) {
-        sortStatus[option] = 0;
+        appStore[option] = 0;
         localStorage.setItem(option, 0)
       }
     }
-    setSortStatus(sortStatus);
   }
   
   return useObserver(() => (
