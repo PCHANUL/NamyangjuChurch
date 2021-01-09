@@ -51,16 +51,27 @@ export default function ContentList() {
           );
         })
       }
-      <div id='pageSelectDiv'>
-        {
-          setPageNumber().map((num, i) => {
-            return (
-              <Button className={`pageButton ${appStore.page === num && 'selectedPage'}`} key={i} 
-                onClick={() => appStore.page = num}
-              >{num}</Button>
-            )
-          })
-        }
+
+      <div id='pageOptionDiv'>
+        <div id='pageSelectDiv'>
+          {
+            setPageNumber().map((num, i) => {
+              return (
+                <Button className={`pageButton ${appStore.page === num && 'selectedPage'}`} key={i} 
+                  onClick={() => appStore.page = num}
+                >{num}</Button>
+              )
+            })
+          }
+        </div>
+
+        <select id='dataNumber'>
+          <option value='10'>10</option>
+          <option value='15' selected>15</option>
+          <option value='20'>20</option>
+        </select>
+        {/* <label id='dataNumberLabel' for="dataNumber">페이지 컨텐츠 갯수</label> */}
+
       </div>
     </div>
   ))
