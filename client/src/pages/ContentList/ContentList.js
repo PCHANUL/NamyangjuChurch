@@ -64,15 +64,18 @@ export default function ContentList() {
             })
           }
         </div>
-
-        <select id='dataNumber'>
-          <option value='10'>10</option>
-          <option value='15' selected>15</option>
-          <option value='20'>20</option>
-        </select>
-        {/* <label id='dataNumberLabel' for="dataNumber">페이지 컨텐츠 갯수</label> */}
-
+        
+        <div id='dataNumberDiv'>
+          <select id='dataNumber'>
+            <option value='10'>10</option>
+            <option value='15' selected>15</option>
+            <option value='20'>20</option>
+          </select>
+          <label id='selectUnit' for="dataNumber">줄씩</label>
+          <label id='dataNumberLabel' for="dataNumber">보입니다</label>
+        </div>
       </div>
+      <div id='endLine'></div>
     </div>
   ))
 }

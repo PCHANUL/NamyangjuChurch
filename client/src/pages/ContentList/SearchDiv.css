@@ -1,33 +1,23 @@
-#inputKeyword {
-  margin: 0 0 0 10px;
-  height: 34px;
-  width: 150px;
-  font-size: 15px;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  float: right;
-  opacity: 0;
-
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
-#inputKeyword:hover {
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
 #searchDiv {
+  position: relative;
+  float: right;
   display: block;
+  height: auto;
+  width: 200px;
+  padding: 0 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  border-radius: 7px;
 }
-#searchDiv:hover #inputKeyword {
-  opacity: 100;
-  transition-property: all;
-  transition-duration: 1s;
-}
+
 
 .keywordBtn {
-  float: right;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translate(0, -50%);
+  
+  border: none;
   margin-left: 10px;
 }
 .keywordBtn span {
@@ -38,10 +28,36 @@
   float: right;
 }
 
+#inputKeyword {
+  height: 32px;
+  width: 140px;
+  margin: 0 0 0 10px;
+  font-size: 15px;
+  border: none;
+
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+#inputKeyword:hover {
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+#enterIcon {
+  all: unset;
+  position: relative;
+  width: 20px;
+  margin-top: 5px;
+  opacity: 0.6;
+}
+
 #searchIcon {
   all: unset;
-  margin-left: 5px;
+  position: relative;
+
   width: 12px;
+  margin-top: 5px;
 }
 
 #keywordDiv {
@@ -74,6 +90,7 @@
 
 .deleteKeyword {
   all: unset;
+  outline: none;
   position: relative;
   background-color: transparent;
   padding: 8px;

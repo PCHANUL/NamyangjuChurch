@@ -24,10 +24,8 @@ export default function SearchDiv(props) {
     <>
       <div id='searchDiv'>
         <Button className='keywordBtn' onClick={searchKeywords}>
-          <p>
-            검색
-            <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
-          </p>
+          <img id='searchIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/loupe.png'/>
+          {/* <p>검색</p> */}
         </Button>
         <input id='inputKeyword' 
           placeholder='검색어를 입력하세요' 

@@ -153,11 +153,40 @@ a:hover {
 
 #pageOptionDiv {
   position: relative;
-  width: 100%;
+  width: 800px;
   height: 80px;
+  margin-bottom: 100px;
+  border-top: 3px solid rgb(0, 0, 0, 0.3);
+}
 
-  background-color: rgb(243, 243, 243);
-  border-top: 1px solid rgb(117, 117, 117);
+#dataNumberDiv {
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+#dataNumberDiv > #selectUnit {
+  position: absolute;
+  left: 62px;
+  top: 30px;
+  font-size: 14px;
+}
+#dataNumber {
+  /* border: none; */
+  outline: none;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid rgb(0, 0, 0, 0.3);
+  border-radius: 8px;
+  /* box-shadow: 5px 5px 10px rgb(230, 230, 230); */
+
+  width: 80px;
+  height: 35px;
+  margin: 20px 10px 0 30px;
+  padding: 5px;
+  font-size: 15px;
+}
+#dataNumberLabel {
+  font-size: 14px;
 }
 
 #pageSelectDiv {
@@ -171,30 +200,18 @@ a:hover {
   width: 30px;
   margin-right: 10px;
   background-color: #fff;
-  border: none;
-  box-shadow: 5px 5px 10px rgb(230, 230, 230);
+  /* border: none; */
+  /* box-shadow: 5px 5px 10px rgb(230, 230, 230); */
 }
 .selectedPage {
   background-color: rgb(117, 117, 117);
   color: #fff;
 }
 
-#dataNumber {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: #fff;
-  box-shadow: 5px 5px 10px rgb(230, 230, 230);
 
-  width: 60px;
-  height: 35px;
-  margin: 20px 10px 0 30px;
-
-  font-size: 15px;
-
+#endLine {
+  position: relative;
+  margin-left: -100px;
+  width: 1000px;
+  border-bottom: 10px solid rgb(0, 0, 0, 0.05);
 }
-
-#dataNumberLabel {
-  font-size: 14px;
-}
-
