@@ -14,13 +14,12 @@ export function createStore() {
     isEdit: false,
     selected: -1,
     
-    // data
-    dataLength: 0,
-
     // content option
     selectedCategory: 0,
     selectedDetail: 0,
     page: 1,
+    rowsPerPage: 10,
+    pageNumbers: [],
 
     // filter
     search: '',
@@ -44,6 +43,11 @@ export function createStore() {
     deleteSearch() {
       localStorage.removeItem('search');
       this.search = '';
+    },
+
+    setPageNumber(dataLen) {
+      this.pageNumbers = [];
+      for (let i = 1; i < (dataLen / this.rowsPerPage) + 1; i++) this.pageNumbers.push(i);
     },
 
     filterContentList(data) {
@@ -70,8 +74,8 @@ export function createStore() {
       if (this.search !== '' && filtered.length === 0) this.searchError = true;
       else this.searchError = false;
       
-      this.dataLength = filtered.length;
-      return filtered.filter((_, i) => (this.page - 1) * 15 <= i && i <= this.page * 15);
+      this.setPageNumber(filtered.length); // 페이지 숫자생성
+      return filtered.filter((_, i) => (this.page - 1) * this.rowsPerPage <= i && i <= this.page * this.rowsPerPage);
     },
 
     getContentList(callback) {

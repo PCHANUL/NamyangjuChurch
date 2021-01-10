@@ -55,3 +55,18 @@
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
+.left {
+  margin-left: 5px;
+  border-width: 0 2px 2px 0;
+  border-color: #000;
+  transform: rotate(135deg);
+}
+
+.right {
+  margin-left: 0;
+  margin-right: 5px;
+  border-width: 0 2px 2px 0;
+  border-color: #000;
+  transform: rotate(-45deg);
+}

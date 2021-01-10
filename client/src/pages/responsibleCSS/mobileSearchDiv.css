@@ -1,4 +1,9 @@
 @media only screen and (max-width : 640px) {
+  #searchDiv {
+    border-radius: 2vw;
+    padding: 0 1vw;
+  }
+
   #keywordDiv {
     display: inline-block;
     overflow: hidden;
@@ -35,10 +40,10 @@
 
   /* keyword input */
   #inputKeyword {
-    margin: 1vw;
+    margin: 0.7vw 1vw;
     height: 5vw;
     width: 30vw;
-    font-size: 2.5vw;
+    font-size: 3vw;
     opacity: 100;
     border-width: 0.2vw;
   }
@@ -54,7 +59,7 @@
     font-size: 3vw;
   }
   #searchIcon {
-    margin-left: 2vw;
+    margin: 0 1vw;
     width: 2.5vw;
   }
 

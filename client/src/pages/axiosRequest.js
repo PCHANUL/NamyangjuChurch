@@ -182,7 +182,6 @@ export const getContent = async( id, callback ) => {
 }
 
 export const getDataList = async(category, detail, callback) => {
-  console.log('category, detail: ', category, detail);
   try {
     const data = await axios({
       url: 'http://localhost:4000/graphql',

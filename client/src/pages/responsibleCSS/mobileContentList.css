@@ -65,6 +65,9 @@
     float: left;
   }
   
+  #pageOptionDiv {
+    width: 100%;
+  }
 
 
 }
