@@ -18,8 +18,8 @@ const Admin = (props) => {
   useEffect(() => {
 
     window.scroll(0,0);
-
-    getDataList(async(getData) => {
+    console.log(tab)
+    getDataList(tab[0], tab[1], async(getData) => {
       await setData(getData);
       setTimeout(setLoading(true), 2000);
     });

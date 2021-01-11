@@ -17,8 +17,6 @@ function AdminData(props) {
     setContent,
   } = props;
   
-  console.log('content: ', content);
-
   return useObserver (() => (
     <div className='dataBox' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
       <div className='textBox'>
