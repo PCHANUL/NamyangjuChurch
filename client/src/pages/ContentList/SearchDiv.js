@@ -17,6 +17,7 @@ export default function SearchDiv(props) {
   const searchKeywords = () => {
     appStore.search = searchInput !== '' ? searchInput : appStore.search;
     if (searchInput !== '') localStorage.setItem('search', searchInput);
+    appStore.page = 1; // 1페이지로
     setSearchInput('');
   }
 

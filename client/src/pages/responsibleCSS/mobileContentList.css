@@ -69,5 +69,50 @@
     width: 100%;
   }
 
+  #dataNumberDiv {
+    position: absolute;
+    top: 15vw;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  #pageSelectDiv {
+    position: relative;
+    display: inline-block;
+    top: 5vw;
+    left: 50%;
+
+    transform: translate(-50%);
+    margin: 0;
+    float: unset;
+    margin-right: -10px;
+  }
+
+  .pageButton {
+    width: 6vw;
+    border-radius: 5vw;
+  }
+  
+  .pageButton > .label{
+    font-size: 5vw;
+  }
+
+  .pageArrowButton {
+    padding: 2.5vw;
+    border-radius: 5vw;
+  }
+
+  .right {
+    margin-left: -0.5vw;
+    border-width: 0 0.5vw 0.5vw 0;
+    padding: 1.5vw;
+  }
+  .left {
+    margin-left: 1vw;
+    margin-right: -0.5vw;
+    border-width: 0 0.5vw 0.5vw 0;
+    padding: 1.5vw;
+  }
+
 
 }
