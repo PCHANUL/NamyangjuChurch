@@ -58,8 +58,8 @@ var schema = buildSchema(`
       title: String!
       content: String!
       datetime: String!
-      thumbnail: String!
-      verse: String!
+      thumbnail: String
+      verse: String
     ): Boolean!
 
     updateContent(

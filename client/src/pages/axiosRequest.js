@@ -22,6 +22,7 @@ export const signup = async(id, pw) => {
 }
 
 export const signin = async(id, pw) => {
+  console.log('id, pw: ', id, pw);
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'POST',

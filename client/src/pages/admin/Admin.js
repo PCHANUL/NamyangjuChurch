@@ -18,7 +18,6 @@ const Admin = (props) => {
   useEffect(() => {
 
     window.scroll(0,0);
-    console.log(tab)
     getDataList(tab[0], tab[1], async(getData) => {
       await setData(getData);
       setTimeout(setLoading(true), 2000);
@@ -78,7 +77,7 @@ function Tab({ tab, setTab }) {
             return idx === tab[0]
           ? <div key={`tab_${idx}`} className='adminTab selected' onClick={() => setTab([idx, tab[1]])}>{ele}</div>
           : <div key={`tab_${idx}`} className='adminTab' onClick={() => {
-              if (idx === 1) setTab([idx, 0])
+              if (idx === 1) setTab([idx, 5])
               else setTab([idx, tab[1]])
             }}>{ele}</div>
           })
@@ -97,8 +96,8 @@ function Tab({ tab, setTab }) {
         ) : (
           ['교회 사진'].map((ele, idx) => {
             return idx === tab[1] 
-            ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setTab([tab[0], idx])}>{ele}</div>
-            : <div key={`subTab_${idx}`} className='subTab' onClick={() => setTab([tab[0], idx])}>{ele}</div>
+            ? <div key={`subTab_${idx}`} className='subTab selected' onClick={() => setTab([tab[0], 5 + idx])}>{ele}</div>
+            : <div key={`subTab_${idx}`} className='subTab' onClick={() => setTab([tab[0], 5 + idx])}>{ele}</div>
           })
         )
       }

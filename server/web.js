@@ -17,6 +17,22 @@ import {accessKeyId, secretAccessKey} from './awsconfig.json';
 const app = express();
 const prisma = new PrismaClient();
 
+app.use(cookieParser());
+app.use(session({ 
+  secret: 'cat', 
+  resave: false,
+  saveUninitialized: true,
+}))
+
+app.use(cors({
+  "origin": "http://localhost:3000",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "credentials": true,
+  // "preflightContinue": true,
+  "optionsSuccessStatus": 204
+}));
+
+
 AWS.config.update({
   accessKeyId: accessKeyId,
   secretAccessKey: secretAccessKey,
@@ -47,23 +63,6 @@ app.post('/post/img', upload.single('img'), (req, res) => {
       console.log(err);
   }
 });
-
-
-app.use(cors({
-  "origin": "http://localhost:3000",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "credentials": true,
-  // "preflightContinue": true,
-  "optionsSuccessStatus": 204
-}));
-
-app.use(cookieParser());
-app.use(session({ 
-  secret: 'cat', 
-  resave: false,
-  saveUninitialized: true,
-}))
-
 
 let liveInfo = {
   url: '1_NLzcoIMic', 

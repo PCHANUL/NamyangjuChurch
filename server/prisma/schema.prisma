@@ -1,6 +1,6 @@
 datasource db {
   provider = "mysql"
-  url = "mysql://root:qkr95162!@localhost:3306/nsarang"
+  url = "mysql://root:qkr95162@localhost:3306/test"
 }
 
 generator client {
@@ -21,7 +21,7 @@ model Category {
 }
 
 model DetailCategory {
-  id          Int            @id
+  id          Int            
   name        String         @unique
   category    Category       @relation(fields: [categoryId], references: [id])
   categoryId  Int

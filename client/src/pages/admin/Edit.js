@@ -142,6 +142,7 @@ const setContent = (store) => {
 
 const setDateNow = () => {
   transDate(Date.now(), (result) => {
+    console.log('result: ', result);
     document.querySelector('#inputDate').value = `${result.year}-${result.month}-${result.day}`
   })
 }
@@ -150,13 +151,15 @@ const setDateNow = () => {
 
 export default function Edit(props) {
   const contentIdStore = useAppStore();
-  window.scrollTo(0,0)
-  useEffect (() => {
-    if (!setContent(contentIdStore)) getTempData();
+  window.scrollTo(0,0);
 
-    setDropEvent();
+  useEffect (() => {
+    // 편집화면이 아니라면 임시저장데이터 가져오기
+    if (!setContent(contentIdStore)) getTempData();
+    
     if (!document.querySelector('#inputDate').value) setDateNow();
     
+    setDropEvent();
     const click = handleImg();
     window.addEventListener('click', click, true);
     let autoSave = window.setInterval(saveTempData, 50000);

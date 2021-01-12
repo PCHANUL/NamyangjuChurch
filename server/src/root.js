@@ -4,17 +4,22 @@ const saltRounds = 10;
 const root = {
   signin: async ({nickname, password}, { prisma, req, res }) => {
     try {
+      console.log('nickname, password: ', nickname, password);
+
       const result = await prisma.user.findUnique({
-        where: {
+        where: { 
           nickname
         }
       })
+      console.log('result: ', result);
+
       let isCorrect = await bcrypt.compare(password, result.password)
       if (result === null || !isCorrect) return false;
       else {
         req.session.isLogged = true;
         return true;
       }
+
     } catch(err) {
       return false;
     }
