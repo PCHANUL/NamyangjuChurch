@@ -53,7 +53,6 @@ const getYoutube = async(targetId) => {
   // console.log(permissionStatus.state);
   // console.log(await navigator.clipboard.readText())
 
-
   let youtubeUrl = '';
   let msg = '유튜브 영상 주소를 입력하세요.';
   let result = window.prompt(msg, '');

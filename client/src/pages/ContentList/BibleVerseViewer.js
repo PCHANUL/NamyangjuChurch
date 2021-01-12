@@ -42,7 +42,12 @@ export default function BibleVerseViewer(props) {
         <>
           <div 
             className={`bibleVerse ${isClicked ? 'clickedVerse' : ''}`} 
-            onClick={() => setClicked(!isClicked)}
+            onClick={(e) => {
+              if (window.innerWidth < 640 && !isClicked) {
+                window.scrollTo({top: window.scrollY + e.screenY - window.innerHeight / 2.5, left: 0, behavior: 'smooth'});
+              }
+              setClicked(!isClicked);
+            }}
           >
             {
               isClicked && (

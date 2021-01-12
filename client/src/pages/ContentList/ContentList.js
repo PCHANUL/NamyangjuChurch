@@ -20,7 +20,7 @@ export default function ContentList() {
   
   useObserver(() => {
     useEffect(() => {
-      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+      // window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
       appStore.getContentList((result) => setData(result));
     }, [appStore.page, appStore.selectedCategory, appStore.selectedDetail, appStore.verse, appStore.createdAt, appStore.search, appStore.rowsPerPage])
   })
@@ -58,8 +58,8 @@ export default function ContentList() {
             <option value='15'>15</option>
             <option value='20'>20</option>
           </select>
-          <span id='selectUnit' for="dataNumber">줄씩</span>
-          <label id='dataNumberLabel' for="dataNumber">보입니다</label>
+          <label id='selectUnit' for="dataNumber">줄씩 보입니다</label>
+          <div id='dataArrowIcon'></div>
         </div>
       </div>
       <div id='endLine'></div>
@@ -69,9 +69,10 @@ export default function ContentList() {
 
 function PageSelect() {
   const appStore = useAppStore();
-  let pageNumberAmount = 5;
+  let pageNumberAmount = window.innerWidth < 400 ? 3 : 5;
   let centerPoint = Math.round(pageNumberAmount / 2);
 
+  
   let curPages = appStore.pageNumbers.filter((ele) => {
     if (appStore.pageNumbers.length - centerPoint < appStore.page) {
       return (appStore.pageNumbers.length - pageNumberAmount < ele) ? true : false
