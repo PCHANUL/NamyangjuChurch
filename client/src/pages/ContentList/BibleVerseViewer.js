@@ -43,8 +43,17 @@ export default function BibleVerseViewer(props) {
           <div 
             className={`bibleVerse ${isClicked ? 'clickedVerse' : ''}`} 
             onClick={(e) => {
+              console.log('window.scrollY + e.screenY - window.innerHeight / 2.5: ', window.scrollY + e.screenY - window.innerHeight / 2.5);
+              e.persist();
               if (window.innerWidth < 640 && !isClicked) {
-                window.scrollTo({top: window.scrollY + e.screenY - window.innerHeight / 2.5, left: 0, behavior: 'smooth'});
+                let scroll, prevPos;
+                scroll = setInterval(() => {
+                  let targetPos = e.target.getBoundingClientRect().top;
+                  if (150 < targetPos && targetPos < 170) clearInterval(scroll);  // 종료조건 1
+                  else if (prevPos === targetPos) clearInterval(scroll);          // 종료조건 2
+                  window.scrollTo({top: targetPos > 160 ? window.scrollY + 5 : window.scrollY - 5});
+                  prevPos = targetPos;  // 이전위치저장
+                }, 0);
               }
               setClicked(!isClicked);
             }}

@@ -42,7 +42,7 @@
   /* keyword input */
   #inputKeyword {
     margin: 0.7vw 1vw;
-    height: 5vw;
+    /* height: 5vw; */
     width: 30vw;
     font-size: 3vw;
     opacity: 100;

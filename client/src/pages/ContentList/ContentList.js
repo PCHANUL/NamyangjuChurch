@@ -62,7 +62,6 @@ export default function ContentList() {
           <div id='dataArrowIcon'></div>
         </div>
       </div>
-      <div id='endLine'></div>
     </div>
   ))
 }
