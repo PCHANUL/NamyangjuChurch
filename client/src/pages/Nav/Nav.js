@@ -9,6 +9,7 @@ import '../responsibleCSS/mobileNav.css';
 
 // component
 import MobileMenuButton from './MobileMenuButton';
+import NavTabs from './NavTabs';
 import { GobackButton } from '../ContentList/Button';
 
 export default function Nav() {
@@ -118,29 +119,6 @@ function isScrollDown() {
   }
 }
 
-function NavTabs({ appStore }) {
-  if (appStore.selectedCategory === 0) {
-    return useObserver(() => (
-      <div id='videoTabList' className='tabList'>
-        {
-          ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'].map((word, idx) => {
-            if (appStore.selectedDetail === idx) {
-              return <div key={idx} className='tab selectedTab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
-            } else {
-              return <div key={idx} className='tab' onClick={() => appStore.setVideoList(0, idx)}>{word}</div>
-            }
-          })
-        }
-      </div>
-    ))
-  } else if (appStore.selectedCategory === 1) {
-    return useObserver(() => (
-      <div id='communityTabList' className='tabList'>
-        <div className='tab' onClick={() => appStore.setVideoList(1, 0)}>교회사진</div>
-      </div>
-    ))
-  }
-  return <div />
-}
+
 
 
