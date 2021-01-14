@@ -1,10 +1,11 @@
 @media only screen and (max-width : 640px) {
   #searchDiv {
-    width: 35vw;
+    width: 57vw;
     border-radius: 2vw;
     padding: 1.5vw 1vw;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 0.3vw solid rgba(0, 0, 0, 0.3);
     outline: none;
+    float: left;
   }
 
   #keywordDiv {
@@ -13,17 +14,19 @@
     width: 100%;
     position: relative;
     left: 0;
-    margin-right: -20px;
+    /* margin-right: -20px; */
     margin-top: 1vw;
   }
 
   .keyword {
-    width: 65vw;
+    float: left;
+
+    width: 60vw;
     border-radius: 2vw;
     border-width: 0.3vw;
     
     padding: 1.5vw 0 1.5vw 4vw;
-    margin: 0 0vw 0vw 3vw;
+    margin: 0;
   }
   .keyword p {
     float: left;
@@ -32,7 +35,7 @@
   .deleteKeyword {
     position: absolute;
     right: 0;
-    padding: 1.5vw 5.3vw;
+    padding: 1.5vw 9vw;
     border-radius: 2vw;
   }
   .deleteKeyword p {

@@ -46,8 +46,15 @@ export default function NavTabs() {
 
   return useObserver(() => (
     <div id='tabListOuter'>
-      <button className='navTabButton buttonLeft'>{'<'}</button>
-      <button className='navTabButton buttonRight'>{'>'}</button>
+      {
+        window.innerWidth < 640 ? (
+          <>
+            <button className='navTabButton buttonLeft'>{'<'}</button>
+            <button className='navTabButton buttonRight'>{'>'}</button>
+          </>
+        ) : ( <></> )
+      }
+      
       <div id={`${worships[appStore.selectedCategory].category}TabList`} className='tabList'>
         {
           worships[appStore.selectedCategory].arr.map((word, idx) => {
