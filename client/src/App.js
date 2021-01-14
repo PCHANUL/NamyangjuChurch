@@ -15,11 +15,16 @@ import './pages/fontFamily.css';
 
 import { signout, isSignin } from './pages/axiosRequest';
 
+import { useAppStore } from './state/appContext';
+import { useObserver } from 'mobx-react';
+
 
 const App = (props) => {
   const [ isOpen, setIsOpen ] = useState(false);
+  const appStore = useAppStore();
   let location = useLocation();
 
+  window.addEventListener('resize', () => appStore.windowWidth = window.innerWidth);
 
   useEffect(() => {
     if (location.pathname.includes('/admin') === false) {
@@ -32,8 +37,7 @@ const App = (props) => {
     }
   },[location.pathname])
 
-  console.log(window.innerWidth)
-  return (
+  return useObserver(() => (
     <>
       <div className='container'>
         { location.pathname !== "/admin" &&
@@ -51,7 +55,7 @@ const App = (props) => {
         </Switch>
         
         { 
-          window.innerWidth > 640 &&
+          appStore.windowWidth > 640 &&
           (location.pathname.includes("admin") || location.pathname.includes("content")) &&
           <>
             <div id='leftSide'></div>
@@ -65,7 +69,7 @@ const App = (props) => {
           <Footer setIsOpen={setIsOpen} />
       }
     </>
-  )
+  ))
 }
 
 export default App;

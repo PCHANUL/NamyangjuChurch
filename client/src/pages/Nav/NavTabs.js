@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
@@ -22,14 +22,15 @@ export default function NavTabs() {
     console.log(pos);
     appStore.setVideoList(appStore.selectedCategory, pos);
   }
-
+  
   useEffect(() => {
-    if (window.innerWidth < 640) {
-      const scroll = scrollFunc(
+    let scroll;
+    if (appStore.windowWidth < 640) {
+      scroll = scrollFunc(
         document.querySelector(`#${worships[appStore.selectedCategory].category}TabList`), 
         document.querySelector('#tabListOuter'),
         worships[appStore.selectedCategory].arr.length, 
-        window.innerWidth / 100 * 17,
+        appStore.windowWidth / 100 * 17,
         'tabList',
         (pos) => moveTab(pos)
       );
@@ -37,17 +38,17 @@ export default function NavTabs() {
     }
 
     return () => {
-      if (window.innerWidth < 640) {
+      if (scroll) {
         scroll.removeScrollEvent();
       }
     }
-  }, [])
+  }, [appStore.windowWidth])
 
 
   return useObserver(() => (
     <div id='tabListOuter'>
       {
-        window.innerWidth < 640 ? (
+        appStore.windowWidth < 640 ? (
           <>
             <button className='navTabButton buttonLeft'>{'<'}</button>
             <button className='navTabButton buttonRight'>{'>'}</button>
@@ -61,7 +62,7 @@ export default function NavTabs() {
             return (
               <div key={idx} className={`tab${appStore.selectedDetail === idx ? ' selectedTab' : ''}`}
               onClick={() => {
-                if (window.innerWidth > 640) appStore.setVideoList(appStore.selectedCategory, idx);
+                if (appStore.windowWidth > 640) appStore.setVideoList(appStore.selectedCategory, idx);
               }}>
                 {word}
               </div>

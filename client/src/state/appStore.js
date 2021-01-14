@@ -28,6 +28,9 @@ export function createStore() {
     // sort
     verse: 0,
     createdAt: 0,
+
+    // window width
+    windowWidth: window.innerWidth,
     
 
     setVideoList(category, detail) {
