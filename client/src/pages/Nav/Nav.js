@@ -36,10 +36,10 @@ export default function Nav() {
         let checked = scroll();
         if (checked !== undefined) {
           if (checked === true) {
-            document.getElementsByClassName('tabList')[0].className = 'tabList';
+            document.querySelector('#tabListOuter').className = '';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = '';
           } else {
-            document.getElementsByClassName('tabList')[0].className = 'tabList hiddenDrawer';
+            document.querySelector('#tabListOuter').className = 'hiddenDrawer';
             if (window.innerWidth <= 648) document.querySelector('#nav').className = 'hiddenDrawer';
           }
         }

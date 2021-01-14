@@ -32,7 +32,7 @@ export function createStore() {
 
     setVideoList(category, detail) {
       this.selectedCategory = category
-      this.selectedDetail = detail
+      this.selectedDetail = this.selectedCategory === 0 ? detail : detail + 5
       this.page = 1;
     },
     setEditState(boolean, id) {

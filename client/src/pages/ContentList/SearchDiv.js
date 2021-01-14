@@ -35,19 +35,17 @@ export default function SearchDiv(props) {
           onKeyDown={(e) => e.keyCode === 13 && searchKeywords()}  
         ></input>
       </div>
-      <div id='keywordDiv'>
-        {
-          appStore.search &&
-            <>
-              <button className={`deleteKeyword ${appStore.searchError && 'errorButton'}`} onClick={appStore.deleteSearch}>
-                <p>취소</p>
-              </button>
-              <div className={`keyword ${appStore.searchError && 'errorInput'}`}>
-                <p>{`"${appStore.search}" 검색결과${appStore.searchError ? '가 없습니다' : '입니다'}`}</p>
-              </div>
-            </>
-        }
-      </div>
+      {
+        appStore.search &&
+          <div id='keywordDiv'>
+            <button className={`deleteKeyword ${appStore.searchError && 'errorButton'}`} onClick={appStore.deleteSearch}>
+              <p>취소</p>
+            </button>
+            <div className={`keyword ${appStore.searchError && 'errorInput'}`}>
+              <p>{`"${appStore.search}" 검색결과${appStore.searchError ? '가 없습니다' : '입니다'}`}</p>
+            </div>
+          </div>
+      }
     </>
   ))
 }

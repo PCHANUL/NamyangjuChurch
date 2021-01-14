@@ -30,25 +30,106 @@
     display: none;
   }
 
+  #tabListOuter {
+    top: 16vw;
+    box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
+    font-size: 3.5vw;
+    width: 100vw;
+    height: 12vw;
+    padding-left: 66vw;
+    /* left: unset;
+    transform: unset; */
+    user-select: none;
+  }
 
   .tabList {
-    font-family: 'NanumBarunGothic';
-    font-size: 3.5vw;
-    text-align: center;
-    position: fixed;
-    left: 50%;
-    top: 16vw;
-    transform: translate(-50%);
-    width: 100vw;
-    height: 8vw;
-    background-color: #fff;
-    display: grid;
-    z-index: 3;
-    box-shadow: 0 0 1vw 0 rgb(0,0,0, 0.2);
+    left: 0vw;
+    transition-property: all;
+    transition-duration: 0.2s;
   }
+
+  .tabList0 {
+    left: 0vw;
+    transition-property: all;
+    transition-duration: 0.2s;
+  }
+  .tabList1 {
+    left: -17vw;
+    transition-property: all;
+    transition-duration: 0.2s;
+  }
+  .tabList2 {
+    left: -34vw;
+    transition-property: all;
+    transition-duration: 0.2s;
+  }
+  .tabList3 {
+    left: -51vw;
+    transition-property: all;
+    transition-duration: 0.2s;
+  }
+  .tabList4 {
+    left: -68vw;
+    transition-property: all;
+    transition-duration: 0.2s;
+  }
+  
+  #videoTabList {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+  }
+  #comTabList {
+    position: absolute;
+    display: grid;
+    grid-template-columns: auto;
+  }
+
+  .navTabButton {
+    all: unset;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    z-index: 4;
+    height: 100%;
+    width: 20vw;
+    color: #000;
+    font-size: 5vw;
+  }
+
+  .buttonLeft {
+    background: linear-gradient(270deg,  rgb(250, 250, 250, 0) 0%, rgb(250, 250, 250, 0.9) 60%,rgb(250, 250, 250, 1) 100%);
+    padding-left: 5vw;
+    text-align: left;
+    left: 34vw;
+  }
+  .buttonRight {
+    background: linear-gradient(90deg,  rgb(250, 250, 250, 0) 0%, rgb(250, 250, 250, 0.9) 60%, rgb(250, 250, 250, 1) 100%);
+    padding-right: 5vw;
+    text-align: right;
+    right: 32vw;
+  }
+
   .tab {
-    padding-top: 2vw;
-    cursor: pointer;
+    width: 20vw;
+    padding-top: 4vw;
+    margin-right: -4vw;
+    cursor: pointer;    
+  }
+  .tab:hover {
+    border-bottom: unset;
+  }
+  .selectedTab {
+    user-select: none;
+    background-color: rgb(90, 90, 90);
+    color: #fff;
+    
+    padding: 3.5vw 1vw 0 1vw;
+    margin: 0vw 3vw 0 7vw;
+
+    font-size: 4vw;
+
+    transform: scale(1.5);
   }
 
   #drawerMenuBtn {

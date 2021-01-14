@@ -41,7 +41,7 @@ export const isSameArr = (obj, prevObj) => {
 }
 
 
-export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, cardClass) => {
+export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, cardClass, callback) => {
   let curPos = 0;
   let initCurPos = 0;
   let cardPos = 0;
@@ -77,6 +77,7 @@ export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, ca
 
       movingTarget.style.left = null;  // style 제거 후 className 설정
       movingTarget.className = `${cardClass}${cardPos}`;
+      callback(cardPos);
       curPos = 0;  // 위치 초기화
       initCurPos = 0;  
       isMoved = false;  // move 토글 초기화
