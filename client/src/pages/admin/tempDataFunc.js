@@ -6,23 +6,23 @@ export const saveTempData = async() => {
   const content = document.getElementById('editFrame').innerHTML;
   const contentDate = document.getElementById('inputDate').value;
 
-  localStorage.setItem('category', `${category}`);
-  localStorage.setItem('title', `${title}`);
-  localStorage.setItem('contentDate', `${contentDate}`);
-  localStorage.setItem('content', `${content}`);
-  localStorage.setItem('time', `${new Date()}`);
-  localStorage.setItem('verse', `${verse}`);
+  localStorage.setItem('category_edit', `${category}`);
+  localStorage.setItem('title_edit', `${title}`);
+  localStorage.setItem('contentDate_edit', `${contentDate}`);
+  localStorage.setItem('content_edit', `${content}`);
+  localStorage.setItem('time_edit', `${new Date()}`);
+  localStorage.setItem('verse_edit', `${verse}`);
 
   console.log('내용이 자동으로 임시저장되었습니다.');
 }
 
 export const getTempData = () => {
-  let category = localStorage.getItem('category');
-  let title = localStorage.getItem('title');
-  let verse = localStorage.getItem('verse');
-  let contentDate = localStorage.getItem('contentDate');
-  let content = localStorage.getItem('content');
-  let time = localStorage.getItem('time');
+  let category = localStorage.getItem('category_edit');
+  let title = localStorage.getItem('title_edit');
+  let verse = localStorage.getItem('verse_edit');
+  let contentDate = localStorage.getItem('contentDate_edit');
+  let content = localStorage.getItem('content_edit');
+  let time = localStorage.getItem('time_edit');
 
   if (category || title || verse || content) {
     if (window.confirm(`${time}에 저장된 데이터를 가져오시겠습니까?`)) {

@@ -8,7 +8,7 @@ import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react-lite';
 
 function AdminData(props) {
-  const contentIdStore = useAppStore();
+  const appStore = useAppStore();
   const [ishover, setHover] = useState(false);
   const { 
     // value
@@ -31,11 +31,11 @@ function AdminData(props) {
       {
         ishover &&
         <div className='buttonBox'>
-          <button id='deleteBtn' className='dataButton' onClick={() => deleteDataBox(content.id, setContent)}>
+          <button id='deleteBtn' className='dataButton' onClick={() => deleteDataBox(content.id, setContent, appStore.selectedCategory, appStore.selectedDetail)}>
             <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/delete.png'></img>
           </button>
           <button id='updateBtn' className='dataButton' onClick={() => {
-            contentIdStore.setEditState(true, content.id);
+            appStore.setEditState(true, content.id);
             history.push(`/admin/edit/${content.id}`);
           }}>
             <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
@@ -46,11 +46,11 @@ function AdminData(props) {
   ))
 }
 
-function deleteDataBox(id, setContent) {
+function deleteDataBox(id, setContent, category, datail) {
   if (window.confirm('삭제하시겠습니까?')) {
     deleteData(id, (result) => {
       if (result) {
-        getDataList(async(resultData) => {
+        getDataList(category, datail, async(resultData) => {
           await setContent(resultData);
         })
       }

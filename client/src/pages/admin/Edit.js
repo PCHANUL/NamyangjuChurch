@@ -80,10 +80,10 @@ export default function Edit(props) {
             return
           }
           console.log('save')
-          let isSaved = await saveData(appStore, props);
+          let isSaved = await saveData(contentId, props);
           if (isSaved) {
             deleteTempData();
-            window.location = '/admin';
+            // window.location = '/admin';
           }
         }}>저장</button>
         <button id='saveBtn' onClick={() => {
@@ -122,19 +122,22 @@ const setDateNow = () => {
   })
 }
 
-const saveData = async(contentState, props) => {
+const saveData = async(contentId, props) => {
   const category = document.querySelector('#selectCategory').value;
   const dateNow = document.querySelector('#inputDate').value;
-  let verse = document.querySelector('#inputVerse').value;
   let title = document.querySelector('#inputTitle').value;
+  let verse = document.querySelector('#inputVerse').value;
+
+  const imgTarget = document.getElementsByClassName('image')
+  const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
 
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
   title = title.replace(/"/g, "'");
 
   if (category && title) {
-    if (contentState.isEdit) return updateData(contentState.selectedId, category, title, content, dateNow, verse);
+    if (contentId) return updateData(contentId, category, title, content, dateNow, verse, thumbnail);
     else {
-      let result = await addData(category, title, content, dateNow, verse);
+      let result = await addData(category, title, content, dateNow, verse, );
       if (result.statusText === 'OK') {
         alert('저장되었습니다.');
         return result;

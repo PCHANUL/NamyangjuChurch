@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminData from './AdminData';
 
-export default function AdminDataList({ loading, data, tab }) {
+export default function AdminDataList({ loading, data }) {
   const [contents, setContent] = useState(data);
   
   useEffect(() => {
@@ -31,7 +31,7 @@ const MakeDataList = (props) => {
       {
         contents.length !== 0 ? (
           contents.map((content, index) => {
-            return <AdminData key={index} content={content} setContent={setContent}/>
+            return <AdminData key={index} content={content} setContent={setContent} />
           })
         ) : (
           <div className='dataBox'>

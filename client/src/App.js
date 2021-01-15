@@ -40,8 +40,8 @@ const App = (props) => {
   return useObserver(() => (
     <>
       <div className='container'>
-        { location.pathname !== "/admin" &&
-          location.pathname !== "/admin/edit" &&
+        { 
+          /admin/.exec(location.pathname) === null &&
           <Nav />
         }
         <Login isOpen={isOpen} setIsOpen={setIsOpen} />

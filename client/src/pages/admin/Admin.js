@@ -14,27 +14,29 @@ import AdminAddBtn from './AdminAddBtn';
 
 const Admin = (props) => {
   const [data, setData] = useState();
-  const [tab, setTab] = useState([0, 0]);
   const [loading, setLoading] = useState(false);
 
   const appStore = useAppStore();
 
-  useEffect(() => {
-    window.scroll(0,0);  // 스크롤
+  useObserver(() => {
+    useEffect(() => {
+      window.scroll(0,0);  // 스크롤
 
-    getDataList(tab[0], tab[1], async(getData) => {
-      await setData(getData);
-      setTimeout(setLoading(true), 2000);
-    });
+      getDataList(appStore.selectedCategory, appStore.selectedDetail, async(getData) => {
+        console.log('getData: ', getData);
+        await setData(getData);
+        setTimeout(setLoading(true), 2000);
+      });
 
-    (async() => {
-      if (!(await isSignin())) {
-        alert('접근권한이 없습니다.');
-        window.location = '/';
-      }
-    })();
-
-  }, [tab])
+      (async() => {
+        if (!(await isSignin())) {
+          alert('접근권한이 없습니다.');
+          window.location = '/';
+        }
+      })();
+      
+    }, [appStore.selectedCategory, appStore.selectedDetail])
+  });
 
 
   return useObserver (() => (
@@ -54,11 +56,11 @@ const Admin = (props) => {
         })
       }}>입력</button> */}
 
-      <AdminTab tab={tab} setTab={setTab} />
+      <AdminTab />
       <AdminAddBtn />
       {
         loading &&
-        <AdminDataList data={data} loading={loading} tab={tab}/>
+        <AdminDataList data={data} loading={loading}/>
       }
     </div>
   ))

@@ -70,19 +70,19 @@ export default function Nav() {
         ? (
           <GobackButton />
         ) : (
-        <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
-          <a id='home' className={window.location.pathname === '/' ? 'hiddenHome' : ''} onClick={() => window.location = '/'}>
-            남양주 사랑교회
-          </a>
-          <div id='NavButtonDiv'>
-            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
-              교회소식
-            </Link>
-            <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
-              말씀보기
-            </Link>
+          <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
+            <a id='home' className={window.location.pathname === '/' ? 'hiddenHome' : ''} onClick={() => window.location = '/'}>
+              남양주 사랑교회
+            </a>
+            <div id='NavButtonDiv'>
+              <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
+                교회소식
+              </Link>
+              <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
+                말씀보기
+              </Link>
+            </div>
           </div>
-        </div>
         )
       }
 
@@ -91,10 +91,8 @@ export default function Nav() {
         location.pathname === '/contentlist' && 
           <NavTabs appStore={appStore} />
       }
-
       {/* 모바일 메뉴 */}
       <MobileMenuButton />
-      
     </nav>
   ))
 }

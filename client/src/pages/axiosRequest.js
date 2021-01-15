@@ -79,7 +79,7 @@ export const signout = async() => {
   return result.data.data.signout;
 }
 
-export const addData = async(category, title, content, dateNow, verse) => {
+export const addData = async(category, title, content, dateNow, verse, thumbnail) => {
   const result = await axios({
     url: 'http://localhost:4000/graphql',
     method: 'POST',
@@ -96,6 +96,7 @@ export const addData = async(category, title, content, dateNow, verse) => {
           content: ${JSON.stringify(content)}
           datetime: "${dateNow}"
           verse: "${verse}"
+          thumbnail: "${thumbnail}"
         ) 
       }
       `

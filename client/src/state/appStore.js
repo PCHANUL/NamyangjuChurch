@@ -32,6 +32,10 @@ export function createStore() {
     // window width
     windowWidth: window.innerWidth,
     
+    initCategory() {
+      this.selectedCategory = 0;
+      this.selectedDetail = 0;
+    },
 
     setVideoList(category, detail) {
       this.selectedCategory = category
