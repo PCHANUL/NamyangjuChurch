@@ -143,3 +143,8 @@ export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, ca
 const calcPassedTime = (now, past) => {
   return (now - past) / 60000;
 }
+
+export function preventDefaults (e) {
+  e.preventDefault()
+  e.stopPropagation()
+}

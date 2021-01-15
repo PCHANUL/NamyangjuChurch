@@ -2,160 +2,26 @@ import React, { useEffect } from 'react';
 import './edit.css';
 
 import { useAppStore } from '../../state/appContext';
-import { addData, getContent, updateData, readImage } from '../axiosRequest';
+
+// methods
 import { transDate } from '../Methods';
+import { addData, getContent, updateData } from '../axiosRequest';
 import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
+import { handleImg, setDropEvent } from './EditFunc';
 
+// components
 import EditToolbar from './EditToolbar';
-
-function handleImg() {
-  let target, setToolbarPos, setHandlePos;
-  let imageToolTarget = document.querySelector('#imageTool');
-  let resizeHandle = document.getElementsByClassName('resizeHandle');
-  
-  
-  const inputSize = (e) => {
-    target.style.width = `${e.target.value}vw`;
-  }
-
-  const getToolbarPos = () => {
-    const targetSize = target.getBoundingClientRect()
-    imageToolTarget.style.visibility = 'visible';
-    imageToolTarget.style.top = `${targetSize.y + window.scrollY - imageToolTarget.clientHeight - 10}px`;
-    imageToolTarget.style.left = `${targetSize.x + targetSize.width/2 - imageToolTarget.clientWidth/2}px`;
-  }
-  
-  const getHandlePos = () => {
-    const targetSize = target.getBoundingClientRect();
-    let handlePos = [
-      {
-        top : `${targetSize.y + targetSize.height + window.scrollY - 25}px`,
-        left : `${targetSize.x + targetSize.width - 25}px`,
-      },
-    ]
-
-    for (let i = 0; i < resizeHandle.length; i++) {
-      resizeHandle[i].style.visibility = 'visible';
-      resizeHandle[i].style.top = handlePos[i].top;
-      resizeHandle[i].style.left = handlePos[i].left;
-    }
-  }
-
-  return function(e) {
-    const resizeImage = (eMouse) => {
-      console.log('e.target: ', e.target);
-      // (마우스 위치 - 타깃 이미지 왼쪽위치)
-      target.style.width = `${(eMouse.pageX - target.getBoundingClientRect().left).toFixed(3)}px`
-    }
-
-    const resizeStart = (e, resizeHandleTarget) => {
-      console.log('resizeHandleTarget: ', resizeHandleTarget);
-      e.preventDefault()
-      window.addEventListener('mousemove', resizeImage);
-      window.addEventListener('mouseup', () => resizeStop(resizeHandleTarget));
-    }
-
-    const resizeStop = (resizeHandleTarget) => {
-      window.removeEventListener('mousemove', resizeImage);
-      window.removeEventListener('mouseup', () => resizeStop(resizeHandleTarget));
-      resizeHandleTarget.removeEventListener('mousemove', (e) => resizeStart(e, resizeHandleTarget));
-    }
-
-    if (e.target.className.includes('image')) {
-      if (target) {
-        target.className = target.className.replace('selectedImg', 'image');  //change prev target class
-        clearInterval(setToolbarPos);
-        clearInterval(setHandlePos);
-      }
-
-      target = e.target;
-      target.className = target.className.replace('image', 'selectedImg');
-      
-      // document.querySelector('#resizeInput').value = e.target.style.width.split('px')[0];
-      // document.querySelector('#resizeInput').addEventListener('change', inputSize, true);
-      // setToolbarPos = setInterval(() => getToolbarPos(), 500);
-
-      // resize handle repositioning
-      setHandlePos = setInterval(() => getHandlePos(), 500);
-
-      for (let i = 0; i < resizeHandle.length; i++) {
-        resizeHandle[i].addEventListener('mousedown', (e) => resizeStart(e, resizeHandle[i]));
-      }
-      
-    } else if (target && e.target.tagName !== 'INPUT') {
-      target.className = target.className.replace('selectedImg', 'image');
-      
-      // clear
-      clearInterval(setToolbarPos);
-      clearInterval(setHandlePos);
-      document.querySelector('#resizeInput').removeEventListener('change', inputSize, true);
-      imageToolTarget.style.visibility = 'hidden';
-      handle1.style.visibility = 'hidden';
-    }
-
-  }
-}
-
-function preventDefaults (e) {
-  e.preventDefault()
-  e.stopPropagation()
-}
-
-function handleDrop(e) {
-  let dt = e.dataTransfer
-  let files = dt.files
-  console.log('files: ', files);
-
-  document.querySelector('#drop-area').style.visibility = 'hidden';
-  readImage(files, 'editFrame')
-}
-
-const setDropEvent = () => {
-  document.querySelector('#drop-area').addEventListener('dragleave', (e) => {
-    console.log('leave')
-    document.querySelector('#drop-area').style.visibility = 'hidden';
-  })
-  document.querySelector('#editFrame').addEventListener('dragenter', (e) => {
-    document.querySelector('#drop-area').style.visibility = 'visible';
-    console.log('이미지를 놓으세요');
-  })
-
-  let dragEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
-  dragEvents.forEach(eventName => {
-    document.querySelector('#drop-area').addEventListener(eventName, preventDefaults, false)
-  })
-  document.querySelector('#drop-area').addEventListener('drop', handleDrop, false);
-}
-
-const setContent = (store) => {
-  if (store.isEdit) {
-    getContent(store.selectedId, (data) => {
-      document.querySelector('#selectCategory').value = data.detailId;
-      document.querySelector('#inputTitle').value = data.title;
-      document.querySelector('#inputVerse').value = data.verse;
-      document.querySelector('#inputDate').value = data.createdAt;
-      document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
-    })
-    return true;
-  }
-}
-
-const setDateNow = () => {
-  transDate(Date.now(), (result) => {
-    console.log('result: ', result);
-    document.querySelector('#inputDate').value = `${result.year}-${result.month}-${result.day}`
-  })
-}
-
 
 
 export default function Edit(props) {
-  const contentIdStore = useAppStore();
+  const appStore = useAppStore();
+  const contentId = window.location.pathname.split('edit/')[1];
   window.scrollTo(0,0);
 
   useEffect (() => {
-    // 편집화면이 아니라면 임시저장데이터 가져오기
-    if (!setContent(contentIdStore)) getTempData();
+    // 편집화면이 아니라면 임시저장데이터 확인
+    if (contentId) setContent(contentId);
+    else getTempData();
     
     if (!document.querySelector('#inputDate').value) setDateNow();
     
@@ -214,7 +80,7 @@ export default function Edit(props) {
             return
           }
           console.log('save')
-          let isSaved = await saveData(contentIdStore, props);
+          let isSaved = await saveData(appStore, props);
           if (isSaved) {
             deleteTempData();
             window.location = '/admin';
@@ -239,33 +105,29 @@ export default function Edit(props) {
   )
 }
 
-const checkVerseInput = (title) => {
-  let splitedTitle = title.value.split('(');
-  title.value = splitedTitle[0];
-  document.querySelector('#inputVerse').value = splitedTitle[1].slice(0, -1);
-  window.alert('입력된 내용을 확인하고 다시 저장을 클릭하세요.')
+
+const setContent = (id) => {
+  getContent(id, (data) => {
+    document.querySelector('#selectCategory').value = data.detailId;
+    document.querySelector('#inputTitle').value = data.title;
+    document.querySelector('#inputVerse').value = data.verse;
+    document.querySelector('#inputDate').value = data.createdAt;
+    document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
+  })
 }
 
-const changeYoutubeImg = () => {
-  const elements = document.getElementsByClassName('youtubeThumnail');
-  while (elements.length !== 0) {
-    const targetSize = elements[0].getBoundingClientRect();
-    console.log('targetSize: ', targetSize.height);
-    const youtubeIframe = document.createElement('iframe');
-    youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
-    youtubeIframe.style.width = elements[0].style.width;
-    youtubeIframe.style.height = `${targetSize.height}px`;
-    elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
-  }
+const setDateNow = () => {
+  transDate(Date.now(), (result) => {
+    document.querySelector('#inputDate').value = `${result.year}-${result.month}-${result.day}`
+  })
 }
- 
+
 const saveData = async(contentState, props) => {
   const category = document.querySelector('#selectCategory').value;
   const dateNow = document.querySelector('#inputDate').value;
   let verse = document.querySelector('#inputVerse').value;
   let title = document.querySelector('#inputTitle').value;
 
-  changeYoutubeImg();
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
   title = title.replace(/"/g, "'");
 
@@ -281,4 +143,34 @@ const saveData = async(contentState, props) => {
   }
   else alert('카테고리와 제목을 작성해주세요');
 }
+
+const checkVerseInput = (title) => {
+  let splitedTitle = title.value.split('(');
+  title.value = splitedTitle[0];
+  document.querySelector('#inputVerse').value = splitedTitle[1].slice(0, -1);
+  window.alert('입력된 내용을 확인하고 다시 저장을 클릭하세요.')
+}
+
+
+
+
+
+
+
+
+
+// 컨텐츠 뷰어로 이동
+// const changeYoutubeImg = () => {
+//   const elements = document.getElementsByClassName('youtubeThumnail');
+//   while (elements.length !== 0) {
+//     const targetSize = elements[0].getBoundingClientRect();
+//     const youtubeIframe = document.createElement('iframe');
+//     youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
+//     youtubeIframe.style.width = elements[0].style.width;
+//     youtubeIframe.style.height = `${targetSize.height}px`;
+//     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
+//   }
+// }
+ 
+
 

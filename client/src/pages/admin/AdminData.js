@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 import { getDataList, deleteData } from "../axiosRequest";
 import { transDate } from '../Methods';
@@ -36,7 +36,7 @@ function AdminData(props) {
           </button>
           <button id='updateBtn' className='dataButton' onClick={() => {
             contentIdStore.setEditState(true, content.id);
-            history.push('/admin/edit');
+            history.push(`/admin/edit/${content.id}`);
           }}>
             <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
           </button>
