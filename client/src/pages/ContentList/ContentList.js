@@ -32,38 +32,37 @@ export default function ContentList() {
         method={{ setData }}
       />
 
-      
-        {
-          appStore.selectedCategory === 0 ? (
-            dataList.map((data, i) => {
+      {
+        appStore.selectedCategory === 0 ? (
+          dataList.map((data, i) => {
+            return (
+              <div className='videoDiv' key={i} >
+                <div className='videoTitle'>
+                  <Link to={`/content/${data.id}`}>{data.title}</Link>
+                  <p>{(data.createdAt).replaceAll('-', '. ')}</p>
+                </div>
+                <BibleVerseViewer verse={data.verse} />
+              </div>
+            );
+          })
+        ) : (
+          <div id='dataListDiv'>
+            {dataList.map((data, i) => {
               return (
-                <div className='videoDiv' key={i} >
-                  <div className='videoTitle'>
+                <div className='pictureDiv' key={i}>
+                  <div className='imgDiv'>
+                    <img className='pictureImg' src={data.thumbnail} />
+                  </div>
+                  <div className='pictureTitle'>
                     <Link to={`/content/${data.id}`}>{data.title}</Link>
                     <p>{(data.createdAt).replaceAll('-', '. ')}</p>
                   </div>
-                  <BibleVerseViewer verse={data.verse} />
                 </div>
-              );
-            })
-          ) : (
-            <div id='dataListDiv'>
-              {dataList.map((data, i) => {
-                return (
-                  <div className='pictureDiv' key={i}>
-                    <div className='imgDiv'>
-                      <img className='pictureImg' src={data.thumbnail} />
-                    </div>
-                    <div className='pictureTitle'>
-                      <Link to={`/content/${data.id}`}>{data.title}</Link>
-                      <p>{(data.createdAt).replaceAll('-', '. ')}</p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          )
-        }
+              )
+            })}
+          </div>
+        )
+      }
 
       <div id='pageOptionDiv'>
         <PageSelect />

@@ -40,25 +40,28 @@ AWS.config.update({
 });
 
 const s3 = new AWS.S3();
-const upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: "nsarang",
-    contentType: multerS3.AUTO_CONTENT_TYPE,
-    acl: 'public-read',
-    key: (req, file, cb) => {
-      console.log(file);
 
-      cb(null, file.originalname)
-    }
-  }),
-  limits: { fileSize: 5 * 1024 * 1024 },
+const upload = multer({
+  dest: 'images/'
+  // 이미지를 S3에 저장하는 방법
+  // storage: multerS3({
+  //   s3: s3,
+  //   bucket: "nsarang",
+  //   contentType: multerS3.AUTO_CONTENT_TYPE,
+  //   acl: 'public-read',
+  //   key: (req, file, cb) => {
+  //     console.log(file);
+
+  //     cb(null, file.originalname)
+  //   }
+  // }),
+  // limits: { fileSize: 5 * 1024 * 1024 },
 })
 
 app.post('/post/img', upload.single('img'), (req, res) => {
   try {
       // console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
-      res.json(req.file.location);
+      res.json(`http://${req.headers.host}/${req.file.path}`);
   } catch (err) {
       console.log(err);
   }
@@ -91,6 +94,7 @@ app.use('/graphql', graphqlHTTP(async(req, res) => ({
 })
 ));
 
+app.use('/images', express.static('images'));
 app.use(express.static(path.join(__dirname, './views')))
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, './views/index.html'));
