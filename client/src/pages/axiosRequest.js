@@ -171,6 +171,7 @@ export const getContent = async( id, callback ) => {
           detailId
           createdAt
           verse
+          thumbnail
           content {
             content
           }
@@ -203,6 +204,7 @@ export const getDataList = async(category, detail, callback) => {
             createdAt
             title
             verse
+            thumbnail
           }
         }
         `

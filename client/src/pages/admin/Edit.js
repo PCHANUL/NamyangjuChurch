@@ -83,7 +83,7 @@ export default function Edit(props) {
           let isSaved = await saveData(contentId, props);
           if (isSaved) {
             deleteTempData();
-            // window.location = '/admin';
+            window.location = '/admin';
           }
         }}>저장</button>
         <button id='saveBtn' onClick={() => {
@@ -128,7 +128,7 @@ const saveData = async(contentId, props) => {
   let title = document.querySelector('#inputTitle').value;
   let verse = document.querySelector('#inputVerse').value;
 
-  const imgTarget = document.getElementsByClassName('image')
+  const imgTarget = document.getElementsByClassName('image');
   const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
 
   const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
@@ -137,7 +137,7 @@ const saveData = async(contentId, props) => {
   if (category && title) {
     if (contentId) return updateData(contentId, category, title, content, dateNow, verse, thumbnail);
     else {
-      let result = await addData(category, title, content, dateNow, verse, );
+      let result = await addData(category, title, content, dateNow, verse, thumbnail);
       if (result.statusText === 'OK') {
         alert('저장되었습니다.');
         return result;
