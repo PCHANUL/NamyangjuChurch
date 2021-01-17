@@ -122,19 +122,32 @@ const setDateNow = () => {
   })
 }
 
+const changeYoutubeImg = () => {
+  const elements = document.getElementsByClassName('youtubeThumnail');
+  while (elements.length !== 0) {
+    const targetSize = elements[0].getBoundingClientRect();
+    const youtubeIframe = document.createElement('iframe');
+    youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
+    youtubeIframe.style.width = elements[0].style.width;
+    youtubeIframe.style.height = `${targetSize.height}px`;
+    elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
+  }
+}
+
 const saveData = async(contentId, props) => {
   const category = document.querySelector('#selectCategory').value;
-  const dateNow = document.querySelector('#inputDate').value;
   let title = document.querySelector('#inputTitle').value;
-  let verse = document.querySelector('#inputVerse').value;
-
-  const imgTarget = document.getElementsByClassName('image');
-  const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
-
-  const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
-  title = title.replace(/"/g, "'");
-
+  
   if (category && title) {
+    const dateNow = document.querySelector('#inputDate').value;
+    let verse = document.querySelector('#inputVerse').value;
+
+    changeYoutubeImg();
+    const imgTarget = document.getElementsByClassName('image');
+    const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
+    const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
+    title = title.replace(/"/g, "'");
+
     if (contentId) return updateData(contentId, category, title, content, dateNow, verse, thumbnail);
     else {
       let result = await addData(category, title, content, dateNow, verse, thumbnail);
@@ -156,24 +169,6 @@ const checkVerseInput = (title) => {
 
 
 
-
-
-
-
-
-
-// 컨텐츠 뷰어로 이동
-// const changeYoutubeImg = () => {
-//   const elements = document.getElementsByClassName('youtubeThumnail');
-//   while (elements.length !== 0) {
-//     const targetSize = elements[0].getBoundingClientRect();
-//     const youtubeIframe = document.createElement('iframe');
-//     youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
-//     youtubeIframe.style.width = elements[0].style.width;
-//     youtubeIframe.style.height = `${targetSize.height}px`;
-//     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
-//   }
-// }
  
 
 
