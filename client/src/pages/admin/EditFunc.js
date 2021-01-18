@@ -155,3 +155,9 @@ export const changeDataToImage = (targets) => {
   }
   return result;
 }
+
+export const changeImgTagSrc = (newUrls, targets) => {
+  for (let i=0; i<targets.length; i++) {
+    targets[i].src = newUrls[i].data;
+  }
+}

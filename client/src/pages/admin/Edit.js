@@ -7,7 +7,7 @@ import { useAppStore } from '../../state/appContext';
 import { transDate } from '../Methods';
 import { addData, getContent, updateData, uploadImage } from '../axiosRequest';
 import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
-import { handleImg, setDropEvent, changeImgToIframe, changeDataToImage } from './EditFunc';
+import { handleImg, setDropEvent, changeImgToIframe, changeDataToImage, changeImgTagSrc } from './EditFunc';
 
 // components
 import EditToolbar from './EditToolbar';
@@ -129,9 +129,9 @@ const saveData = async(contentId, props) => {
   let title = document.querySelector('#inputTitle').value;
 
   // image
-  const imgTarget = document.getElementsByClassName('image');
-  uploadImage(changeDataToImage(imgTarget), (e) => console.log(e));
-  const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
+  const imgTargets = document.getElementsByClassName('image');
+  uploadImage(changeDataToImage(imgTargets), (newUrls) => changeImgTagSrc(newUrls, imgTargets));
+  const thumbnail = imgTargets.length !== 0 ? imgTargets[0].src : undefined;
   
   if (category && title) {
     const dateNow = document.querySelector('#inputDate').value;
