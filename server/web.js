@@ -59,6 +59,7 @@ const upload = multer({
 })
 
 app.post('/post/img', upload.single('img'), (req, res) => {
+  console.log('req.file: ', req.file);
   try {
       // console.log("req.file: ", req.file.location); // 테스트 => req.file.location에 이미지 링크(s3-server)가 담겨있음 
       res.json(`http://${req.headers.host}/${req.file.path}`);

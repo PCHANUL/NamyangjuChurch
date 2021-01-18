@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { readImage } from '../axiosRequest';
+import { readImageFunc, readImage, setDropEvent } from './EditFunc';
 
 
 export default function EditToolbarDropdown() {

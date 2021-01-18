@@ -5,9 +5,9 @@ import { useAppStore } from '../../state/appContext';
 
 // methods
 import { transDate } from '../Methods';
-import { addData, getContent, updateData } from '../axiosRequest';
+import { addData, getContent, updateData, uploadImage } from '../axiosRequest';
 import { saveTempData, getTempData, deleteTempData } from './tempDataFunc';
-import { handleImg, setDropEvent } from './EditFunc';
+import { handleImg, setDropEvent, changeImgToIframe, changeDataToImage } from './EditFunc';
 
 // components
 import EditToolbar from './EditToolbar';
@@ -122,29 +122,24 @@ const setDateNow = () => {
   })
 }
 
-const changeYoutubeImg = () => {
-  const elements = document.getElementsByClassName('youtubeThumnail');
-  while (elements.length !== 0) {
-    const targetSize = elements[0].getBoundingClientRect();
-    const youtubeIframe = document.createElement('iframe');
-    youtubeIframe.src = `https://www.youtube.com/embed/${elements[0].src.split('/')[4]}`;
-    youtubeIframe.style.width = elements[0].style.width;
-    youtubeIframe.style.height = `${targetSize.height}px`;
-    elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
-  }
-}
+
 
 const saveData = async(contentId, props) => {
   const category = document.querySelector('#selectCategory').value;
   let title = document.querySelector('#inputTitle').value;
+
+  // image
+  const imgTarget = document.getElementsByClassName('image');
+  uploadImage(changeDataToImage(imgTarget), (e) => console.log(e));
+  const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
   
   if (category && title) {
     const dateNow = document.querySelector('#inputDate').value;
     let verse = document.querySelector('#inputVerse').value;
+    // youtube
+    changeImgToIframe();
 
-    changeYoutubeImg();
-    const imgTarget = document.getElementsByClassName('image');
-    const thumbnail = imgTarget.length !== 0 ? imgTarget[0].src : undefined;
+    // content
     const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
     title = title.replace(/"/g, "'");
 
@@ -166,9 +161,3 @@ const checkVerseInput = (title) => {
   document.querySelector('#inputVerse').value = splitedTitle[1].slice(0, -1);
   window.alert('입력된 내용을 확인하고 다시 저장을 클릭하세요.')
 }
-
-
-
- 
-
-
