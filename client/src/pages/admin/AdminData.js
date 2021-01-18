@@ -34,10 +34,7 @@ function AdminData(props) {
           <button id='deleteBtn' className='dataButton' onClick={() => deleteDataBox(content.id, setContent, appStore.selectedCategory, appStore.selectedDetail)}>
             <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/delete.png'></img>
           </button>
-          <button id='updateBtn' className='dataButton' onClick={() => {
-            appStore.setEditState(true, content.id);
-            history.push(`/admin/edit/${content.id}`);
-          }}>
+          <button id='updateBtn' className='dataButton' onClick={() => history.push(`/admin/edit/${content.id}`)}>
             <img className='buttonIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/edit.png'></img>
           </button>
         </div>

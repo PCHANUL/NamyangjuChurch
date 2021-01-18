@@ -24,7 +24,13 @@ const App = (props) => {
   const appStore = useAppStore();
   let location = useLocation();
 
-  window.addEventListener('resize', () => appStore.windowWidth = window.innerWidth);
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      appStore.resizeWindowWidth(window.innerWidth);
+    }, 1000);
+  });
 
   useEffect(() => {
     if (location.pathname.includes('/admin') === false) {

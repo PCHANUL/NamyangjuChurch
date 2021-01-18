@@ -8,7 +8,6 @@ export default function AdminAddBtn() {
 
   return (
     <button id='addBtn' onClick={() => {
-      appStore.setEditState(false);
       window.location = '/admin/edit';
     }}>
       <img id='addFileIcon' src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/add-file.png' />

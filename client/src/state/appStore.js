@@ -31,32 +31,38 @@ export function createStore() {
 
     // window width
     windowWidth: window.innerWidth,
+
+    // 반응형 설정
+    resizeWindowWidth(width) {
+      this.windowWidth = width;
+    },
     
+    // 초기화
     initCategory() {
       this.selectedCategory = 0;
       this.selectedDetail = 0;
     },
 
+    // 카테고리 변경
     setVideoList(category, detail) {
       this.selectedCategory = category
       this.selectedDetail = this.selectedCategory === 0 ? detail : detail + 5
       this.page = 1;
     },
-    setEditState(boolean, id) {
-      this.isEdit = boolean;
-      this.selectedId = id ? id : this.selectedId;
-    },
 
+    // 검색 상태 초기화
     deleteSearch() {
       localStorage.removeItem('search');
       this.search = '';
     },
 
+    // 페이지 변경
     setPageNumber(dataLen) {
       this.pageNumbers = [];
       for (let i = 1; i < (dataLen / this.rowsPerPage) + 1; i++) this.pageNumbers.push(i);
     },
 
+    // 컨텐츠 필터
     filterContentList(data) {
       let filtered = 
       data
@@ -95,5 +101,6 @@ export function createStore() {
         }
       )
     }
+
   }
 }

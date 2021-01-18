@@ -127,17 +127,18 @@ const setDateNow = () => {
 const saveData = async(contentId, props) => {
   const category = document.querySelector('#selectCategory').value;
   let title = document.querySelector('#inputTitle').value;
-
-  // image
-  const imgTargets = document.getElementsByClassName('image');
-  uploadImage(changeDataToImage(imgTargets), (newUrls) => changeImgTagSrc(newUrls, imgTargets));
-  const thumbnail = imgTargets.length !== 0 ? imgTargets[0].src : undefined;
   
   if (category && title) {
     const dateNow = document.querySelector('#inputDate').value;
     let verse = document.querySelector('#inputVerse').value;
+
     // youtube
     changeImgToIframe();
+    
+    // image
+    const imgTargets = document.getElementsByClassName('image');
+    uploadImage(changeDataToImage(imgTargets), (newUrls) => changeImgTagSrc(newUrls, imgTargets));
+    const thumbnail = imgTargets.length !== 0 ? imgTargets[0].src : undefined;
 
     // content
     const content = document.getElementById('editFrame').innerHTML.replace(/"/g, "'"); 
