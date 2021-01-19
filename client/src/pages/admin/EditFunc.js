@@ -97,7 +97,7 @@ export const readImage = async(files, targetId) => {
       let img = document.createElement('img');
       img.className = 'image';
       img.src = event.target.result;
-      img.style.width = '20vw';
+      img.style.width = '400px';
       let wrapperDiv = document.createElement('div');
       wrapperDiv.style.textAlign = 'center';
       wrapperDiv.appendChild(img)
@@ -110,10 +110,15 @@ export const readImage = async(files, targetId) => {
 // 이미지 드롭
 export const setDropEvent = () => {
   const targetArea = document.querySelector('#drop-area');
+  targetArea.contentEditable = true;
   const targetFrame = document.querySelector('#editFrame');
   const dragEvents = ['dragenter', 'dragover', 'dragleave', 'drop'];
-  const handleDrop = (e) => {
-    const files = e.dataTransfer.files;
+  const handleDrop = async(e) => {
+    let files;
+    if (e.dataTransfer.files.length === 0) files = await changeUrlToFile(e);
+    else files = e.dataTransfer.files;
+    
+    console.log('files: ', files);
     readImage(files, 'editFrame');
     document.querySelector('#drop-area').style.visibility = 'hidden';
   }
@@ -123,6 +128,21 @@ export const setDropEvent = () => {
 
   dragEvents.forEach(eventName => targetArea.addEventListener(eventName, preventDefaults, false));
   targetArea.addEventListener('drop', handleDrop, false);
+}
+
+const changeUrlToFile = async(e) => {
+  let results = [];
+  let data = e.dataTransfer.getData('text/html');
+  let splited = data.split('src="');
+  if (splited[1]) {
+    await fetch('https://cors-anywhere.herokuapp.com/' + splited[1].split('"')[0])
+      .then(res => res.blob()) 
+      .then(blob => {
+        let file = new File([blob], 'test.jpg')
+        results.push(file);
+    });
+  }
+  return results;
 }
 
 // 데이터 저장 전 처리함수
