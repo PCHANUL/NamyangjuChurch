@@ -89,6 +89,7 @@ export const handleImg = () => {
 }
 
 export const readImage = async(files, targetId) => {
+  console.log('files: ', files);
   for (let file of files) {
     let reader = new FileReader();
     reader.readAsDataURL(file);

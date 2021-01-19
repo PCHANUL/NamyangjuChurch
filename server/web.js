@@ -87,12 +87,13 @@ app.use('/graphql', (req, res, next) => {
   next();
 })
 
-app.use('/graphql', graphqlHTTP(async(req, res) => ({
-  schema: schema,
-  rootValue: root,
-  graphiql: true,
-  context: { prisma, req, res },
-})
+app.use('/graphql', graphqlHTTP(async(req, res) => 
+  ({
+    schema: schema,
+    rootValue: root,
+    graphiql: true,
+    context: { prisma, req, res },
+  })
 ));
 
 app.use('/images', express.static('images'));

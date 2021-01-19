@@ -5,15 +5,15 @@ a {
 a:hover {
   color: #000;
 }
-#dataListDiv {
+
+/*  picture  */
+#pictureListDiv {
   display: grid;
   grid-template-columns: 260px 260px 260px;
   grid-gap: 10px;
-  height: 500px;
+  height: auto;
   margin-bottom: 50px;
 }
-
-/*  picture  */
 .pictureDiv {
   position: relative;
   display: inline;

@@ -6,13 +6,13 @@
     margin-left: 5vw;
     margin-top: calc(34vw - 20px);
   }
-  .video {
-    position: relative;
+
+
+  .videoDiv {
     height: 15vw;
     padding: 5vw 2vw 5vw 2vw;
     border-top: 0.3vw solid rgb(210, 210, 210);
   }
-
   .videoTitle {
     width: 85vw;
   }

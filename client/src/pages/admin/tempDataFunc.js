@@ -35,11 +35,12 @@ export const getTempData = () => {
   }
 }
 
-export const deleteTempData = () => {
-  localStorage.removeItem('category');
-  localStorage.removeItem('title');
-  localStorage.removeItem('verse');
-  localStorage.removeItem('content');
-  localStorage.removeItem('time');
+export const initTempData = () => {
+  localStorage.removeItem('content_edit');
+  localStorage.removeItem('category_edit');
+  localStorage.removeItem('contentDate_edit');
+  localStorage.removeItem('verse_edit');
+  localStorage.removeItem('title_edit');
+  localStorage.removeItem('time_edit');
 }
 

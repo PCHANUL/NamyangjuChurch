@@ -46,7 +46,7 @@ export default function ContentList() {
             );
           })
         ) : (
-          <div id='dataListDiv'>
+          <div id='pictureListDiv'>
             {dataList.map((data, i) => {
               return (
                 <div className='pictureDiv' key={i}>

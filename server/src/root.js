@@ -4,8 +4,6 @@ const saltRounds = 10;
 const root = {
   signin: async ({nickname, password}, { prisma, req, res }) => {
     try {
-      console.log('nickname, password: ', nickname, password);
-
       const result = await prisma.user.findUnique({
         where: { 
           nickname
@@ -83,7 +81,6 @@ const root = {
     })
   },
   addContent: async ({ category, title, content, datetime, thumbnail, verse }, context) => {
-    console.log('category, title, content, dateTime: ', category, title, content, datetime);
     const isCreated = await context.prisma.post.create({
       data: {
         title, thumbnail, verse,
