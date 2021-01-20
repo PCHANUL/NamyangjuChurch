@@ -8,7 +8,6 @@ import '../responsibleCSS/mobileOrderButton.css';
 export function OrderButton(props) {
   const { name, key } = props.value.item;
   const { appStore } = props.value;
-  const { initOrderStatus } = props.method;
   const status = {
     '-1': 'Down',
     '0': 'Default',
@@ -16,14 +15,14 @@ export function OrderButton(props) {
   }
 
   const clickFunc = () => {
-    if (appStore[key] === 0) initOrderStatus(key);
-    appStore[key] = appStore[key] === 1 ? -1 : appStore[key] + 1;
-    localStorage.setItem(key, appStore[key]);
+    appStore.initSort(key);
+    appStore.setSort(key);
   }
 
   return useObserver(() => (
     <Button className={`orderbtn btn${status[appStore[key]]}`} onClick={clickFunc}>
-      <p>{name}
+      <p>
+        {name}
         <div className={`arrow ${status[appStore[key]]}`}/>
       </p>
     </Button>

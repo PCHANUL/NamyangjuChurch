@@ -23,7 +23,6 @@ const Admin = (props) => {
       window.scroll(0,0);  // 스크롤
 
       getDataList(appStore.selectedCategory, appStore.selectedDetail, async(getData) => {
-        console.log('getData: ', getData);
         await setData(getData);
         setTimeout(setLoading(true), 2000);
       });

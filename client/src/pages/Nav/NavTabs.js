@@ -38,9 +38,7 @@ export default function NavTabs() {
     }
 
     return () => {
-      if (scroll) {
-        scroll.removeScrollEvent();
-      }
+      if (scroll) scroll.removeScrollEvent();
     }
   }, [appStore.windowWidth])
 
@@ -59,6 +57,7 @@ export default function NavTabs() {
       <div id={`${worships[appStore.selectedCategory].category}TabList`} className='tabList'>
         {
           worships[appStore.selectedCategory].arr.map((word, idx) => {
+            console.log('word: ', word);
             return (
               <div key={idx} className={`tab${appStore.selectedDetail === idx ? ' selectedTab' : ''}`}
               onClick={() => {

@@ -41,6 +41,8 @@ const App = (props) => {
         }
       })();
     }
+    appStore.initSort('all');
+    appStore.deleteSearch();
   },[location.pathname])
 
   return useObserver(() => (

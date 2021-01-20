@@ -32,14 +32,6 @@ export default function FilterContent(props) {
     appStore.search = localStorage.getItem('search') === null ? '' : localStorage.getItem('search');
   }, [])
 
-  const initOrderStatus = (targetKey) => {
-    for (let option in sortStatus) {
-      if (option !== targetKey) {
-        appStore[option] = 0;
-        localStorage.setItem(option, 0)
-      }
-    }
-  }
   
   return useObserver(() => (
       <div id='filterDiv'>
@@ -48,7 +40,6 @@ export default function FilterContent(props) {
             <OrderButton
               key={i}
               value={{ item, appStore }}
-              method={{ initOrderStatus }}
             />
           ))
         }
@@ -58,7 +49,7 @@ export default function FilterContent(props) {
           method={{ setSearchInput }}
         />
 
-        {
+        {/* {
           JSON.stringify(sortStatus) !== '{"verse":0,"createdAt":0}' ?
           keywords.search ? (
           <Button className='initFilter' onClick={() => {
@@ -71,7 +62,7 @@ export default function FilterContent(props) {
             for (let i in keywords.sort) initOrderStatus(i)
           }}>취소</Button>
           ) : <></>
-        }
+        } */}
       </div>
   ))
 }

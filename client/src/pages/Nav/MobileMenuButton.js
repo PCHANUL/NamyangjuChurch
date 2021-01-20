@@ -72,7 +72,7 @@ const openMemu = () => {
     return false;
   } else {
     target.className = 'drawerMenuOpen';
-    targetBackground.className = 'background backgroundClosed';
+    targetBackground.className = 'background hidden';
     setTimeout(() => targetBackground.className = '', 500);
     return true;
   }

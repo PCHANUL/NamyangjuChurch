@@ -37,7 +37,7 @@ export function createStore() {
       this.windowWidth = width;
     },
     
-    // 초기화
+    // 컨텐츠 카테고리 초기화
     initCategory() {
       this.selectedCategory = 0;
       this.selectedDetail = 0;
@@ -54,6 +54,24 @@ export function createStore() {
     deleteSearch() {
       localStorage.removeItem('search');
       this.search = '';
+    },
+
+    // 정렬 상태 초기화
+    initSort(target) {
+      if (target !== 'verse' || target === 'all') {
+        this.verse = 0;
+        localStorage.setItem('verse', 0);
+      } 
+      if (target !== 'createdAt' || target === 'all') {
+        this.createdAt = 0;
+        localStorage.setItem('createdAt', 0);
+      }
+    },
+
+    // 정렬 상태 변경
+    setSort(target) {
+      this[target] = this[target] === 1 ? -1 : this[target] + 1;
+      localStorage.setItem(target, this[target]);
     },
 
     // 페이지 변경

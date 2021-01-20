@@ -32,17 +32,8 @@ export default function Edit(props) {
     // 이미지 붙여넣기 설정
     document.querySelector('#editFrame').addEventListener('paste', (e) => {
       e.preventDefault();
-      console.log(e.clipboardData.items[1]);
       let file = e.clipboardData.items[1].getAsFile();
-      console.log('file: ', file);
-
       readImage([file], 'editFrame');
-      // let reader = new FileReader();
-      // reader.readAsDataURL(file);
-      // reader.onload = async(event) => {
-      //   console.log('event: ', event);
-
-      // }
     })
 
     // 이미지 크기변경 설정
