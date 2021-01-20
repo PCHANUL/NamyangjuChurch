@@ -26,7 +26,7 @@ function AdminData(props) {
         <div className='verse'>
           <h5>{ content.verse }</h5>
         </div>
-        <p className='date'>{ content.createdAt.replaceAll('-', '. ') }</p>
+        <p className='date'>{ content.createdAt.replace(/-/g, '. ') }</p>
       </div>
       {
         ishover &&

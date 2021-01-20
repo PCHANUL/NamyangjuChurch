@@ -22,7 +22,7 @@ export default function ContentViewer() {
       setData({
         title: result.title,
         selectedCategory: category[result.detailId],
-        createdAt: (result.createdAt).replaceAll('-', '. '),
+        createdAt: (result.createdAt).replace(/-/g, '. '),
       })
       document.querySelector('#contentBody').insertAdjacentHTML('beforeend', result.content.content)
     }) 

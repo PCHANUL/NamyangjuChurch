@@ -39,7 +39,7 @@ export default function ContentList() {
               <div className='videoDiv' key={i} >
                 <div className='videoTitle'>
                   <Link to={`/content/${data.id}`}>{data.title}</Link>
-                  <p>{(data.createdAt).replaceAll('-', '. ')}</p>
+                  <p>{(data.createdAt).replace(/-/g, '. ')}</p>
                 </div>
                 <BibleVerseViewer verse={data.verse} />
               </div>
@@ -55,7 +55,7 @@ export default function ContentList() {
                   </div>
                   <div className='pictureTitle'>
                     <Link to={`/content/${data.id}`}>{data.title}</Link>
-                    <p>{(data.createdAt).replaceAll('-', '. ')}</p>
+                    <p>{(data.createdAt).replace(/-/g, '. ')}</p>
                   </div>
                 </div>
               )

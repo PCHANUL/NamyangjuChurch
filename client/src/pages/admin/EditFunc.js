@@ -89,7 +89,6 @@ export const handleImg = () => {
 }
 
 export const readImage = async(files, targetId) => {
-  console.log('files: ', files);
   for (let file of files) {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -118,7 +117,6 @@ export const setDropEvent = () => {
     if (e.dataTransfer.files.length === 0) files = await changeUrlToFile(e);
     else files = e.dataTransfer.files;
     
-    console.log('files: ', files);
     readImage(files, 'editFrame');
     document.querySelector('#drop-area').style.visibility = 'hidden';
   }
