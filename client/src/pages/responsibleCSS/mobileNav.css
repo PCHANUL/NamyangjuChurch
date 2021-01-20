@@ -78,7 +78,7 @@
     grid-template-columns: auto auto auto auto auto;
   }
   #comTabList {
-    position: absolute;
+    position: relative;
     display: grid;
     grid-template-columns: auto;
   }
