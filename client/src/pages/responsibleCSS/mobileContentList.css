@@ -1,13 +1,42 @@
 @media only screen and (max-width : 640px) {
 
+  /* picture */
+  #pictureListDiv {
+    width: 90vw;
+    grid-template-columns: auto;
+    grid-gap: 3vw;
+    margin-bottom: 5vw;
+  }
+  .pictureDiv {
+    overflow: hidden;
+  }
+  .imgDiv {
+    height: 30vw;
+    margin-bottom: 3vw;
+  }
+
+  .pictureImg {
+  }
+
+  .pictureTitle a {
+    margin: 5vw;
+    font-size: 5vw;
+    font-weight: 700;
+  }
+
+  .pictureTitle p {
+    margin: 2vw 0 3vw 5vw;
+    font-size: 3vw;
+  }
+
+
+  /* video */
   #videoList {
     grid-column: 1 / 5;
     width: 90vw;
     margin-left: 5vw;
     margin-top: calc(34vw - 20px);
   }
-
-
   .videoDiv {
     height: 15vw;
     padding: 5vw 2vw 5vw 2vw;
@@ -24,7 +53,6 @@
     margin: 5vw 1vw;
     font-size: 3vw;
   }
-
   .bibleVerse {
     position: absolute;
     bottom: 0;

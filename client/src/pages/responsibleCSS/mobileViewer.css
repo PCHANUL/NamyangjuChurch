@@ -1,6 +1,5 @@
 @media only screen and (max-width : 640px) {
   #video {
-    /* border: 1px solid #000; */
     width: 70vw;
   }
   #contentBody {
@@ -8,9 +7,12 @@
     padding-top: 3vw;
     font-size: 3vw;
   }
-
   #contentBody iframe {
     width: 70vw !important;
-    height: 50vw;
+    height: 50vw !important;
+  }
+
+  .image {
+    width: 70vw !important;
   }
 }
