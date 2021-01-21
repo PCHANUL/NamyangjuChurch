@@ -18,17 +18,17 @@
 
 /* greeting */
 #greeting {
-  box-shadow: 1vw 1vw 3vw 0 rgb(240, 240, 240);
+  box-shadow: 1vw 1vw 3vw 0 rgb(224, 224, 224);
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  margin: 150px 0 50px 0;
+  margin-top: 10vw;
 
-  padding-top: 90px;
-  height: 300px;
-  width: 400px;
+  padding-top: 6vw;
+  height: 20vw;
+  width: 26vw;
   text-align: center;
-  border-radius: 200px;
+  border-radius: 20vw;
 
   
   transition-property: all;
@@ -46,16 +46,16 @@
 #greeting h1 {
   all: unset;
   font-family: 'MapoGoldenPier';
-  font-size: 30px;
+  font-size: 2vw;
 }
 
 #greeting h1:nth-child(1) {
-  font-size: 50px;
+  font-size: 3vw;
 }
 
 #greeting p {
   font-family: 'MapoGoldenPier';
-  font-size: 17px;
+  font-size: 1.2vw;
 }
 
 

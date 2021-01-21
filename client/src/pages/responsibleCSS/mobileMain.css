@@ -1,6 +1,11 @@
 @media only screen and (max-width : 640px) {
   #greeting {
-    height: 50vw;
+    margin: 18vw 0;
+    
+    padding-top: 12vw;
+    height: 48vw;
+    width: 60vw;
+    border-radius: 30vw;
   }
 
   #greeting h1 {

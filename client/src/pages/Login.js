@@ -36,27 +36,27 @@ export default function Login(props) {
     <>
       {
         isOpen && (
-          <>
-          <div id='login' onKeyDown={(e) => e.keyCode === 13 && adminLogin()}>
-            <h1>관리자 <br /> 로그인</h1>
-            <button className='btn' onClick={() => setIsOpen(false)}>
-              <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
-            </button>
-            <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />
-            <br />
-            <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
-            <br />
-            <button id="loginBtn" onClick={adminLogin}>
-              로그인
-            </button>
-            {/* <a id='joinBtn' onClick={() => {
-              setJoinPage(true)
-            }}>
-              관리자 가입
-            </a> */}
+          <div id='adminLogin'>
+            <div id='login' onKeyDown={(e) => e.keyCode === 13 && adminLogin()}>
+              <h1>관리자 <br /> 로그인</h1>
+              <button className='btn' onClick={() => setIsOpen(false)}>
+                <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
+              </button>
+              <input type="text" id="fname" name="fname" placeholder='아이디' value={userId} onChange={handleChangeId} />
+              <br />
+              <input type="password" id="lname" name="lname" placeholder='비밀번호' value={userPw} onChange={handleChangePw}/>
+              <br />
+              <button id="loginBtn" onClick={adminLogin}>
+                로그인
+              </button>
+              {/* <a id='joinBtn' onClick={() => {
+                setJoinPage(true)
+              }}>
+                관리자 가입
+              </a> */}
+            </div>
+            <div className='background' onClick={() => setIsOpen(false)}></div>
           </div>
-          <div className='background'></div>
-          </>
         )
       }
     </>

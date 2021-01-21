@@ -1,6 +1,7 @@
 #imgBoard {
   position: relative;
   height: 50vw;
+  /* width: 100vw; */
   margin: 0vw 3vw 4vw 3vw;
   overflow: hidden;
 }
@@ -60,7 +61,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
-  border-radius: 1vw;
+  border-radius: 4vw;
   backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0.5vw 0.5vw 1vw 0 rgba(0, 0, 0, 0.3),
@@ -110,7 +111,7 @@
 }
 
 #onairIcon {
-  position: absolute;
+  position: relative;
   z-index: 1;
   color: #fff;
   border: 0.5vw solid #fff;
