@@ -109,7 +109,7 @@
 
 .hidden {
   display: none;
-  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   transition-property: all;
   transition-duration: 0.3s;
 }

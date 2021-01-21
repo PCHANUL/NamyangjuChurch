@@ -34,7 +34,7 @@
     width: 45vw;
 
     border-radius: 7vw;
-    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 1.5vw 1.5vw 2vw 0 rgba(0, 0, 0, 0.3),
                 inset 1.5vw 1.5vw 2vw 0 rgba(255, 255, 255, 0.8),
