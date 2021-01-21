@@ -36,7 +36,7 @@ function Main() {
 
       <div id='firstPage'>
         <div id='greeting' className='landingEffect'>
-          <h1>오직.</h1>
+          <h1>오직</h1>
           <p>그리스도, 하나님나라, 성령충만</p>
           <p>예배, 말씀, 기도, 전도, 후대에 집중하는</p>
           <h1>남양주 사랑교회입니다</h1>
