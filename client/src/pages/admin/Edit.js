@@ -148,7 +148,10 @@ const saveData = async(contentId, props) => {
     
     // image
     const imgTargets = document.getElementsByClassName('image');
-    await uploadImage(changeDataToImage(imgTargets), (newUrls) => changeImgTagSrc(newUrls, imgTargets));
+    // image src가 data일 경우에만 이미지를 업로드하도록
+    const dataImgs = Array.prototype.slice.call( imgTargets )
+                    .filter((img) => img.src.includes('data:image'));
+    await uploadImage(changeDataToImage(dataImgs), (newUrls) => changeImgTagSrc(newUrls, dataImgs));
     const thumbnail = imgTargets.length !== 0 ? imgTargets[0].src : undefined;
 
     // content

@@ -12,6 +12,7 @@
 
   border-radius: 20px;
   -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
   box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.3);
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 3;
@@ -52,6 +53,7 @@ input:focus {
 
 .backgroundClosed {
   -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
   transition-property: all;
   transition-duration: 0.5s;
 }

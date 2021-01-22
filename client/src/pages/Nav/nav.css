@@ -110,6 +110,7 @@
 .hidden {
   display: none;
   -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
   transition-property: all;
   transition-duration: 0.3s;
 }
