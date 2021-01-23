@@ -13,7 +13,8 @@
   transform: translate(0, -50%);
   width: 100%;
   height: 30vw;
-  
+  overflow: hidden;
+  border-radius: 1vw;
 }
 
 #mainImg {
@@ -30,7 +31,7 @@
   position: absolute;
   margin: -12vw 0 0 -30vw;
   width: 130vw;
-  filter: grayscale(100%);
+  filter: contrast(120%);
 } 
 
 #ytp-thumbnail {

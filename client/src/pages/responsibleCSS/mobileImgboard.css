@@ -1,17 +1,16 @@
 @media only screen and (max-width : 640px) {
   #imgOuter {
     height: 50vw;
+    border-radius: 2vw;
   }
   #mainImg {
     height: 100%;
   }
   #mainImg img {
-    margin: -20vw 0 0 -65vw;
+    margin: -15vw 0 0 -65vw;
     width: 200vw;
   }
   
-
-
   .boardBtn {
     width: 2vw;
   }
@@ -31,11 +30,11 @@
   }
 
   #onairInfo {
-    width: 45vw;
+    width: 50vw;
 
-    border-radius: 7vw;
-    -webkit-backdrop-filter: blur(1px);
-    backdrop-filter: blur(1px);
+    border-radius: 5vw;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 1.5vw 1.5vw 2vw 0 rgba(0, 0, 0, 0.3),
                 inset 1.5vw 1.5vw 2vw 0 rgba(255, 255, 255, 0.8),

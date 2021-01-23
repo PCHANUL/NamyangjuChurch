@@ -2,10 +2,11 @@
   #greeting {
     margin: 18vw 0;
     
-    padding-top: 12vw;
-    height: 48vw;
-    width: 60vw;
-    border-radius: 30vw;
+    padding-top: 17vw;
+    height: 52vw;
+    width: 70vw;
+    border-radius: 35vw;
+    box-shadow: 2vw 2vw 6vw 0 rgb(255, 224, 151);
   }
 
   #greeting h1 {
@@ -21,12 +22,12 @@
 
   #prayer {
     height: 70vw;
-    margin-top: 5vw;
-    padding: 10vw 0 0 0;
+    margin-top: 0vw;
+    padding: 5vw 0 0 0;
   }
 
   #prayer h1 {
-    font-size: 4vw;
+    font-size: 5vw;
   }
 
   #prayer li {
@@ -38,7 +39,7 @@
     overflow-x: hidden;
     width: 105vw;
     height: 70vw;
-    margin: 5vw 0 0 -20vw;
+    margin: 0vw 0 0 -20vw;
   }
 
   .scrollButton {
@@ -72,7 +73,7 @@
     height: 50vw;
     margin: 5vw 3vw 0 -2vw;
     padding: 4vw 36vw 2vw 36vw;
-    background-color: rgba(180, 180, 180, 0.2);
+    background-color: rgb(255, 224, 151);
     user-select: none;
     cursor: grab;
   }
@@ -98,7 +99,8 @@
     height: 48vw;
     grid-template-rows: 23vw auto;
     background-color: #fff;
-    box-shadow: 1vw 1vw 3vw 0 rgba(170, 170, 170, 0.5);
+    box-shadow: 1vw 1vw 3vw 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5vw;
   }
 
   .prayerCard h2 {
@@ -116,25 +118,33 @@
   }
 
   #route {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
     height: 60vw;
-    width: 90vw;
-    margin: 15vw 0 50vw -10vw;
-    padding: 10vw 0 0 0;
+    width: 75vw;
+    margin: 7vw 0 38vw 0vw;
+    padding: 5vw 0 0 0;
   }
   
   #route h1 {
-    font-size: 4vw;
-    margin-bottom: 4vw;
+    font-size: 5vw;
+    margin-bottom: 3vw;
   }
 
   #route p {
     font-size: 3vw;
-    margin-bottom: 10vw;
+    margin-bottom: 5vw;
   }
 
   .gMap {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+
     height: 70vw;
     width: 90vw;
+    border-radius: 2vw;
   }
 
   .gMap > button {

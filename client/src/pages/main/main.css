@@ -18,7 +18,9 @@
 
 /* greeting */
 #greeting {
-  box-shadow: 1vw 1vw 3vw 0 rgb(224, 224, 224);
+  z-index: 3;
+  background-color: #fff;
+  box-shadow: 1vw 1vw 3vw 0 rgba(255, 187, 29, 0.512);
   position: relative;
   left: 50%;
   transform: translate(-50%);
@@ -69,6 +71,7 @@
   font-family: 'Nanum Gothic', sans-serif;
   color: rgb(120, 120, 120);
   font-weight: 400;
+
 }
 
 #prayer h1 {
@@ -104,6 +107,7 @@
   grid-template-rows: 13vw auto;
   height: 25vw;
   box-shadow: 1vw 1vw 3vw 0 rgb(240, 240, 240);
+  border-radius: 2vw;
 }
 
 .prayerCard h2 {
@@ -181,6 +185,8 @@
   position: relative;
   height: 30vw;
   width: 95vw;
+  border-radius: 1vw;
+  overflow: hidden;
 }
 
 .gMap > button {
@@ -209,7 +215,7 @@
 }
 
 .gm-style > div:nth-child(1) > div:nth-child(1) > div:nth-child(5) {
-  filter: grayscale(100%)
+  /* filter: grayscale(100%) */
 
 }
 
