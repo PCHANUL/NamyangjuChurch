@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import GoogleMap from './Map';
-import TimeTable from '../TimeTable';
+import TimeTable from './TimeTable';
 import ImgBoard from './ImgBoard';
 
 import './main.css';

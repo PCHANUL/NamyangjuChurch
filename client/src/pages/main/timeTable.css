@@ -1,0 +1,86 @@
+/* 시간표 */
+#timeCardContainer {
+  border: 2px solid rgb(220, 220, 220);
+  border-bottom: 1px solid rgb(220, 220, 220);
+  padding: 3vw 0;
+  margin: 5vw 0;
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+#timeCardContainer h1 {
+  color: rgb(120, 120, 120);
+  border-bottom: 1px solid rgb(220, 220, 220);
+  padding-bottom: 3vw;
+  font-size: 2.5vw;
+  font-weight: 700;
+}
+
+.timeCardDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
+
+.timeCard {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  border: 2px solid #000;
+  border-radius: 20px;
+
+  height: 100px;
+
+  color: rgb(120, 120, 120);
+}
+
+.timeCard h2 {
+  all: unset;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.5vw;
+  padding-top: 1vw;
+}
+
+.timeCard span {
+  all: unset;
+  font-family: 'MapoGoldenPier';
+  font-size: 1.5vw;
+  border-top: 1px solid #000;
+  padding-top: 1vw;
+}
+
+
+
+#timetableDiv table, tr, th, td  {
+  color: rgb(120, 120, 120);
+  width: 12vw;
+  float: left;
+}
+
+#timetableDiv table {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  margin: 4vw 0 -2vw 0;
+}
+
+#timetableDiv tr td {
+  margin-bottom: 1vw;
+}
+
+#timetableDiv tr td:nth-child(1) {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-weight: 600;
+  font-size: 1.5vw;
+  border-bottom: 1px solid rgb(220, 220, 220);
+  padding-bottom: 1vw;
+}
+
+#timetableDiv tr td:nth-child(2) {
+  font-family: 'MapoGoldenPier';
+  font-size: 1.5vw;
+  margin-bottom: 4vw;
+}
+
