@@ -30,8 +30,7 @@
   }
 
   #onairInfo {
-    width: 50vw;
-
+    width: fit-content;
     border-radius: 5vw;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);

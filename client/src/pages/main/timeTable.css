@@ -1,7 +1,6 @@
 /* 시간표 */
 #timeCardContainer {
-  border: 2px solid rgb(220, 220, 220);
-  border-bottom: 1px solid rgb(220, 220, 220);
+  border-top: 1px solid rgb(220, 220, 220);
   padding: 3vw 0;
   margin: 5vw 0;
   text-align: center;
@@ -11,7 +10,6 @@
 
 #timeCardContainer h1 {
   color: rgb(120, 120, 120);
-  border-bottom: 1px solid rgb(220, 220, 220);
   padding-bottom: 3vw;
   font-size: 2.5vw;
   font-weight: 700;
@@ -24,22 +22,44 @@
   grid-gap: 30px;
 }
 
+.timeCardDiv .timeCard:nth-child(1) { 
+  background-color: rgb(255, 207, 94); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(255, 207, 94, 0.3);
+}
+.timeCardDiv .timeCard:nth-child(2) { 
+  background-color: rgb(118, 192, 6); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(118, 192, 6, 0.3);
+}
+.timeCardDiv .timeCard:nth-child(3) { 
+  background-color: rgb(248, 175, 72); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(248, 175, 72, 0.3);
+}
+.timeCardDiv .timeCard:nth-child(4) { 
+  background-color: rgb(1, 167, 200); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(1, 167, 200, 0.3);
+}
+.timeCardDiv .timeCard:nth-child(5) { 
+  background-color: rgb(255, 128, 64); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(255, 128, 64, 0.3);
+}
+.timeCardDiv .timeCard:nth-child(6) { 
+  background-color: rgb(146, 74, 239); 
+  box-shadow: 1.5vw 1.5vw 3vw rgb(146, 74, 239, 0.3);
+}
+
 .timeCard {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  border: 2px solid #000;
   border-radius: 20px;
-
   height: 100px;
-
-  color: rgb(120, 120, 120);
+  color: rgb(255, 255, 255);
 }
 
 .timeCard h2 {
   all: unset;
   font-family: 'Nanum Gothic', sans-serif;
   font-weight: 600;
-  font-size: 1.5vw;
+  font-size: 2vw;
   padding-top: 1vw;
 }
 
@@ -47,40 +67,9 @@
   all: unset;
   font-family: 'MapoGoldenPier';
   font-size: 1.5vw;
-  border-top: 1px solid #000;
-  padding-top: 1vw;
+  padding-top: 0.5vw;
+  /* border-top: 1px solid #fff; */
 }
 
 
-
-#timetableDiv table, tr, th, td  {
-  color: rgb(120, 120, 120);
-  width: 12vw;
-  float: left;
-}
-
-#timetableDiv table {
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
-  margin: 4vw 0 -2vw 0;
-}
-
-#timetableDiv tr td {
-  margin-bottom: 1vw;
-}
-
-#timetableDiv tr td:nth-child(1) {
-  font-family: 'Nanum Gothic', sans-serif;
-  font-weight: 600;
-  font-size: 1.5vw;
-  border-bottom: 1px solid rgb(220, 220, 220);
-  padding-bottom: 1vw;
-}
-
-#timetableDiv tr td:nth-child(2) {
-  font-family: 'MapoGoldenPier';
-  font-size: 1.5vw;
-  margin-bottom: 4vw;
-}
 

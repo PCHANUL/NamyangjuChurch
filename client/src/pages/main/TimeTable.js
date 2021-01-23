@@ -5,6 +5,7 @@ import React from 'react';
 // import React from 'react';
 
 import './timeTable.css';
+import '../responsibleCSS/mobileTimeTable.css';
 
 function TimeTable() {
   const cardInfo = {

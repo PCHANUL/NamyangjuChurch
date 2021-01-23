@@ -1,0 +1,30 @@
+@media only screen and (max-width : 640px) {
+  #timeCardContainer {
+    padding: 5vw 0;
+  }
+
+  #timeCardContainer h1 {
+    padding-bottom: 7vw;
+    font-size: 5vw;
+  }
+
+  .timeCardDiv {
+    grid-gap: 4vw;
+  }
+
+  .timeCard {
+    border-radius: 5vw;
+    height: 30vw;
+  }
+
+  .timeCard h2 {
+    font-size: 4.5vw;
+    padding-top: 7vw;
+  }
+
+  .timeCard span {
+    font-size: 3.5vw;
+    padding-top: 3vw;
+  }
+
+}
