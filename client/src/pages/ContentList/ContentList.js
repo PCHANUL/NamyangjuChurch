@@ -17,7 +17,7 @@ export default function ContentList() {
   const appStore = useAppStore();
   const [dataList, setData] = useState([]);
 
-  
+  console.log(appStore.selectedDetail)
   useObserver(() => {
     useEffect(() => {
       // window.scrollTo({top: 0, left: 0, behavior: 'smooth'});

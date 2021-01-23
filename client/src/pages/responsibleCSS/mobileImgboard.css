@@ -35,10 +35,7 @@
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
     background-color: rgba(255, 255, 255, 0.5);
-    box-shadow: 1.5vw 1.5vw 2vw 0 rgba(0, 0, 0, 0.3),
-                inset 1.5vw 1.5vw 2vw 0 rgba(255, 255, 255, 0.8),
-                inset -1.5vw -1.5vw 2vw 0 rgba(255, 255, 255, 0.5);
-    
+    box-shadow: inset 1.5vw 1.5vw 2vw 0 rgba(255, 255, 255, 0.8);
     padding: 17vw 3vw 3vw 3vw;
   }
 

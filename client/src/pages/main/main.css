@@ -26,8 +26,8 @@
   transform: translate(-50%);
   margin-top: 10vw;
 
-  padding-top: 6vw;
-  height: 20vw;
+  padding-top: 5vw;
+  height: 21vw;
   width: 26vw;
   text-align: center;
   border-radius: 20vw;
@@ -35,6 +35,8 @@
   
   transition-property: all;
   transition-duration: 3s;
+
+  color: rgb(112, 112, 112);
 }
 
 .landingEffect {
@@ -48,15 +50,16 @@
 #greeting h1 {
   all: unset;
   font-family: 'MapoGoldenPier';
+  font-weight: 500;
   font-size: 2vw;
 }
 
 #greeting h1:nth-child(1) {
-  font-size: 3vw;
+  font-size: 4vw;
 }
 
 #greeting p {
-  font-family: 'MapoGoldenPier';
+  font-family: 'MapoFlowerIsland';
   font-size: 1.2vw;
 }
 

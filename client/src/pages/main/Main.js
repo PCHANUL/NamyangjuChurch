@@ -18,7 +18,8 @@ function Main() {
       document.querySelector('#outer'),
       3, 
       window.innerWidth / 2,
-      'cardPos'
+      'cardPos',
+      0
     );
     scroll.addScrollEvent();
       

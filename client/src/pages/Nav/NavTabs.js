@@ -10,7 +10,8 @@ export default function NavTabs() {
   const worships = [
     {
       category: 'video',
-      arr: ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩']
+      arr: ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'],
+      color: ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)']
     },
     {
       category: 'com',
@@ -19,7 +20,6 @@ export default function NavTabs() {
   ];
 
   const moveTab = (pos) => {
-    console.log(pos);
     appStore.setVideoList(appStore.selectedCategory, pos);
   }
   
@@ -33,7 +33,8 @@ export default function NavTabs() {
           worships[appStore.selectedCategory].arr.length, 
           appStore.windowWidth / 100 * 17,
           'tabList',
-          (pos) => moveTab(pos)
+          appStore.selectedDetail,
+          (pos) => moveTab(pos),
         );
         scroll.addScrollEvent();
       }
@@ -55,17 +56,23 @@ export default function NavTabs() {
         ) : ( <></> )
       }
       
-      <div id={`${worships[appStore.selectedCategory].category}TabList`} className='tabList'>
+      <div id={`${worships[appStore.selectedCategory].category}TabList`} className={`tabList${appStore.selectedDetail ? appStore.selectedDetail : ''}`}>
         {
           worships[appStore.selectedCategory].arr.map((word, idx) => {
             return (
-              <div key={idx} className={
+              <div key={idx} 
+              className={
                 `tab ${appStore.selectedCategory === 1 ? (
                   appStore.selectedDetail === idx + 5 ? 'selectedTab' : ''
                   ) : (
                   appStore.selectedDetail === idx ? 'selectedTab' : ''
                 )}`
               }
+              style={{'backgroundColor': `${
+                appStore.selectedDetail === idx ? (
+                  worships[appStore.selectedCategory].color[idx]
+                ) : ( '' )
+              }`}}
               onClick={() => (appStore.windowWidth > 640) && appStore.setVideoList(appStore.selectedCategory, idx)}>
                 {word}
               </div>

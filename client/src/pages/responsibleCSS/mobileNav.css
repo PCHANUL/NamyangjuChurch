@@ -122,13 +122,16 @@
     background-color: rgb(90, 90, 90);
     color: #fff;
     
-    padding: 4.5vw 1vw 0 1vw;
-    margin: 0vw 3vw 0 7vw;
-
+    height: 7vw;
+    padding: 2vw 1vw 0 1vw;
+    margin: 3.5vw 3vw 0 7vw;
+    border-radius: 2vw 2vw 0 0;
     font-size: 4vw;
 
     transform: scale(1.5);
   }
+
+  
 
   #drawerMenuBtn {
     padding: 0;

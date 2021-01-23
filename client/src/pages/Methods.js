@@ -41,10 +41,10 @@ export const isSameArr = (obj, prevObj) => {
 }
 
 
-export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, cardClass, callback) => {
+export const scrollFunc = (movingTarget, interactTarget, cardNums, cardWidth, cardClass, initPos, callback) => {
   let curPos = 0;
   let initCurPos = 0;
-  let cardPos = 0;
+  let cardPos = initPos;
   let isMoved = false;
   let isMouse = false;
   

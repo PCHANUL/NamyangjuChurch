@@ -2,18 +2,20 @@
   #greeting {
     margin: 18vw 0;
     
-    padding-top: 17vw;
-    height: 52vw;
+    padding-top: 16vw;
+    height: 53vw;
     width: 70vw;
     border-radius: 35vw;
-    box-shadow: 2vw 2vw 6vw 0 rgb(255, 224, 151);
+    box-shadow: 9vw 3vw 15vw 0 rgb(255, 224, 151);
+    /* box-shadow: 2vw 2vw 6vw 0 rgb(255, 224, 151); */
+    z-index: 5;
   }
 
   #greeting h1 {
     font-size: 5vw;
   }
   #greeting h1:nth-child(1) {
-    font-size: 8vw;
+    font-size: 9vw;
   }
   #greeting p {
     font-size: 3vw;
@@ -74,6 +76,7 @@
     margin: 5vw 3vw 0 -2vw;
     padding: 4vw 36vw 2vw 36vw;
     background-color: rgb(255, 224, 151);
+    /* background-color: rgba(170, 219, 6, 0.848); */
     user-select: none;
     cursor: grab;
   }
