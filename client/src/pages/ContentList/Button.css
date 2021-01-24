@@ -34,6 +34,8 @@
   position: absolute;
   pointer-events: none;
   border-radius: inherit;
+
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .buttonDefault > .root > .clickMotion {

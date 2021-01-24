@@ -46,8 +46,8 @@ export default function BibleVerseViewer(props) {
               e.persist();
               if (window.innerWidth < 640 && !isClicked) {
                 let scroll, prevPos;
-                scroll = setInterval(() => {
-                  let targetPos = e.target.getBoundingClientRect().top;
+                scroll = setInterval(async() => {
+                  let targetPos = await e.target.getBoundingClientRect().top;
                   if (140 < targetPos && targetPos < 150) clearInterval(scroll);  // 종료조건 1
                   else if (prevPos === targetPos) clearInterval(scroll);          // 종료조건 2
                   window.scrollTo({top: targetPos > 145 ? window.scrollY + 5 : window.scrollY - 5});
