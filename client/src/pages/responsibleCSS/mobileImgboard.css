@@ -1,7 +1,10 @@
 @media only screen and (max-width : 640px) {
+  #imgBoard {
+    border-radius: 2vw;
+    margin: 3vw 3vw 4vw 3vw;
+  }
   #imgOuter {
     height: 50vw;
-    border-radius: 2vw;
   }
   #mainImg {
     height: 100%;

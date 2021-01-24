@@ -10,20 +10,20 @@ export default function MobileMenuButton() {
   return (
     <>
       <MenuButton />
-      <div id='drawerBackground' className=''></div>
+      <div id='drawerBackground' className='' onTouchStart={() => clickFunction()}></div>
       <div id='drawerMenu' className='drawerMenuOpen'>
         <a onClick={() => window.location = "/"} className='menuBtn'>
           홈
         </a>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(0, 0);
-          clickFunction()
+          clickFunction();
         }}>
           말씀보기
         </Link>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(1, 0);
-          clickFunction()
+          clickFunction();
         }}>
           교회소식
         </Link>

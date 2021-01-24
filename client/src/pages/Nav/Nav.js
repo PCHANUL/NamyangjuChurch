@@ -18,16 +18,6 @@ export default function Nav() {
 
   const scroll = isScrollDown();
 
-  const rootScroll = () => {
-    if (window.innerWidth / window.scrollY > 3.5) {
-      document.querySelector('#home').className = 'hiddenHome';
-      document.querySelector('#nav').removeAttribute('style');
-    } else {
-      document.querySelector('#home').removeAttribute('class');
-      document.querySelector('#nav').style.borderBottom = '1px solid #000';
-    }
-  }
-
   let checkScroll;  // interval
   useEffect(() => {
     if (window.location.href.includes('/contentlist')) {
@@ -46,19 +36,8 @@ export default function Nav() {
       }, 500)
     } 
     
-    let scrollEvent = false;
-    if (window.location.pathname === '/') {
-      window.addEventListener('scroll', rootScroll);
-      scrollEvent = true;
-    }
-
     return () => {
       clearInterval(checkScroll);
-      if (scrollEvent) {
-        window.removeEventListener('scroll', rootScroll);
-        document.querySelector('#home').removeAttribute('class');
-        document.querySelector('#nav').style.borderBottom = '1px solid #000';
-      }
     }
   })
   
@@ -71,7 +50,7 @@ export default function Nav() {
           <GobackButton />
         ) : (
           <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
-            <a id='home' className={window.location.pathname === '/' ? 'hiddenHome' : ''} onClick={() => window.location = '/'}>
+            <a id='home' onClick={() => window.location = '/'}>
               남양주 사랑교회
             </a>
             <div id='NavButtonDiv'>

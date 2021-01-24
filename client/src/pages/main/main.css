@@ -18,14 +18,12 @@
 
 /* greeting */
 #greeting {
-  z-index: 3;
   background-color: #fff;
   box-shadow: 5vw 3vw 15vw 0 rgba(255, 187, 29, 1);
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  margin-top: 8vw;
-
+  margin-top: 12vw;
   padding-top: 7vw;
   height: 23vw;
   width: 30vw;
@@ -33,7 +31,6 @@
   border-radius: 20vw;
 
   transition: box-shadow 5s ease;
-
   color: rgb(112, 112, 112);
 }
 

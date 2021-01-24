@@ -25,15 +25,9 @@ function Main() {
       );
       scroll.addScrollEvent();
     }
-      
-    // setInterval(() => {
-    //   let target = document.querySelector('#greeting');
-    //   if (target.className) target.removeAttribute('class');
-    //   else target.className = 'shadowEffect';
-    // }, 10000)
 
     return () => {
-      if (window.innerWidth < 640) scroll.removeScrollEvent();
+      if (scroll) scroll.removeScrollEvent();
     }
   }, [window.innerWidth])
 

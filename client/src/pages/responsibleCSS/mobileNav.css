@@ -19,7 +19,6 @@
 
     font-family: 'MapoFlowerIsland';
     font-weight: 400;
-    color: #000;
     font-size: 7vw; 
 
     cursor: pointer;
@@ -131,8 +130,6 @@
     transform: scale(1.5);
   }
 
-  
-
   #drawerMenuBtn {
     padding: 0;
     margin: 0;
@@ -140,7 +137,7 @@
     position: fixed;
     right: 5vw;
     top: 3vw;
-    z-index: 5;
+    z-index: 6;
 
     padding: 2vw 2vw 1vw 2vw;
     border-radius: 5vw;
@@ -197,37 +194,53 @@
     display: block;
     position: fixed;
     right: 0%;
-    top: 0vw;
-    z-index: 4;
+    top: 18vw;
+    z-index: 5;
   
     width: 60vw;
-    height: 80vw;
+    height: 70vw;
+    border-radius: 10vw 0 0 10vw;
   
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.637);
-    box-shadow: -3vw 3vw 5vw 0 rgb(0,0,0, 0.3);
+    /* box-shadow: -3vw 3vw 20vw 0 rgb(0,0,0, 0.2); */
 
-    padding: 40vw 5vw;
+    padding: 20vw 5vw;
     display: grid;
-    grid-template-rows: 10vw 10vw 10vw 10vw;
-    grid-gap: 20vw;
+    grid-template-rows: 15vw 15vw 15vw;
+    grid-gap: 10vw;
 
     text-align: center;
     font-size: 9vw;
 
-    transition-property: all;
-    transition-duration: 1s;
+    transition-property: margin, box-shadow;
+    transition-duration: 0.3s;
   }
   .drawerMenuOpen {
     margin: 0 -80vw 0 0;
+    /* box-shadow: unset !important; */
   }
 
   #drawerMenu h4 {
     all: unset;
-    font-size: 6vw;
+    font-size: 5vw;
   }
+
   .menuBtn {
-    font-family: 'MapoGoldenPier';
+    padding: 4vw;
+
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+
+    background-color: #fff;
+    border-radius: 3vw;
+    /* box-shadow: 1vw 3vw 5vw 0 rgb(0,0,0, 0.1); */
+    
+    font-family: 'NanumBarunGothic';
+    font-weight: 400;
+    font-size: 6vw;
+
     transition: right 0.3s;
   }
 

@@ -6,23 +6,28 @@
   top: 0;
   left: 50%;
   transform: translate(-50%);
-  background-color: #fff;
   z-index: 3;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  background-color: rgb(255, 255, 255);
 }
 
 #home {
   font-family: 'MapoFlowerIsland';
   text-decoration: none;
-  color: #000;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 30px; 
   font-weight: 400;
   cursor: pointer;
-
   margin-left: 12vw;
 
   transition-property: all;
   transition-duration: 0.3s;
 }
+
+/* .hiddenNav {
+  
+  transition: all 0.3s;
+} */
 
 .hiddenHome {
   opacity: 0;

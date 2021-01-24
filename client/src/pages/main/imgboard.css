@@ -1,8 +1,8 @@
 #imgBoard {
   position: relative;
-  height: 50vw;
+  height: 40vw;
   /* width: 100vw; */
-  margin: 0vw 3vw 4vw 3vw;
+  margin: 3vw 3vw 10vw 3vw;
   overflow: hidden;
 }
 
