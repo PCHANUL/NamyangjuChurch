@@ -13,26 +13,29 @@ import { scrollFunc } from '../Methods';
 function Main() {
   
   useEffect(() => {
-    const scroll = scrollFunc(
-      document.querySelector('#cardContainer'), 
-      document.querySelector('#outer'),
-      3, 
-      window.innerWidth / 2,
-      'cardPos',
-      0
-    );
-    scroll.addScrollEvent();
+    let scroll
+    if (window.innerWidth < 640) {
+      scroll = scrollFunc(
+        document.querySelector('#cardContainer'), 
+        document.querySelector('#outer'),
+        3, 
+        window.innerWidth / 2,
+        'cardPos',
+        0
+      );
+      scroll.addScrollEvent();
+    }
       
-    setInterval(() => {
-      let target = document.querySelector('#greeting');
-      if (target.className) target.removeAttribute('class');
-      else target.className = 'shadowEffect';
-    }, 10000)
+    // setInterval(() => {
+    //   let target = document.querySelector('#greeting');
+    //   if (target.className) target.removeAttribute('class');
+    //   else target.className = 'shadowEffect';
+    // }, 10000)
 
     return () => {
-      scroll.removeScrollEvent();
+      if (window.innerWidth < 640) scroll.removeScrollEvent();
     }
-  }, [])
+  }, [window.innerWidth])
 
   return (
     <>

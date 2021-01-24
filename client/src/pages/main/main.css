@@ -20,21 +20,26 @@
 #greeting {
   z-index: 3;
   background-color: #fff;
-  box-shadow: 1vw 1vw 3vw 0 rgba(255, 187, 29, 1);
+  box-shadow: 5vw 3vw 15vw 0 rgba(255, 187, 29, 1);
   position: relative;
   left: 50%;
   transform: translate(-50%);
-  margin-top: 10vw;
+  margin-top: 8vw;
 
-  padding-top: 5vw;
-  height: 21vw;
-  width: 26vw;
+  padding-top: 7vw;
+  height: 23vw;
+  width: 30vw;
   text-align: center;
   border-radius: 20vw;
 
   transition: box-shadow 5s ease;
 
   color: rgb(112, 112, 112);
+}
+
+.shadowEffect {
+  box-shadow: -10vw -3vw 25vw 0 rgb(255, 189, 35) !important;
+  transition: box-shadow 5s ease;
 }
 
 
@@ -67,7 +72,7 @@
 #prayer {
   height: 40vw;
   border-top: 1px solid rgb(220, 220, 220);
-  padding-top: 10vw;
+  padding-top: 8vw;
   margin-top: -10vw;
   text-align: center;
   font-family: 'Nanum Gothic', sans-serif;
@@ -97,25 +102,55 @@
   visibility: hidden;
 }
 
+#outer {
+  position: absolute;
+  left: 0;
+  width: 100vw;
+  margin-top: 7vw;
+  padding-bottom: 2vw;
+  background: linear-gradient(90deg,
+   rgba(255,255,255,1) 0%,  
+   rgb(255, 224, 151) 15%, 
+   rgb(255, 224, 151) 85%, 
+   rgba(255,255,255,1) 100%
+  );
+}
+
 #cardContainer {
+  position: relative;
+  right: -50%;
+  transform: translate(-50%);
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 3vw;
-  margin: 7vw 3vw 0 3vw;
+  width: 70vw
 }
 
 .prayerCard {
   display: grid;
   grid-template-rows: 13vw auto;
   height: 25vw;
-  box-shadow: 1vw 1vw 3vw 0 rgb(240, 240, 240);
+  box-shadow: 1vw 1vw 3vw 0 rgba(0, 0, 0, 0.101);
   border-radius: 2vw;
+  background-color: #fff;
 }
+
+/* 
+.prayerCard:nth-child(1) {
+  box-shadow: 4vw 2vw 10vw rgb(255, 207, 94);
+}
+.prayerCard:nth-child(2) {
+  box-shadow: 4vw 2vw 10vw rgb(248, 175, 72);
+}
+.prayerCard:nth-child(3) {
+  box-shadow: 4vw 2vw 10vw rgb(255, 128, 64);
+} */
 
 .prayerCard h2 {
   font-family: 'MapoGoldenPier';
   font-size: 1.5vw;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 2.5vw;
   margin-top: 4.5vw;
 }

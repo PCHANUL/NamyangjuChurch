@@ -14,17 +14,17 @@
 
   .timeCard {
     border-radius: 5vw;
-    height: 30vw;
+    height: 20vw;
   }
 
   .timeCard h2 {
     font-size: 4.5vw;
-    padding-top: 7vw;
+    padding-top: 4vw;
   }
 
   .timeCard span {
     font-size: 3.5vw;
-    padding-top: 3vw;
+    padding-top: 2vw;
   }
 
 }

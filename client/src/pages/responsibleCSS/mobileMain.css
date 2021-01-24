@@ -44,6 +44,10 @@
   }
 
   #outer {
+    position: unset;
+    background: unset;
+    left: unset;
+    
     overflow-x: hidden;
     width: 105vw;
     height: 70vw;
@@ -74,7 +78,9 @@
   }
 
   #cardContainer {
-    position: relative;
+    right: unset;
+    transform: unset;
+
     grid-gap: 5.5vw;
     grid-template-columns: 45vw 45vw 45vw;
     width: 134vw;
