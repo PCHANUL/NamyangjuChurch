@@ -20,7 +20,7 @@
 #greeting {
   z-index: 3;
   background-color: #fff;
-  box-shadow: 1vw 1vw 3vw 0 rgba(255, 187, 29, 0.512);
+  box-shadow: 1vw 1vw 3vw 0 rgba(255, 187, 29, 1);
   position: relative;
   left: 50%;
   transform: translate(-50%);
@@ -32,12 +32,11 @@
   text-align: center;
   border-radius: 20vw;
 
-  
-  transition-property: all;
-  transition-duration: 3s;
+  transition: box-shadow 5s ease;
 
   color: rgb(112, 112, 112);
 }
+
 
 .landingEffect {
   opacity: 0;

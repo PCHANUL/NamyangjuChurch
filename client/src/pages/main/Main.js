@@ -23,9 +23,11 @@ function Main() {
     );
     scroll.addScrollEvent();
       
-    setTimeout(() => {
-      document.querySelector('#greeting').removeAttribute('class');
-    }, 1000)
+    setInterval(() => {
+      let target = document.querySelector('#greeting');
+      if (target.className) target.removeAttribute('class');
+      else target.className = 'shadowEffect';
+    }, 10000)
 
     return () => {
       scroll.removeScrollEvent();
@@ -36,7 +38,7 @@ function Main() {
     <>
 
       <div id='firstPage'>
-        <div id='greeting' className='landingEffect'>
+        <div id='greeting'>
           <h1>오직</h1>
           <p>그리스도, 하나님나라, 성령충만</p>
           <p>예배, 말씀, 기도, 전도, 후대에 집중하는</p>
