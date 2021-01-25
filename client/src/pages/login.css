@@ -22,7 +22,7 @@
   font-size: 60px;
 }
 
-input {
+#login input {
   margin-top: 10px;
   padding-left: 20px;
   width: 170px;
@@ -33,7 +33,7 @@ input {
   border-bottom: 1px solid #000;
 }
 
-input:focus {
+#login input:focus {
   outline: none;
   border: 3px solid #000;
   animation-duration: 10s;

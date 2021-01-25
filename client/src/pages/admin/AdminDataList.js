@@ -27,7 +27,7 @@ const MakeDataList = (props) => {
   const { contents, setContent } = props;
 
   return (
-    <>
+    <div id='dataList'>
       {
         contents.length !== 0 ? (
           contents.map((content, index) => {
@@ -39,7 +39,7 @@ const MakeDataList = (props) => {
           </div>
         )
       }
-    </>
+    </div>
   )
 }
 

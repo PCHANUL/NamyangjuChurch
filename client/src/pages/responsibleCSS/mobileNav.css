@@ -35,6 +35,7 @@
     font-size: 3.5vw;
     width: 100vw;
     height: 14vw;
+    padding-top: 0;
     padding-left: 66vw;
     user-select: none;
   }

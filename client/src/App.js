@@ -64,11 +64,16 @@ const App = (props) => {
         
         { 
           appStore.windowWidth > 640 &&
-          (location.pathname.includes("admin") || location.pathname.includes("content")) &&
-          <>
-            <div id='leftSide'></div>
-            <div id='rightSide'></div>
-          </>
+          (location.pathname.includes("content")) ? (
+            <>
+              <div id='leftSide'></div>
+              <div id='rightSide'></div>
+            </>
+          ) : location.pathname.includes("admin") && (
+            <>
+              <div id='pageBackground'></div>
+            </>
+          ) 
         }
       </div>
       { 

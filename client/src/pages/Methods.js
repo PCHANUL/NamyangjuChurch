@@ -1,4 +1,5 @@
 export const transDate = (date, callback) => {
+  if (!date) return;
   let rawDate = new Date(JSON.parse(date));
 
   let year = String(rawDate.getFullYear());

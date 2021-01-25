@@ -6,14 +6,14 @@ import { calcPassedTime } from '../Methods';
 import { getLiveUrl } from '../axiosRequest';
 
 export default function ImgBoard() {
-  const [liveInfo, setLiveUrl] = useState({url: '', time: 0})
+  const [liveInfo, setLiveUrl] = useState({url: '', isLive: false})
   let infoData = calcTime();
   
   useEffect(() => {
-    getLiveUrl((url) => {
+    getLiveUrl((result) => {
       setLiveUrl({
-        url: url.data.url,
-        time: Math.trunc((Date.now() - url.data.time) / 60000),
+        url: result.url,
+        isLive: (result.live === 'live'),
       });
     });
   },[])
@@ -22,14 +22,13 @@ export default function ImgBoard() {
     <div id='imgBoard'>
       <div id='onairInfo'>
         {
-          liveInfo.time > 60 ? (
-            <h1>{infoData[0]}</h1>
-          ) : (
+          liveInfo.isLive ? (
             <h1>{infoData[1]} 중입니다</h1>
+            ) : (
+            <h1>{infoData[0]}</h1>
           )
         }
         <div id='prevPlay' onClick={playYoutube}>
-          {/* <h1>{liveInfo.time > 60 ? '이전 예배' : '생방송'}</h1> */}
           <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="120%" >
             <path d="M 45,24 27,14 27,34"></path>
           </svg>

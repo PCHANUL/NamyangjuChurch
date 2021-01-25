@@ -1,9 +1,11 @@
 #admin {
-  width: 800px;
+  display: grid;
+  grid-template-rows: auto auto auto;
 }
 
 #addBox {
   height: 60px;
+  z-index: 1;
 }
 #addBox h2 {
   all: unset;
@@ -24,6 +26,28 @@
 #addBox button:hover {
   color: #fff;
   background-color: #000;
+}
+
+#live {
+  position: relative;
+  z-index: 3;
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+#data {
+  position: relative;
+  display: inline-block;
+  width: 800px;
+  height: 500px;
+  padding: 30px;
+  z-index: 1;
+
+  background-color: #fff;
+  box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 #addBtn {
@@ -53,7 +77,6 @@
 }
 
 #tabContainer {
-  position: sticky;
   top: 0;
   z-index: 1;
   height: 80px;
@@ -96,6 +119,13 @@
   border-bottom: 2px solid #000;
 }
 
+
+/* data list */
+#dataList {
+  display: inline-block;
+  height: 300px;
+  overflow: scroll;
+}
 .dataBox {
   position: relative;
   display: grid;

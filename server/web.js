@@ -74,10 +74,12 @@ let liveInfo = {
 
 app.use('/live', async(req, res) => {
   if (req.method === 'POST') {
-    liveInfo.url = req.query.url
-    liveInfo.time = Date.now()
-    res.send('success')
-  } else if (req.method === 'GET') res.send(liveInfo);
+    liveInfo.url = req.query.url;
+    liveInfo.time = Date.now();
+    res.send('success');
+  } else if (req.method === 'GET') {
+    res.send(liveInfo);
+  }
 })
 
 

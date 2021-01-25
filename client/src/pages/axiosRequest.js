@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { transDate } from './Methods';
 
 export const signup = async(id, pw) => {
   const result = await axios({
@@ -231,7 +232,20 @@ export const uploadImage = async(files, callback) => {
 
 export const getLiveUrl = async(callback) => {
   const resultUrl = await axios.get('http://localhost:4000/live');
-  callback(resultUrl);
+  const youtubeInfo = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${resultUrl.data.url}&key=AIzaSyBoOw9DeL3KWYXx8-NPQHKDJ5Cl7AMjyos`);
+  if (youtubeInfo.data.items.length === 0) {
+    // youtube url이 아닌 경우
+    callback({ status: false });
+  } else {
+    const snippet = youtubeInfo.data.items[0].snippet;
+    callback({
+      status: true,
+      url: resultUrl.data.url,
+      title: snippet.title,
+      time: transDate(resultUrl.data.time),
+      live: snippet.liveBroadcastContent,
+    });
+  }
 }
 
 export const postLiveUrl = async(url, callback) => {

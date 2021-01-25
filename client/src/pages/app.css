@@ -45,6 +45,13 @@ html, body {
 {
   grid-column: 4 / 6;
   grid-row: 1 / 4;
-  background-color: rgb(240, 240, 240)
+  background-color: rgb(240, 240, 240);
+}
+
+#pageBackground
+{
+  grid-column: 1 / 6;
+  grid-row: 1 / 4;
+  background-color: rgb(240, 240, 240);
 }
 
