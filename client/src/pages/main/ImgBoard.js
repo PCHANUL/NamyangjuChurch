@@ -85,7 +85,7 @@ function calcTime() {
     }
   } 
 
-  if (!worshipTimes[now.day] || !result) {
+  if (!worshipTimes[now.day] || !result || ([0, 3].includes(now.day) && now.hours < 6)) {
     let remainTime = now.hours < 6 ? 5 - now.hours : 29 - now.hours;
     let text = remainTime === 0 ? '잠시 후에 새벽예배가 시작됩니다' : 
                remainTime > 10 ? `다음 예배는 새벽예배입니다` : `${remainTime}시간 뒤에 새벽예배가 시작됩니다`;

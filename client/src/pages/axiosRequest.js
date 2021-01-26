@@ -230,25 +230,34 @@ export const uploadImage = async(files, callback) => {
   callback(result)
 }
 
-export const getLiveUrl = async(callback) => {
-  const resultUrl = await axios.get('http://localhost:4000/live');
-  console.log('resultUrl: ', resultUrl);
-  const youtubeInfo = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${resultUrl.data.url}&key=AIzaSyBoOw9DeL3KWYXx8-NPQHKDJ5Cl7AMjyos`);
-  console.log('youtubeInfo: ', youtubeInfo);
-  if (youtubeInfo.data.items.length === 0) {
-    // youtube url이 아닌 경우
-    callback({ status: false });
-  } else {
-    const snippet = youtubeInfo.data.items[0].snippet;
-    callback({
-      status: true,
-      url: resultUrl.data.url,
-      title: snippet.title,
-      time: transDate(resultUrl.data.time),
-      live: snippet.liveBroadcastContent,
-    });
+const getLiveUrlFunc = () => {
+  let time = Date.now();
+  let resultObj = {};
+
+  return async(callback, getNow = false) => {
+    let now = Date.now();
+    if (!resultObj.status || now - time > 120000 || getNow === true) {
+      const resultUrl = await axios.get('http://localhost:4000/live');
+      const youtubeInfo = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${resultUrl.data.url}&key=AIzaSyA6S9ghWF8sGcKSNqFC6ORnzDnB3y8jMmE`);
+      if (youtubeInfo.data.items.length === 0) {
+        // youtube url이 아닌 경우
+        resultObj = { status: false };
+      } else {
+        const snippet = youtubeInfo.data.items[0].snippet;
+        resultObj = {
+          status: true,
+          url: resultUrl.data.url,
+          title: snippet.title,
+          time: transDate(resultUrl.data.time),
+          live: snippet.liveBroadcastContent,
+        };
+      }
+    }
+    callback(resultObj);
   }
 }
+
+export const getLiveUrl = getLiveUrlFunc();
 
 export const postLiveUrl = async(url, callback) => {
   const resultMsg = await axios({
@@ -260,8 +269,7 @@ export const postLiveUrl = async(url, callback) => {
     },
     params: { url }
   })
-
-  console.log('resultMsg: ', resultMsg);
+  callback(resultMsg);
 }
 
 export const getBibleVerse = async(book, chapterA, verseA, chapterB, verseB, callback) => {

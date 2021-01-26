@@ -52,6 +52,12 @@
   font-size: 20px;
 }
 
+.isLive {
+  color: #fff;
+  border: #fff;
+  background-color: rgb(255, 53, 18);
+}
+
 #liveInfo span {
   all: unset;
   position: absolute;

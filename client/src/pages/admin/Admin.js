@@ -21,16 +21,13 @@ const Admin = (props) => {
 
   const appStore = useAppStore();
 
- 
+  useEffect(() => {
+    getLiveUrl((result) => setLiveData(result));
+  }, []);
   
   useObserver(() => {
     useEffect(() => {
       window.scroll(0,0);  // 스크롤
-
-      getLiveUrl((result) => {
-        console.log(result);
-        setLiveData(result);
-      });
 
       getDataList(appStore.selectedCategory, appStore.selectedDetail, async(getData) => {
         await setData(getData);
@@ -59,7 +56,7 @@ const Admin = (props) => {
 
       <div id='live'>
         <div id='onAirIcon'>
-          <Button>onAir</Button>
+          <Button className={liveData.live === 'live' ? 'isLive' : ''}>onAir</Button>
         </div>
         <div id='liveInfo'>
           <span>{liveData.status ? liveData.title : '잘못된 영상 ID로 설정되어있습니다.'}</span>
@@ -67,9 +64,15 @@ const Admin = (props) => {
         <div id='liveInput'>
           <input id='liveUrl' placeholder='유튜브 영상 ID를 입력하세요'></input>
           <Button className='liveInputBtn' onClick={() => {
-            postLiveUrl(document.querySelector('#liveUrl').value, () => {
-              getLiveUrl((result) => setLiveData(result));
-            })
+            let value = document.querySelector('#liveUrl').value;
+            document.querySelector('#liveUrl').value = '';
+            if (value.length > 0) {
+              postLiveUrl(value, () => {
+                getLiveUrl((result) => {
+                  setLiveData(result)
+                }, true);
+              })
+            }
           }}>입력</Button>
         </div>
       </div>
