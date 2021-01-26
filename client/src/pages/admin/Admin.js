@@ -12,6 +12,7 @@ import { useAppStore } from '../../state/appContext';
 // component
 import AdminTab from './AdminTab';
 import AdminAddBtn from './AdminAddBtn';
+import { Button } from '../ContentList/Button';
 
 const Admin = (props) => {
   const [data, setData] = useState();
@@ -19,14 +20,18 @@ const Admin = (props) => {
   const [liveData, setLiveData] = useState({ status: false });
 
   const appStore = useAppStore();
+
+ 
   
   useObserver(() => {
     useEffect(() => {
       window.scroll(0,0);  // 스크롤
 
       getLiveUrl((result) => {
-        setLiveData(result)
+        console.log(result);
+        setLiveData(result);
       });
+
       getDataList(appStore.selectedCategory, appStore.selectedDetail, async(getData) => {
         await setData(getData);
         setTimeout(setLoading(true), 2000);
@@ -53,15 +58,20 @@ const Admin = (props) => {
       </div>
 
       <div id='live'>
-        <p>생방송 관리</p>
-        <p>{liveData ? liveData.title : '생방송 중이 아닙니다.'}</p>
-        <p>{liveData ? liveData.time : '생방송 중이 아닙니다.'}</p>
-        <input id='liveUrl' style={{height:'30px'}} placeholder='유튜브 라이브 URL을 입력하세요'></input>
-        <button onClick={() => {
-          postLiveUrl(document.querySelector('#liveUrl').value, (result) => {
-            console.log('result: ', result);
-          })
-        }}>입력</button>
+        <div id='onAirIcon'>
+          <Button>onAir</Button>
+        </div>
+        <div id='liveInfo'>
+          <span>{liveData.status ? liveData.title : '잘못된 영상 ID로 설정되어있습니다.'}</span>
+        </div>
+        <div id='liveInput'>
+          <input id='liveUrl' placeholder='유튜브 영상 ID를 입력하세요'></input>
+          <Button className='liveInputBtn' onClick={() => {
+            postLiveUrl(document.querySelector('#liveUrl').value, () => {
+              getLiveUrl((result) => setLiveData(result));
+            })
+          }}>입력</Button>
+        </div>
       </div>
 
       <div id='data'>

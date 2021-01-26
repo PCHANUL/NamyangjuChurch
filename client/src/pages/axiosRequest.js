@@ -232,7 +232,9 @@ export const uploadImage = async(files, callback) => {
 
 export const getLiveUrl = async(callback) => {
   const resultUrl = await axios.get('http://localhost:4000/live');
+  console.log('resultUrl: ', resultUrl);
   const youtubeInfo = await axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${resultUrl.data.url}&key=AIzaSyBoOw9DeL3KWYXx8-NPQHKDJ5Cl7AMjyos`);
+  console.log('youtubeInfo: ', youtubeInfo);
   if (youtubeInfo.data.items.length === 0) {
     // youtube url이 아닌 경우
     callback({ status: false });

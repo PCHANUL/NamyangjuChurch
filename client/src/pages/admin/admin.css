@@ -1,6 +1,7 @@
 #admin {
   display: grid;
   grid-template-rows: auto auto auto;
+  height: 700px;
 }
 
 #addBox {
@@ -29,12 +30,58 @@
 }
 
 #live {
+  display: grid;
+  grid-template-columns: 150px 300px auto;
+  grid-gap: 40px;
+
   position: relative;
+  padding: 20px;
+
   z-index: 3;
-  height: 100px;
   margin-bottom: 20px;
   background-color: #fff;
   box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+#onAirIcon .buttonDefault {
+  border-radius: 30px;
+}
+
+#onAirIcon .buttonDefault .label {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+#liveInfo span {
+  all: unset;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 300px;
+  font-size: 20px;
+
+  /* text overflow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space:nowrap;
+  word-wrap:normal;
+}
+
+#liveInput {
+  display: grid;
+  grid-template-columns: auto 60px;
+  grid-gap: 10px;
+}
+
+#liveUrl {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.liveInputBtn {
+  width: 30px;
 }
 
 
