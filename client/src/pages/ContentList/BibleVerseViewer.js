@@ -46,13 +46,6 @@ export default function BibleVerseViewer(props) {
               e.persist();
               if (window.innerWidth < 640 && !isClicked) {
                 let scroll, prevPos;
-                // scroll = setInterval(async() => {
-                //   let targetPos = await e.target.getBoundingClientRect().top;
-                  // if (140 < targetPos && targetPos < 150) clearInterval(scroll);  // 종료조건 1
-                  // else if (prevPos === targetPos) clearInterval(scroll);          // 종료조건 2
-                  // window.scrollTo({top: targetPos > 145 ? window.scrollY + 5 : window.scrollY - 5});
-                  // prevPos = targetPos;  // 이전위치저장
-                // }, 10);
 
                 scroll = async() => {
                   let targetPos = await e.target.getBoundingClientRect().top;
@@ -63,11 +56,8 @@ export default function BibleVerseViewer(props) {
                   window.scrollTo({top: targetPos > 145 ? window.scrollY + 5 : window.scrollY - 5});
                   prevPos = targetPos;  // 이전위치저장
 
-                  setTimeout(() => {
-                    console.log('scroll');
-                    scroll();
-                  }, 100);
-                }
+                  setTimeout(() => scroll(), 10);
+                };
 
                 scroll();
               }
