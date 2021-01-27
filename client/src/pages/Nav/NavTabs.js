@@ -11,12 +11,12 @@ export default function NavTabs() {
     {
       category: 'video',
       arr: ['주일예배', '수요예배', '금요예배', '새벽예배', '기도수첩'],
-      color: ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)']
     },
     {
       category: 'com',
-      arr: ['교회사진']
-    }
+      arr: ['교회사진'],
+    },
+    ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)', 'rgb(90, 90, 90)']
   ];
 
   const moveTab = (pos) => {
@@ -59,20 +59,12 @@ export default function NavTabs() {
       <div id={`${worships[appStore.selectedCategory].category}TabList`} className={`tabList${appStore.selectedDetail ? appStore.selectedDetail : ''}`}>
         {
           worships[appStore.selectedCategory].arr.map((word, idx) => {
+            idx = appStore.selectedCategory === 0 ? idx : idx + 5;
+
             return (
               <div key={idx} 
-              className={
-                `tab ${appStore.selectedCategory === 1 ? (
-                  appStore.selectedDetail === idx + 5 ? 'selectedTab' : ''
-                  ) : (
-                  appStore.selectedDetail === idx ? 'selectedTab' : ''
-                )}`
-              }
-              style={{'backgroundColor': `${
-                appStore.selectedDetail === idx ? (
-                  worships[appStore.selectedCategory].color[idx]
-                ) : ( '' )
-              }`}}
+              className={`tab ${appStore.selectedDetail === idx ? 'selectedTab' : ''}`}
+              style={{'backgroundColor': `${appStore.selectedDetail === idx ? ( worships[2][idx] ) : ( '' )}`}}
               onClick={() => {
                 if (appStore.windowWidth > 640) {
                   appStore.setVideoList(appStore.selectedCategory, idx);

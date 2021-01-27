@@ -132,6 +132,8 @@ a:hover {
   transition-duration: 0.5s;
 }
 
+
+
 .clickedVerse {
   color: #000;
 
@@ -144,6 +146,7 @@ a:hover {
   right: -70px;
   top: 0;
   padding: 4px 10px;
+  z-index: 2;
 }
 
 .closeVerse .label {
@@ -157,7 +160,7 @@ a:hover {
   right: -230px;
   width: 500px;
   height: 230px;
-  z-index: 1;
+  z-index: 2;
   
   background-color: #fff;
   border: 1px solid #000;
@@ -187,6 +190,15 @@ a:hover {
   line-height: 25px;
   color: #000;
   font-family: MapoGoldenPier;
+}
+
+.viewerBackground {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .videoButton {

@@ -15,7 +15,7 @@ import { GobackButton } from '../ContentList/Button';
 export default function Nav() {
   const appStore = useAppStore();
   const location = useLocation();
-  const bottomLineColor = ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)'];
+  const bottomLineColor = ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)', 'rgb(90, 90, 90)'];
 
   const scroll = isScrollDown();
 

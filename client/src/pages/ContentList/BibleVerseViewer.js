@@ -42,27 +42,7 @@ export default function BibleVerseViewer(props) {
         <>
           <div 
             className={`bibleVerse ${isClicked ? 'clickedVerse' : ''}`} 
-            onClick={(e) => {
-              e.persist();
-              if (window.innerWidth < 640 && !isClicked) {
-                let scroll, prevPos;
-
-                scroll = async() => {
-                  let targetPos = await e.target.getBoundingClientRect().top;
-
-                  if (140 < targetPos && targetPos < 150) return;  // 종료조건 1
-                  else if (prevPos === targetPos) return;          // 종료조건 2
-
-                  window.scrollTo({top: targetPos > 145 ? window.scrollY + 5 : window.scrollY - 5});
-                  prevPos = targetPos;  // 이전위치저장
-
-                  setTimeout(() => scroll(), 10);
-                };
-
-                scroll();
-              }
-              setClicked(!isClicked);
-            }}
+            onClick={(e) => clickViewer(e, isClicked, setClicked)}
           >
             {
               isClicked && (
@@ -73,7 +53,10 @@ export default function BibleVerseViewer(props) {
           </div>
           {
             isClicked ? (
-              <BibleViewer bibleContent={bibleContent}/>
+              <>
+                <BibleViewer bibleContent={bibleContent} />
+                <div className='viewerBackground' onClick={() => setClicked(!isClicked)}></div>
+              </>
             ) : <></>
           }
         </>
@@ -88,6 +71,28 @@ const getFirstVerse = (str) => {
       return [str.slice(0, i), str.slice(i)];
     }
   }
+}
+
+const clickViewer = (e, isClicked, setClicked) => {
+  e.persist();
+  if (window.innerWidth < 640 && !isClicked) {
+    let scroll, prevPos;
+
+    scroll = async() => {
+      let targetPos = await e.target.getBoundingClientRect().top;
+
+      if (140 < targetPos && targetPos < 150) return;  // 종료조건 1
+      else if (prevPos === targetPos) return;          // 종료조건 2
+
+      window.scrollTo({top: targetPos > 145 ? window.scrollY + 10 : window.scrollY - 10});
+      prevPos = targetPos;  // 이전위치저장
+
+      setTimeout(() => scroll(), 20);
+    };
+
+    scroll();
+  }
+  setClicked(!isClicked);
 }
 
 const BibleViewer = (props) => {
