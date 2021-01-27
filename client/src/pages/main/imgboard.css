@@ -171,26 +171,26 @@
 }
 
 .closeYoutubeBtn {
-  position: absolute;
+  position: relative;
   left: 50%;
-  bottom: 15px;
-  padding-left: 20px;
-  padding-right: 20px;
+  top: -15vw;
+  width: 7vw;
   transform: translate(-50%);
   background-color: rgb(108, 108, 108);
   border: none;
   border-radius: 0 0 15px 15px;
+  z-index: 1;
 }
 
 .closeYoutubeBtn .label {
   color: #fff;
-  font-size: 15px;
+  font-size: 1.5vw;
 }
 
 .closeYoutubeBtn .label > img {
   filter: invert(100%);
-  min-width: 12px;
-  margin-left: 10px;
+  min-width: 1vw;
+  margin-left: 1vw;
 }
 
 .boardBtn {

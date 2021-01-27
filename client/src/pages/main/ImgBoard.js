@@ -5,27 +5,12 @@ import '../responsibleCSS/mobileImgBoard.css';
 import { calcPassedTime } from '../Methods';
 import { getLiveUrl } from '../axiosRequest';
 
-import { Button } from '../ContentList/Button';
-
-export default function ImgBoard() {
+export default function ImgBoard(props) {
   const [liveInfo, setLiveUrl] = useState({url: '', isLive: false});
-  const [isPlayed, setIsPlayed] = useState(false);
   let infoData = calcTime();
 
-  const stopYoutube = () => {
-    document.querySelector('#main-thumbnail').style.visibility = 'visible';
-    document.querySelector('#imgOuter').style.zIndex = 0;
-    document.querySelector('#yt-player').src = document.querySelector('#yt-player').src.split('?')[0]; 
-    setIsPlayed(false);
-  }
-  
-  const playYoutube = () => {
-    document.querySelector('#main-thumbnail').style.visibility = 'hidden';
-    document.querySelector('#imgOuter').style.zIndex = 1;
-    document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
-    setIsPlayed(true);
-  }
-  
+  let { playYoutube } = props;
+
   useEffect(() => {
     getLiveUrl((result) => {
       setLiveUrl({
@@ -45,7 +30,7 @@ export default function ImgBoard() {
             <h1>{infoData[0]}</h1>
           )
         }
-        <div id='prevPlay' onClick={playYoutube}>
+        <div id='prevPlay' onClick={() => playYoutube()}>
           <svg id="ytp-Btn" height="100%" version="1.1" viewBox="0 0 68 48" width="120%" >
             <path d="M 45,24 27,14 27,34"></path>
           </svg>
@@ -60,13 +45,6 @@ export default function ImgBoard() {
           ></iframe>
         </div>
       </div>
-      {
-        isPlayed &&
-        <Button className='closeYoutubeBtn' onClick={() => stopYoutube(false)}>
-          닫기
-          <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
-        </Button>
-      }
     </div>
   )
 }

@@ -10,7 +10,25 @@ import '../responsibleCSS/mobileMain.css';
 
 import { scrollFunc } from '../Methods';
 
+import { Button } from '../ContentList/Button';
+
 function Main() {
+  const [isPlayed, setIsPlayed] = useState(false);
+
+  const stopYoutube = () => {
+    document.querySelector('#main-thumbnail').style.visibility = 'visible';
+    document.querySelector('#imgOuter').style.zIndex = 0;
+    document.querySelector('#yt-player').src = document.querySelector('#yt-player').src.split('?')[0]; 
+    setIsPlayed(false);
+  }
+  
+  const playYoutube = () => {
+    console.log('start')
+    document.querySelector('#main-thumbnail').style.visibility = 'hidden';
+    document.querySelector('#imgOuter').style.zIndex = 1;
+    document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
+    setIsPlayed(true);
+  }
   
   useEffect(() => {
     let scroll
@@ -41,7 +59,14 @@ function Main() {
           <p>예배, 말씀, 기도, 전도, 후대에 집중하는</p>
           <h1>남양주 사랑교회입니다</h1>
         </div>
-        <ImgBoard />
+        <ImgBoard playYoutube={playYoutube}/>
+        {
+          isPlayed &&
+          <Button className='closeYoutubeBtn' onClick={() => stopYoutube(false)}>
+            닫기
+            <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
+          </Button>
+        }
       </div>
 
       <div id="main">

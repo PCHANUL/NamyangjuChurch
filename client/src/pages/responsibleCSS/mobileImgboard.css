@@ -1,6 +1,6 @@
 @media only screen and (max-width : 640px) {
   #imgBoard {
-    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    /* -webkit-mask-image: -webkit-radial-gradient(white, black); */
     
     border-radius: 3vw;
     margin: 5vw 3vw 4vw 3vw;
@@ -25,13 +25,22 @@
     height: 25vw;
   }
 
-  /* #prevPlay {
-    padding: 3vw 3vw 10vw 3vw;
-    border-radius: 5vw;
-  } */
-
   #prevPlay h1 {
     font-size: 5vw;
+  }
+
+  .closeYoutubeBtn {
+    top: -4vw;
+    width: 16vw;
+  }
+
+  .closeYoutubeBtn .label {
+    font-size: 4vw;
+  }
+
+  .closeYoutubeBtn .label > img {
+    width: 3vw;
+    margin-left: 1.5vw;
   }
 
   #onairInfo {
