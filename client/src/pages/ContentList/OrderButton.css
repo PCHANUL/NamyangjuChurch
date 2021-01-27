@@ -3,9 +3,13 @@
   margin-left: 10px;
 }
 
+.orderbtn > div {
+  float: left;
+}
+
 .orderbtn p {
   all: unset;
-  float: right;
+  float: left;
 }
 
 .btnDefault {

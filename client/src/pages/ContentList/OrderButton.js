@@ -21,10 +21,10 @@ export function OrderButton(props) {
 
   return useObserver(() => (
     <Button className={`orderbtn btn${status[appStore[key]]}`} onClick={clickFunc}>
-      <p>
-        {name}
+      <div>
+        <p>{name}</p>
         <div className={`arrow ${status[appStore[key]]}`}/>
-      </p>
+      </div>
     </Button>
   ))
 }

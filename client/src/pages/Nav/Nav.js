@@ -15,6 +15,7 @@ import { GobackButton } from '../ContentList/Button';
 export default function Nav() {
   const appStore = useAppStore();
   const location = useLocation();
+  const bottomLineColor = ['rgb(248, 175, 72)', 'rgb(118, 192, 6)', 'rgb(1, 167, 200)', 'rgb(146, 74, 239)', 'rgb(90, 90, 90)'];
 
   const scroll = isScrollDown();
 
@@ -49,7 +50,9 @@ export default function Nav() {
         ? (
           <GobackButton />
         ) : (
-          <div id='nav' style={{borderBottom: window.location.pathname !== '/' && '1px solid #000'}}>
+          <div id='nav' style={{
+            borderBottom: window.location.pathname === '/contentlist' && `1px solid ${bottomLineColor[appStore.selectedDetail]}`
+          }}>
             <a id='home' onClick={() => window.location = '/'}>
               남양주 사랑교회
             </a>

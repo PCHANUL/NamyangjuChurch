@@ -17,7 +17,6 @@ export default function ContentList() {
   const appStore = useAppStore();
   const [dataList, setData] = useState([]);
 
-  console.log(appStore.selectedDetail)
   useObserver(() => {
     useEffect(() => {
       // window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
@@ -76,7 +75,7 @@ export default function ContentList() {
             <option value='15'>15</option>
             <option value='20'>20</option>
           </select>
-          <label id='selectUnit' for="dataNumber">줄씩 보입니다</label>
+          <label id='selectUnit' htmlFor="dataNumber">줄씩 보입니다</label>
           <div id='dataArrowIcon'></div>
         </div>
       </div>

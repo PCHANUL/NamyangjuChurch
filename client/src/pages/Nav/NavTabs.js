@@ -73,7 +73,11 @@ export default function NavTabs() {
                   worships[appStore.selectedCategory].color[idx]
                 ) : ( '' )
               }`}}
-              onClick={() => (appStore.windowWidth > 640) && appStore.setVideoList(appStore.selectedCategory, idx)}>
+              onClick={() => {
+                if (appStore.windowWidth > 640) {
+                  appStore.setVideoList(appStore.selectedCategory, idx);
+                }
+              }}>
                 {word}
               </div>
             )
