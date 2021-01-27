@@ -5,9 +5,26 @@ import '../responsibleCSS/mobileImgBoard.css';
 import { calcPassedTime } from '../Methods';
 import { getLiveUrl } from '../axiosRequest';
 
+import { Button } from '../ContentList/Button';
+
 export default function ImgBoard() {
-  const [liveInfo, setLiveUrl] = useState({url: '', isLive: false})
+  const [liveInfo, setLiveUrl] = useState({url: '', isLive: false});
+  const [isPlayed, setIsPlayed] = useState(false);
   let infoData = calcTime();
+
+  const stopYoutube = () => {
+    document.querySelector('#main-thumbnail').style.visibility = 'visible';
+    document.querySelector('#imgOuter').style.zIndex = 0;
+    document.querySelector('#yt-player').src = document.querySelector('#yt-player').src.split('?')[0]; 
+    setIsPlayed(false);
+  }
+  
+  const playYoutube = () => {
+    document.querySelector('#main-thumbnail').style.visibility = 'hidden';
+    document.querySelector('#imgOuter').style.zIndex = 1;
+    document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
+    setIsPlayed(true);
+  }
   
   useEffect(() => {
     getLiveUrl((result) => {
@@ -43,6 +60,13 @@ export default function ImgBoard() {
           ></iframe>
         </div>
       </div>
+      {
+        isPlayed &&
+        <Button className='closeYoutubeBtn' onClick={() => stopYoutube(false)}>
+          닫기
+          <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/close-button.png' className='closeIcon' />
+        </Button>
+      }
     </div>
   )
 }
@@ -95,8 +119,3 @@ function calcTime() {
 }
 
 
-function playYoutube() {
-  document.querySelector('#main-thumbnail').style.visibility = 'hidden';
-  document.querySelector('#imgOuter').style.zIndex = 1;
-  document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
-}
