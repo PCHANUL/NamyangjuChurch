@@ -201,19 +201,26 @@
     top: 18vw;
     z-index: 5;
   
-    width: 60vw;
-    height: 70vw;
-    border-radius: 10vw 0 0 10vw;
+    width: 30vw;
+    height: 50vw;
+    border-radius: 5vw 0 0 5vw;
+    border: 1px solid #fff;
   
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.637);
-    /* box-shadow: -3vw 3vw 20vw 0 rgb(0,0,0, 0.2); */
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    background: linear-gradient(
+      110deg, 
+      rgba(255,255,255,0.1) 0%,
+      rgba(255,255,255,0.6) 30%,
+      rgba(255,255,255,0.7) 50%,
+      rgba(255,255,255,1) 100%);
+    box-shadow: -3vw 3vw 20vw 0 rgb(0,0,0, 0.2);
 
-    padding: 20vw 5vw;
+    padding: 10vw 5vw 25vw 5vw;
     display: grid;
     grid-template-rows: 15vw 15vw 15vw;
-    grid-gap: 10vw;
+    grid-gap: 5vw;
 
     text-align: center;
     font-size: 9vw;
@@ -223,7 +230,7 @@
   }
   .drawerMenuOpen {
     margin: 0 -80vw 0 0;
-    /* box-shadow: unset !important; */
+    box-shadow: unset !important;
   }
 
   #drawerMenu h4 {
@@ -232,21 +239,16 @@
   }
 
   .menuBtn {
-    padding: 4vw;
-
-    -webkit-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
-
-    background-color: #fff;
-    border-radius: 3vw;
-    /* box-shadow: 1vw 3vw 5vw 0 rgb(0,0,0, 0.1); */
+    padding-top: 7vw;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     
     font-family: 'NanumBarunGothic';
     font-weight: 400;
-    font-size: 6vw;
-
+    font-size: 5vw;
+    
     transition: right 0.3s;
   }
+  
 
   
 

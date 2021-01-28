@@ -19,14 +19,15 @@ export default function MobileMenuButton() {
           appStore.setVideoList(0, 0);
           clickFunction();
         }}>
-          말씀보기
+          말씀 보기
         </Link>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(1, 0);
           clickFunction();
         }}>
-          교회소식
+          교회 소식
         </Link>
+        <div></div>
       </div>
     </>
   )
