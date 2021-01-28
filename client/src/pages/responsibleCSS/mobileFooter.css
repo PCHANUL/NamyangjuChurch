@@ -1,4 +1,43 @@
 @media only screen and (max-width : 640px) {
-  
+  #footer {
+    grid-template-columns: unset;
+    grid-gap: 20px;
+
+    padding: 4vw 2vw;
+  }
+
+  #logo {
+    height: fit-content;
+    width: fit-content;
+  }
+
+  #logo > img {
+    width: 7vw;
+  }
+
+  #logo > div {
+    padding-left: 3vw;
+  }
+
+  #logo > div p {
+    font-size: 3vw;
+  }
+
+  #logo > div p:nth-child(2) {
+    letter-spacing: 2.5vw;
+  }
+
+  #logo > h3 {
+    font-size: 6vw;
+  }
+
+  #info {
+    grid-row: 1;
+    font-size: 3vw;
+  }
+
+  #info #phone p {
+    margin-bottom: 1vw;
+  }
 
 }

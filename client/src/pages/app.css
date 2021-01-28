@@ -10,6 +10,7 @@ html, body {
   grid-gap: 20px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+  padding: unset;
 }
 
 
