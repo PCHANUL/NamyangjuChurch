@@ -1,12 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function PhotoContent(props) {
   const { data } = props;
+  const history = useHistory();
 
   return (
     <div className='pictureDiv'>
-      <div className='imgDiv'>
+      <div className='imgDiv' onClick={() => history.push(`/content/${data.id}`)}>
         <img className='pictureImg' src={data.thumbnail} />
       </div>
       <div className='pictureTitle'>

@@ -19,7 +19,9 @@ export default function FilterContent() {
   
   // localStorage 저장값 가져오기
   useEffect(() => {
+    // Sort 
     for (let option of sortOptions) appStore[option.key] = Number(localStorage.getItem(option.key));
+    // Search
     appStore.search = localStorage.getItem('search') === null ? '' : localStorage.getItem('search');
   }, [])
 
@@ -27,14 +29,17 @@ export default function FilterContent() {
   return useObserver(() => (
       <div id='filterDiv'>
         {
-          sortOptions.map((item, i) => 
-            <OrderButton key={i} value={{ item, appStore }} />)
+          sortOptions.map((item, i) => {
+            if (appStore.selectedCategory === 1 && i === 0) return;
+            return <OrderButton key={i} value={{ item, appStore }} />
+          })
         }
         <SearchDiv value={{ searchInput }} method={{ setSearchInput }} />
       </div>
   ))
 }
 
+// 모두 취소 컴포넌트
 /* {
   JSON.stringify(sortStatus) !== '{"verse":0,"createdAt":0}' ?
   keywords.search ? (
