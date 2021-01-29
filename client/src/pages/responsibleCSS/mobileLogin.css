@@ -7,12 +7,13 @@
   
     padding: 3vw 4vw;
     width: 60vw;
-    height: 80vw;
+    height: 70vw;
     text-align: center;
   
     box-shadow: 20px 20px 40px 0px rgba(0, 0, 0, 0.5);
-    border: 2px solid #000;
-    background-color: #fff;
+    border: 2px solid #fff;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
     z-index: 3;
   }
   

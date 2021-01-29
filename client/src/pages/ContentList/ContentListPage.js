@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
 // component
@@ -13,21 +12,22 @@ import './contentListPage.css';
 import '../responsibleCSS/mobileContentListPage.css';
 
 export default function ContentListPage() {
-  const appStore = useAppStore();
-  
-  return useObserver(() => (
+  return (
     <div id='contentListPage'>
       <FilterContent />
       <ContentList />
-
-      <div id='pageOptionDiv'>
-        <PageSelect />
-        <SelectNumberOfData 
-          changeMethod={appStore.setNumberOfData} 
-        />
-      </div>
+      <PageOption />
     </div>
-  ))
+  )
+}
+
+function PageOption() {
+  return (
+    <div id='pageOptionDiv'>
+      <PageSelect />
+      <SelectNumberOfData />
+    </div>
+  )
 }
 
 

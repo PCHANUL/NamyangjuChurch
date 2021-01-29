@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { useAppStore } from '../../state/appContext';
 import { useObserver } from 'mobx-react';
 
 // component
-import BibleVerseViewer from './BibleVerseViewer';
+import VideoContent from './VideoContent';
+import PhotoContent from './PhotoContent';
 
 export default function ContentList() {
   const appStore = useAppStore();
@@ -25,36 +25,22 @@ export default function ContentList() {
     ])
   });
 
-  if (appStore.selectedCategory === 0) {
+  // 데이터가 없는 경우
+  if (dataList.length === 0) {
     return (
-      dataList.map((data, i) => {
-        return (
-          <div className='videoDiv' key={i} >
-            <div className='videoTitle'>
-              <Link to={`/content/${data.id}`}>{data.title}</Link>
-              <p>{(data.createdAt).replace(/-/g, '. ')}</p>
-            </div>
-            <BibleVerseViewer verse={data.verse} />
-          </div>
-        );
-      })
+      <div id='noDataDiv'>
+        <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/file.png' />
+        <h1>아직 게시물이 없습니다.</h1>
+      </div>
     )
+  }
+
+  if (appStore.selectedCategory === 0) {
+    return dataList.map((data, i) => <VideoContent data={data} key={i} />)
   } else {
     return (
       <div id='pictureListDiv'>
-        {dataList.map((data, i) => {
-          return (
-            <div className='pictureDiv' key={i}>
-              <div className='imgDiv'>
-                <img className='pictureImg' src={data.thumbnail} />
-              </div>
-              <div className='pictureTitle'>
-                <Link to={`/content/${data.id}`}>{data.title}</Link>
-                <p>{(data.createdAt).replace(/-/g, '. ')}</p>
-              </div>
-            </div>
-          )
-        })}
+        { dataList.map((data, i) => <PhotoContent data={data} key={i} />) }
       </div>
     )
   }

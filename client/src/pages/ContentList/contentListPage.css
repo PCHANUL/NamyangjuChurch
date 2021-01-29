@@ -292,3 +292,21 @@ a:hover {
   width: 1000px;
   border-bottom: 10px solid rgb(0, 0, 0, 0.05);
 }
+
+#noDataDiv {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: fit-content;
+  height: 200px;
+  padding: 100px;
+}
+
+#noDataDiv img {
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  width: 100px;
+  margin-bottom: 30px;
+}
+

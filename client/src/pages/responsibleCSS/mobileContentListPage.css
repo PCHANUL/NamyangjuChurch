@@ -159,5 +159,19 @@
     padding: 5px;
   }
 
+  #noDataDiv {
+    height: 30vw;
+    padding: 10vw;
+  }
+  
+  #noDataDiv img {
+    width: 15vw;
+    margin-bottom: 5vw;
+  }
+  
+  #noDataDiv h1 {
+    font-size: 3vw;
+  }
+
 
 }

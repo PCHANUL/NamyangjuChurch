@@ -34,12 +34,12 @@ const Admin = (props) => {
         setTimeout(setLoading(true), 2000);
       });
 
-      // (async() => {
-      //   if (!(await isSignin())) {
-      //     alert('접근권한이 없습니다.');
-      //     window.location = '/';
-      //   }
-      // })();
+      (async() => {
+        if (!(await isSignin())) {
+          alert('접근권한이 없습니다.');
+          window.location = '/';
+        }
+      })();
       
     }, [appStore.selectedCategory, appStore.selectedDetail])
   });
