@@ -32,7 +32,7 @@
 
 
   /* video */
-  #videoList {
+  #contentListPage {
     grid-column: 1 / 5;
     width: 90vw;
     margin-left: 5vw;
@@ -84,17 +84,17 @@
 
   .closeVerse {
     background-color: white;
-    z-index: 2;
-    top: 12vw;
-    right: 35%;
+    right: 17%;
+    top: 27vw;
     transform: translate(50%);
     padding: 2vw;
   }
+
   .closeVerse .label {
     font-size: 3vw;
     float: left;
   }
-  
+
   #pageOptionDiv {
     width: 100%;
   }

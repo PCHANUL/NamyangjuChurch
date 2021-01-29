@@ -80,6 +80,10 @@ export function createStore() {
       for (let i = 1; i < (dataLen / this.rowsPerPage) + 1; i++) this.pageNumbers.push(i);
     },
 
+    setNumberOfData(num) {
+      this.rowsPerPage = num
+    },
+
     // 컨텐츠 필터
     filterContentList(data) {
       let filtered = 
@@ -106,7 +110,7 @@ export function createStore() {
       else this.searchError = false;
       
       this.setPageNumber(filtered.length); // 페이지 숫자생성
-      return filtered.filter((_, i) => (this.page - 1) * this.rowsPerPage <= i && i <= this.page * this.rowsPerPage);
+      return filtered.filter((_, i) => (this.page - 1) * this.rowsPerPage <= i && i < this.page * this.rowsPerPage);
     },
 
     getContentList(callback) {

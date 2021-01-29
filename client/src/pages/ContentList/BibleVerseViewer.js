@@ -44,18 +44,14 @@ export default function BibleVerseViewer(props) {
             className={`bibleVerse ${isClicked ? 'clickedVerse' : ''}`} 
             onClick={(e) => clickViewer(e, isClicked, setClicked)}
           >
-            {
-              isClicked && (
-                <Button className='closeVerse'>닫기</Button>
-              )
-            }
             <div>{verse}</div>
           </div>
           {
             isClicked ? (
               <>
-                <BibleViewer bibleContent={bibleContent} />
                 <div className='viewerBackground' onClick={() => setClicked(!isClicked)}></div>
+                <BibleViewer bibleContent={bibleContent} />
+                <Button className='closeVerse' onClick={() => setClicked(!isClicked)}>닫기</Button>
               </>
             ) : <></>
           }

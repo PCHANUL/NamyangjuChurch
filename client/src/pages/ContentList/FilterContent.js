@@ -30,7 +30,6 @@ export default function FilterContent() {
           sortOptions.map((item, i) => 
             <OrderButton key={i} value={{ item, appStore }} />)
         }
-
         <SearchDiv value={{ searchInput }} method={{ setSearchInput }} />
       </div>
   ))

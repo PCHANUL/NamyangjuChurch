@@ -7,7 +7,7 @@ import Main from './pages/main/Main';
 import Edit from './pages/admin/Edit';
 import Admin from './pages/admin/Admin';
 import Login from './pages/Login';
-import ContentList from './pages/ContentList/ContentList';
+import ContentListPage from './pages/ContentList/ContentListPage';
 import ContentViewer from './pages/ContentViewer/ContentViewer';
 
 import './pages/app.css';
@@ -55,7 +55,7 @@ const App = (props) => {
         <Login isOpen={isOpen} setIsOpen={setIsOpen} />
         <Switch key={location.key}>
           <Route exact path='/' component={Main} />
-          <Route exact path='/contentlist' component={ContentList} />
+          <Route exact path='/contentlist' component={ContentListPage} />
           <Route path='/content/:id' component={ContentViewer} />
 
           <Route exact path='/admin' component={Admin} />
