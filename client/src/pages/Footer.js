@@ -25,9 +25,9 @@ function Footer(props) {
           <p>교회(팩스겸용) 031-573-0815</p>
         </div>
         <p>경기도 남양주시 진건읍 진건오남로 98 (3층), 한신그린상가</p>
+        <a onClick={() => setIsOpen(true)}>관리자 페이지</a>
       </div>
 
-      {/* <button onClick={() => setIsOpen(true)}>admin</button> */}
     </footer>
   )
 }

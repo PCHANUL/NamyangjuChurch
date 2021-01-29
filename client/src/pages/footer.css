@@ -59,7 +59,7 @@
   width: fit-content;
   
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
 }
 
 #info #phone {
@@ -69,4 +69,10 @@
 
 #info #phone p:nth-child(2){
   text-align: right;
+}
+
+#info a {
+  color: #fff;
+  cursor: pointer;
+  text-decoration: underline;
 }
