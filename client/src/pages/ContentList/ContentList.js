@@ -40,10 +40,10 @@ export default function ContentList() {
               return (
                 <div className='videoDiv-loading'>
                   <div className='videoInfo-loading'>
-                    <div className='videoTitle-loading'></div>
-                    <div className='videoDate-loading'></div>
+                    <div className='videoTitle-loading loadingEffect'></div>
+                    <div className='videoDate-loading loadingEffect'></div>
                   </div>
-                  <div className='bibleVerse-loading'></div>
+                  <div className='bibleVerse-loading loadingEffect'></div>
                 </div>
               )}
             )
@@ -57,10 +57,10 @@ export default function ContentList() {
             [0,0,0,0,0,0,0,0,0].map(() => {
               return (
                 <div className='pictureDiv'>
-                  <div className='photoDiv-loading'></div>
+                  <div className='photoDiv-loading loadingEffect'></div>
                   <div className='photoInfo-loading'>
-                    <div className='photoTitle-loading'></div>
-                    <div className='photoDate-loading'></div>
+                    <div className='photoTitle-loading loadingEffect'></div>
+                    <div className='photoDate-loading loadingEffect'></div>
                   </div>
                 </div>
               )
@@ -68,7 +68,6 @@ export default function ContentList() {
           }
         </div>
       )
-
     }
   }
 
@@ -85,7 +84,7 @@ export default function ContentList() {
 
   // 데이터가 있는 경우
   if (appStore.selectedCategory === 0) {
-    return dataList.map((data, i) => <VideoContent data={data} key={i} />);
+    return dataList.map((data, i) => <VideoContent data={data} key={i} />)
   } else {
     return (
       <div id='pictureListDiv'>
