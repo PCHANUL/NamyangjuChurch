@@ -1,0 +1,62 @@
+.videoDiv-loading {
+  position: relative;
+  height: 60px;
+  padding: 15px 30px 0 30px;
+  border-top: 1px solid rgb(210, 210, 210);
+}
+
+.videoInfo-loading {
+  float: left;
+  width: 520px;
+}
+
+.videoTitle-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 20px;
+  width: 300px;
+}
+
+.videoDate-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 15px;
+  width: 100px;
+  margin-top: 5px;
+}
+
+.bibleVerse-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 20px;
+
+  width: 150px;
+  height: 30px;
+}
+
+
+/* picture loading */
+.photoDiv-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 150px;
+  width: 100%;
+}
+
+.photoInfo-loading {
+  float: left;
+  width: 100%;
+}
+
+.photoTitle-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  height: 20px;
+  width: 200px;
+}
+
+.photoDate-loading {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  height: 15px;
+  width: 100px;
+}

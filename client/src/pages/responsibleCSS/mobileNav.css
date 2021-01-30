@@ -208,13 +208,6 @@
   
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    /* background-color: rgba(255, 255, 255, 0.5); */
-    /* background: linear-gradient(
-      110deg, 
-      rgba(255,255,255,0.1) 0%,
-      rgba(255,255,255,0.6) 30%,
-      rgba(255,255,255,0.7) 50%,
-      rgba(255,255,255,1) 100%); */
     box-shadow: -3vw 3vw 20vw 0 rgb(0,0,0, 0.2);
 
     padding: 10vw 5vw 30vw 5vw;
@@ -247,8 +240,9 @@
     top: 50%;
     transform: translate(0, -50%);
 
+    color: rgb(108, 108, 108);
     font-family: 'NanumBarunGothic';
-    font-weight: 400;
+    font-weight: 700;
     font-size: 5vw;
     line-height: 7vw;
   }
