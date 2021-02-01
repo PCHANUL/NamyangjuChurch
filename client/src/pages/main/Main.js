@@ -27,6 +27,7 @@ function Main() {
     document.querySelector('#main-thumbnail').style.visibility = 'hidden';
     document.querySelector('#imgOuter').style.zIndex = 1;
     document.querySelector('#yt-player').src += '?autoplay=1&rel=0'; 
+    document.querySelector('#yt-player').requestFullscreen();
     setIsPlayed(true);
   }
   

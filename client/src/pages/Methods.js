@@ -149,3 +149,23 @@ export function preventDefaults (e) {
   e.preventDefault()
   e.stopPropagation()
 }
+
+export function isScrollDown() {
+  let pos = window.scrollY;
+  
+  return function() {
+    if (window.scrollY <= 100) {
+      return true;
+    } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
+      return false;
+    } else {
+      if (pos < window.scrollY) {
+        pos = window.scrollY;
+        return false;
+      } else if (pos > window.scrollY){
+        pos = window.scrollY;
+        return true;
+      }
+    }
+  }
+}

@@ -12,6 +12,9 @@ import MobileMenuButton from './MobileMenuButton';
 import NavTabs from './NavTabs';
 import { GobackButton } from '../ContentList/Button';
 
+// method
+import { isScrollDown } from '../Methods';
+
 export default function Nav() {
   const appStore = useAppStore();
   const location = useLocation();
@@ -79,25 +82,7 @@ export default function Nav() {
   ))
 }
 
-function isScrollDown() {
-  let pos = window.scrollY;
-  
-  return function() {
-    if (window.scrollY <= 100) {
-      return true;
-    } else if (window.scrollY > document.body.scrollHeight - window.innerHeight) {
-      return false;
-    } else {
-      if (pos < window.scrollY) {
-        pos = window.scrollY;
-        return false;
-      } else if (pos > window.scrollY){
-        pos = window.scrollY;
-        return true;
-      }
-    }
-  }
-}
+
 
 
 
