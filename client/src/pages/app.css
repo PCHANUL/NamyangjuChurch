@@ -30,7 +30,6 @@ html, body {
 
 #edit
 {
-  margin-top: 40px;
   grid-column: 3;
   grid-row: 2;
 }
