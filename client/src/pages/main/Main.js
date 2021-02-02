@@ -8,7 +8,7 @@ import ImgBoard from './ImgBoard';
 import './main.css';
 import '../responsibleCSS/mobileMain.css';
 
-import { scrollFunc } from '../Methods';
+import { scrollFunc, isScrollDown } from '../Methods';
 
 import { Button } from '../ContentList/Button';
 
@@ -30,8 +30,10 @@ function Main() {
     document.querySelector('#yt-player').requestFullscreen();
     setIsPlayed(true);
   }
-  
+
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     let scroll
     if (window.innerWidth < 640) {
       scroll = scrollFunc(

@@ -69,7 +69,7 @@
 #prayer {
   height: 40vw;
   border-top: 1px solid rgb(220, 220, 220);
-  padding-top: 8vw;
+  padding-top: 4vw;
   margin-top: -10vw;
   text-align: center;
   font-family: 'Nanum Gothic', sans-serif;
@@ -103,7 +103,7 @@
   position: absolute;
   left: 0;
   width: 100vw;
-  margin-top: 7vw;
+  margin-top: 4vw;
   padding-bottom: 2vw;
   background: linear-gradient(90deg,
    rgba(255,255,255,1) 0%,  
