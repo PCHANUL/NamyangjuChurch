@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import BibleVerseViewer from './BibleVerseViewer';
 
 export default function VideoContent(props) {
-  const { data } = props;
+  const { data, countLoading } = props;
+  setTimeout(() => countLoading('video'), 100);
+  
   return (
     <div className='videoDiv'>
       <div className='videoTitle'>

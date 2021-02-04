@@ -81,6 +81,14 @@
 
 
 /* picture loading */
+#photo-loading {
+  display: grid;
+  grid-template-columns: 260px 260px 260px;
+  grid-gap: 10px;
+  height: auto;
+  margin-bottom: 50px;
+}
+
 .photoDiv-loading {
   height: 150px;
   width: 100%;

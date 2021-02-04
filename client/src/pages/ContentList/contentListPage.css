@@ -6,8 +6,13 @@ a:hover {
   color: #000;
 }
 
+.hidden-list {
+  visibility: hidden;
+  position: absolute;
+}
+
 /*  picture  */
-#pictureListDiv {
+#photoListDiv {
   display: grid;
   grid-template-columns: 260px 260px 260px;
   grid-gap: 10px;
