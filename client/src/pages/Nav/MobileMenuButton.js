@@ -17,12 +17,18 @@ export default function MobileMenuButton() {
         </a>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(0, 0);
+          appStore.initSort('all');
+          appStore.deleteSearch();
+          appStore.setNumberOfData(10);
           clickFunction();
         }}>
           <h1>말씀<br/>보기</h1>
         </Link>
         <Link to="/contentlist" className='menuBtn' onClick={() => {
           appStore.setVideoList(1, 0);
+          appStore.initSort('all');
+          appStore.deleteSearch();
+          appStore.setNumberOfData(10);
           clickFunction();
         }}>
           <h1>교회<br/>소식</h1>

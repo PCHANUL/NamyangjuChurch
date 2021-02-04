@@ -6,8 +6,8 @@ import { useObserver } from 'mobx-react';
 import './contentListLoading.css';
 
 // component
-import VideoContent from './VideoContent';
-import PhotoContent from './PhotoContent';
+import PhotoList from './PhotoList';
+import VideoList from './VideoList';
 
 export default function ContentList() {
   const appStore = useAppStore();
@@ -36,12 +36,6 @@ export default function ContentList() {
         }
       });
 
-      return () => {
-        let targetString = appStore.selectedCategory === 0 ? 'video' : 'photo';
-        document.querySelector(`#${targetString}-loading`).className = '';
-        document.querySelector(`#${targetString}ListDiv`).className = 'hidden-list';
-      };
-
     }, [
       appStore.page, 
       appStore.verse, 
@@ -66,80 +60,12 @@ export default function ContentList() {
   }
 }
 
+
 const NoDataList = () => {
   return (
     <div id='noDataDiv'>
       <img src='https://nsarang.s3.ap-northeast-2.amazonaws.com/images/icons/file.png' />
       <h1>아직 게시물이 없습니다.</h1>
-    </div>
-  )
-}
-
-const VideoList = (props) => {
-  const { dataList, countLoading } = props;
-
-  return (
-    <>
-      <LoadingVideoList />
-      {
-        <div id='videoListDiv' className='hidden-list'>
-          { dataList.map((data, i) => <VideoContent data={data} key={i} countLoading={countLoading} />) }
-        </div>
-      }
-    </>
-  )
-}
-
-
-const LoadingVideoList = () => {
-  return (
-    <div id='video-loading'>
-      {
-        [0,0,0,0,0,0,0,0,0,0].map(() => {
-          return (
-            <div className='videoDiv-loading'>
-              <div className='videoInfo-loading'>
-                <div className='videoTitle-loading loadingEffect'></div>
-                <div className='videoDate-loading loadingEffect'></div>
-              </div>
-              <div className='bibleVerse-loading loadingEffect'></div>
-            </div>
-          )}
-        )
-      }
-    </div>
-  )
-}
-
-
-const PhotoList = (props) => {
-  const { dataList, countLoading } = props;
-  return ( 
-    <>
-      <LoadingPhotoList />
-      <div id='photoListDiv' className='hidden-list'>
-        { dataList.map((data, i) => <PhotoContent data={data} key={i} countLoading={countLoading} />) }
-      </div>
-    </>
-  )
-}
-
-const LoadingPhotoList = () => {
-  return (
-    <div id='photo-loading'>
-      {
-        [0,0,0,0,0,0,0,0,0].map(() => {
-          return (
-            <div className='pictureDiv'>
-              <div className='photoDiv-loading loadingEffect'></div>
-              <div className='photoInfo-loading'>
-                <div className='photoTitle-loading loadingEffect'></div>
-                <div className='photoDate-loading loadingEffect'></div>
-              </div>
-            </div>
-          )
-        })
-      }
     </div>
   )
 }

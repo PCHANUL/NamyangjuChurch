@@ -50,6 +50,10 @@
 }
 
 @media only screen and (max-width : 640px) {
+  #video-loading {
+    width: 100%;
+  }
+
   .videoDiv-loading {
     height: 15vw;
     padding: 5vw 2vw 5vw 2vw;
@@ -112,6 +116,14 @@
 }
 
 @media only screen and (max-width : 640px) {
+  #photo-loading {
+    width: 90vw;
+    grid-template-columns: auto;
+    grid-gap: 3vw;
+    margin-bottom: 5vw;
+
+  }
+
   .photoDiv-loading {
     height: 27vw;
   }

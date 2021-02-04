@@ -8,7 +8,7 @@ a:hover {
 
 .hidden-list {
   visibility: hidden;
-  position: absolute;
+  position: fixed;
 }
 
 /*  picture  */

@@ -6,8 +6,8 @@ import BibleVerseViewer from './BibleVerseViewer';
 
 export default function VideoContent(props) {
   const { data, countLoading } = props;
-  setTimeout(() => countLoading('video'), 100);
-  
+  setTimeout(() => countLoading('video'), 0);
+
   return (
     <div className='videoDiv'>
       <div className='videoTitle'>

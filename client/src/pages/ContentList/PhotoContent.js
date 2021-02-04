@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 export default function PhotoContent(props) {
@@ -8,7 +8,7 @@ export default function PhotoContent(props) {
   return (
     <div className='pictureDiv'>
       <div className='imgDiv' onClick={() => history.push(`/content/${data.id}`)}>
-        <img className='pictureImg' src={data.thumbnail} onLoad={() => countLoading('photo')} />
+        <img className='pictureImg' src={data.thumbnail} onLoad={() => countLoading('photo')}/>
       </div>
       <div className='pictureTitle'>
         <Link to={`/content/${data.id}`}>{data.title}</Link>

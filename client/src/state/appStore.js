@@ -81,7 +81,7 @@ export function createStore() {
     },
 
     setNumberOfData(num) {
-      this.rowsPerPage = num
+      this.rowsPerPage = num;
     },
 
     // 컨텐츠 필터
@@ -110,6 +110,7 @@ export function createStore() {
       else this.searchError = false;
       
       this.setPageNumber(filtered.length); // 페이지 숫자생성
+      console.log('this.rowsPerPage: ', this.rowsPerPage);
       return filtered.filter((_, i) => (this.page - 1) * this.rowsPerPage <= i && i < this.page * this.rowsPerPage);
     },
 

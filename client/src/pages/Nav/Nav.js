@@ -60,10 +60,20 @@ export default function Nav() {
               남양주 사랑교회
             </a>
             <div id='NavButtonDiv'>
-              <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(1, 0)}>
+              <Link to="/contentlist" className='button' onClick={() => {
+                appStore.initSort('all');
+                appStore.deleteSearch();
+                appStore.setNumberOfData(10);
+                appStore.setVideoList(1, 0);
+              }}>
                 교회소식
               </Link>
-              <Link to="/contentlist" className='button' onClick={() => appStore.setVideoList(0, 0)}>
+              <Link to="/contentlist" className='button' onClick={() => {
+                appStore.initSort('all');
+                appStore.deleteSearch();
+                appStore.setNumberOfData(10);
+                appStore.setVideoList(0, 0);
+              }}>
                 말씀보기
               </Link>
             </div>
