@@ -143,8 +143,6 @@ const changeUrlToFile = async(e) => {
   return results;
 }
 
-// 데이터 저장 전 처리함수
-
 // 동영상 (이미지 => 영상)
 export const changeImgToIframe = () => {
   const elements = document.getElementsByClassName('youtubeThumnail');
@@ -156,6 +154,22 @@ export const changeImgToIframe = () => {
     youtubeIframe.style.height = `${targetSize.height}px`;
     elements[0].parentElement.replaceChild(youtubeIframe, elements[0]);
   }
+}
+
+export const changeIframeToImg = () => {
+  const elements = document.getElementsByTagName('iframe');
+  [].map.call(elements, (element) => {
+    // const imgSrc = element.src.replace('www', 'img').replace('embed', 'vi');
+    // const imgWidth = element.style.width;
+    // const imgElement = `<img class='image youtubeThumnail' src="${imgSrc}/hqdefault.jpg" style='width: ${imgWidth}'>`;
+
+    const imgElement = document.createElement('img');
+    imgElement.className = 'image youtubeThumnail';
+    imgElement.src = element.src.replace('www', 'img').replace('embed', 'vi') + '/hqdefault.jpg';
+    imgElement.style.width = element.style.width;
+
+    element.parentElement.replaceChild(imgElement, element)
+  })
 }
 
 // 이미지 (데이터 => 이미지)

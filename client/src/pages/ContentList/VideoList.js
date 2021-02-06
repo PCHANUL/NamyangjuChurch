@@ -31,9 +31,9 @@ const LoadingVideoList = () => {
   return (
     <div id='video-loading'>
       {
-        [0,0,0,0,0,0,0,0,0,0].map(() => {
+        [0,0,0,0,0,0,0,0,0,0].map((_, i) => {
           return (
-            <div className='videoDiv-loading'>
+            <div className='videoDiv-loading' key={i}>
               <div className='videoInfo-loading'>
                 <div className='videoTitle-loading loadingEffect'></div>
                 <div className='videoDate-loading loadingEffect'></div>

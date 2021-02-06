@@ -7,7 +7,7 @@ import { useAppStore } from '../../state/appContext';
 import { transDate } from '../Methods';
 import { addData, getContent, updateData, uploadImage } from '../axiosRequest';
 import { saveTempData, getTempData, initTempData } from './tempDataFunc';
-import { handleImg, setDropEvent, changeImgToIframe, changeDataToImage, changeImgTagSrc, readImage } from './EditFunc';
+import { handleImg, setDropEvent, changeImgToIframe, changeIframeToImg, changeDataToImage, changeImgTagSrc, readImage } from './EditFunc';
 
 // components
 import EditToolbar from './EditToolbar';
@@ -124,6 +124,7 @@ const setContent = (id) => {
     document.querySelector('#inputVerse').value = data.verse;
     document.querySelector('#inputDate').value = data.createdAt;
     document.querySelector('#editFrame').insertAdjacentHTML('beforeend', data.content.content);
+    changeIframeToImg();
   })
 }
 

@@ -30,9 +30,9 @@ const LoadingPhotoList = () => {
   return (
     <div id='photo-loading'>
       {
-        [0,0,0,0,0,0,0,0,0].map(() => {
+        [0,0,0,0,0,0,0,0,0].map((_, i) => {
           return (
-            <div className='pictureDiv'>
+            <div className='pictureDiv' key={i}>
               <div className='photoDiv-loading loadingEffect'></div>
               <div className='photoInfo-loading'>
                 <div className='photoTitle-loading loadingEffect'></div>
