@@ -159,16 +159,11 @@ export const changeImgToIframe = () => {
 export const changeIframeToImg = () => {
   const elements = document.getElementsByTagName('iframe');
   [].map.call(elements, (element) => {
-    // const imgSrc = element.src.replace('www', 'img').replace('embed', 'vi');
-    // const imgWidth = element.style.width;
-    // const imgElement = `<img class='image youtubeThumnail' src="${imgSrc}/hqdefault.jpg" style='width: ${imgWidth}'>`;
-
     const imgElement = document.createElement('img');
     imgElement.className = 'image youtubeThumnail';
     imgElement.src = element.src.replace('www', 'img').replace('embed', 'vi') + '/hqdefault.jpg';
     imgElement.style.width = element.style.width;
-
-    element.parentElement.replaceChild(imgElement, element)
+    element.parentElement.replaceChild(imgElement, element);
   })
 }
 

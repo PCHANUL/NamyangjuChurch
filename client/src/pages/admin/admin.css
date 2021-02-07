@@ -134,50 +134,51 @@
   z-index: 1;
   height: 80px;
   font-size: 20px;
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
   background-color: #fff;
 }
 #adminTabBox {
-  margin-top: 5px;
-  height: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 .adminTab {
   text-align: center;
   height: 30px;
+  padding-top: 10px;
   border-bottom: 1px solid #000;
   grid-row: 1;
   cursor: pointer;
+  border-radius: 10px 10px 0 0;
 }
 .adminTab:hover {
-  border-bottom: 2px solid #000;
+  background-color: rgba(126, 126, 126, 0.2);
 }
 #subTabBox {
-  height: 30px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  height: 40px;
 }
 .subTab {
   text-align: center;
   height: 30px;
   cursor: pointer;
-  padding-top: 15px;
+  padding-top: 10px;
+  border-radius: 0 0 10px 10px;
 }
 .subTab:hover {
-  border-bottom: 2px solid #000;
+  background-color: rgba(126, 126, 126, 0.2);
 }
 .selected {
-  border-bottom: 2px solid #000;
+  color: #fff;
 }
-
 
 /* data list */
 #dataList {
   display: inline-block;
   height: 300px;
   overflow: scroll;
+  
 }
 .dataBox {
   position: relative;
